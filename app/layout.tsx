@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import ThemeToggle from "./components/ThemeToggle";
+import { assetPath } from "@/lib/asset-path";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
     "codex-preview": "development",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: assetPath("/favicon.svg"),
+    shortcut: assetPath("/favicon.svg"),
   },
 };
 

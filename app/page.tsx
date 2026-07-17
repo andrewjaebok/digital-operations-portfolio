@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import Image from "./components/PortfolioImage";
 
 const capabilities = [
   ["01", "🔍 Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
