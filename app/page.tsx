@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
 const capabilities = [
-  ["01", "Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
-  ["02", "Understand what must remain", "Identify technical constraints, production dependencies, and workflows people already understand."],
-  ["03", "Improve the system", "Build the simplest solution that meaningfully improves the customer or employee experience."],
+  ["01", "🔍 Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
+  ["02", "🧭 Understand what must remain", "Identify technical constraints, production dependencies, and workflows people already understand."],
+  ["03", "⚙️ Improve the system", "Build the simplest solution that meaningfully improves the customer or employee experience."],
 ];
+
+const skills = ["Product operations", "Portal strategy", "Digital ordering", "Workflow automation", "Customer implementations", "SEO + GEO", "Digital growth", "HTML / CSS / JS", "4D", "FileMaker", "Process design", "Quality assurance"];
 
 export default function Home() {
   return (
@@ -34,23 +34,53 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="role-mandate shell" aria-labelledby="role-title">
+        <div className="role-overview">
+          <p className="eyebrow">Current scope</p>
+          <h2 id="role-title">Senior Product/Digital Operations</h2>
+          <p>I lead the strategy, development, implementation, and continuous improvement of Castle Press&apos;s customer-facing digital services. My scope includes online portals, web platforms, digital ordering systems, workflow optimization, customer implementations, and digital growth initiatives.</p>
+        </div>
+        <div className="operating-mandate">
+          <p className="eyebrow">Operating mandate</p>
+          <h3>Modernize every customer-facing digital experience.</h3>
+          <p>I prioritize the highest-volume portals, improve usability and search visibility, and identify opportunities to grow online revenue through complementary products and self-service capabilities.</p>
+          <div className="mandate-priorities" aria-label="Strategic priorities"><span>Prioritize by volume</span><span>Improve usability</span><span>Increase visibility</span><span>Grow digital revenue</span></div>
+        </div>
+      </section>
+
+      <section className="skills-marquee" aria-label="Skills and capabilities">
+        <div className="skills-track">
+          <div className="skills-group">{skills.map((skill, index) => <span key={`primary-${skill}`}><b aria-hidden="true">{["✦","●","◆"][index % 3]}</b>{skill}</span>)}</div>
+          <div className="skills-group" aria-hidden="true">{skills.map((skill, index) => <span key={`duplicate-${skill}`}><b>{["✦","●","◆"][index % 3]}</b>{skill}</span>)}</div>
+        </div>
+      </section>
+
       <section className="bento-section shell" id="work">
         <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Business problems turned into better products.</h2></div><p>Choose a project to see the business context, operational assessment, requirements, decisions, responsibilities, and outcome.</p></div>
-        <div className="project-gallery">
-          <Link className="bento-card featured-project" href="/projects/customer-portal-redesign">
-            <div className="project-topline"><span>Project 01</span><b>Full case study</b></div>
-            <div className="project-shot real-project-shot">
+        <div className="project-gallery balanced-project-gallery">
+          <Link className="bento-card portfolio-project-card" href="/projects/customer-portal-redesign">
+            <div className="project-topline"><span><i aria-hidden="true">🌐</i> Project 01</span><b>Full case study</b></div>
+            <div className="portfolio-card-media">
               <span className="evidence-label">Final production interface</span>
-              <Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} priority alt="Final regional utility report portal with search, status key, language tabs, and reports organized by region" />
+              <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal with search, status key, language tabs, and reports organized by region" />
             </div>
-            <div className="featured-copy"><div><p className="project-label">Product operations · Customer experience</p><h3>Regional Utility Customer Portal</h3><p>Led a customer portal improvement initiative from operational assessment and requirements definition through implementation and validation.</p><aside className="noticed-note"><b>NOTICED 01</b><span>A valuable reporting workflow was creating unnecessary customer effort and needed a clearer, more scalable product experience.</span></aside></div><span className="case-action">View case study <b>↗</b></span></div>
-            <div className="project-facts"><span><small>My role</small>Product operations lead</span><span><small>Coverage</small>7 regions · 2 languages</span><span><small>Focus</small>Discovery through delivery</span></div>
+            <div className="portfolio-card-copy"><p className="project-label">Product operations · Customer experience</p><h3>Regional Utility Customer Portal</h3><p>Led a customer portal improvement initiative from operational assessment and requirements definition through implementation and validation.</p></div>
+            <div className="portfolio-card-footer"><span>Product operations lead</span><b>View case study ↗</b></div>
           </Link>
 
-          <div className="secondary-projects">
-            <article className="bento-card upcoming-card portal-project"><div className="project-topline"><span>Project 02</span><b>Coming soon</b></div><div className="mini-system"><i/><i/><i/><i/><i/><i/></div><p className="project-label">Platform modernization</p><h3>Customer Portal Design System</h3><p>A reusable interface system for modernizing legacy client portals while preserving their production workflows.</p><span className="disabled-action">Case study in development</span></article>
-            <article className="bento-card upcoming-card automation-project"><div className="project-topline"><span>Project 03</span><b>Coming soon</b></div><div className="mini-flow"><i>Input</i><b>→</b><i>Automate</i><b>→</b><i>Output</i></div><p className="project-label">Operational automation</p><h3>Production Workflow Automation</h3><p>Automated variable-data workflows designed to reduce repetitive work and improve production consistency.</p><span className="disabled-action">Case study in development</span></article>
-          </div>
+          <Link className="bento-card portfolio-project-card rx-project" href="/projects/prescription-pad-ordering-portal">
+            <div className="project-topline"><span><i aria-hidden="true">🩺</i> Project 02</span><b>Full case study</b></div>
+            <div className="portfolio-card-media"><span className="evidence-label">Final ordering interface</span><Image src="/images/rx-pad-portal/order-after.png" width={1225} height={788} alt="Redesigned California prescription pad ordering experience" /></div>
+            <div className="portfolio-card-copy"><p className="project-label">Product operations · Regulated ordering</p><h3>Prescription Pad Ordering Experience</h3><p>Reframed a legacy ordering portal into a clearer customer journey while preserving the 4D backend and production workflow.</p></div>
+            <div className="portfolio-card-footer"><span>Product Operations Manager</span><b>View case study ↗</b></div>
+          </Link>
+
+          <article className="bento-card portfolio-project-card automation-project">
+            <div className="project-topline"><span><i aria-hidden="true">⚙️</i> Project 03</span><b>Coming soon</b></div>
+            <div className="portfolio-card-media portfolio-flow"><div className="mini-flow"><i>Input</i><b>→</b><i>Automate</i><b>→</b><i>Output</i></div></div>
+            <div className="portfolio-card-copy"><p className="project-label">Operational automation</p><h3>Production Workflow Automation</h3><p>Automated variable-data workflows designed to reduce repetitive work and improve production consistency.</p></div>
+            <div className="portfolio-card-footer muted"><span>Operational automation</span><b>In development</b></div>
+          </article>
         </div>
         <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>3</strong><span>Transformation disciplines</span></div><p>Each project is documented around the problem, constraints, decisions, responsibilities, and verified outcome.</p></div>
       </section>
