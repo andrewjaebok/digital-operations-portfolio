@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const capabilities = [
   ["01", "Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
   ["02", "Understand what must remain", "Identify technical constraints, production dependencies, and workflows people already understand."],
@@ -39,7 +41,7 @@ export default function Home() {
             <div className="project-topline"><span>Project 01</span><b>Full case study</b></div>
             <div className="project-shot real-project-shot">
               <span className="evidence-label">Final production interface</span>
-              <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal with search, status key, language tabs, and reports organized by region" />
+              <Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} priority alt="Final regional utility report portal with search, status key, language tabs, and reports organized by region" />
             </div>
             <div className="featured-copy"><div><p className="project-label">Product operations · Customer experience</p><h3>Regional Utility Customer Portal</h3><p>Led a customer portal improvement initiative from operational assessment and requirements definition through implementation and validation.</p><aside className="noticed-note"><b>NOTICED 01</b><span>A valuable reporting workflow was creating unnecessary customer effort and needed a clearer, more scalable product experience.</span></aside></div><span className="case-action">View case study <b>↗</b></span></div>
             <div className="project-facts"><span><small>My role</small>Product operations lead</span><span><small>Coverage</small>7 regions · 2 languages</span><span><small>Focus</small>Discovery through delivery</span></div>

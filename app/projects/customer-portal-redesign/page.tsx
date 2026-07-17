@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const changes = [
   ["Finding a report", "Manual scanning across a large matrix", "Search by region, filename, version, status, or path"],
   ["Understanding status", "Passive color legend", "Interactive, descriptive status filters"],
@@ -9,7 +11,7 @@ const changes = [
   ["Device support", "Desktop-era fixed presentation", "Responsive interface across screen sizes"],
 ];
 
-const process = [
+const lifecycleSteps = [
   ["01", "Reviewed the existing customer portal", "Established a clear baseline for the customer experience and the operational workflow supporting it."],
   ["02", "Identified customer pain points", "Focused the initiative on the points that created the most effort when customers located and reviewed reports in batches."],
   ["03", "Evaluated operational workflows", "Mapped what had to remain stable across report preparation, status updates, file organization, and delivery."],
@@ -51,7 +53,7 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
-    <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
+    <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
 
     <section className="ownership-section shell">
       <div className="ownership-column"><p className="kicker">Product Operations Ownership</p><p>I led the evaluation and improvement of an existing customer portal used to locate region-specific production reports.</p><ul><li>Identified customer pain points</li><li>Defined and prioritized product requirements</li><li>Preserved operational workflows</li><li>Coordinated implementation needs</li><li>Validated the final customer experience</li></ul></div>
@@ -69,27 +71,27 @@ export default function CustomerPortalRedesign() {
 
     <section className="before-section shell">
       <div className="section-intro"><p className="kicker">Product Requirements</p><h2>Turn operational needs into a clear, testable scope.</h2><p>The requirements preserved what worked while targeting the highest-friction parts of the customer journey.</p></div>
-      <figure className="evidence-frame before-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original regional report portal</span></div><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original regional utility report portal with a basic table, color-coded cells, and separate Spanish table" /><figcaption><b>Baseline:</b> The information was available, but users had to manually scan a dense matrix, interpret the status legend, and move between English and Spanish tables.</figcaption></figure>
+      <figure className="evidence-frame before-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original regional report portal</span></div><Image src={`${basePath}/images/utility-portal/portal-before.png`} width={1513} height={667} alt="Original regional utility report portal with a basic table, color-coded cells, and separate Spanish table" /><figcaption><b>Baseline:</b> The information was available, but users had to manually scan a dense matrix, interpret the status legend, and move between English and Spanish tables.</figcaption></figure>
       <div className="pain-grid"><div><strong>01</strong><span>Workflow requirements</span><p>Preserve report structure, status terminology, and compatibility with existing production and ordering systems.</p></div><div><strong>02</strong><span>Customer requirements</span><p>Support seven regions, bilingual navigation, report search, and reduced navigation effort.</p></div><div><strong>03</strong><span>Experience requirements</span><p>Improve discoverability, status visibility, information architecture, and mobile usability.</p></div></div>
     </section>
 
     <section className="solution-section shell">
       <div className="section-intro light"><p className="kicker">Execution</p><h2>Preserve the workflow. Remove the friction.</h2><p>I coordinated and implemented the prioritized requirements around the existing regional matrix, file structure, and six established production statuses.</p></div>
-      <figure className="evidence-frame after-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Delivered regional report portal</span></div><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Updated regional utility report portal with search, summary counts, status filters, language tabs, and improved regional organization" /><figcaption><b>Delivered:</b> Search, status filtering, report summaries, language tabs, and clearer regional organization reduce customer effort while preserving the established workflow.</figcaption></figure>
+      <figure className="evidence-frame after-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Delivered regional report portal</span></div><Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} alt="Updated regional utility report portal with search, summary counts, status filters, language tabs, and improved regional organization" /><figcaption><b>Delivered:</b> Search, status filtering, report summaries, language tabs, and clearer regional organization reduce customer effort while preserving the established workflow.</figcaption></figure>
       <div className="interaction-intro"><div><p className="kicker">Interaction details</p><h3>See how the new workflow behaves.</h3></div><p>Short demonstrations show how users move from a large report matrix to the exact files and statuses they need.</p></div>
       <div className="interaction-demos">
         <figure className="demo-card">
           <div className="demo-number">01</div>
-          <video autoPlay muted loop playsInline controls preload="metadata" poster="/images/utility-portal/portal-after.png" aria-label="Demonstration of searching the regional utility report portal">
-            <source src="/videos/utility-portal/search-demo.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of searching the regional utility report portal">
+            <source src={`${basePath}/videos/utility-portal/search-demo.mp4`} type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Universal search</span><b>Locate a report without scanning the full matrix.</b></div><p>Users can search by filename, region, version, status, language, or file path and see the table update immediately.</p></figcaption>
         </figure>
         <figure className="demo-card">
           <div className="demo-number">02</div>
-          <video autoPlay muted loop playsInline controls preload="metadata" poster="/images/utility-portal/portal-after.png" aria-label="Demonstration of filtering regional utility reports by production status">
-            <source src="/videos/utility-portal/status-filter-demo.mp4" type="video/mp4" />
+          <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of filtering regional utility reports by production status">
+            <source src={`${basePath}/videos/utility-portal/status-filter-demo.mp4`} type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Status filtering</span><b>Turn a passive color key into a useful control.</b></div><p>Choosing a production status highlights matching reports so customers can understand each batch at a glance.</p></figcaption>
@@ -113,7 +115,7 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
-    <section className="timeline-section product-process shell"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
+    <section className="timeline-section product-process shell"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{lifecycleSteps.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
 
     <section className="impact-section shell">
       <p className="kicker">06 · Outcome</p>

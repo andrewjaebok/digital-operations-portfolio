@@ -1,6 +1,10 @@
 # Digital Operations Portfolio
 
-A responsive portfolio and case-study site built for GitHub Pages-compatible static hosting.
+A responsive product operations portfolio hosted through GitHub Pages.
+
+## Live portfolio
+
+https://andrewjaebok.github.io/digital-operations-portfolio/
 
 ## Add another project
 
@@ -16,6 +20,6 @@ npm install
 npm run dev
 ```
 
-## Publish
+## Publish with GitHub Pages
 
-Push the project to GitHub and connect the repository to a static-compatible host. The included project also supports the current deployment environment.
+Every push to `main` runs the GitHub Actions workflow and publishes the static site to GitHub Pages.
