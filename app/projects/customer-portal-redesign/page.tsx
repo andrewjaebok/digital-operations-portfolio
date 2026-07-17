@@ -83,7 +83,7 @@ export default function CustomerPortalRedesign() {
         <figure className="demo-card">
           <div className="demo-number">01</div>
           <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of searching the regional utility report portal">
-            <source src={`${basePath}/videos/utility-portal/search-demo.mp4`} type="video/mp4" />
+            <source src={`${basePath}/videos/utility-portal/search-demo.mp4?v=2`} type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Universal search</span><b>Locate a report without scanning the full matrix.</b></div><p>Users can search by filename, region, version, status, language, or file path and see the table update immediately.</p></figcaption>
@@ -91,7 +91,7 @@ export default function CustomerPortalRedesign() {
         <figure className="demo-card">
           <div className="demo-number">02</div>
           <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of filtering regional utility reports by production status">
-            <source src={`${basePath}/videos/utility-portal/status-filter-demo.mp4`} type="video/mp4" />
+            <source src={`${basePath}/videos/utility-portal/status-filter-demo.mp4?v=2`} type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Status filtering</span><b>Turn a passive color key into a useful control.</b></div><p>Choosing a production status highlights matching reports so customers can understand each batch at a glance.</p></figcaption>
