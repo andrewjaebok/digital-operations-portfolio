@@ -1,7 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
+import CaseProgress from "../../components/CaseProgress";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const progressSections = [
+  { id: "case-content", label: "Overview", icon: "🌐" },
+  { id: "ownership", label: "Ownership", icon: "🎯" },
+  { id: "assessment", label: "Assessment", icon: "🔍" },
+  { id: "strategy", label: "Strategy", icon: "🧭" },
+  { id: "baseline", label: "Before", icon: "🕰️" },
+  { id: "solution", label: "Solution", icon: "✨" },
+  { id: "results", label: "What changed", icon: "↔️" },
+  { id: "process", label: "Process", icon: "⚙️" },
+  { id: "outcome", label: "Outcome", icon: "✅" },
+  { id: "validation", label: "Validation", icon: "💬" },
+];
 
 const changes = [
   ["Finding a report", "Manual scanning across a large matrix", "Search by region, filename, version, status, or path"],
@@ -11,7 +23,7 @@ const changes = [
   ["Device support", "Desktop-era fixed presentation", "Responsive interface across screen sizes"],
 ];
 
-const lifecycleSteps = [
+const process = [
   ["01", "Reviewed the existing customer portal", "Established a clear baseline for the customer experience and the operational workflow supporting it."],
   ["02", "Identified customer pain points", "Focused the initiative on the points that created the most effort when customers located and reviewed reports in batches."],
   ["03", "Evaluated operational workflows", "Mapped what had to remain stable across report preparation, status updates, file organization, and delivery."],
@@ -25,10 +37,11 @@ const lifecycleSteps = [
 
 export default function CustomerPortalRedesign() {
   return <main id="top">
+    <CaseProgress sections={progressSections} />
     <a className="skip-link" href="#case-content">Skip to case study</a>
     <header className="site-header case-header">
       <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b>01 / Customer Portal Redesign</b></div>
+      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">🌐</i> 01 / Customer Portal Redesign</b></div>
       <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#results">Jump to results</a></nav>
     </header>
 
@@ -53,45 +66,45 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
-    <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
+    <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
 
-    <section className="ownership-section shell">
+    <section className="ownership-section shell" id="ownership">
       <div className="ownership-column"><p className="kicker">Product Operations Ownership</p><p>I led the evaluation and improvement of an existing customer portal used to locate region-specific production reports.</p><ul><li>Identified customer pain points</li><li>Defined and prioritized product requirements</li><li>Preserved operational workflows</li><li>Coordinated implementation needs</li><li>Validated the final customer experience</li></ul></div>
       <div className="ownership-column"><p className="kicker">Business objective</p><p>Reduce customer effort and improve report discoverability without disrupting the systems, terminology, and production practices internal teams relied on.</p><ul><li>Clearer regional reporting</li><li>Consistent bilingual access</li><li>Scalable information architecture</li><li>Compatibility with existing ordering systems</li></ul></div>
     </section>
 
-    <section className="review-section shell"><div><p className="kicker">Operational Assessment</p><h2>The assessment became the roadmap for the product improvement.</h2><p>I evaluated the portal through both the customer&apos;s report-review journey and the internal process that prepared, organized, and delivered those reports.</p></div><div className="review-grid"><span>Navigation clarity</span><span>Product organization</span><span>Searchability</span><span>Workflow efficiency</span><span>Mobile responsiveness</span><span>Bilingual accessibility</span><span>Existing production workflow</span><span>Information architecture</span><span>Castle Press platform compatibility</span></div></section>
+    <section className="review-section shell" id="assessment"><div><p className="kicker">Operational Assessment</p><h2>The assessment became the roadmap for the product improvement.</h2><p>I evaluated the portal through both the customer&apos;s report-review journey and the internal process that prepared, organized, and delivered those reports.</p></div><div className="review-grid"><span>Navigation clarity</span><span>Product organization</span><span>Searchability</span><span>Workflow efficiency</span><span>Mobile responsiveness</span><span>Bilingual accessibility</span><span>Existing production workflow</span><span>Information architecture</span><span>Castle Press platform compatibility</span></div></section>
 
     <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Improve the customer capability without disrupting active operations.</h2></div><div className="constraint-list"><span>Production workflow had to remain unchanged</span><span>Existing report organization had to be preserved</span><span>Ordering systems could not be disrupted</span><span>Status terminology needed to remain familiar</span><span>English and Spanish support was required</span><span>Castle Press platform compatibility had to remain intact</span></div></section>
 
-    <section className="story-section shell two-col">
+    <section className="story-section shell two-col" id="strategy">
       <div><p className="kicker">Stakeholder Alignment</p><h2>Customer usability and operational continuity had to move together.</h2></div>
       <div className="story-copy"><p>The solution required alignment between customer expectations, internal production teams, regional reporting needs, and the existing Castle Press ordering environment.</p><p>I translated customer friction into requirements while protecting the workflow consistency internal teams needed to prepare reports, update statuses, and maintain familiar file structures.</p><aside>Cross-functional objective: improve the customer experience while keeping the operational system dependable and recognizable.</aside></div>
     </section>
 
-    <section className="before-section shell">
+    <section className="before-section shell" id="baseline">
       <div className="section-intro"><p className="kicker">Product Requirements</p><h2>Turn operational needs into a clear, testable scope.</h2><p>The requirements preserved what worked while targeting the highest-friction parts of the customer journey.</p></div>
-      <figure className="evidence-frame before-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original regional report portal</span></div><Image src={`${basePath}/images/utility-portal/portal-before.png`} width={1513} height={667} alt="Original regional utility report portal with a basic table, color-coded cells, and separate Spanish table" /><figcaption><b>Baseline:</b> The information was available, but users had to manually scan a dense matrix, interpret the status legend, and move between English and Spanish tables.</figcaption></figure>
+      <figure className="evidence-frame before-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original regional report portal</span></div><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original regional utility report portal with a basic table, color-coded cells, and separate Spanish table" /><figcaption><b>Baseline:</b> The information was available, but users had to manually scan a dense matrix, interpret the status legend, and move between English and Spanish tables.</figcaption></figure>
       <div className="pain-grid"><div><strong>01</strong><span>Workflow requirements</span><p>Preserve report structure, status terminology, and compatibility with existing production and ordering systems.</p></div><div><strong>02</strong><span>Customer requirements</span><p>Support seven regions, bilingual navigation, report search, and reduced navigation effort.</p></div><div><strong>03</strong><span>Experience requirements</span><p>Improve discoverability, status visibility, information architecture, and mobile usability.</p></div></div>
     </section>
 
-    <section className="solution-section shell">
+    <section className="solution-section shell" id="solution">
       <div className="section-intro light"><p className="kicker">Execution</p><h2>Preserve the workflow. Remove the friction.</h2><p>I coordinated and implemented the prioritized requirements around the existing regional matrix, file structure, and six established production statuses.</p></div>
-      <figure className="evidence-frame after-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Delivered regional report portal</span></div><Image src={`${basePath}/images/utility-portal/portal-after.png`} width={1216} height={895} alt="Updated regional utility report portal with search, summary counts, status filters, language tabs, and improved regional organization" /><figcaption><b>Delivered:</b> Search, status filtering, report summaries, language tabs, and clearer regional organization reduce customer effort while preserving the established workflow.</figcaption></figure>
+      <figure className="evidence-frame after-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Delivered regional report portal</span></div><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Updated regional utility report portal with search, summary counts, status filters, language tabs, and improved regional organization" /><figcaption><b>Delivered:</b> Search, status filtering, report summaries, language tabs, and clearer regional organization reduce customer effort while preserving the established workflow.</figcaption></figure>
       <div className="interaction-intro"><div><p className="kicker">Interaction details</p><h3>See how the new workflow behaves.</h3></div><p>Short demonstrations show how users move from a large report matrix to the exact files and statuses they need.</p></div>
       <div className="interaction-demos">
         <figure className="demo-card">
           <div className="demo-number">01</div>
-          <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of searching the regional utility report portal">
-            <source src={`${basePath}/videos/utility-portal/GSW-Search.mp4?v=3`} type="video/mp4" />
+          <video autoPlay muted loop playsInline controls preload="metadata" poster="/images/utility-portal/portal-after.png" aria-label="Demonstration of searching the regional utility report portal">
+            <source src="/videos/utility-portal/search-demo.mp4" type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Universal search</span><b>Locate a report without scanning the full matrix.</b></div><p>Users can search by filename, region, version, status, language, or file path and see the table update immediately.</p></figcaption>
         </figure>
         <figure className="demo-card">
           <div className="demo-number">02</div>
-          <video autoPlay muted loop playsInline controls preload="metadata" poster={`${basePath}/images/utility-portal/portal-after.png`} aria-label="Demonstration of filtering regional utility reports by production status">
-            <source src={`${basePath}/videos/utility-portal/GSW-StatusKey.mp4?v=3`} type="video/mp4" />
+          <video autoPlay muted loop playsInline controls preload="metadata" poster="/images/utility-portal/portal-after.png" aria-label="Demonstration of filtering regional utility reports by production status">
+            <source src="/videos/utility-portal/status-filter-demo.mp4" type="video/mp4" />
             Your browser does not support embedded video.
           </video>
           <figcaption><div><span>Status filtering</span><b>Turn a passive color key into a useful control.</b></div><p>Choosing a production status highlights matching reports so customers can understand each batch at a glance.</p></figcaption>
@@ -115,9 +128,9 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
-    <section className="timeline-section product-process shell"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{lifecycleSteps.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
+    <section className="timeline-section product-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
 
-    <section className="impact-section shell">
+    <section className="impact-section shell" id="outcome">
       <p className="kicker">06 · Outcome</p>
       <h2>A stronger customer capability with the operational foundation preserved.</h2>
       <div className="impact-grid"><div><strong>7</strong><span>Geographic service regions</span></div><div><strong>2</strong><span>Report languages</span></div><div><strong>6</strong><span>Production statuses preserved</span></div></div>
@@ -125,9 +138,9 @@ export default function CustomerPortalRedesign() {
       <p className="impact-note">Formal before-and-after usage analytics were not available. This case study reports verified scope and delivered capabilities rather than estimated performance claims.</p>
     </section>
 
-    <section className="feedback-section shell"><p className="kicker">Validation</p><blockquote>The customer appreciated how easy it was to locate projects as they moved through production in batches. The updated portal helped them navigate the overall process and quickly understand where each project stood.</blockquote><p>Paraphrased from customer feedback after delivery. Functional validation also confirmed responsive behavior and compatibility with the established report workflow.</p></section>
+    <section className="feedback-section shell" id="validation"><p className="kicker">Validation</p><blockquote>The customer appreciated how easy it was to locate projects as they moved through production in batches. The updated portal helped them navigate the overall process and quickly understand where each project stood.</blockquote><p>Paraphrased from customer feedback after delivery. Functional validation also confirmed responsive behavior and compatibility with the established report workflow.</p></section>
 
-    <section className="next-project shell"><p className="kicker">Next transformation</p><h2>Customer Portal Design System</h2><span>Case study coming soon</span><Link href="/">Return to all work →</Link></section>
+    <section className="next-project shell"><p className="kicker">Next transformation</p><h2>Prescription Pad Ordering Experience</h2><span>Product operations · Regulated ordering</span><Link href="/projects/prescription-pad-ordering-portal">View case study →</Link></section>
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Work completed as part of my role at Castle Press.</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }
