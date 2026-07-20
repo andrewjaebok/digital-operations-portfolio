@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import CaseProgress from "../../components/CaseProgress";
+import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 
 const progressSections = [
   { id: "case-content", label: "Overview", icon: "🩺" },
@@ -148,6 +149,8 @@ export default function PrescriptionPadOrderingPortal() {
     </section>
 
     <section className="timeline-section product-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From operational audit to validated customer experience.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
+
+    <ProjectOperatingViews variant="rx" />
 
     <section className="impact-section shell" id="outcome">
       <p className="kicker">Outcome</p>

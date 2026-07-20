@@ -15,9 +15,9 @@ export default function Home() {
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Portfolio home"><span className="brand-mark">A</span><span>Andrew</span></Link>
-        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#work">Projects</a><a href="#capabilities">Approach</a><a href="#about">About</a></nav>
+        <nav className="desktop-nav" aria-label="Primary navigation"><a href="#work">Projects</a><Link href="/how-i-work">How I Work</Link><a href="#about">About</a></nav>
         <a className="nav-cta" href="mailto:andrewjaebok@gmail.com">Contact <span aria-hidden="true">↗</span></a>
-        <details className="mobile-menu"><summary aria-label="Open navigation">Menu</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#capabilities">Approach</a><a href="#about">About</a><a href="mailto:andrewjaebok@gmail.com">Contact</a></nav></details>
+        <details className="mobile-menu"><summary aria-label="Open navigation">Menu</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><Link href="/how-i-work">How I Work</Link><a href="#about">About</a><a href="mailto:andrewjaebok@gmail.com">Contact</a></nav></details>
       </header>
 
       <section className="product-hero shell" id="main-content">
@@ -25,7 +25,7 @@ export default function Home() {
           <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
           <h1>I notice where the work <mark>gets stuck,</mark> then build a better way through it.</h1>
           <p className="hero-lead">A portfolio of customer portals, production automation, and operational improvements developed through my work at Castle Press.</p>
-          <div className="hero-links"><a className="primary-button" href="#work">View projects</a><a className="secondary-link" href="#about">How I work <span>↓</span></a></div>
+          <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
           <span><small>01</small>Product operations</span>
@@ -94,6 +94,7 @@ export default function Home() {
       <section className="capability-section shell" id="capabilities">
         <div className="section-heading"><div><p className="eyebrow">How I think</p><h2>A practical approach to improving systems.</h2></div><p>Delivery is not the end of a product initiative. It is the start of a capability that should keep getting better.</p></div>
         <div className="capability-grid">{capabilities.map(([number,title,copy])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
+        <Link className="framework-cta" href="/how-i-work"><span>See the complete operating system</span><b>Discovery, prioritization, stakeholders, launch, and measurement →</b></Link>
       </section>
 
       <section className="portfolio-operating-model shell" aria-labelledby="operating-model-title">

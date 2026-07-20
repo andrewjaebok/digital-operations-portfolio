@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import CaseProgress from "../../components/CaseProgress";
+import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import { assetPath } from "@/lib/asset-path";
 
 const progressSections = [
@@ -141,6 +142,8 @@ export default function CustomerPortalRedesign() {
     </section>
 
     <section className="timeline-section product-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
+
+    <ProjectOperatingViews variant="utility" />
 
     <section className="impact-section shell" id="outcome">
       <p className="kicker">06 · Outcome</p>
