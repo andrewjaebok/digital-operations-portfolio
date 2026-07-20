@@ -12,6 +12,7 @@ const progressSections = [
   { id: "growth", label: "Growth", icon: "📈" },
   { id: "analytics", label: "Evidence", icon: "📊" },
   { id: "results", label: "What changed", icon: "↔️" },
+  { id: "leadership", label: "Operating decisions", icon: "🧩" },
   { id: "process", label: "Process", icon: "⚙️" },
   { id: "outcome", label: "Outcome", icon: "✅" },
   { id: "measurement", label: "Next metrics", icon: "🔭" },
@@ -133,6 +134,16 @@ export default function PrescriptionPadOrderingPortal() {
       <div className="comparison-table" role="table" aria-label="Prescription pad portal before and after comparison">
         <div className="comparison-row header-row" role="row"><span role="columnheader">Experience</span><span role="columnheader">Before</span><span role="columnheader">After</span></div>
         {changes.map(([area,before,after]) => <div className="comparison-row" role="row" key={area}><strong role="rowheader">{area}</strong><span role="cell">{before}</span><span role="cell">{after}</span></div>)}
+      </div>
+    </section>
+
+    <section className="senior-ops-section shell" id="leadership">
+      <div className="senior-ops-heading"><div><p className="kicker">Manager-level ownership</p><h2>Balance growth, compliance, usability, and operational continuity.</h2></div><p>The work was managed as a regulated digital product and acquisition channel, with decisions spanning customer experience, backend compatibility, content strategy, launch readiness, and measurement.</p></div>
+      <div className="senior-ops-grid">
+        <article><span>Decision and tradeoff</span><h3>Simplify the journey without rebuilding fulfillment.</h3><p>I separated education from ordering and standardized the two surfaces while preserving 4D tags, item destinations, pricing, forms, session behavior, and production dependencies.</p></article>
+        <article><span>Stakeholder alignment</span><h3>Translate multiple needs into one scope.</h3><p>Customer questions, support needs, compliance guidance, production requirements, and platform constraints informed the prioritized experience and content roadmap.</p></article>
+        <article><span>Launch and change</span><h3>Protect every business-critical path.</h3><p>Product links, prescriber options, forms, server-side logic, security guidance, responsive behavior, and resource entry points were validated before release.</p></article>
+        <article><span>Next iteration</span><h3>Connect visibility to conversion.</h3><p>The next measurement layer should add completed-order events, funnel reporting, article-to-order journeys, abandonment signals, and new-versus-repeat customer analysis.</p></article>
       </div>
     </section>
 

@@ -11,6 +11,7 @@ const progressSections = [
   { id: "baseline", label: "Before", icon: "🕰️" },
   { id: "solution", label: "Solution", icon: "✨" },
   { id: "results", label: "What changed", icon: "↔️" },
+  { id: "leadership", label: "Operating decisions", icon: "🧩" },
   { id: "process", label: "Process", icon: "⚙️" },
   { id: "outcome", label: "Outcome", icon: "✅" },
   { id: "validation", label: "Validation", icon: "💬" },
@@ -126,6 +127,16 @@ export default function CustomerPortalRedesign() {
       <div className="comparison-table" role="table" aria-label="Before and after comparison">
         <div className="comparison-row header-row" role="row"><span role="columnheader">Experience</span><span role="columnheader">Before</span><span role="columnheader">After</span></div>
         {changes.map(([area,before,after]) => <div className="comparison-row" role="row" key={area}><strong role="rowheader">{area}</strong><span role="cell">{before}</span><span role="cell">{after}</span></div>)}
+      </div>
+    </section>
+
+    <section className="senior-ops-section shell" id="leadership">
+      <div className="senior-ops-heading"><div><p className="kicker">Manager-level ownership</p><h2>Decisions extended beyond the interface.</h2></div><p>The initiative required product judgment, stakeholder alignment, launch discipline, and a plan for continued measurement while active production workflows remained dependable.</p></div>
+      <div className="senior-ops-grid">
+        <article><span>Decision and tradeoff</span><h3>Modernize findability, preserve familiarity.</h3><p>I prioritized search, status filtering, bilingual navigation, and responsive access while retaining the report structure and terminology customers and production teams already understood.</p></article>
+        <article><span>Stakeholder alignment</span><h3>Connect customer and operational needs.</h3><p>Customer expectations, production practices, regional reporting requirements, and the existing ordering environment were translated into one shared scope.</p></article>
+        <article><span>Launch and change</span><h3>Validate the experience around live workflows.</h3><p>Search, filters, bilingual navigation, links, status behavior, and responsive layouts were checked without requiring the underlying report process to be rebuilt.</p></article>
+        <article><span>Next iteration</span><h3>Instrument the customer journey.</h3><p>Future measurement should track search usage, filter engagement, time to locate a report, support questions, device patterns, and repeat portal visits.</p></article>
       </div>
     </section>
 
