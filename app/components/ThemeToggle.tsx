@@ -42,20 +42,19 @@ export default function ThemeToggle() {
     applyTheme(nextTheme);
   };
 
+  const activeIndex = themes.findIndex((option) => option.value === theme);
+  const nextTheme = themes[(activeIndex + 1) % themes.length];
+  const activeTheme = themes[activeIndex] || themes[1];
+
   return (
-    <div className="theme-toggle" role="group" aria-label="Color theme">
-      {themes.map((option) => (
-        <button
-          type="button"
-          key={option.value}
-          className={theme === option.value ? "active" : ""}
-          aria-label={option.label}
-          aria-pressed={theme === option.value}
-          onClick={() => chooseTheme(option.value)}
-        >
-          <span aria-hidden="true">{option.icon}</span>
-        </button>
-      ))}
-    </div>
+    <button
+      type="button"
+      className="theme-toggle"
+      aria-label={`${activeTheme.label}. Switch to ${nextTheme.label.toLowerCase()}.`}
+      title={`${activeTheme.label} · Click for ${nextTheme.label.toLowerCase()}`}
+      onClick={() => chooseTheme(nextTheme.value)}
+    >
+      <span aria-hidden="true">{activeTheme.icon}</span>
+    </button>
   );
 }

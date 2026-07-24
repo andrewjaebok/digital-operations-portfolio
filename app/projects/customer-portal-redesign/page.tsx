@@ -5,17 +5,17 @@ import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import { assetPath } from "@/lib/asset-path";
 
 const progressSections = [
-  { id: "case-content", label: "Overview", icon: "🌐" },
-  { id: "ownership", label: "Ownership", icon: "🎯" },
-  { id: "assessment", label: "Assessment", icon: "🔍" },
-  { id: "strategy", label: "Strategy", icon: "🧭" },
-  { id: "baseline", label: "Before", icon: "🕰️" },
-  { id: "solution", label: "Solution", icon: "✨" },
-  { id: "results", label: "What changed", icon: "↔️" },
-  { id: "leadership", label: "Operating decisions", icon: "🧩" },
-  { id: "process", label: "Process", icon: "⚙️" },
-  { id: "outcome", label: "Outcome", icon: "✅" },
-  { id: "validation", label: "Validation", icon: "💬" },
+  { id: "case-content", label: "Overview", icon: "◫" },
+  { id: "ownership", label: "Ownership", icon: "◎" },
+  { id: "assessment", label: "Assessment", icon: "⌕" },
+  { id: "strategy", label: "Strategy", icon: "◇" },
+  { id: "baseline", label: "Before", icon: "◷" },
+  { id: "solution", label: "Solution", icon: "✦" },
+  { id: "results", label: "What changed", icon: "↔" },
+  { id: "leadership", label: "Operating decisions", icon: "◆" },
+  { id: "process", label: "Process", icon: "⚙" },
+  { id: "outcome", label: "Outcome", icon: "✓" },
+  { id: "validation", label: "Validation", icon: "◌" },
 ];
 
 const changes = [
@@ -44,7 +44,7 @@ export default function CustomerPortalRedesign() {
     <a className="skip-link" href="#case-content">Skip to case study</a>
     <header className="site-header case-header">
       <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">🌐</i> 01 / Customer Portal Redesign</b></div>
+      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">◫</i> 01 / Customer Portal Redesign</b></div>
       <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#results">Jump to results</a></nav>
     </header>
 
@@ -67,6 +67,13 @@ export default function CustomerPortalRedesign() {
         <div><span>Platform</span><strong>HTML, CSS, JavaScript</strong></div>
         <div><span>Initiative</span><strong>Self-directed opportunity</strong></div>
       </div>
+      <div className="executive-summary" aria-label="Case study executive summary">
+        <article><span>Business problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
+        <article><span>What I owned</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
+        <article><span>Key decision</span><p>Add search and status guidance while preserving the production process behind the portal.</p></article>
+        <article><span>Verified result</span><p>A working responsive portal with faster report discovery and clearer bilingual navigation.</p></article>
+        <article><span>Business significance</span><p>A repeatable modernization model for other customer-facing portals.</p></article>
+      </div>
     </section>
 
     <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
@@ -76,13 +83,13 @@ export default function CustomerPortalRedesign() {
       <div className="ownership-column"><p className="kicker">Business objective</p><p>Reduce customer effort and improve report discoverability without disrupting the systems, terminology, and production practices internal teams relied on.</p><ul><li>Clearer regional reporting</li><li>Consistent bilingual access</li><li>Scalable information architecture</li><li>Compatibility with existing ordering systems</li></ul></div>
     </section>
 
-    <section className="review-section shell" id="assessment"><div><p className="kicker">Operational Assessment</p><h2>The assessment became the roadmap for the product improvement.</h2><p>I evaluated the portal through both the customer&apos;s report-review journey and the internal process that prepared, organized, and delivered those reports.</p></div><div className="review-grid"><span>Navigation clarity</span><span>Product organization</span><span>Searchability</span><span>Workflow efficiency</span><span>Mobile responsiveness</span><span>Bilingual accessibility</span><span>Existing production workflow</span><span>Information architecture</span><span>Castle Press platform compatibility</span></div></section>
+    <section className="review-section shell" id="assessment"><div><p className="kicker">Operational Assessment</p><h2>The assessment became the roadmap for the product improvement.</h2><p>I evaluated the portal through both the customer&apos;s report-review journey and the internal process that prepared, organized, and delivered those reports.</p></div><div className="review-grid"><span>Navigation clarity</span><span>Product organization</span><span>Searchability</span><span>Workflow efficiency</span><span>Mobile responsiveness</span><span>Bilingual accessibility</span><span>Existing production workflow</span><span>Information architecture</span><span>Legacy platform compatibility</span></div></section>
 
-    <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Improve the customer capability without disrupting active operations.</h2></div><div className="constraint-list"><span>Production workflow had to remain unchanged</span><span>Existing report organization had to be preserved</span><span>Ordering systems could not be disrupted</span><span>Status terminology needed to remain familiar</span><span>English and Spanish support was required</span><span>Castle Press platform compatibility had to remain intact</span></div></section>
+    <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Improve the customer capability without disrupting active operations.</h2></div><div className="constraint-list"><span>Production workflow had to remain unchanged</span><span>Existing report organization had to be preserved</span><span>Ordering systems could not be disrupted</span><span>Status terminology needed to remain familiar</span><span>English and Spanish support was required</span><span>Legacy platform compatibility had to remain intact</span></div></section>
 
     <section className="story-section shell two-col" id="strategy">
       <div><p className="kicker">Stakeholder Alignment</p><h2>Customer usability and operational continuity had to move together.</h2></div>
-      <div className="story-copy"><p>The solution required alignment between customer expectations, internal production teams, regional reporting needs, and the existing Castle Press ordering environment.</p><p>I translated customer friction into requirements while protecting the workflow consistency internal teams needed to prepare reports, update statuses, and maintain familiar file structures.</p><aside>Cross-functional objective: improve the customer experience while keeping the operational system dependable and recognizable.</aside></div>
+      <div className="story-copy"><p>The solution required alignment between customer expectations, internal production teams, regional reporting needs, and the existing ordering environment.</p><p>I translated customer friction into requirements while protecting the workflow consistency internal teams needed to prepare reports, update statuses, and maintain familiar file structures.</p><aside>Cross-functional objective: improve the customer experience while keeping the operational system dependable and recognizable.</aside></div>
     </section>
 
     <section className="before-section shell" id="baseline">
@@ -156,6 +163,6 @@ export default function CustomerPortalRedesign() {
     <section className="feedback-section shell" id="validation"><p className="kicker">Validation</p><blockquote>The customer appreciated how easy it was to locate projects as they moved through production in batches. The updated portal helped them navigate the overall process and quickly understand where each project stood.</blockquote><p>Paraphrased from customer feedback after delivery. Functional validation also confirmed responsive behavior and compatibility with the established report workflow.</p></section>
 
     <section className="next-project shell"><p className="kicker">Next transformation</p><h2>Prescription Pad Ordering Experience</h2><span>Product operations · Regulated ordering</span><Link href="/projects/prescription-pad-ordering-portal">View case study →</Link></section>
-    <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Work completed as part of my role at Castle Press.</p><a href="#top">Back to top ↑</a></footer>
+    <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Professional client work · Product operations</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }

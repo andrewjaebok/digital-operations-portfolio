@@ -3,6 +3,7 @@ import { assetPath } from "@/lib/asset-path";
 
 export default function PortfolioImage(props: ImageProps) {
   const src = typeof props.src === "string" ? assetPath(props.src) : props.src;
+  const unoptimized = props.unoptimized ?? true;
 
-  return <NextImage {...props} src={src} />;
+  return <NextImage {...props} src={src} unoptimized={unoptimized} />;
 }

@@ -4,19 +4,19 @@ import CaseProgress from "../../components/CaseProgress";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 
 const progressSections = [
-  { id: "case-content", label: "Overview", icon: "🩺" },
-  { id: "ownership", label: "Ownership", icon: "🎯" },
-  { id: "assessment", label: "Assessment", icon: "🔍" },
-  { id: "strategy", label: "Strategy", icon: "🧭" },
-  { id: "baseline", label: "Before", icon: "🕰️" },
-  { id: "solution", label: "Solution", icon: "✨" },
-  { id: "growth", label: "Growth", icon: "📈" },
-  { id: "analytics", label: "Evidence", icon: "📊" },
-  { id: "results", label: "What changed", icon: "↔️" },
-  { id: "leadership", label: "Operating decisions", icon: "🧩" },
-  { id: "process", label: "Process", icon: "⚙️" },
-  { id: "outcome", label: "Outcome", icon: "✅" },
-  { id: "measurement", label: "Next metrics", icon: "🔭" },
+  { id: "case-content", label: "Overview", icon: "✚" },
+  { id: "ownership", label: "Ownership", icon: "◎" },
+  { id: "assessment", label: "Assessment", icon: "⌕" },
+  { id: "strategy", label: "Strategy", icon: "◇" },
+  { id: "baseline", label: "Before", icon: "◷" },
+  { id: "solution", label: "Solution", icon: "✦" },
+  { id: "growth", label: "Growth", icon: "↗" },
+  { id: "analytics", label: "Evidence", icon: "▥" },
+  { id: "results", label: "What changed", icon: "↔" },
+  { id: "leadership", label: "Operating decisions", icon: "◆" },
+  { id: "process", label: "Process", icon: "⚙" },
+  { id: "outcome", label: "Outcome", icon: "✓" },
+  { id: "measurement", label: "Next metrics", icon: "◉" },
 ];
 
 const changes = [
@@ -46,7 +46,7 @@ export default function PrescriptionPadOrderingPortal() {
     <a className="skip-link" href="#case-content">Skip to case study</a>
     <header className="site-header case-header">
       <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">🩺</i> 02 / Prescription Pad Ordering</b></div>
+      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">✚</i> 02 / Prescription Pad Ordering</b></div>
       <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#results">Jump to results</a></nav>
     </header>
 
@@ -69,9 +69,16 @@ export default function PrescriptionPadOrderingPortal() {
         <div><span>Platform</span><strong>4D, HTML, CSS, JavaScript</strong></div>
         <div><span>Environment</span><strong>Regulated print ordering</strong></div>
       </div>
+      <div className="executive-summary" aria-label="Case study executive summary">
+        <article><span>Business problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
+        <article><span>What I owned</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
+        <article><span>Key decision</span><p>Modernize the customer journey without disrupting 4D ordering logic or production fulfillment.</p></article>
+        <article><span>Verified result</span><p>New-user traffic increased 1,272% after the redesign and search-content launch.</p></article>
+        <article><span>Business significance</span><p>The portal became a clearer acquisition, education, and self-service channel.</p></article>
+      </div>
     </section>
 
-    <section className="case-cover shell real-case-cover rx-case-cover"><span className="evidence-label">Delivered landing experience</span><Image src="/images/rx-pad-portal/index-after.png" width={1383} height={855} priority alt="Redesigned Castle Press California security prescription pad landing page with clear navigation, value proposition, order actions, and trust indicators" /></section>
+    <section className="case-cover shell real-case-cover rx-case-cover"><span className="evidence-label">Delivered landing experience</span><Image src="/images/rx-pad-portal/index-after.png" width={1383} height={855} priority alt="Redesigned California security prescription pad landing page with clear navigation, value proposition, order actions, and trust indicators" /></section>
 
     <section className="ownership-section shell" id="ownership">
       <div className="ownership-column"><p className="kicker">Product Operations Ownership</p><p>I treated the redesign as a customer, acquisition, and operational system improvement, not only a visual refresh.</p><ul><li>Audited the connected customer journey</li><li>Identified usability and content gaps</li><li>Translated customer calls into market insight</li><li>Defined and prioritized requirements</li><li>Protected backend and production dependencies</li><li>Implemented, iterated, and validated the experience</li></ul></div>
@@ -80,7 +87,7 @@ export default function PrescriptionPadOrderingPortal() {
 
     <section className="review-section shell" id="assessment"><div><p className="kicker">Operational Assessment</p><h2>The customer journey and the fulfillment system had to be evaluated together.</h2><p>I reviewed the experience from first arrival through product selection, while documenting the technical and production dependencies behind every ordering path.</p></div><div className="review-grid"><span>Landing-page purpose</span><span>Ordering clarity</span><span>Product comparison</span><span>Prescriber selection</span><span>Compliance guidance</span><span>Production expectations</span><span>Mobile responsiveness</span><span>4D compatibility</span><span>Support and resources</span><span>Visual consistency</span></div></section>
 
-    <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Modernize the product without breaking the system behind it.</h2></div><div className="constraint-list"><span>All 4D server-side tags had to remain intact</span><span>Existing item destinations and session parameters had to be preserved</span><span>Forms, IDs, actions, and JavaScript could not change</span><span>Pricing and product configurations had to remain available</span><span>Security and production information needed to remain accurate</span><span>The experience had to work within the existing Castle Press portal structure</span></div></section>
+    <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Modernize the product without breaking the system behind it.</h2></div><div className="constraint-list"><span>All 4D server-side tags had to remain intact</span><span>Existing item destinations and session parameters had to be preserved</span><span>Forms, IDs, actions, and JavaScript could not change</span><span>Pricing and product configurations had to remain available</span><span>Security and production information needed to remain accurate</span><span>The experience had to work within the existing customer portal structure</span></div></section>
 
     <section className="story-section shell two-col" id="strategy">
       <div><p className="kicker">Product Strategy</p><h2>Give each page a clearer job within the customer journey.</h2></div>
@@ -90,7 +97,7 @@ export default function PrescriptionPadOrderingPortal() {
     <section className="before-section shell rx-before-section" id="baseline">
       <div className="section-intro"><p className="kicker">Baseline</p><h2>A functional ordering system with unnecessary customer effort.</h2><p>The original pages contained the required products and information, but visual hierarchy, page purpose, comparison, and responsiveness were limited.</p></div>
       <div className="evidence-pair">
-        <figure className="evidence-frame"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original index and quick-order page</span></div><Image src="/images/rx-pad-portal/index-before.png" width={1500} height={889} alt="Original Castle Press security prescription pad index with dense columns, small text, and ordering controls" /><figcaption><b>Index baseline:</b> Product education, pricing, ordering controls, contact information, and custom-layout guidance competed within one dense desktop-first interface.</figcaption></figure>
+        <figure className="evidence-frame"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original index and quick-order page</span></div><Image src="/images/rx-pad-portal/index-before.png" width={1500} height={889} alt="Original security prescription pad index with dense columns, small text, and ordering controls" /><figcaption><b>Index baseline:</b> Product education, pricing, ordering controls, contact information, and custom-layout guidance competed within one dense desktop-first interface.</figcaption></figure>
         <figure className="evidence-frame"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Original retail selection page</span></div><Image src="/images/rx-pad-portal/order-before.png" width={1502} height={888} alt="Original prescription pad retail page with long lists of doctor-count links and large unused areas" /><figcaption><b>Ordering baseline:</b> Pocket and desk formats were available, but the repeated vertical link lists and limited hierarchy made comparison and selection feel dated.</figcaption></figure>
       </div>
       <div className="pain-grid"><div><strong>01</strong><span>Customer friction</span><p>Dense layouts and repeated options made customers work harder to understand the available products and next step.</p></div><div><strong>02</strong><span>Operational risk</span><p>Any redesign had to protect the server-side logic, product mapping, session behavior, and production workflow.</p></div><div><strong>03</strong><span>Maintenance friction</span><p>Two visually different pages made it harder to deliver a consistent experience and manage future updates.</p></div></div>
@@ -114,7 +121,7 @@ export default function PrescriptionPadOrderingPortal() {
     <section className="growth-section shell" id="growth">
       <div className="growth-story">
         <div><p className="kicker">Growth Opportunity</p><h2>Customer calls revealed an acquisition opportunity beyond the ordering flow.</h2></div>
-        <div className="story-copy"><p>Prospective customers contacted Castle Press after a previous prescription pad supplier stopped serving them or went out of business. I treated those conversations as voice-of-customer evidence that the category had unmet demand and that the portal could become a stronger acquisition channel.</p><p>In response, the experience expanded beyond product ordering to include practical prescription pad articles and resources. The content was structured to improve traditional search visibility and generative engine optimization, while helping customers answer compliance, ordering, and security questions before contacting support.</p><aside>Product Operations connection: customer feedback informed a growth hypothesis, which shaped the content roadmap and created a new path from discovery to order.</aside></div>
+        <div className="story-copy"><p>Prospective customers contacted the organization after a previous prescription pad supplier stopped serving them or went out of business. I treated those conversations as voice-of-customer evidence that the category had unmet demand and that the portal could become a stronger acquisition channel.</p><p>In response, the experience expanded beyond product ordering to include practical prescription pad articles and resources. The content was structured to improve traditional search visibility and generative engine optimization, while helping customers answer compliance, ordering, and security questions before contacting support.</p><aside>Product Operations connection: customer feedback informed a growth hypothesis, which shaped the content roadmap and created a new path from discovery to order.</aside></div>
       </div>
       <figure className="evidence-frame resources-evidence"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Articles and resources acquisition surface</span></div><Image src="/images/rx-pad-portal/resources-after.png" width={1315} height={744} alt="California prescription pad article library with searchable compliance, ordering, and security guidance" /><figcaption><b>Content-led acquisition:</b> A searchable resource library addresses high-intent questions, builds authority, and creates additional entry points into the prescription pad ordering journey.</figcaption></figure>
       <div className="growth-signals"><article><span>Signal 01</span><h3>Supplier disruption</h3><p>Inbound calls showed that healthcare customers were actively looking for a dependable replacement supplier.</p></article><article><span>Response 02</span><h3>Searchable guidance</h3><p>Practical articles expanded discoverability while helping customers understand requirements before ordering.</p></article><article><span>Result 03</span><h3>More orders observed</h3><p>Order volume increased after the website conversion, providing a directional signal that the improved experience supports growth.</p></article></div>
@@ -162,7 +169,7 @@ export default function PrescriptionPadOrderingPortal() {
 
     <section className="review-section shell measurement-section" id="measurement"><div><p className="kicker">Success Measurement</p><h2>The next phase is to quantify conversion, acquisition, and operational performance.</h2><p>A Product Operations Manager would connect order trends and customer feedback to funnel, content, and support data so the growth signal can be measured and improved.</p></div><div className="review-grid"><span>Landing-to-order conversion</span><span>Organic and AI-search traffic</span><span>Article-to-order journeys</span><span>Product-selection completion</span><span>Order abandonment</span><span>Support contacts by issue</span><span>New versus repeat customers</span><span>Repeat-order rate</span></div></section>
 
-    <section className="next-project shell"><p className="kicker">Previous transformation</p><h2>Regional Utility Customer Portal</h2><span>Product operations · Customer experience</span><Link href="/projects/customer-portal-redesign">View case study →</Link></section>
-    <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Work completed as part of my role at Castle Press.</p><a href="#top">Back to top ↑</a></footer>
+    <section className="next-project shell"><p className="kicker">Next case study</p><h2>Hearth Personal Finance Platform</h2><span>Independent product · Zero-to-one platform</span><Link href="/projects/hearth">View case study →</Link></section>
+    <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Professional client work · Product operations</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }

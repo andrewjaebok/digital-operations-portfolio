@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "./components/PortfolioImage";
 
 const capabilities = [
-  ["01", "🔍 Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
-  ["02", "🧭 Understand what must remain", "Identify technical constraints, production dependencies, and workflows people already understand."],
-  ["03", "⚙️ Improve the system", "Build the simplest solution that meaningfully improves the customer or employee experience."],
+  ["01", "Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
+  ["02", "Understand what must remain", "Identify technical constraints, production dependencies, and workflows people already understand."],
+  ["03", "Improve the system", "Build the simplest solution that meaningfully improves the customer or employee experience."],
 ];
 
-const skills = ["Product strategy", "Product operations", "Roadmap prioritization", "Voice of customer", "Requirements management", "Stakeholder alignment", "Cross-functional leadership", "Customer implementations", "Product analytics", "KPI development", "Process optimization", "Workflow automation", "Change management", "Launch management", "Risk and compliance", "Service design", "Digital growth", "SEO and GEO strategy", "Quality assurance", "Continuous improvement"];
+const skills = ["Product strategy", "Product operations", "Roadmap prioritization", "Voice of customer", "Requirements management", "Stakeholder alignment", "Launch management", "Product analytics", "Change management", "Continuous improvement"];
 
 export default function Home() {
   return (
@@ -24,7 +24,7 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
           <h1>I notice where the work <mark>gets stuck,</mark> then build a better way through it.</h1>
-          <p className="hero-lead">A portfolio of customer portals, production automation, and operational improvements developed through my work at Castle Press.</p>
+          <p className="hero-lead">A portfolio of customer portals, independent product development, production automation, and operational improvements.</p>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
@@ -38,7 +38,7 @@ export default function Home() {
         <div className="role-overview">
           <p className="eyebrow">Current scope</p>
           <h2 id="role-title">Senior Product/Digital Operations</h2>
-          <p>I lead the strategy, development, implementation, and continuous improvement of Castle Press&apos;s customer-facing digital services. My scope includes online portals, web platforms, digital ordering systems, workflow optimization, customer implementations, and digital growth initiatives.</p>
+          <p>I lead the strategy, development, implementation, and continuous improvement of customer-facing digital services for a commercial printing and digital-services organization. My scope includes online portals, web platforms, digital ordering systems, workflow optimization, customer implementations, and digital growth initiatives.</p>
         </div>
         <div className="operating-mandate">
           <p className="eyebrow">Operating mandate</p>
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Business problems turned into better products.</h2></div><p>Choose a project to see the business context, operational assessment, requirements, decisions, responsibilities, and outcome.</p></div>
         <div className="project-gallery balanced-project-gallery">
           <Link className="bento-card portfolio-project-card" href="/projects/customer-portal-redesign">
-            <div className="project-topline"><span><i aria-hidden="true">🌐</i> Project 01</span><b>Full case study</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">◫</i> Project 01</span><b>Full case study</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Regional utility portal before and after">
               <figure><span>Before</span><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} priority alt="Original regional utility report portal" /></figure>
               <figure><span>After</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Improved regional utility report portal with search, status filtering, and bilingual navigation" /></figure>
@@ -69,7 +69,7 @@ export default function Home() {
           </Link>
 
           <Link className="bento-card portfolio-project-card rx-project" href="/projects/prescription-pad-ordering-portal">
-            <div className="project-topline"><span><i aria-hidden="true">🩺</i> Project 02</span><b>Full case study</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">✚</i> Project 02</span><b>Full case study</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Prescription pad ordering experience before and after">
               <figure><span>Before</span><Image src="/images/rx-pad-portal/order-before.png" width={1502} height={888} alt="Original California prescription pad ordering experience" /></figure>
               <figure><span>After</span><Image src="/images/rx-pad-portal/order-after.png" width={1225} height={788} alt="Redesigned California prescription pad ordering experience" /></figure>
@@ -78,15 +78,15 @@ export default function Home() {
             <div className="portfolio-card-footer"><span>Product Operations Manager</span><b>View case study ↗</b></div>
           </Link>
 
-          <article className="bento-card portfolio-project-card automation-project">
-            <div className="project-topline"><span><i aria-hidden="true">⚙️</i> Project 03</span><b>Coming soon</b></div>
-            <div className="portfolio-card-media project-compare-media workflow-compare" aria-label="Production workflow current and future states">
-              <figure><span>Current state</span><div className="workflow-state manual"><i>Input</i><i>Repeat</i><i>Check</i></div></figure>
-              <figure><span>Target state</span><div className="workflow-state automated"><i>Input</i><b>→</b><i>Automate</i><b>→</b><i>Output</i></div></figure>
+          <Link className="bento-card portfolio-project-card hearth-project" href="/projects/hearth">
+            <div className="project-topline"><span><i aria-hidden="true">◇</i> Project 03</span><b>Independent product</b></div>
+            <div className="portfolio-card-media hearth-card-media" aria-label="Hearth product operating model illustration">
+              <div className="hearth-card-window" aria-hidden="true"><span>Monthly overview</span><strong>$8,420</strong><div><i/><i/><i/></div><small>Privacy-first · One-time purchase</small></div>
             </div>
-            <div className="portfolio-card-copy"><p className="project-label">Operational automation</p><h3>Production Workflow Automation</h3><p>A variable-data automation initiative focused on reducing repetitive work and improving production consistency.</p></div>
-            <div className="portfolio-card-footer muted"><span>Operational automation</span><b>Case study in development</b></div>
-          </article>
+            <div className="portfolio-card-copy"><p className="project-label">Independent product · Zero-to-one platform</p><h3>Hearth Personal Finance Platform</h3><p>Building and operationalizing a privacy-first financial platform from product concept through cloud architecture, release environments, user feedback, and continuous simplification.</p></div>
+            <div className="portfolio-card-footer"><span>Product Owner / Product Operations</span><b>View case study ↗</b></div>
+          </Link>
+
         </div>
         <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>3</strong><span>Transformation disciplines</span></div><p>Each project is documented around the problem, constraints, decisions, responsibilities, and verified outcome.</p></div>
       </section>
