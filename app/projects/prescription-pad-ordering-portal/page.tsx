@@ -22,7 +22,7 @@ const progressSections = [
   { id: "leadership", label: "Operating decisions", icon: "◆" },
   { id: "process", label: "Process", icon: "⚙" },
   { id: "outcome", label: "Outcome", icon: "✓" },
-  { id: "measurement", label: "Next metrics", icon: "◉" },
+  { id: "roadmap", label: "Growth roadmap", icon: "◉" },
 ];
 
 const changes = [
@@ -157,13 +157,13 @@ export default function PrescriptionPadOrderingPortal() {
         <article><span>Decision and tradeoff</span><h3>Simplify the journey without rebuilding fulfillment.</h3><p>I separated education from ordering and standardized the two surfaces while preserving 4D tags, item destinations, pricing, forms, session behavior, and production dependencies.</p></article>
         <article><span>Stakeholder alignment</span><h3>Translate multiple needs into one scope.</h3><p>Customer questions, support needs, compliance guidance, production requirements, and platform constraints informed the prioritized experience and content roadmap.</p></article>
         <article><span>Launch and change</span><h3>Protect every business-critical path.</h3><p>Product links, prescriber options, forms, server-side logic, security guidance, responsive behavior, and resource entry points were validated before release.</p></article>
-        <article><span>Next iteration</span><h3>Connect visibility to conversion.</h3><p>The next measurement layer should add completed-order events, funnel reporting, article-to-order journeys, abandonment signals, and new-versus-repeat customer analysis.</p></article>
+        <article><span>Growth roadmap</span><h3>Sequence acquisition work beyond launch.</h3><p>I separated delivered foundations from active optimization and planned experiments, creating a measurable path from search visibility to completed orders.</p></article>
       </div>
     </section>
 
     <section className="timeline-section product-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From operational audit to validated customer experience.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
 
-    <ProjectOperatingViews variant="rx" />
+    <ProjectOperatingViews variant="rx" showBacklog={false} />
 
     <section className="impact-section shell" id="outcome">
       <p className="kicker">Outcome</p>
@@ -173,7 +173,31 @@ export default function PrescriptionPadOrderingPortal() {
       <p className="impact-note">New users increased 1,272% compared with the previous reporting period, while order volume also increased following the website conversion. Because completed-order events and a formal attribution model were not available, traffic growth and order growth are presented as related post-launch signals rather than a sole-cause claim.</p>
     </section>
 
-    <section className="review-section shell measurement-section" id="measurement"><div><p className="kicker">Success Measurement</p><h2>The next phase is to quantify conversion, acquisition, and operational performance.</h2><p>A Product Operations Manager would connect order trends and customer feedback to funnel, content, and support data so the growth signal can be measured and improved.</p></div><div className="review-grid"><span>Landing-to-order conversion</span><span>Organic and AI-search traffic</span><span>Article-to-order journeys</span><span>Product-selection completion</span><span>Order abandonment</span><span>Support contacts by issue</span><span>New versus repeat customers</span><span>Repeat-order rate</span></div></section>
+    <section className="rx-roadmap-section shell" id="roadmap" aria-labelledby="roadmap-title">
+      <div className="rx-roadmap-heading">
+        <div><p className="kicker">Growth roadmap and measurement plan</p><h2 id="roadmap-title">Turn the launch into a six-month product-growth program.</h2></div>
+        <p>The roadmap sequences customer experience, search visibility, authority building, and conversion measurement. Status labels distinguish completed work from active optimization and future experiments.</p>
+      </div>
+      <ol className="rx-roadmap" aria-label="Six-month prescription pad portal growth roadmap">
+        <li className="delivered"><div><span className="roadmap-status">Delivered</span><b>Weeks 1–3</b></div><h3>Measurement and technical foundation</h3><p>Established analytics visibility, search and indexing checks, and the technical SEO foundation needed to evaluate discovery.</p></li>
+        <li className="delivered"><div><span className="roadmap-status">Delivered</span><b>Weeks 3–6</b></div><h3>Landing and ordering experience</h3><p>Modernized the main RX entry point, clarified product selection, preserved fulfillment logic, and launched the searchable article hub.</p></li>
+        <li className="active"><div><span className="roadmap-status">In progress</span><b>Months 2–3</b></div><h3>Content and landing-page optimization</h3><p>Continue the compliance article program, monitor search performance, refine high-intent pages, and evaluate targeted California landing pages.</p></li>
+        <li className="planned"><div><span className="roadmap-status">Planned</span><b>Months 3–6</b></div><h3>Authority and conversion experiments</h3><p>Test review generation, backlink outreach, paid search, and conversion improvements after reliable order-funnel tracking is available.</p></li>
+      </ol>
+      <div className="rx-kpi-panel">
+        <div><span>Measurement focus</span><h3>Connect qualified discovery to completed orders.</h3><p>Visibility growth is already verified. The next instrumentation layer is designed to explain which acquisition and experience improvements produce business value.</p></div>
+        <ul aria-label="Target growth key performance indicators">
+          <li>Qualified organic traffic</li>
+          <li>Search ranking and click-through rate</li>
+          <li>Landing-to-order starts</li>
+          <li>Completed organic orders</li>
+          <li>Order conversion and abandonment</li>
+          <li>Article-to-order journeys</li>
+          <li>Reviews and referring domains</li>
+          <li>Revenue attributed to organic search</li>
+        </ul>
+      </div>
+    </section>
 
     <section className="next-project shell"><p className="kicker">Next case study</p><h2>Hearth Personal Finance Platform</h2><span>Independent product · Zero-to-one platform</span><Link href="/projects/hearth">View case study →</Link></section>
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Professional client work · Product operations</p><a href="#top">Back to top ↑</a></footer>
