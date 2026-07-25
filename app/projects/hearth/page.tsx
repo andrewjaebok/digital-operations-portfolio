@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import CaseProgress from "../../components/CaseProgress";
+
+export const metadata: Metadata = {
+  title: "Hearth | Zero-to-One Product Operations Case Study",
+  description: "Hearth is an independently owned personal finance product shaped through strategy, architecture, release operations, user feedback, responsive delivery, and continuous simplification.",
+};
 
 const progressSections = [
   { id: "overview", label: "Overview", icon: "⌂" },

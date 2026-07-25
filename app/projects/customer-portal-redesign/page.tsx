@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import CaseProgress from "../../components/CaseProgress";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import { assetPath } from "@/lib/asset-path";
+
+export const metadata: Metadata = {
+  title: "Regional Utility Portal | Product Operations Case Study",
+  description: "How Andrew led the assessment, requirements, modernization, rollout, and validation of a regional utility reporting portal while preserving production workflows.",
+};
 
 const progressSections = [
   { id: "case-content", label: "Overview", icon: "◫" },
@@ -71,7 +77,7 @@ export default function CustomerPortalRedesign() {
         <article><span>Business problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
         <article><span>What I owned</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
         <article><span>Key decision</span><p>Add search and status guidance while preserving the production process behind the portal.</p></article>
-        <article><span>Verified result</span><p>A working responsive portal with faster report discovery and clearer bilingual navigation.</p></article>
+        <article><span>Verified result</span><p>Customer-reported easier batch navigation, with search, status filtering, and bilingual access successfully delivered.</p></article>
         <article><span>Business significance</span><p>A repeatable modernization model for other customer-facing portals.</p></article>
       </div>
     </section>

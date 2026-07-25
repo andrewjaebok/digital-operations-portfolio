@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import CaseProgress from "../../components/CaseProgress";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
+
+export const metadata: Metadata = {
+  title: "Prescription Pad Ordering | Product Operations Case Study",
+  description: "A regulated ordering transformation that modernized a legacy customer journey, preserved production logic, and supported measurable new-user growth.",
+};
 
 const progressSections = [
   { id: "case-content", label: "Overview", icon: "✚" },

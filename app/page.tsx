@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "./components/PortfolioImage";
+
+export const metadata: Metadata = {
+  title: "Andrew | Senior Product Operations Portfolio",
+  description: "Senior Product Operations case studies spanning customer portal modernization, regulated digital ordering, growth optimization, and zero-to-one product development.",
+};
 
 const capabilities = [
   ["01", "Notice the friction", "Look for repeated questions, manual work, confusing steps, and outdated experiences."],
@@ -24,13 +30,13 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
           <h1>I notice where the work <mark>gets stuck,</mark> then build a better way through it.</h1>
-          <p className="hero-lead">A portfolio of customer portals, independent product development, production automation, and operational improvements.</p>
+          <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, growth optimization, and independent product development.</p>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
           <span><small>01</small>Product operations</span>
           <span><small>02</small>Portal modernization</span>
-          <span><small>03</small>Workflow automation</span>
+          <span><small>03</small>Zero-to-one products</span>
         </div>
       </section>
 
