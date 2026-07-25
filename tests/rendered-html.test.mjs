@@ -94,3 +94,26 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     }
   }
 });
+
+test("renders the RX growth roadmap with honest statuses and target KPIs", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("rx-roadmap-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("http://localhost/projects/prescription-pad-ordering-portal", {
+      headers: { accept: "text/html" },
+    }),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Growth roadmap and measurement plan/i);
+  assert.match(html, /Delivered/i);
+  assert.match(html, /In progress/i);
+  assert.match(html, /Planned/i);
+  assert.match(html, /Revenue attributed to organic search/i);
+  assert.doesNotMatch(html, /Next iteration backlog/i);
+  assert.doesNotMatch(html, /Castle Press/i);
+});
