@@ -40,7 +40,6 @@ export default function RxOperationalResults() {
           <div className="rx-order-chart" role="img" aria-label="Monthly prescription page orders: March 20, April 17, May 20, June 20, and July 30">
             {monthlyOrders.map(({ month, orders }) => (
               <div className={month === "July" ? "is-high" : ""} key={month}>
-                <span>{orders}</span>
                 <i style={{ height: `${(orders / 30) * 100}%` }} aria-hidden="true" />
                 <small>{month.slice(0, 3)}</small>
               </div>
