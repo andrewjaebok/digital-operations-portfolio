@@ -72,7 +72,7 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
   const { default: worker } = await import(workerUrl.href);
   const routes = [
     ["/how-i-work", /How I Work \| Product Operations Framework/i],
-    ["/projects/customer-portal-redesign", /Regional Utility Portal \| Product Operations Case Study/i],
+    ["/projects/customer-portal-redesign", /Regional Utility CCR Portal \| Product Operations Case Study/i],
     ["/projects/prescription-pad-ordering-portal", /Prescription Pad Ordering \| Product Operations Case Study/i],
     ["/projects/hearth", /Hearth \| Zero-to-One Product Operations Case Study/i],
   ];
@@ -89,8 +89,11 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     assert.match(html, /<meta[^>]+name=["']description["'][^>]+content=/i);
     assert.doesNotMatch(html, /Castle Press/i);
     if (path === "/projects/customer-portal-redesign") {
-      assert.match(html, /Customer-reported easier batch navigation/i);
-      assert.doesNotMatch(html, /faster report discovery/i);
+      assert.match(html, /Twenty participants completed the same core CCR report tasks/i);
+      assert.match(html, /30–60 sec/i);
+      assert.match(html, /1\.86/i);
+      assert.match(html, /Most participants used the search bar/i);
+      assert.match(html, /Results below are usability-test findings, not live product analytics/i);
     }
   }
 });
