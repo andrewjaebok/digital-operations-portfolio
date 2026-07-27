@@ -94,6 +94,12 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /1\.86/i);
       assert.match(html, /Most participants used the search bar/i);
       assert.match(html, /Results below are usability-test findings, not live product analytics/i);
+      assert.match(html, /Core report tasks were completed faster/i);
+      assert.match(html, /20 participants.*4 core tasks.*Original vs redesigned portal/is);
+      assert.match(html, /Reports are reviewed in batches/i);
+      assert.match(html, /Workflow evidence determined what mattered first/i);
+      assert.match(html, /evaluation occurred after implementation/i);
+      assert.match(html, /Discovery.*prioritization.*execution.*validation.*iteration/is);
     }
   }
 });

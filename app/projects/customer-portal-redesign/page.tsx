@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 const progressSections = [
   { id: "case-content", label: "Overview", icon: "◫" },
+  { id: "measured-impact", label: "Impact", icon: "↗" },
   { id: "ownership", label: "Ownership", icon: "◎" },
   { id: "assessment", label: "Assessment", icon: "⌕" },
   { id: "strategy", label: "Strategy", icon: "◇" },
@@ -20,7 +21,7 @@ const progressSections = [
   { id: "solution", label: "Solution", icon: "✦" },
   { id: "results", label: "What changed", icon: "↔" },
   { id: "usability-results", label: "Measured results", icon: "▦" },
-  { id: "leadership", label: "Operating decisions", icon: "◆" },
+  { id: "decisions", label: "Operating decisions", icon: "◆" },
   { id: "process", label: "Process", icon: "⚙" },
   { id: "outcome", label: "Outcome", icon: "✓" },
   { id: "validation", label: "Validation", icon: "◌" },
@@ -35,15 +36,20 @@ const changes = [
 ];
 
 const process = [
-  ["01", "Reviewed the existing customer portal", "Established a clear baseline for the customer experience and the operational workflow supporting it."],
-  ["02", "Identified customer pain points", "Focused the initiative on the points that created the most effort when customers located and reviewed reports in batches."],
-  ["03", "Evaluated operational workflows", "Mapped what had to remain stable across report preparation, status updates, file organization, and delivery."],
-  ["04", "Defined product requirements", "Translated customer needs and operational dependencies into a shared, testable scope."],
-  ["05", "Prioritized improvements", "Sequenced work by customer impact while minimizing disruption to active operations."],
-  ["06", "Preserved production compatibility", "Kept the report structure, terminology, links, and platform behavior familiar to internal teams."],
-  ["07", "Improved the customer experience", "Implemented search, filtering, language navigation, summaries, and responsive behavior around the existing workflow."],
-  ["08", "Validated the experience", "Checked functionality and responsive behavior, then ran a 20-participant retrospective usability evaluation against the original portal."],
-  ["09", "Planned the next measurement cycle", "Separated task-test findings from future live analytics such as search behavior, engagement, and repeat usage."],
+  ["01", "Discovery", "Customer feedback, the original portal audit, workflow evaluation, and operational and technical constraints."],
+  ["02", "Prioritization", "Evidence was translated into requirements for report discovery, batch navigation, status clarity, bilingual access, and responsive use."],
+  ["03", "Execution", "Delivered search, region and batch organization, status controls, bilingual navigation, summaries, and responsive improvements."],
+  ["04", "Validation", "After development, 20 participants compared the original and redesigned portals across four core tasks."],
+  ["05", "Iteration", "The next cycle adds live search behavior, empty searches, filters, report clicks, device patterns, and repeat visits."],
+];
+
+const priorities = [
+  ["P0", "Report discovery", "Manual scanning created friction when locating a specific report.", "Workflow assessment"],
+  ["P0", "Region and batch navigation", "The customer workflow centered on reports being completed and reviewed in batches.", "Customer feedback · Workflow assessment"],
+  ["P0", "Status understanding", "Status determined where a report was in the proofing and approval workflow.", "Operational requirement · Workflow assessment"],
+  ["P1", "English and Spanish access", "Bilingual access was required, while later testing showed perceived ease was already comparatively strong.", "Operational requirement"],
+  ["P1", "Responsive usability", "Access needed to improve across devices without changing the established workflow.", "Workflow assessment · Technical constraint"],
+  ["P2", "Visual modernization", "Hierarchy and clarity supported the workflow but were secondary to discovery and status problems.", "Portal audit"],
 ];
 
 export default function CustomerPortalRedesign() {
@@ -79,9 +85,23 @@ export default function CustomerPortalRedesign() {
         <article><span>Business problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
         <article><span>What I owned</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
         <article><span>Key decision</span><p>Add search and status guidance while preserving the production process behind the portal.</p></article>
-        <article><span>Measured result</span><p>Twenty participants completed a retrospective before-and-after usability evaluation across four core tasks.</p></article>
+        <article><span>Measured result</span><p>Core report tasks were completed faster, with fewer incorrect selections and higher ease ratings across three of four evaluated workflows.</p></article>
         <article><span>Business significance</span><p>A repeatable modernization model for other customer-facing portals.</p></article>
       </div>
+      <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
+    </section>
+
+    <section className="utility-impact shell" id="measured-impact" aria-labelledby="measured-impact-title">
+      <div className="utility-impact-heading">
+        <div><p className="kicker">Measured impact</p><h2 id="measured-impact-title">Three core workflows improved across time, accuracy, and ease.</h2></div>
+        <p>Results from a <strong>20-participant retrospective usability evaluation</strong>. Completion time is shown as the observed range, not as a single calculated percentage.</p>
+      </div>
+      <div className="utility-impact-grid">
+        <article><span>Find a location</span><div><p><small>Completion time</small><b>30–60 sec → 10–15 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0.32</b></p><p><small>Ease</small><b>2.4 → 4.8 / 5</b></p></div></article>
+        <article><span>Find a region</span><div><p><small>Completion time</small><b>20–30 sec → 5–10 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0</b></p><p><small>Ease</small><b>1.9 → 4.6 / 5</b></p></div></article>
+        <article><span>Identify status</span><div><p><small>Completion time</small><b>30–60 sec → 10–15 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0.32</b></p><p><small>Ease</small><b>2.4 → 4.8 / 5</b></p></div></article>
+      </div>
+      <p className="utility-impact-note">The fourth task, opening the correct English or Spanish file, remains in the detailed results below. Its time range became more consistent while its ease rating remained 4.0/5.</p>
     </section>
 
     <section className="case-cover shell real-case-cover"><span className="evidence-label">Delivered customer capability</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Final regional utility report portal showing search, report totals, interactive status key, language tabs, and regional report table" /></section>
@@ -91,13 +111,35 @@ export default function CustomerPortalRedesign() {
       <div className="ownership-column"><p className="kicker">Business objective</p><p>Improve access to the existing proof-review workflow without replacing it or retraining users on new production terminology.</p><ul><li>Clearer regional and batch organization</li><li>Consistent bilingual access</li><li>Scalable report structure</li><li>Existing platform and report-link compatibility</li></ul></div>
     </section>
 
-    <section className="review-section shell" id="assessment"><div><p className="kicker">Evidence and assessment</p><h2>The roadmap came from the workflow, not visual preference.</h2><p>I audited the original interface and manually evaluated navigation, scanning, hierarchy, status interpretation, responsiveness, and language selection.</p></div><div className="review-grid"><span>Original portal interface</span><span>Regional and batch structure</span><span>Existing proof-status system</span><span>English and Spanish requirements</span><span>Direct customer feedback</span><span>Final implemented functionality</span><span>Responsive behavior</span><span>Legacy platform compatibility</span></div></section>
+    <section className="review-section utility-evidence-section shell" id="assessment">
+      <div><p className="kicker">Discovery evidence</p><h2>The roadmap came from customer and workflow evidence.</h2><p>I combined direct customer feedback with an audit of the original portal, workflow observation, and operational and technical constraints. The usability evaluation came later and validated the delivered solution.</p></div>
+      <div>
+        <div className="review-grid"><span>Customer feedback</span><span>Original portal audit</span><span>Workflow evaluation</span><span>Operational constraints</span><span>Technical constraints</span><span>Bilingual requirements</span></div>
+        <div className="voice-of-customer">
+          <p className="kicker">Voice of Customer</p>
+          <div className="voice-heading"><span>Customer insight</span><span>Product implication</span></div>
+          <div><p>Reports are reviewed in batches</p><p>Make region and batch organization easier to scan.</p></div>
+          <div><p>Finding the correct report creates friction</p><p>Prioritize search and discoverability.</p></div>
+          <div><p>Users need to understand proofing progress</p><p>Improve status visibility without replacing familiar terminology.</p></div>
+          <div><p>Existing workflows are already understood</p><p>Preserve the report structure instead of redesigning the operational process.</p></div>
+        </div>
+      </div>
+    </section>
 
     <section className="constraints-section shell"><div><p className="kicker">Constraints</p><h2>Improve access without disrupting active operations.</h2></div><div className="constraint-list"><span>Production workflow had to remain unchanged</span><span>Existing report structure had to be preserved</span><span>Report links could not be disrupted</span><span>Status terminology needed to remain familiar</span><span>English and Spanish support was required</span><span>Legacy platform compatibility had to remain intact</span></div></section>
 
     <section className="story-section shell two-col" id="strategy">
       <div><p className="kicker">Stakeholder Alignment</p><h2>Customer usability and operational continuity had to move together.</h2></div>
       <div className="story-copy"><p>The solution required alignment between customer expectations, internal production practices, regional reporting requirements, and the existing technical environment.</p><p>I translated customer friction into requirements while protecting the consistency teams needed to prepare reports, update statuses, and maintain familiar file structures.</p><aside>Cross-functional objective: improve access to the workflow while keeping the operational system dependable and recognizable.</aside></div>
+    </section>
+
+    <section className="utility-priority-section shell">
+      <div className="utility-priority-heading"><div><p className="kicker">Evidence-backed prioritization</p><h2>Workflow evidence determined what mattered first.</h2></div><p>A formal scoring workshop did not occur before development. These priorities retrospectively explain the decision logic using the evidence available when each decision was made.</p></div>
+      <div className="utility-priority-list" role="table" aria-label="Evidence-backed project priorities">
+        <div className="utility-priority-row utility-priority-header" role="row"><span role="columnheader">Priority</span><span role="columnheader">Requirement</span><span role="columnheader">Reason</span><span role="columnheader">Decision evidence</span></div>
+        {priorities.map(([priority,requirement,reason,evidence]) => <div className="utility-priority-row" role="row" key={requirement}><b role="cell">{priority}</b><strong role="rowheader">{requirement}</strong><p role="cell">{reason}</p><span role="cell">{evidence}</span></div>)}
+      </div>
+      <p className="utility-priority-note"><strong>Evidence boundary:</strong> the 20-participant evaluation occurred after implementation. It validated the solution’s task outcomes but did not drive the original product decisions.</p>
     </section>
 
     <section className="before-section shell" id="baseline">
@@ -136,8 +178,6 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
-    <section className="constraints-section shell"><div><p className="kicker">Retrospective prioritization framework</p><h2>Sequence improvements by workflow value and operational risk.</h2><p>This framework retrospectively explains the decision logic. It does not imply that a formal scoring workshop occurred before development.</p></div><div className="constraint-list"><span>P0 · Find the correct report</span><span>P0 · Understand proof status</span><span>P0 · Navigate regions and batches</span><span>P1 · Select English or Spanish</span><span>P1 · Responsive usability</span><span>P2 · Visual modernization</span></div></section>
-
     <section className="comparison-section shell" id="results">
       <div className="section-intro"><p className="kicker">04 · What changed</p><h2>From static file matrix to usable workflow experience.</h2></div>
       <div className="comparison-table" role="table" aria-label="Before and after comparison">
@@ -148,17 +188,7 @@ export default function CustomerPortalRedesign() {
 
     <UtilityUsabilityResults />
 
-    <section className="senior-ops-section shell" id="leadership">
-      <div className="senior-ops-heading"><div><p className="kicker">Manager-level ownership</p><h2>Decisions extended beyond the interface.</h2></div><p>The initiative required product judgment, stakeholder alignment, launch discipline, and a plan for continued measurement while active production workflows remained dependable.</p></div>
-      <div className="senior-ops-grid">
-        <article><span>Decision and tradeoff</span><h3>Modernize findability, preserve familiarity.</h3><p>I prioritized search, status filtering, bilingual navigation, and responsive access while retaining the report structure and terminology customers and production teams already understood.</p></article>
-        <article><span>Stakeholder alignment</span><h3>Connect customer and operational needs.</h3><p>Customer expectations, production practices, regional reporting requirements, and the existing technical environment were translated into one shared scope.</p></article>
-        <article><span>Launch and change</span><h3>Validate the experience around live workflows.</h3><p>Search, filters, bilingual navigation, links, status behavior, and responsive layouts were checked without requiring the underlying report process to be rebuilt.</p></article>
-        <article><span>Next iteration</span><h3>Move from task testing to product analytics.</h3><p>Future measurement should track empty searches, commonly used filters and language tabs, report clicks, device patterns, and repeat portal visits.</p></article>
-      </div>
-    </section>
-
-    <section className="timeline-section product-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>From business problem to validated customer capability.</h2></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
+    <section className="timeline-section product-process utility-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>Discovery → prioritization → execution → validation → iteration.</h2><p>The retrospective study sits after delivery so discovery evidence and validation evidence cannot be mistaken for each other.</p></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
 
     <ProjectOperatingViews variant="utility" />
 
