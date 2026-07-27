@@ -123,6 +123,13 @@ test("renders the RX growth roadmap with honest statuses and target KPIs", async
   assert.match(html, /In progress/i);
   assert.match(html, /Planned/i);
   assert.match(html, /Revenue attributed to organic search/i);
+  assert.match(html, /July orders rose 50% while tracked repeat questions fell 100%/i);
+  assert.match(html, /March 20, April 17, May 20, June 20, and July 30/i);
+  assert.match(html, /\+76%.*April, the five-month low/is);
+  assert.match(html, /What’s the turnaround time\?/i);
+  assert.match(html, /combined tracked baseline was 34\.8 questions per month/i);
+  assert.match(html, /100% reduction within the tracked categories/i);
+  assert.match(html, /do not prove that the redesign or content work alone caused the increase/i);
   assert.doesNotMatch(html, /Next iteration backlog/i);
   assert.doesNotMatch(html, /Castle Press/i);
 });

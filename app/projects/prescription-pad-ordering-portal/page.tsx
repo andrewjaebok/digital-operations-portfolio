@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import CaseProgress from "../../components/CaseProgress";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
+import RxOperationalResults from "../../components/RxOperationalResults";
 
 export const metadata: Metadata = {
   title: "Prescription Pad Ordering | Product Operations Case Study",
@@ -18,6 +19,7 @@ const progressSections = [
   { id: "solution", label: "Solution", icon: "✦" },
   { id: "growth", label: "Growth", icon: "↗" },
   { id: "analytics", label: "Evidence", icon: "▥" },
+  { id: "operational-evidence", label: "Operational results", icon: "◫" },
   { id: "results", label: "What changed", icon: "↔" },
   { id: "leadership", label: "Operating decisions", icon: "◆" },
   { id: "process", label: "Process", icon: "⚙" },
@@ -143,6 +145,8 @@ export default function PrescriptionPadOrderingPortal() {
       <p className="analytics-caveat"><b>Measurement note:</b> These reports demonstrate increased traffic, discovery, and engagement. Because GA4 key events were not configured for completed orders, they are presented as visibility evidence rather than proof that the redesign alone caused order conversion.</p>
     </section>
 
+    <RxOperationalResults />
+
     <section className="comparison-section shell" id="results">
       <div className="section-intro"><p className="kicker">What changed</p><h2>From legacy catalog pages to a managed product experience.</h2></div>
       <div className="comparison-table" role="table" aria-label="Prescription pad portal before and after comparison">
@@ -168,9 +172,9 @@ export default function PrescriptionPadOrderingPortal() {
     <section className="impact-section shell" id="outcome">
       <p className="kicker">Outcome</p>
       <h2>A clearer ordering capability that also opened a path for organic growth.</h2>
-      <div className="impact-grid"><div><strong>1,272%</strong><span>Increase in new users</span></div><div><strong>20</strong><span>Product-selection paths preserved</span></div><div><strong>1</strong><span>Legacy 4D workflow maintained</span></div></div>
+      <div className="impact-grid"><div><strong>1,272%</strong><span>Increase in new users</span></div><div><strong>+50%</strong><span>Order increase from June to July</span></div><div><strong>−100%</strong><span>Across four tracked question types</span></div></div>
       <div className="outcome-columns"><article><h3>Customer experience</h3><ul><li>Clearer page purpose and next steps</li><li>Easier product comparison</li><li>More scannable prescriber selection</li><li>Improved responsive behavior</li></ul></article><article><h3>Operational outcomes</h3><ul><li>Existing order destinations preserved</li><li>Production workflow left unchanged</li><li>Customer calls captured as market insight</li><li>Lower-risk modernization approach</li></ul></article><article><h3>Growth foundation</h3><ul><li>SEO and GEO resource library</li><li>More entry points for high-intent customers</li><li>Observed increase in orders after launch</li><li>Clearer basis for future optimization</li></ul></article></div>
-      <p className="impact-note">New users increased 1,272% compared with the previous reporting period, while order volume also increased following the website conversion. Because completed-order events and a formal attribution model were not available, traffic growth and order growth are presented as related post-launch signals rather than a sole-cause claim.</p>
+      <p className="impact-note">New users increased 1,272% compared with the previous reporting period. Prescription-page orders rose 50% from 20 in June to 30 in July, the highest count in the five-month series. The four tracked recurring-question categories declined 100%, from a combined baseline of 34.8 per month to zero during the two-month follow-up. Because completed-order events and a formal attribution model were not available, the order trend is presented as an observed signal rather than a sole-cause claim. The question result applies only to the four tracked categories.</p>
     </section>
 
     <section className="rx-roadmap-section shell" id="roadmap" aria-labelledby="roadmap-title">
