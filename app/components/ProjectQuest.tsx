@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -137,6 +138,7 @@ const isPassable = (position: Position) => {
 };
 
 export default function ProjectQuest() {
+  const router = useRouter();
   const [started, setStarted] = useState(false);
   const [position, setPosition] = useState<Position>(startPosition);
   const [direction, setDirection] = useState<Direction>("down");
@@ -199,6 +201,7 @@ export default function ProjectQuest() {
     setVisited((current) =>
       current.includes(project.id) ? current : [...current, project.id],
     );
+    requestAnimationFrame(() => gameRef.current?.focus());
   }, []);
 
   const attemptStep = useCallback((nextDirection: Direction) => {
@@ -293,13 +296,20 @@ export default function ProjectQuest() {
       return;
     }
     if (selectedProject) {
-      leaveProject();
+      router.push(selectedProject.route);
       return;
     }
     if (nearbyProject) selectProject(nearbyProject);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (
+      event.target !== event.currentTarget &&
+      (event.target as HTMLElement).closest("a, button")
+    ) {
+      return;
+    }
+
     const nextDirection = keyDirections[event.code];
     if (nextDirection) {
       event.preventDefault();
@@ -375,7 +385,7 @@ export default function ProjectQuest() {
         </div>
         <div className="quest-instructions">
           <span><kbd>WASD</kbd> or arrow keys to walk</span>
-          <span><kbd>Enter</kbd> at a door to enter</span>
+          <span><kbd>Enter</kbd> at a door, then again to open</span>
           <span>Click a house or use the touch controls</span>
         </div>
       </div>
@@ -389,7 +399,7 @@ export default function ProjectQuest() {
           className={`quest-screen${started ? " is-started" : ""}`}
           ref={gameRef}
           role="application"
-          aria-label="Project Quest town. Use arrow keys or WASD to walk into a project house, and Enter to inspect it."
+          aria-label="Project Quest town. Use arrow keys or WASD to walk into a project house. Press Enter again inside to open its full case study."
           tabIndex={0}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
@@ -398,7 +408,7 @@ export default function ProjectQuest() {
           <div className="quest-screen-status" aria-live="polite">
             <span>
               {selectedProject
-                ? `${selectedProject.shortTitle} House`
+                ? `Enter: Open ${selectedProject.shortTitle}`
                 : nearbyProject
                   ? `A: Enter ${nearbyProject.shortTitle}`
                   : "Project Town"}
@@ -464,8 +474,17 @@ export default function ProjectQuest() {
                 style={tileStyle(position.x, position.y)}
                 aria-hidden="true"
               >
-                <i className="character-head" />
-                <i className="character-body" />
+                <i className="character-shadow" />
+                <i className="character-head">
+                  <b className="character-cap" />
+                  <b className="character-hair" />
+                  <b className="character-face" />
+                </i>
+                <i className="character-body">
+                  <b className="character-scarf" />
+                  <b className="character-pack" />
+                </i>
+                <i className="character-arms"><b className="character-hands" /></i>
                 <i className="character-feet" />
               </span>
             )}
@@ -512,7 +531,7 @@ export default function ProjectQuest() {
               </dl>
               <div className="quest-brief-actions">
                 <Link href={selectedProject.route}>
-                  Open case study <span aria-hidden="true">↗</span>
+                  Enter / A: Open <span aria-hidden="true">↗</span>
                 </Link>
                 <button type="button" onClick={leaveProject}>
                   B: Leave
@@ -535,7 +554,13 @@ export default function ProjectQuest() {
           </button>
           <div className="quest-action-buttons">
             <button type="button" onClick={leaveProject} aria-label="Leave project house">B</button>
-            <button type="button" onClick={interact} aria-label="Enter project house">A</button>
+            <button
+              type="button"
+              onClick={interact}
+              aria-label={selectedProject ? "Open selected case study" : "Enter project house"}
+            >
+              A
+            </button>
           </div>
         </div>
         <div className="handheld-speaker" aria-hidden="true"><i /><i /><i /><i /><i /></div>
