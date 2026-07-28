@@ -872,3 +872,303 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 @media(max-width:700px){.project-quest{padding:32px 20px}.project-quest-intro{display:block}.project-quest-intro>p:not(.eyebrow){font-size:15px}.ops-handheld{padding:15px 16px 27px;border-radius:22px 22px 44px 22px}.quest-screen{border-width:8px}.handheld-controls{grid-template-columns:84px 1fr 94px;gap:8px}.quest-dpad{grid-template-columns:repeat(3,27px);grid-template-rows:repeat(3,27px)}.quest-action-buttons{gap:9px}.quest-action-buttons button{width:35px;height:35px}.quest-brief{inset:32px 7px 7px;padding:9px}.quest-brief h4{font-size:15px}.quest-brief dl{grid-template-columns:1fr}.quest-brief dl>div{padding:5px}.quest-brief dd{font-size:9px}.quest-brief-actions{margin-top:6px}.quest-brief-actions a,.quest-brief-actions button{padding:6px;font-size:8px}.quest-station{width:42px;min-height:34px}.quest-station span{font-size:7px}}
 @media(max-width:430px){.project-quest{width:calc(100% + 12px);margin-left:-6px;padding:26px 10px;border-radius:18px}.project-quest-actions{display:grid}.quest-play-button,.quest-browse-link{width:100%}.ops-handheld{padding-inline:11px}.handheld-brand small{display:none}.quest-screen{aspect-ratio:1/1}.quest-map{padding:4px}.quest-screen-status{padding-inline:6px}.quest-station{width:34px;min-height:30px}.quest-station i{width:15px;height:11px}.quest-station span{font-size:5px}.handheld-controls{grid-template-columns:74px 1fr 82px}.quest-dpad{grid-template-columns:repeat(3,24px);grid-template-rows:repeat(3,24px)}.quest-action-buttons button{width:31px;height:31px}.handheld-speaker{display:none}.quest-brief h4{max-width:100%;font-size:11px}.quest-brief dl>div:nth-child(1){display:none}.quest-brief-actions{align-items:stretch}.quest-brief-actions a,.quest-brief-actions button{display:grid;place-items:center;text-align:center;line-height:1.15}}
 @media(prefers-reduced-motion:reduce){.quest-title-screen button{animation:none}.quest-character{transition:none}}
+
+/* Project Quest town edition: original early-handheld RPG map and movement. */
+.quest-screen{aspect-ratio:160/144;border-radius:11px 11px 25px 11px;background:#d8e3bd}
+.quest-screen-status{min-height:24px;padding:4px 8px;background:#b8ca98;border-color:#4c6148;font-size:8px}
+.quest-map{
+  --tile-w:6.25%;
+  --tile-h:8.333333%;
+  position:absolute;
+  inset:24px 0 0;
+  display:block;
+  padding:0;
+  overflow:hidden;
+  background-color:#d7e2b8;
+  background-image:
+    radial-gradient(circle at 12% 18%,#9caf7f 0 1px,transparent 1px),
+    radial-gradient(circle at 71% 67%,#9caf7f 0 1px,transparent 1px),
+    radial-gradient(circle at 42% 86%,#9caf7f 0 1px,transparent 1px);
+  background-size:17px 15px,21px 19px,19px 23px;
+  image-rendering:pixelated;
+}
+.quest-map:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg,transparent 0 6.15%,rgba(58,78,55,.04) 6.15% 6.25%),
+    repeating-linear-gradient(0deg,transparent 0 8.23%,rgba(58,78,55,.04) 8.23% 8.333%);
+}
+.quest-path{position:absolute;z-index:0;background:#c5d3a7;box-shadow:inset 0 2px #dfe8c7,inset 0 -2px #a9bc8c}
+.path-horizontal{left:0;right:0;top:45.833%;height:16.667%}
+.path-vertical{left:43.75%;top:0;bottom:0;width:12.5%;box-shadow:inset 2px 0 #dfe8c7,inset -2px 0 #a9bc8c}
+.path-utility,.path-rx,.path-hearth,.path-operations{width:6.25%;box-shadow:inset 2px 0 #dfe8c7,inset -2px 0 #a9bc8c}
+.path-utility{left:18.75%;top:25%;height:25%}
+.path-rx{left:68.75%;top:25%;height:25%}
+.path-hearth{left:18.75%;top:58.333%;height:33.333%}
+.path-operations{left:68.75%;top:58.333%;height:33.333%}
+.quest-tree,.quest-flower{
+  position:absolute;
+  left:calc(var(--tile-x) * var(--tile-w));
+  top:calc(var(--tile-y) * var(--tile-h));
+  width:var(--tile-w);
+  height:var(--tile-h);
+}
+.quest-tree{z-index:4}
+.quest-tree:before{
+  content:"";
+  position:absolute;
+  left:11%;
+  top:4%;
+  width:78%;
+  height:72%;
+  border:2px solid #344c3b;
+  border-radius:44% 44% 28% 28%;
+  background:#78976b;
+  box-shadow:inset 3px 3px #a8bb85,inset -4px -3px #557354,0 3px 0 #344c3b;
+}
+.quest-tree:after{
+  content:"";
+  position:absolute;
+  left:39%;
+  bottom:3%;
+  width:22%;
+  height:32%;
+  background:#5c6847;
+  border:1px solid #344c3b;
+}
+.quest-flower{z-index:1}
+.quest-flower:before{
+  content:"";
+  position:absolute;
+  left:30%;
+  top:31%;
+  width:4px;
+  height:4px;
+  background:#536b50;
+  box-shadow:7px 2px #536b50,3px 8px #536b50;
+}
+.quest-flower:after{
+  content:"";
+  position:absolute;
+  left:27%;
+  top:22%;
+  width:3px;
+  height:3px;
+  background:#eef1d0;
+  box-shadow:3px 0 #78976b,0 3px #78976b,3px 3px #eef1d0,7px 2px #eef1d0,10px 2px #78976b,7px 5px #78976b,10px 5px #eef1d0,3px 8px #eef1d0,6px 8px #78976b,3px 11px #78976b,6px 11px #eef1d0;
+}
+.flower-2{transform:scaleX(-1)}.flower-3{filter:brightness(.88)}
+.quest-pond{
+  position:absolute;
+  z-index:1;
+  left:-1%;
+  top:39%;
+  width:13%;
+  height:28%;
+  border:3px solid #486458;
+  border-radius:0 45% 45% 0;
+  background:#8eaaa0;
+  box-shadow:inset -4px 0 #b8cbb1,inset 0 4px #cbd7b4;
+  overflow:hidden;
+}
+.quest-pond:before,.quest-pond:after,.quest-pond i{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:2px;
+  background:#dce4c6;
+  box-shadow:7px 4px #637f70;
+  animation:pond-ripple 1.8s steps(2) infinite;
+}
+.quest-pond:before{left:7px;top:12px}.quest-pond:after{right:7px;bottom:12px;animation-delay:.6s}
+.quest-pond i:nth-child(1){left:22px;top:31px;animation-delay:1.2s}
+.quest-fence{position:absolute;z-index:1;height:5px;border-top:2px solid #59694c;border-bottom:1px solid #59694c;background:repeating-linear-gradient(90deg,#8d9d6b 0 4px,#59694c 4px 6px,transparent 6px 10px)}
+.fence-top{left:37.5%;top:13%;width:25%}.fence-bottom{left:37.5%;bottom:12%;width:25%}
+.quest-town-sign{
+  position:absolute;
+  z-index:3;
+  left:7%;
+  top:43%;
+  min-width:38px;
+  padding:3px 4px 4px;
+  border:2px solid #3c513e;
+  background:#a4b47e;
+  color:#324636;
+  box-shadow:2px 3px 0 #667856;
+  font:900 5px/1.08 ui-monospace,SFMono-Regular,Menlo,monospace;
+  text-align:center;
+}
+.quest-town-sign:after{content:"";position:absolute;left:50%;top:100%;width:3px;height:9px;background:#526044}
+.quest-mailbox{position:absolute;z-index:3;right:7%;top:48%;width:13px;height:10px;border:2px solid #3a4e3d;border-radius:5px 5px 2px 2px;background:#7b9368;box-shadow:5px 1px 0 -3px #3a4e3d}
+.quest-mailbox:after{content:"";position:absolute;left:4px;top:8px;width:3px;height:11px;background:#3a4e3d}
+.quest-npc{position:absolute;z-index:4;left:82%;top:45%;width:var(--tile-w);height:var(--tile-h)}
+.quest-npc:before{content:"";position:absolute;left:32%;top:8%;width:36%;height:34%;border:2px solid #34483a;background:#aebd8b;box-shadow:2px -2px 0 -1px #34483a}
+.quest-npc:after{content:"";position:absolute;left:28%;top:42%;width:44%;height:42%;border:2px solid #34483a;background:#71886a}
+.quest-npc i:before,.quest-npc i:after{content:"";position:absolute;top:80%;width:18%;height:10%;background:#34483a}.quest-npc i:before{left:25%}.quest-npc i:after{right:25%}
+.quest-house{
+  --roof:#718c70;
+  --wall:#b7c79c;
+  position:absolute;
+  z-index:2;
+  left:calc(var(--tile-x) * var(--tile-w));
+  top:calc(var(--tile-y) * var(--tile-h));
+  width:25%;
+  height:25%;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#293d32;
+  cursor:pointer;
+  image-rendering:pixelated;
+}
+.house-rx{--roof:#829077;--wall:#c7cfaa}.house-hearth{--roof:#687d6f;--wall:#b4c4a0}.house-operations{--roof:#778368;--wall:#c1c9a4}
+.quest-house:hover,.quest-house:focus-visible{filter:brightness(1.07)}
+.quest-house:focus-visible{outline:3px solid #f97316;outline-offset:3px}
+.house-chimney{position:absolute;z-index:0;right:17%;top:3%;width:12%;height:24%;border:2px solid #35493b;background:#8e9d78}
+.house-roof{
+  position:absolute;
+  z-index:2;
+  left:3%;
+  right:3%;
+  top:8%;
+  height:39%;
+  border:3px solid #34483a;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 6px,rgba(45,64,51,.25) 6px 8px),
+    var(--roof);
+  box-shadow:inset 4px 4px rgba(219,229,190,.3),3px 3px 0 rgba(48,64,52,.18);
+}
+.house-roof:before,.house-roof:after{content:"";position:absolute;top:25%;width:15%;height:36%;border:2px solid #34483a;background:#d5dfb7}
+.house-roof:before{left:18%}.house-roof:after{right:18%}
+.house-front{
+  position:absolute;
+  z-index:1;
+  left:10%;
+  right:10%;
+  top:43%;
+  bottom:5%;
+  border:3px solid #34483a;
+  background:
+    repeating-linear-gradient(0deg,transparent 0 7px,rgba(62,80,59,.16) 7px 9px),
+    var(--wall);
+  box-shadow:inset 0 4px rgba(240,241,207,.4);
+}
+.house-window{position:absolute;top:18%;width:19%;height:27%;border:2px solid #34483a;background:linear-gradient(90deg,#9fb4a0 43%,#34483a 43% 55%,#d9e2c0 55%)}
+.window-left{left:12%}.window-right{right:12%}
+.house-door{
+  position:absolute;
+  left:39%;
+  bottom:-3px;
+  width:22%;
+  height:55%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #304338;
+  border-bottom:0;
+  background:#64765b;
+  color:#e0e6c4;
+  font:900 7px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-style:normal;
+}
+.house-door:after{content:"";position:absolute;right:2px;top:48%;width:2px;height:2px;background:#e0e6c4}
+.house-sign{
+  position:absolute;
+  z-index:4;
+  right:-2%;
+  bottom:-15%;
+  padding:3px 4px;
+  border:2px solid #34483a;
+  background:#a6b681;
+  box-shadow:2px 2px 0 #5b6c50;
+  font:900 5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  text-transform:uppercase;
+}
+.quest-house.is-visited .house-sign:after{content:" ✓"}
+.quest-character{
+  position:absolute;
+  z-index:5;
+  left:0;
+  top:0;
+  width:var(--tile-w);
+  height:var(--tile-h);
+  display:block;
+  transform:translate(calc(var(--tile-x) * 100%),calc(var(--tile-y) * 100%));
+  transition:transform .18s linear;
+  filter:drop-shadow(1px 2px 0 rgba(45,58,45,.28));
+  will-change:transform;
+}
+.character-head,.character-body,.character-feet{position:absolute;display:block}
+.character-head{
+  z-index:3;
+  left:27%;
+  top:5%;
+  width:46%;
+  height:38%;
+  border:2px solid #2e4137;
+  background:#b9c69c;
+  box-shadow:3px -2px 0 -1px #2e4137,inset 0 4px #667b65;
+}
+.character-head:after{content:"";position:absolute;left:20%;bottom:18%;width:3px;height:3px;background:#2e4137;box-shadow:7px 0 #2e4137}
+.character-body{
+  z-index:2;
+  left:23%;
+  top:40%;
+  width:54%;
+  height:39%;
+  border:2px solid #2e4137;
+  background:#607a71;
+  box-shadow:inset 3px 0 #82998a,inset -3px 0 #465e57;
+}
+.character-feet{z-index:1;left:25%;top:77%;width:20%;height:14%;background:#2e4137;box-shadow:8px 0 #2e4137}
+.faces-up .character-head:after{display:none}.faces-up .character-head{box-shadow:3px -2px 0 -1px #2e4137,inset 0 -5px #667b65}
+.faces-left .character-head:after{left:5%;box-shadow:0 6px #2e4137}.faces-right .character-head:after{left:auto;right:5%;box-shadow:0 6px #2e4137}
+.faces-left .character-body{box-shadow:inset 4px 0 #82998a}.faces-right .character-body{box-shadow:inset -4px 0 #465e57}
+.quest-character.is-walking .character-feet{animation:quest-walk-feet .18s steps(2) infinite}
+.quest-character.is-walking .character-body{animation:quest-walk-bob .18s steps(2) infinite}
+.quest-title-screen{inset:24px 0 0;background:linear-gradient(#dce5bd 0 62%,#aebe8a 62%);overflow:hidden}
+.title-screen-hills{position:absolute;inset:auto 0 24% 0;height:37%;background:linear-gradient(135deg,transparent 21%,#849b71 21% 37%,transparent 37%) 0 0/44% 100% repeat-x;opacity:.72}
+.title-screen-hills:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:13px;background:repeating-linear-gradient(90deg,#526d58 0 4px,#8ca276 4px 8px)}
+.quest-title-screen small,.quest-title-screen strong,.quest-title-screen p,.quest-title-screen button{position:relative;z-index:1}
+.quest-title-screen strong{font-size:clamp(25px,4vw,36px);text-shadow:3px 3px 0 #879b70}
+.quest-title-screen p{padding:2px 5px;background:#dce5bd}
+.quest-brief{
+  inset:31px 8px 7px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:22px;
+  background:
+    linear-gradient(rgba(220,229,189,.94),rgba(220,229,189,.94)),
+    repeating-linear-gradient(0deg,#788c6d 0 1px,transparent 1px 18px);
+  border-color:#2f4438;
+  box-shadow:4px 4px 0 rgba(38,56,46,.34);
+}
+.quest-brief dl>div{background:rgba(241,243,207,.55)}
+@keyframes quest-walk-feet{50%{transform:translateX(4px);box-shadow:-8px 0 #2e4137}}
+@keyframes quest-walk-bob{50%{transform:translateY(-1px)}}
+@keyframes pond-ripple{50%{transform:translateX(3px)}}
+@media(max-width:700px){
+  .quest-screen{aspect-ratio:160/144}
+  .house-sign{font-size:4px}
+  .quest-town-sign{transform:scale(.82);transform-origin:left center}
+}
+@media(max-width:430px){
+  .quest-screen{aspect-ratio:1/1}
+  .quest-screen-status{font-size:7px}
+  .quest-house{width:25%;height:25%}
+  .house-roof,.house-front{border-width:2px}
+  .house-window{border-width:1px}
+  .house-sign{right:-8%;font-size:3px;border-width:1px}
+  .quest-tree:before{border-width:1px}
+  .quest-npc{display:none}
+  .quest-brief h4{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .quest-character{transition:none}
+  .quest-character.is-walking .character-feet,.quest-character.is-walking .character-body,.quest-pond:before,.quest-pond:after,.quest-pond i{animation:none}
+}
