@@ -63,10 +63,16 @@ export default function Home() {
       </section>
 
       <section className="bento-section shell" id="work">
-        <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Business problems turned into better products.</h2></div><p>Choose a project to see the business context, operational assessment, requirements, decisions, responsibilities, and outcome.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Four kinds of systems. One operating mindset.</h2></div><p>Each case study applies the same Product Operations approach to a different kind of business problem.</p></div>
+        <div className="project-archetypes" aria-label="Project types">
+          <span className="utility-type"><i aria-hidden="true">◫</i> Customer portal</span>
+          <span className="rx-type"><i aria-hidden="true">✚</i> Regulated commerce</span>
+          <span className="hearth-type"><i aria-hidden="true">◇</i> Product platform</span>
+          <span className="operations-type"><i aria-hidden="true">⚙</i> Operational system</span>
+        </div>
         <div className="project-gallery balanced-project-gallery">
-          <Link className="bento-card portfolio-project-card" href="/projects/customer-portal-redesign">
-            <div className="project-topline"><span><i aria-hidden="true">◫</i> Project 01</span><b>Full case study</b></div>
+          <Link className="bento-card portfolio-project-card utility-project" href="/projects/customer-portal-redesign">
+            <div className="project-topline"><span><i aria-hidden="true">◫</i> Project 01</span><b>Customer portal</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Regional utility portal before and after">
               <figure><span>Before</span><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} priority alt="Original regional utility report portal" /></figure>
               <figure><span>After</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Improved regional utility report portal with search, status filtering, and bilingual navigation" /></figure>
@@ -76,7 +82,7 @@ export default function Home() {
           </Link>
 
           <Link className="bento-card portfolio-project-card rx-project" href="/projects/prescription-pad-ordering-portal">
-            <div className="project-topline"><span><i aria-hidden="true">✚</i> Project 02</span><b>Full case study</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">✚</i> Project 02</span><b>Regulated commerce</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Prescription pad ordering experience before and after">
               <figure><span>Before</span><Image src="/images/rx-pad-portal/order-before.png" width={1502} height={888} alt="Original California prescription pad ordering experience" /></figure>
               <figure><span>After</span><Image src="/images/rx-pad-portal/order-after.png" width={1225} height={788} alt="Redesigned California prescription pad ordering experience" /></figure>
@@ -86,7 +92,7 @@ export default function Home() {
           </Link>
 
           <Link className="bento-card portfolio-project-card hearth-project" href="/projects/hearth">
-            <div className="project-topline"><span><i aria-hidden="true">◇</i> Project 03</span><b>Independent product</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">◇</i> Project 03</span><b>Product platform</b></div>
             <div className="portfolio-card-media hearth-card-media" aria-label="Hearth product operating model illustration">
               <div className="hearth-card-window" aria-hidden="true"><span>Monthly overview</span><strong>$8,420</strong><div><i/><i/><i/></div><small>Privacy-first · One-time purchase</small></div>
             </div>
@@ -95,7 +101,7 @@ export default function Home() {
           </Link>
 
           <Link className="bento-card portfolio-project-card operations-project" href="/projects/operational-systems-automation">
-            <div className="project-topline"><span><i aria-hidden="true">⚙</i> Project 04</span><b>Operational case study</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">⚙</i> Project 04</span><b>Operational system</b></div>
             <div className="portfolio-card-media operations-card-media" aria-label="Operational systems improvement flow">
               <div className="operations-card-flow" aria-hidden="true">
                 <span>Signal</span><i>→</i><span>Root cause</span><i>→</i><span>System</span><i>→</i><span>QA</span><i>→</i><span>Standardize</span>
