@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "./components/PortfolioImage";
+import ProjectQuest from "./components/ProjectQuest";
 
 export const metadata: Metadata = {
   title: "Andrew | Senior Product Operations Portfolio",
@@ -64,7 +65,8 @@ export default function Home() {
 
       <section className="bento-section shell" id="work">
         <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Four kinds of systems. One operating mindset.</h2></div><p>Each case study applies the same Product Operations approach to a different kind of business problem.</p></div>
-        <div className="project-archetypes" aria-label="Project types">
+        <ProjectQuest />
+        <div className="project-archetypes" id="case-studies" aria-label="Project types">
           <span className="utility-type"><i aria-hidden="true">◫</i> Customer portal</span>
           <span className="rx-type"><i aria-hidden="true">✚</i> Regulated commerce</span>
           <span className="hearth-type"><i aria-hidden="true">◇</i> Product platform</span>
