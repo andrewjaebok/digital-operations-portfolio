@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "./components/PortfolioImage";
 import ProjectQuest from "./components/ProjectQuest";
+import AntWorkflow from "./components/AntWorkflow";
 
 export const metadata: Metadata = {
   title: "Andrew | Senior Product Operations Portfolio",
@@ -30,7 +31,11 @@ export default function Home() {
       <section className="product-hero shell" id="main-content">
         <div className="hero-copy">
           <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
-          <h1>I notice where the work <mark>gets stuck,</mark> then build a better way through it.</h1>
+          <h1>
+            I notice where the work <mark>gets stuck,</mark> then build a better way through it
+            <span className="hero-period">.</span>
+            <AntWorkflow />
+          </h1>
           <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, operational systems, and independent product development.</p>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
