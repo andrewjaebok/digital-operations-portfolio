@@ -4,7 +4,7 @@ import Image from "./components/PortfolioImage";
 
 export const metadata: Metadata = {
   title: "Andrew | Senior Product Operations Portfolio",
-  description: "Senior Product Operations case studies spanning customer portal modernization, regulated digital ordering, growth optimization, and zero-to-one product development.",
+  description: "Senior Product Operations case studies spanning customer portal modernization, regulated digital ordering, operational systems, automation, and zero-to-one product development.",
 };
 
 const capabilities = [
@@ -30,13 +30,14 @@ export default function Home() {
         <div className="hero-copy">
           <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
           <h1>I notice where the work <mark>gets stuck,</mark> then build a better way through it.</h1>
-          <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, growth optimization, and independent product development.</p>
+          <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, operational systems, and independent product development.</p>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
           <span><small>01</small>Product operations</span>
           <span><small>02</small>Portal modernization</span>
-          <span><small>03</small>Zero-to-one products</span>
+          <span><small>03</small>Operational systems</span>
+          <span><small>04</small>Zero-to-one products</span>
         </div>
       </section>
 
@@ -48,9 +49,9 @@ export default function Home() {
         </div>
         <div className="operating-mandate">
           <p className="eyebrow">Operating mandate</p>
-          <h3>Modernize every customer-facing digital experience.</h3>
-          <p>I prioritize the highest-volume portals, improve usability and search visibility, and identify opportunities to grow online revenue through complementary products and self-service capabilities.</p>
-          <div className="mandate-priorities" aria-label="Strategic priorities"><span>Prioritize by volume</span><span>Improve usability</span><span>Increase visibility</span><span>Grow digital revenue</span></div>
+          <h3>Modernize digital experiences and the systems behind them.</h3>
+          <p>I prioritize high-value portal and workflow improvements, improve usability and search visibility, reduce recurring operational friction, and identify opportunities to grow digital capabilities.</p>
+          <div className="mandate-priorities" aria-label="Strategic priorities"><span>Prioritize by impact</span><span>Improve usability</span><span>Standardize workflows</span><span>Grow digital capabilities</span></div>
         </div>
       </section>
 
@@ -93,8 +94,20 @@ export default function Home() {
             <div className="portfolio-card-footer"><span>Product Owner / Product Operations</span><b>View case study ↗</b></div>
           </Link>
 
+          <Link className="bento-card portfolio-project-card operations-project" href="/projects/operational-systems-automation">
+            <div className="project-topline"><span><i aria-hidden="true">⚙</i> Project 04</span><b>Operational case study</b></div>
+            <div className="portfolio-card-media operations-card-media" aria-label="Operational systems improvement flow">
+              <div className="operations-card-flow" aria-hidden="true">
+                <span>Signal</span><i>→</i><span>Root cause</span><i>→</i><span>System</span><i>→</i><span>QA</span><i>→</i><span>Standardize</span>
+              </div>
+              <p>Recurring friction <b>→</b> repeatable operations</p>
+            </div>
+            <div className="portfolio-card-copy"><p className="project-label">Product operations · Operational excellence</p><h3>Operational Systems &amp; Automation</h3><p>Improving the systems behind digital production through workflow automation, root-cause analysis, QA, and repeatable operational standards.</p><div className="project-tag-row" aria-label="Project capabilities"><span>Process Automation</span><span>Root Cause Analysis</span><span>Workflow Design</span><span>QA</span><span>Operational Excellence</span></div></div>
+            <div className="portfolio-card-footer"><span>Senior Product Operations / Digital Operations</span><b>View case study ↗</b></div>
+          </Link>
+
         </div>
-        <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>3</strong><span>Transformation disciplines</span></div><p>Each project is documented around the problem, constraints, decisions, responsibilities, and verified outcome.</p></div>
+        <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>4</strong><span>Documented case studies</span></div><p>Each project is documented around the problem, constraints, decisions, responsibilities, and verified outcome.</p></div>
       </section>
 
       <section className="capability-section shell" id="capabilities">

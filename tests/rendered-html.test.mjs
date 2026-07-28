@@ -32,10 +32,11 @@ test("renders development preview metadata", async () => {
   const html = await response.text();
   assert.match(html, developmentPreviewMeta);
   assert.match(html, /Project 03/i);
+  assert.match(html, /Project 04/i);
   assert.match(html, /Zero-to-one products/i);
+  assert.match(html, /Operational Systems &amp; Automation/i);
   assert.match(html, /Andrew \| Senior Product Operations Portfolio/i);
-  assert.doesNotMatch(html, /Project 04|Case study in development/i);
-  assert.doesNotMatch(html, /Workflow automation|Production automation|Castle Press/i);
+  assert.doesNotMatch(html, /Case study in development|Castle Press/i);
 });
 
 test("renders the Hearth case study directly", async () => {
@@ -75,6 +76,7 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     ["/projects/customer-portal-redesign", /Regional Utility CCR Portal \| Product Operations Case Study/i],
     ["/projects/prescription-pad-ordering-portal", /Prescription Pad Ordering \| Product Operations Case Study/i],
     ["/projects/hearth", /Hearth \| Zero-to-One Product Operations Case Study/i],
+    ["/projects/operational-systems-automation", /Operational Systems &amp; Automation \| Product Operations Case Study/i],
   ];
 
   for (const [path, title] of routes) {
@@ -100,6 +102,16 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /Workflow evidence determined what mattered first/i);
       assert.match(html, /evaluation occurred after implementation/i);
       assert.match(html, /Discovery.*prioritization.*execution.*validation.*iteration/is);
+    }
+    if (path === "/projects/operational-systems-automation") {
+      assert.match(html, /Operational signal.*Workflow assessment.*Root-cause analysis.*Prioritization.*Requirements.*System improvement.*QA.*Rollout.*Measurement.*Standardization/is);
+      assert.match(html, /Production Workflow Automation/i);
+      assert.match(html, /Proof Asset Persistence/i);
+      assert.match(html, /Verified implementation/i);
+      assert.match(html, /Directional impact/i);
+      assert.match(html, /Future measurement/i);
+      assert.match(html, /No percentage or time-saving claim is made/i);
+      assert.doesNotMatch(html, /hours saved:\s*\d|reduction:\s*\d+%|customers:\s*\d/i);
     }
   }
 });
