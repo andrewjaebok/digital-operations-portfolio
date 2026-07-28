@@ -861,7 +861,7 @@ html.dark .balanced-project-gallery .portfolio-project-card,html.dark .balanced-
 .quest-brief dl{position:relative;z-index:1;display:grid;grid-template-columns:.75fr 1.25fr;gap:7px;margin:0}.quest-brief dl>div{padding:8px;border:1px solid rgba(49,67,54,.34);background:rgba(230,235,198,.45)}.quest-brief dt{font-size:8px;font-weight:900;text-transform:uppercase}.quest-brief dd{margin:4px 0 0;font-size:11px;line-height:1.35}
 .quest-brief-actions{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}.quest-brief-actions a,.quest-brief-actions button{border:2px solid #314336;background:#314336;color:#e5eac9;padding:7px 9px;font:900 9px/1 ui-monospace,SFMono-Regular,Menlo,monospace;text-transform:uppercase}.quest-brief-actions button{background:transparent;color:#314336;cursor:pointer}
 .handheld-controls{display:grid;grid-template-columns:96px 1fr 108px;align-items:center;gap:20px;margin-top:18px}
-.quest-dpad{display:grid;grid-template-columns:repeat(3,30px);grid-template-rows:repeat(3,30px);filter:drop-shadow(2px 3px 1px rgba(42,47,63,.28))}.quest-dpad button,.quest-dpad span{border:0;background:#303443;color:#abb0c0;font-size:8px;cursor:pointer}.quest-dpad button:active,.quest-action-buttons button:active{transform:translateY(2px)}.dpad-up{grid-column:2}.dpad-left{grid-column:1;grid-row:2}.quest-dpad span{grid-column:2;grid-row:2}.dpad-right{grid-column:3;grid-row:2}.dpad-down{grid-column:2;grid-row:3}
+.quest-dpad{display:grid;grid-template-columns:repeat(3,30px);grid-template-rows:repeat(3,30px);filter:drop-shadow(2px 3px 1px rgba(42,47,63,.28));touch-action:none;user-select:none}.quest-dpad button,.quest-dpad span{border:0;background:#303443;color:#abb0c0;font-size:8px;cursor:pointer;touch-action:none}.quest-dpad button:active,.quest-action-buttons button:active{transform:translateY(2px)}.dpad-up{grid-column:2}.dpad-left{grid-column:1;grid-row:2}.quest-dpad span{grid-column:2;grid-row:2}.dpad-right{grid-column:3;grid-row:2}.dpad-down{grid-column:2;grid-row:3}
 .quest-start{justify-self:center;align-self:end;padding:4px 11px;border:0;border-radius:99px;background:#696d7c;color:#d8dae1;box-shadow:inset 0 -2px 2px rgba(0,0,0,.25);font:800 7px/1 var(--font-jakarta),sans-serif;text-transform:uppercase;transform:rotate(-8deg);cursor:pointer}
 .quest-action-buttons{display:flex;justify-content:flex-end;gap:13px;transform:rotate(-10deg)}.quest-action-buttons button{width:39px;height:39px;border:0;border-radius:50%;background:#a4455c;color:#f1dbe0;box-shadow:inset 0 -4px 2px rgba(70,18,33,.3),2px 5px 6px rgba(53,42,54,.2);font:900 11px/1 var(--font-display),sans-serif;cursor:pointer}
 .handheld-speaker{position:absolute;right:27px;bottom:11px;display:flex;gap:5px;transform:rotate(-12deg)}.handheld-speaker i{width:3px;height:15px;border-radius:99px;background:#8e93a2}
@@ -1098,7 +1098,7 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
   height:var(--tile-h);
   display:block;
   transform:translate(calc(var(--tile-x) * 100%),calc(var(--tile-y) * 100%));
-  transition:transform .18s linear;
+  transition:transform .132s linear;
   filter:drop-shadow(1px 2px 0 rgba(45,58,45,.28));
   will-change:transform;
 }
@@ -1128,8 +1128,8 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 .faces-up .character-head:after{display:none}.faces-up .character-head{box-shadow:3px -2px 0 -1px #2e4137,inset 0 -5px #667b65}
 .faces-left .character-head:after{left:5%;box-shadow:0 6px #2e4137}.faces-right .character-head:after{left:auto;right:5%;box-shadow:0 6px #2e4137}
 .faces-left .character-body{box-shadow:inset 4px 0 #82998a}.faces-right .character-body{box-shadow:inset -4px 0 #465e57}
-.quest-character.is-walking .character-feet{animation:quest-walk-feet .18s steps(2) infinite}
-.quest-character.is-walking .character-body{animation:quest-walk-bob .18s steps(2) infinite}
+.quest-character.is-walking .character-feet{animation:quest-walk-feet .264s steps(2) infinite}
+.quest-character.is-walking .character-body{animation:quest-walk-bob .264s steps(2) infinite}
 .quest-title-screen{inset:24px 0 0;background:linear-gradient(#dce5bd 0 62%,#aebe8a 62%);overflow:hidden}
 .title-screen-hills{position:absolute;inset:auto 0 24% 0;height:37%;background:linear-gradient(135deg,transparent 21%,#849b71 21% 37%,transparent 37%) 0 0/44% 100% repeat-x;opacity:.72}
 .title-screen-hills:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:13px;background:repeating-linear-gradient(90deg,#526d58 0 4px,#8ca276 4px 8px)}
