@@ -35,6 +35,12 @@ test("renders development preview metadata", async () => {
   assert.match(html, /Project 04/i);
   assert.match(html, /Zero-to-one products/i);
   assert.match(html, /Operational Systems &amp; Automation/i);
+  assert.match(html, /Play Project Quest/i);
+  assert.match(html, /Browse case studies/i);
+  assert.match(html, /Project Quest · Town Edition/i);
+  assert.match(html, /walk through a tiny 8-bit town/i);
+  assert.match(html, /Enter Project 01/i);
+  assert.match(html, /Enter Project 04/i);
   assert.match(html, /Andrew \| Senior Product Operations Portfolio/i);
   assert.doesNotMatch(html, /Case study in development|Castle Press/i);
 });
