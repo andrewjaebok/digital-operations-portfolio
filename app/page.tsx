@@ -34,9 +34,11 @@ export default function Home() {
           <h1>
             I notice where the work <mark>gets stuck,</mark> then build a better way through it
             <span className="hero-period">.</span>
-            <AntWorkflow />
           </h1>
           <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, operational systems, and independent product development.</p>
+          <div className="hero-ant-stage">
+            <AntWorkflow />
+          </div>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
