@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Position = {
   x: number;
@@ -91,6 +91,25 @@ const flowers = [
 ] as const;
 
 const startPosition = { x: 7, y: 6 };
+const stepDuration = 132;
+
+const directionVectors: Record<Direction, Position> = {
+  up: { x: 0, y: -1 },
+  down: { x: 0, y: 1 },
+  left: { x: -1, y: 0 },
+  right: { x: 1, y: 0 },
+};
+
+const keyDirections: Record<string, Direction> = {
+  ArrowUp: "up",
+  KeyW: "up",
+  ArrowDown: "down",
+  KeyS: "down",
+  ArrowLeft: "left",
+  KeyA: "left",
+  ArrowRight: "right",
+  KeyD: "right",
+};
 
 const tileStyle = (x: number, y: number) =>
   ({ "--tile-x": x, "--tile-y": y }) as CSSProperties;
@@ -125,7 +144,14 @@ export default function ProjectQuest() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [visited, setVisited] = useState<string[]>([]);
   const gameRef = useRef<HTMLDivElement>(null);
-  const walkTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const positionRef = useRef<Position>(startPosition);
+  const startedRef = useRef(false);
+  const selectedIdRef = useRef<string | null>(null);
+  const activeInputsRef = useRef<Array<{ source: string; direction: Direction }>>([]);
+  const movementTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const stepEndTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const doorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const enteringDoorRef = useRef(false);
 
   const selectedProject =
     projects.find((project) => project.id === selectedId) ?? null;
@@ -144,93 +170,180 @@ export default function ProjectQuest() {
 
   useEffect(
     () => () => {
-      if (walkTimer.current) clearTimeout(walkTimer.current);
+      if (movementTimerRef.current) clearInterval(movementTimerRef.current);
+      if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
+      if (doorTimerRef.current) clearTimeout(doorTimerRef.current);
     },
     [],
   );
 
-  const selectProject = (project: Project) => {
+  const stopMovement = useCallback((finishStep = false) => {
+    activeInputsRef.current = [];
+    if (movementTimerRef.current) {
+      clearInterval(movementTimerRef.current);
+      movementTimerRef.current = null;
+    }
+    if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
+    if (finishStep) {
+      stepEndTimerRef.current = setTimeout(() => {
+        setWalking(false);
+      }, stepDuration);
+    } else {
+      setWalking(false);
+    }
+  }, []);
+
+  const selectProject = useCallback((project: Project) => {
+    selectedIdRef.current = project.id;
     setSelectedId(project.id);
     setVisited((current) =>
       current.includes(project.id) ? current : [...current, project.id],
     );
-  };
+  }, []);
 
-  const move = (dx: number, dy: number) => {
-    if (!started || selectedProject || walking) return;
+  const attemptStep = useCallback((nextDirection: Direction) => {
+    if (
+      !startedRef.current ||
+      selectedIdRef.current ||
+      enteringDoorRef.current
+    ) {
+      return;
+    }
 
-    const nextDirection: Direction =
-      dx < 0 ? "left" : dx > 0 ? "right" : dy < 0 ? "up" : "down";
     setDirection(nextDirection);
+    const vector = directionVectors[nextDirection];
+    const current = positionRef.current;
+    const next = { x: current.x + vector.x, y: current.y + vector.y };
 
-    const next = { x: position.x + dx, y: position.y + dy };
-    if (!isPassable(next)) return;
-
-    setWalking(true);
-    setPosition(next);
-    if (walkTimer.current) clearTimeout(walkTimer.current);
-    walkTimer.current = setTimeout(() => {
+    if (!isPassable(next)) {
       setWalking(false);
-      const enteredProject = projects.find((project) =>
-        positionMatches(project.door, next),
-      );
-      if (enteredProject) selectProject(enteredProject);
-    }, 180);
+      return;
+    }
+
+    if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
+    positionRef.current = next;
+    setPosition(next);
+    setWalking(true);
+
+    const enteredProject = projects.find((project) =>
+      positionMatches(project.door, next),
+    );
+    if (enteredProject) {
+      enteringDoorRef.current = true;
+      stopMovement(true);
+      if (doorTimerRef.current) clearTimeout(doorTimerRef.current);
+      doorTimerRef.current = setTimeout(() => {
+        enteringDoorRef.current = false;
+        selectProject(enteredProject);
+      }, stepDuration);
+    }
+  }, [selectProject, stopMovement]);
+
+  const startMovement = useCallback((source: string, nextDirection: Direction) => {
+    if (
+      !startedRef.current ||
+      selectedIdRef.current ||
+      activeInputsRef.current.some((input) => input.source === source)
+    ) {
+      return;
+    }
+
+    activeInputsRef.current = [
+      ...activeInputsRef.current,
+      { source, direction: nextDirection },
+    ];
+    attemptStep(nextDirection);
+
+    if (!movementTimerRef.current && !enteringDoorRef.current) {
+      movementTimerRef.current = setInterval(() => {
+        const activeInputs = activeInputsRef.current;
+        const activeDirection = activeInputs.at(-1)?.direction;
+        if (activeDirection) attemptStep(activeDirection);
+      }, stepDuration);
+    }
+  }, [attemptStep]);
+
+  const endMovement = useCallback((source: string) => {
+    activeInputsRef.current = activeInputsRef.current.filter(
+      (input) => input.source !== source,
+    );
+
+    if (activeInputsRef.current.length === 0) {
+      if (movementTimerRef.current) {
+        clearInterval(movementTimerRef.current);
+        movementTimerRef.current = null;
+      }
+      if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
+      stepEndTimerRef.current = setTimeout(() => {
+        setWalking(false);
+      }, stepDuration);
+    }
+  }, []);
+
+  const leaveProject = () => {
+    selectedIdRef.current = null;
+    setSelectedId(null);
+    requestAnimationFrame(() => gameRef.current?.focus());
   };
 
   const interact = () => {
-    if (!started) {
+    if (!startedRef.current) {
+      startedRef.current = true;
       setStarted(true);
       return;
     }
     if (selectedProject) {
-      setSelectedId(null);
+      leaveProject();
       return;
     }
     if (nearbyProject) selectProject(nearbyProject);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    const key = event.key.toLowerCase();
-    const directions: Record<string, [number, number]> = {
-      arrowup: [0, -1],
-      w: [0, -1],
-      arrowdown: [0, 1],
-      s: [0, 1],
-      arrowleft: [-1, 0],
-      a: [-1, 0],
-      arrowright: [1, 0],
-      d: [1, 0],
-    };
-
-    if (directions[key]) {
+    const nextDirection = keyDirections[event.code];
+    if (nextDirection) {
       event.preventDefault();
-      move(...directions[key]);
+      if (!event.repeat) startMovement(`key-${event.code}`, nextDirection);
       return;
     }
 
-    if (key === "enter" || key === " ") {
+    if (event.code === "Enter" || event.code === "Space") {
       event.preventDefault();
       interact();
       return;
     }
 
-    if (key === "escape" || key === "b") {
+    if (event.code === "Escape" || event.code === "KeyB") {
       event.preventDefault();
-      setSelectedId(null);
+      leaveProject();
+    }
+  };
+
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (keyDirections[event.code]) {
+      event.preventDefault();
+      endMovement(`key-${event.code}`);
     }
   };
 
   const enterBuilding = (project: Project) => {
-    if (!started) setStarted(true);
+    stopMovement();
+    startedRef.current = true;
+    setStarted(true);
+    positionRef.current = project.door;
     setPosition(project.door);
     setDirection("up");
     selectProject(project);
   };
 
   const resetGame = () => {
+    stopMovement();
+    startedRef.current = true;
+    selectedIdRef.current = null;
+    enteringDoorRef.current = false;
     setStarted(true);
     setSelectedId(null);
+    positionRef.current = startPosition;
     setPosition(startPosition);
     setDirection("down");
     gameRef.current?.focus();
@@ -249,7 +362,10 @@ export default function ProjectQuest() {
           <button
             className="quest-play-button"
             type="button"
-            onClick={() => setStarted(true)}
+            onClick={() => {
+              startedRef.current = true;
+              setStarted(true);
+            }}
           >
             Play Project Quest <span aria-hidden="true">▶</span>
           </button>
@@ -276,6 +392,8 @@ export default function ProjectQuest() {
           aria-label="Project Quest town. Use arrow keys or WASD to walk into a project house, and Enter to inspect it."
           tabIndex={0}
           onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
+          onBlur={() => stopMovement(true)}
         >
           <div className="quest-screen-status" aria-live="polite">
             <span>
@@ -359,7 +477,13 @@ export default function ProjectQuest() {
               <small>Andrew presents</small>
               <strong>PROJECT<br />QUEST</strong>
               <p>Explore four operational challenges.</p>
-              <button type="button" onClick={() => setStarted(true)}>
+              <button
+                type="button"
+                onClick={() => {
+                  startedRef.current = true;
+                  setStarted(true);
+                }}
+              >
                 Press start
               </button>
             </div>
@@ -375,7 +499,7 @@ export default function ProjectQuest() {
                 <span>Project {selectedProject.number} · {selectedProject.type}</span>
                 <button
                   type="button"
-                  onClick={() => setSelectedId(null)}
+                  onClick={leaveProject}
                   aria-label="Leave project house"
                 >
                   ×
@@ -390,7 +514,7 @@ export default function ProjectQuest() {
                 <Link href={selectedProject.route}>
                   Open case study <span aria-hidden="true">↗</span>
                 </Link>
-                <button type="button" onClick={() => setSelectedId(null)}>
+                <button type="button" onClick={leaveProject}>
                   B: Leave
                 </button>
               </div>
@@ -400,17 +524,17 @@ export default function ProjectQuest() {
 
         <div className="handheld-controls" aria-label="Game controls">
           <div className="quest-dpad" aria-label="Directional controls">
-            <button className="dpad-up" type="button" onClick={() => move(0, -1)} aria-label="Walk up">▲</button>
-            <button className="dpad-left" type="button" onClick={() => move(-1, 0)} aria-label="Walk left">◀</button>
+            <button className="dpad-up" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-up", "up"); }} onPointerUp={() => endMovement("dpad-up")} onPointerCancel={() => endMovement("dpad-up")} aria-label="Walk up">▲</button>
+            <button className="dpad-left" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-left", "left"); }} onPointerUp={() => endMovement("dpad-left")} onPointerCancel={() => endMovement("dpad-left")} aria-label="Walk left">◀</button>
             <span aria-hidden="true" />
-            <button className="dpad-right" type="button" onClick={() => move(1, 0)} aria-label="Walk right">▶</button>
-            <button className="dpad-down" type="button" onClick={() => move(0, 1)} aria-label="Walk down">▼</button>
+            <button className="dpad-right" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-right", "right"); }} onPointerUp={() => endMovement("dpad-right")} onPointerCancel={() => endMovement("dpad-right")} aria-label="Walk right">▶</button>
+            <button className="dpad-down" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-down", "down"); }} onPointerUp={() => endMovement("dpad-down")} onPointerCancel={() => endMovement("dpad-down")} aria-label="Walk down">▼</button>
           </div>
           <button className="quest-start" type="button" onClick={resetGame}>
             Start
           </button>
           <div className="quest-action-buttons">
-            <button type="button" onClick={() => setSelectedId(null)} aria-label="Leave project house">B</button>
+            <button type="button" onClick={leaveProject} aria-label="Leave project house">B</button>
             <button type="button" onClick={interact} aria-label="Enter project house">A</button>
           </div>
         </div>
