@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 
 type Position = {
   x: number;
   y: number;
 };
+
+type Direction = "up" | "down" | "left" | "right";
 
 type Project = {
   id: string;
@@ -17,7 +20,8 @@ type Project = {
   role: string;
   result: string;
   route: string;
-  position: Position;
+  building: Position;
+  door: Position;
 };
 
 const projects: Project[] = [
@@ -28,9 +32,11 @@ const projects: Project[] = [
     title: "Regional Utility Customer Portal",
     type: "Customer portal",
     role: "Product Operations lead",
-    result: "In a 20-person usability study, core report tasks were completed faster with fewer incorrect selections.",
+    result:
+      "In a 20-person usability study, core report tasks were completed faster with fewer incorrect selections.",
     route: "/projects/customer-portal-redesign",
-    position: { x: 1, y: 1 },
+    building: { x: 2, y: 1 },
+    door: { x: 3, y: 4 },
   },
   {
     id: "rx",
@@ -39,9 +45,11 @@ const projects: Project[] = [
     title: "Prescription Pad Ordering",
     type: "Regulated commerce",
     role: "Product Operations Manager",
-    result: "July reached 30 orders while tracked repeat questions fell to zero in the measured categories.",
+    result:
+      "July reached 30 orders while tracked repeat questions fell to zero in the measured categories.",
     route: "/projects/prescription-pad-ordering-portal",
-    position: { x: 6, y: 1 },
+    building: { x: 10, y: 1 },
+    door: { x: 11, y: 4 },
   },
   {
     id: "hearth",
@@ -50,9 +58,11 @@ const projects: Project[] = [
     title: "Hearth Personal Finance Platform",
     type: "Product platform",
     role: "Product Owner / Product Operations",
-    result: "A zero-to-one product built across product strategy, cloud architecture, release environments, and feedback systems.",
+    result:
+      "A zero-to-one product built across product strategy, cloud architecture, release environments, and feedback systems.",
     route: "/projects/hearth",
-    position: { x: 1, y: 4 },
+    building: { x: 2, y: 7 },
+    door: { x: 3, y: 10 },
   },
   {
     id: "operations",
@@ -61,26 +71,68 @@ const projects: Project[] = [
     title: "Operational Systems & Automation",
     type: "Operational system",
     role: "Senior Product / Digital Operations",
-    result: "Recurring production behaviors were standardized and a known source of proof-asset retrieval work was removed.",
+    result:
+      "Recurring production behaviors were standardized and a known source of proof-asset retrieval work was removed.",
     route: "/projects/operational-systems-automation",
-    position: { x: 6, y: 4 },
+    building: { x: 10, y: 7 },
+    door: { x: 11, y: 10 },
   },
 ];
 
-const startPosition = { x: 3, y: 3 };
+const trees = [
+  [0, 0], [1, 0], [2, 0], [5, 0], [6, 0], [9, 0], [10, 0], [13, 0], [14, 0], [15, 0],
+  [0, 1], [15, 1], [0, 2], [15, 2], [0, 3], [15, 3], [0, 6], [15, 6],
+  [0, 7], [15, 7], [0, 8], [15, 8], [0, 9], [15, 9], [0, 10], [15, 10],
+  [0, 11], [1, 11], [2, 11], [5, 11], [6, 11], [9, 11], [10, 11], [13, 11], [14, 11], [15, 11],
+] as const;
+
+const flowers = [
+  [6, 2], [7, 2], [8, 2], [9, 2], [6, 9], [7, 9], [8, 9], [9, 9],
+] as const;
+
+const startPosition = { x: 7, y: 6 };
+
+const tileStyle = (x: number, y: number) =>
+  ({ "--tile-x": x, "--tile-y": y }) as CSSProperties;
+
+const positionMatches = (a: Position, b: Position) =>
+  a.x === b.x && a.y === b.y;
+
+const isPassable = (position: Position) => {
+  if (
+    position.x < 1 ||
+    position.x > 14 ||
+    position.y < 1 ||
+    position.y > 10
+  ) {
+    return false;
+  }
+
+  return !projects.some(
+    (project) =>
+      position.x >= project.building.x &&
+      position.x <= project.building.x + 3 &&
+      position.y >= project.building.y &&
+      position.y <= project.building.y + 2,
+  );
+};
 
 export default function ProjectQuest() {
   const [started, setStarted] = useState(false);
   const [position, setPosition] = useState<Position>(startPosition);
+  const [direction, setDirection] = useState<Direction>("down");
+  const [walking, setWalking] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [visited, setVisited] = useState<string[]>([]);
   const gameRef = useRef<HTMLDivElement>(null);
+  const walkTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const selectedProject = projects.find((project) => project.id === selectedId) ?? null;
+  const selectedProject =
+    projects.find((project) => project.id === selectedId) ?? null;
   const nearbyProject = projects.find(
     (project) =>
-      Math.abs(project.position.x - position.x) +
-        Math.abs(project.position.y - position.y) <=
+      Math.abs(project.door.x - position.x) +
+        Math.abs(project.door.y - position.y) <=
       1,
   );
 
@@ -90,19 +142,40 @@ export default function ProjectQuest() {
     }
   }, [started]);
 
-  const move = (dx: number, dy: number) => {
-    if (!started || selectedProject) return;
-    setPosition((current) => ({
-      x: Math.max(0, Math.min(7, current.x + dx)),
-      y: Math.max(0, Math.min(5, current.y + dy)),
-    }));
-  };
+  useEffect(
+    () => () => {
+      if (walkTimer.current) clearTimeout(walkTimer.current);
+    },
+    [],
+  );
 
   const selectProject = (project: Project) => {
     setSelectedId(project.id);
     setVisited((current) =>
       current.includes(project.id) ? current : [...current, project.id],
     );
+  };
+
+  const move = (dx: number, dy: number) => {
+    if (!started || selectedProject || walking) return;
+
+    const nextDirection: Direction =
+      dx < 0 ? "left" : dx > 0 ? "right" : dy < 0 ? "up" : "down";
+    setDirection(nextDirection);
+
+    const next = { x: position.x + dx, y: position.y + dy };
+    if (!isPassable(next)) return;
+
+    setWalking(true);
+    setPosition(next);
+    if (walkTimer.current) clearTimeout(walkTimer.current);
+    walkTimer.current = setTimeout(() => {
+      setWalking(false);
+      const enteredProject = projects.find((project) =>
+        positionMatches(project.door, next),
+      );
+      if (enteredProject) selectProject(enteredProject);
+    }, 180);
   };
 
   const interact = () => {
@@ -148,13 +221,19 @@ export default function ProjectQuest() {
     }
   };
 
-  const clickStation = (project: Project) => {
+  const enterBuilding = (project: Project) => {
     if (!started) setStarted(true);
-    setPosition({
-      x: project.position.x < 4 ? project.position.x + 1 : project.position.x - 1,
-      y: project.position.y,
-    });
+    setPosition(project.door);
+    setDirection("up");
     selectProject(project);
+  };
+
+  const resetGame = () => {
+    setStarted(true);
+    setSelectedId(null);
+    setPosition(startPosition);
+    setDirection("down");
+    gameRef.current?.focus();
   };
 
   return (
@@ -163,8 +242,8 @@ export default function ProjectQuest() {
         <p className="eyebrow">Choose your route</p>
         <h3 id="project-quest-title">Explore the work your way.</h3>
         <p>
-          Take the quick route through the case-study cards, or step into a
-          tiny, playable project archive.
+          Browse the case studies directly, or walk through a tiny 8-bit town
+          and enter a project house.
         </p>
         <div className="project-quest-actions">
           <button
@@ -179,73 +258,107 @@ export default function ProjectQuest() {
           </a>
         </div>
         <div className="quest-instructions">
-          <span><kbd>WASD</kbd> or arrow keys to move</span>
-          <span><kbd>Enter</kbd> to inspect</span>
-          <span>Click and touch friendly</span>
+          <span><kbd>WASD</kbd> or arrow keys to walk</span>
+          <span><kbd>Enter</kbd> at a door to enter</span>
+          <span>Click a house or use the touch controls</span>
         </div>
       </div>
 
       <div className="ops-handheld" aria-label="OPS-04 Portable project game">
         <div className="handheld-brand">
           <span>OPS-04</span>
-          <small>Portable project archive</small>
+          <small>Project Quest · Town Edition</small>
         </div>
         <div
           className={`quest-screen${started ? " is-started" : ""}`}
           ref={gameRef}
           role="application"
-          aria-label="Project Quest. Use arrow keys or WASD to move, and Enter to inspect a project."
+          aria-label="Project Quest town. Use arrow keys or WASD to walk into a project house, and Enter to inspect it."
           tabIndex={0}
           onKeyDown={handleKeyDown}
         >
           <div className="quest-screen-status" aria-live="polite">
-            <span>{selectedProject ? "Mission brief" : nearbyProject ? `Press A: ${nearbyProject.shortTitle}` : "Project archive"}</span>
-            <b>{visited.length}/4 found</b>
+            <span>
+              {selectedProject
+                ? `${selectedProject.shortTitle} House`
+                : nearbyProject
+                  ? `A: Enter ${nearbyProject.shortTitle}`
+                  : "Project Town"}
+            </span>
+            <b>{visited.length}/4 visited</b>
           </div>
 
           <div className="quest-map" aria-hidden={!started}>
-            <span className="quest-floor-line line-horizontal" />
-            <span className="quest-floor-line line-vertical" />
-            <span className="quest-floor-detail detail-one" />
-            <span className="quest-floor-detail detail-two" />
-            <span className="quest-floor-detail detail-three" />
+            <span className="quest-path path-horizontal" />
+            <span className="quest-path path-vertical" />
+            <span className="quest-path path-utility" />
+            <span className="quest-path path-rx" />
+            <span className="quest-path path-hearth" />
+            <span className="quest-path path-operations" />
+            <span className="quest-pond"><i /><i /><i /></span>
+            <span className="quest-fence fence-top" />
+            <span className="quest-fence fence-bottom" />
+            <span className="quest-town-sign">PROJECT<br />TOWN</span>
+            <span className="quest-mailbox" />
+            <span className="quest-npc"><i /></span>
+
+            {trees.map(([x, y]) => (
+              <span
+                className="quest-tree"
+                style={tileStyle(x, y)}
+                key={`tree-${x}-${y}`}
+              />
+            ))}
+
+            {flowers.map(([x, y], index) => (
+              <span
+                className={`quest-flower flower-${(index % 3) + 1}`}
+                style={tileStyle(x, y)}
+                key={`flower-${x}-${y}`}
+              />
+            ))}
 
             {projects.map((project) => (
               <button
-                className={`quest-station station-${project.id}${visited.includes(project.id) ? " is-visited" : ""}`}
-                style={{
-                  gridColumn: project.position.x + 1,
-                  gridRow: project.position.y + 1,
-                }}
+                className={`quest-house house-${project.id}${visited.includes(project.id) ? " is-visited" : ""}`}
+                style={tileStyle(project.building.x, project.building.y)}
                 type="button"
                 key={project.id}
-                onClick={() => clickStation(project)}
-                aria-label={`Inspect Project ${project.number}: ${project.title}`}
+                onClick={() => enterBuilding(project)}
+                aria-label={`Enter Project ${project.number}: ${project.title}`}
               >
-                <i aria-hidden="true">{project.number}</i>
-                <span>{project.shortTitle}</span>
+                <span className="house-chimney" aria-hidden="true" />
+                <span className="house-roof" aria-hidden="true" />
+                <span className="house-front" aria-hidden="true">
+                  <i className="house-window window-left" />
+                  <i className="house-window window-right" />
+                  <i className="house-door">{project.number}</i>
+                </span>
+                <span className="house-sign" aria-hidden="true">
+                  {project.shortTitle}
+                </span>
               </button>
             ))}
 
             {started && (
               <span
-                className="quest-character"
-                style={{
-                  gridColumn: position.x + 1,
-                  gridRow: position.y + 1,
-                }}
+                className={`quest-character faces-${direction}${walking ? " is-walking" : ""}`}
+                style={tileStyle(position.x, position.y)}
                 aria-hidden="true"
               >
-                <i />
+                <i className="character-head" />
+                <i className="character-body" />
+                <i className="character-feet" />
               </span>
             )}
           </div>
 
           {!started && (
             <div className="quest-title-screen">
+              <span className="title-screen-hills" aria-hidden="true" />
               <small>Andrew presents</small>
               <strong>PROJECT<br />QUEST</strong>
-              <p>Four projects. Four operational challenges.</p>
+              <p>Explore four operational challenges.</p>
               <button type="button" onClick={() => setStarted(true)}>
                 Press start
               </button>
@@ -253,10 +366,20 @@ export default function ProjectQuest() {
           )}
 
           {selectedProject && (
-            <div className={`quest-brief brief-${selectedProject.id}`} role="dialog" aria-label={`${selectedProject.title} mission brief`}>
+            <div
+              className={`quest-brief brief-${selectedProject.id}`}
+              role="dialog"
+              aria-label={`${selectedProject.title} project house`}
+            >
               <div className="quest-brief-heading">
                 <span>Project {selectedProject.number} · {selectedProject.type}</span>
-                <button type="button" onClick={() => setSelectedId(null)} aria-label="Close mission brief">×</button>
+                <button
+                  type="button"
+                  onClick={() => setSelectedId(null)}
+                  aria-label="Leave project house"
+                >
+                  ×
+                </button>
               </div>
               <h4>{selectedProject.title}</h4>
               <dl>
@@ -264,8 +387,12 @@ export default function ProjectQuest() {
                 <div><dt>Result</dt><dd>{selectedProject.result}</dd></div>
               </dl>
               <div className="quest-brief-actions">
-                <Link href={selectedProject.route}>Open case study <span aria-hidden="true">↗</span></Link>
-                <button type="button" onClick={() => setSelectedId(null)}>B: Return</button>
+                <Link href={selectedProject.route}>
+                  Open case study <span aria-hidden="true">↗</span>
+                </Link>
+                <button type="button" onClick={() => setSelectedId(null)}>
+                  B: Leave
+                </button>
               </div>
             </div>
           )}
@@ -273,16 +400,18 @@ export default function ProjectQuest() {
 
         <div className="handheld-controls" aria-label="Game controls">
           <div className="quest-dpad" aria-label="Directional controls">
-            <button className="dpad-up" type="button" onClick={() => move(0, -1)} aria-label="Move up">▲</button>
-            <button className="dpad-left" type="button" onClick={() => move(-1, 0)} aria-label="Move left">◀</button>
+            <button className="dpad-up" type="button" onClick={() => move(0, -1)} aria-label="Walk up">▲</button>
+            <button className="dpad-left" type="button" onClick={() => move(-1, 0)} aria-label="Walk left">◀</button>
             <span aria-hidden="true" />
-            <button className="dpad-right" type="button" onClick={() => move(1, 0)} aria-label="Move right">▶</button>
-            <button className="dpad-down" type="button" onClick={() => move(0, 1)} aria-label="Move down">▼</button>
+            <button className="dpad-right" type="button" onClick={() => move(1, 0)} aria-label="Walk right">▶</button>
+            <button className="dpad-down" type="button" onClick={() => move(0, 1)} aria-label="Walk down">▼</button>
           </div>
-          <button className="quest-start" type="button" onClick={() => setStarted(true)}>Start</button>
+          <button className="quest-start" type="button" onClick={resetGame}>
+            Start
+          </button>
           <div className="quest-action-buttons">
-            <button type="button" onClick={() => setSelectedId(null)} aria-label="Return">B</button>
-            <button type="button" onClick={interact} aria-label="Inspect project">A</button>
+            <button type="button" onClick={() => setSelectedId(null)} aria-label="Leave project house">B</button>
+            <button type="button" onClick={interact} aria-label="Enter project house">A</button>
           </div>
         </div>
         <div className="handheld-speaker" aria-hidden="true"><i /><i /><i /><i /><i /></div>
