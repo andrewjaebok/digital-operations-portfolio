@@ -1,9 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { CSSProperties } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type Position = {
   x: number;
@@ -11,15 +10,22 @@ type Position = {
 };
 
 type Direction = "up" | "down" | "left" | "right";
+type SelectionSource =
+  | "proximity"
+  | "hover"
+  | "keyboard"
+  | "shortcut"
+  | "intentional"
+  | null;
 
 type Project = {
   id: string;
   number: string;
   shortTitle: string;
   title: string;
-  type: string;
-  role: string;
-  result: string;
+  capability: string;
+  description: string;
+  evidence?: string;
   route: string;
   building: Position;
   door: Position;
@@ -29,12 +35,13 @@ const projects: Project[] = [
   {
     id: "utility",
     number: "01",
-    shortTitle: "Utility",
-    title: "Regional Utility Customer Portal",
-    type: "Customer portal",
-    role: "Product Operations lead",
-    result:
-      "In a 20-person usability study, core report tasks were completed faster with fewer incorrect selections.",
+    shortTitle: "Regional Utility",
+    title: "Regional Utility Portal",
+    capability: "Customer Workflow",
+    description:
+      "Redesigned a recurring report-review workflow around faster discovery, clearer status visibility, and structured navigation.",
+    evidence:
+      "20-person evaluation: core report tasks were completed faster with fewer incorrect selections.",
     route: "/projects/customer-portal-redesign",
     building: { x: 2, y: 1 },
     door: { x: 3, y: 4 },
@@ -42,12 +49,12 @@ const projects: Project[] = [
   {
     id: "rx",
     number: "02",
-    shortTitle: "RX",
+    shortTitle: "Prescription Pads",
     title: "Prescription Pad Ordering",
-    type: "Regulated commerce",
-    role: "Product Operations Manager",
-    result:
-      "July reached 30 orders while tracked repeat questions fell to zero in the measured categories.",
+    capability: "Regulated Product & Growth",
+    description:
+      "Modernized a regulated ordering experience while preserving the existing operational and production foundation.",
+    evidence: "+1,272% new users after the redesign and article program.",
     route: "/projects/prescription-pad-ordering-portal",
     building: { x: 10, y: 1 },
     door: { x: 11, y: 4 },
@@ -56,11 +63,10 @@ const projects: Project[] = [
     id: "hearth",
     number: "03",
     shortTitle: "Hearth",
-    title: "Hearth Personal Finance Platform",
-    type: "Product platform",
-    role: "Product Owner / Product Operations",
-    result:
-      "A zero-to-one product built across product strategy, cloud architecture, release environments, and feedback systems.",
+    title: "Hearth",
+    capability: "0→1 Product Development",
+    description:
+      "Built and iterated a privacy-first personal finance product across strategy, UX, cloud architecture, and release operations.",
     route: "/projects/hearth",
     building: { x: 2, y: 7 },
     door: { x: 3, y: 10 },
@@ -68,12 +74,11 @@ const projects: Project[] = [
   {
     id: "operations",
     number: "04",
-    shortTitle: "Systems",
+    shortTitle: "Operations",
     title: "Operational Systems & Automation",
-    type: "Operational system",
-    role: "Senior Product / Digital Operations",
-    result:
-      "Recurring production behaviors were standardized and a known source of proof-asset retrieval work was removed.",
+    capability: "Operational Systems",
+    description:
+      "Turned recurring digital-production friction into more repeatable workflows through automation, root-cause analysis, and QA.",
     route: "/projects/operational-systems-automation",
     building: { x: 10, y: 7 },
     door: { x: 11, y: 10 },
@@ -92,7 +97,9 @@ const flowers = [
 ] as const;
 
 const startPosition = { x: 7, y: 6 };
-const stepDuration = 132;
+const stepDuration = 118;
+const storagePositionKey = "project-quest-position";
+const storageViewedKey = "project-quest-viewed";
 
 const directionVectors: Record<Direction, Position> = {
   up: { x: 0, y: -1 },
@@ -115,9 +122,6 @@ const keyDirections: Record<string, Direction> = {
 const tileStyle = (x: number, y: number) =>
   ({ "--tile-x": x, "--tile-y": y }) as CSSProperties;
 
-const positionMatches = (a: Position, b: Position) =>
-  a.x === b.x && a.y === b.y;
-
 const isPassable = (position: Position) => {
   if (
     position.x < 1 ||
@@ -137,36 +141,86 @@ const isPassable = (position: Position) => {
   );
 };
 
+const findNearbyProject = (position: Position) =>
+  projects.find(
+    (project) =>
+      Math.abs(project.door.x - position.x) +
+        Math.abs(project.door.y - position.y) <=
+      2,
+  ) ?? null;
+
 export default function ProjectQuest() {
   const router = useRouter();
   const [started, setStarted] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [position, setPosition] = useState<Position>(startPosition);
   const [direction, setDirection] = useState<Direction>("down");
   const [walking, setWalking] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [visited, setVisited] = useState<string[]>([]);
+  const [viewed, setViewed] = useState<string[]>([]);
   const gameRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef<Position>(startPosition);
   const startedRef = useRef(false);
   const selectedIdRef = useRef<string | null>(null);
+  const selectionSourceRef = useRef<SelectionSource>(null);
   const activeInputsRef = useRef<Array<{ source: string; direction: Direction }>>([]);
   const movementTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const stepEndTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const doorTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const enteringDoorRef = useRef(false);
 
-  const selectedProject =
-    projects.find((project) => project.id === selectedId) ?? null;
-  const nearbyProject = projects.find(
-    (project) =>
-      Math.abs(project.door.x - position.x) +
-        Math.abs(project.door.y - position.y) <=
-      1,
+  const selectedProject = useMemo(
+    () => projects.find((project) => project.id === selectedId) ?? null,
+    [selectedId],
+  );
+  const nearbyProject = useMemo(() => findNearbyProject(position), [position]);
+
+  const setSelection = useCallback(
+    (project: Project | null, source: SelectionSource) => {
+      selectedIdRef.current = project?.id ?? null;
+      selectionSourceRef.current = project ? source : null;
+      setSelectedId(project?.id ?? null);
+    },
+    [],
   );
 
   useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      try {
+        const savedPosition = window.sessionStorage.getItem(storagePositionKey);
+        const savedViewed = window.sessionStorage.getItem(storageViewedKey);
+
+        if (savedPosition) {
+          const parsed = JSON.parse(savedPosition) as Position;
+          if (
+            Number.isInteger(parsed.x) &&
+            Number.isInteger(parsed.y) &&
+            isPassable(parsed)
+          ) {
+            positionRef.current = parsed;
+            setPosition(parsed);
+            startedRef.current = true;
+            setStarted(true);
+            setHasInteracted(true);
+            const restoredProject = findNearbyProject(parsed);
+            if (restoredProject) setSelection(restoredProject, "proximity");
+          }
+        }
+
+        if (savedViewed) {
+          const parsed = JSON.parse(savedViewed) as string[];
+          setViewed(parsed.filter((id) => projects.some((project) => project.id === id)));
+        }
+      } catch {
+        window.sessionStorage.removeItem(storagePositionKey);
+        window.sessionStorage.removeItem(storageViewedKey);
+      }
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [setSelection]);
+
+  useEffect(() => {
     if (started) {
-      gameRef.current?.focus();
+      gameRef.current?.focus({ preventScroll: true });
     }
   }, [started]);
 
@@ -174,7 +228,6 @@ export default function ProjectQuest() {
     () => () => {
       if (movementTimerRef.current) clearInterval(movementTimerRef.current);
       if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
-      if (doorTimerRef.current) clearTimeout(doorTimerRef.current);
     },
     [],
   );
@@ -195,24 +248,16 @@ export default function ProjectQuest() {
     }
   }, []);
 
-  const selectProject = useCallback((project: Project) => {
-    selectedIdRef.current = project.id;
-    setSelectedId(project.id);
-    setVisited((current) =>
-      current.includes(project.id) ? current : [...current, project.id],
-    );
-    requestAnimationFrame(() => gameRef.current?.focus());
+  const beginExperience = useCallback(() => {
+    startedRef.current = true;
+    setStarted(true);
+    requestAnimationFrame(() => gameRef.current?.focus({ preventScroll: true }));
   }, []);
 
   const attemptStep = useCallback((nextDirection: Direction) => {
-    if (
-      !startedRef.current ||
-      selectedIdRef.current ||
-      enteringDoorRef.current
-    ) {
-      return;
-    }
+    if (!startedRef.current) return;
 
+    setHasInteracted(true);
     setDirection(nextDirection);
     const vector = directionVectors[nextDirection];
     const current = positionRef.current;
@@ -223,29 +268,34 @@ export default function ProjectQuest() {
       return;
     }
 
+    if (
+      selectionSourceRef.current === "keyboard" ||
+      selectionSourceRef.current === "shortcut"
+    ) {
+      setSelection(null, null);
+    }
+
     if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
     positionRef.current = next;
     setPosition(next);
     setWalking(true);
 
-    const enteredProject = projects.find((project) =>
-      positionMatches(project.door, next),
-    );
-    if (enteredProject) {
-      enteringDoorRef.current = true;
-      stopMovement(true);
-      if (doorTimerRef.current) clearTimeout(doorTimerRef.current);
-      doorTimerRef.current = setTimeout(() => {
-        enteringDoorRef.current = false;
-        selectProject(enteredProject);
-      }, stepDuration);
+    if (
+      selectionSourceRef.current !== "hover" &&
+      selectionSourceRef.current !== "intentional"
+    ) {
+      const nextNearbyProject = findNearbyProject(next);
+      if (nextNearbyProject) {
+        setSelection(nextNearbyProject, "proximity");
+      } else if (selectionSourceRef.current === "proximity") {
+        setSelection(null, null);
+      }
     }
-  }, [selectProject, stopMovement]);
+  }, [setSelection]);
 
   const startMovement = useCallback((source: string, nextDirection: Direction) => {
     if (
       !startedRef.current ||
-      selectedIdRef.current ||
       activeInputsRef.current.some((input) => input.source === source)
     ) {
       return;
@@ -257,10 +307,9 @@ export default function ProjectQuest() {
     ];
     attemptStep(nextDirection);
 
-    if (!movementTimerRef.current && !enteringDoorRef.current) {
+    if (!movementTimerRef.current) {
       movementTimerRef.current = setInterval(() => {
-        const activeInputs = activeInputsRef.current;
-        const activeDirection = activeInputs.at(-1)?.direction;
+        const activeDirection = activeInputsRef.current.at(-1)?.direction;
         if (activeDirection) attemptStep(activeDirection);
       }, stepDuration);
     }
@@ -276,31 +325,47 @@ export default function ProjectQuest() {
         clearInterval(movementTimerRef.current);
         movementTimerRef.current = null;
       }
-      if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
-      stepEndTimerRef.current = setTimeout(() => {
-        setWalking(false);
-      }, stepDuration);
+      setWalking(false);
     }
   }, []);
 
-  const leaveProject = () => {
-    selectedIdRef.current = null;
-    setSelectedId(null);
-    requestAnimationFrame(() => gameRef.current?.focus());
-  };
+  const saveAndOpenProject = useCallback(
+    (project: Project) => {
+      stopMovement();
+      const nextViewed = Array.from(new Set([...viewed, project.id]));
+      setViewed(nextViewed);
+      window.sessionStorage.setItem(
+        storagePositionKey,
+        JSON.stringify(positionRef.current),
+      );
+      window.sessionStorage.setItem(storageViewedKey, JSON.stringify(nextViewed));
+      router.push(project.route);
+    },
+    [router, stopMovement, viewed],
+  );
 
-  const interact = () => {
+  const selectProject = useCallback(
+    (project: Project, source: Exclude<SelectionSource, "proximity" | null>) => {
+      beginExperience();
+      setHasInteracted(true);
+      setSelection(project, source);
+    },
+    [beginExperience, setSelection],
+  );
+
+  const interact = useCallback(() => {
     if (!startedRef.current) {
-      startedRef.current = true;
-      setStarted(true);
+      beginExperience();
       return;
     }
-    if (selectedProject) {
-      router.push(selectedProject.route);
+    if (selectedIdRef.current) {
+      const project = projects.find((item) => item.id === selectedIdRef.current);
+      if (project) saveAndOpenProject(project);
       return;
     }
-    if (nearbyProject) selectProject(nearbyProject);
-  };
+    const project = findNearbyProject(positionRef.current);
+    if (project) setSelection(project, "proximity");
+  }, [beginExperience, saveAndOpenProject, setSelection]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (
@@ -325,7 +390,20 @@ export default function ProjectQuest() {
 
     if (event.code === "Escape" || event.code === "KeyB") {
       event.preventDefault();
-      leaveProject();
+      setSelection(null, null);
+      return;
+    }
+
+    if (event.code === "KeyR") {
+      event.preventDefault();
+      resetPosition();
+      return;
+    }
+
+    if (["Digit1", "Digit2", "Digit3", "Digit4"].includes(event.code)) {
+      event.preventDefault();
+      const project = projects[Number(event.code.slice(-1)) - 1];
+      if (project) selectProject(project, "shortcut");
     }
   };
 
@@ -336,84 +414,99 @@ export default function ProjectQuest() {
     }
   };
 
-  const enterBuilding = (project: Project) => {
+  const resetPosition = useCallback(() => {
     stopMovement();
     startedRef.current = true;
     setStarted(true);
-    positionRef.current = project.door;
-    setPosition(project.door);
-    setDirection("up");
-    selectProject(project);
-  };
-
-  const resetGame = () => {
-    stopMovement();
-    startedRef.current = true;
-    selectedIdRef.current = null;
-    enteringDoorRef.current = false;
-    setStarted(true);
-    setSelectedId(null);
+    setHasInteracted(true);
+    setSelection(null, null);
     positionRef.current = startPosition;
     setPosition(startPosition);
     setDirection("down");
-    gameRef.current?.focus();
-  };
+    window.sessionStorage.removeItem(storagePositionKey);
+    requestAnimationFrame(() => gameRef.current?.focus({ preventScroll: true }));
+  }, [setSelection, stopMovement]);
+
+  const clearTemporarySelection = useCallback((
+    source: "hover" | "keyboard",
+    nextTarget?: EventTarget | null,
+  ) => {
+    if (selectionSourceRef.current !== source) return;
+
+    if (
+      nextTarget instanceof Element &&
+      nextTarget.closest(".quest-house, .quest-preview")
+    ) {
+      return;
+    }
+
+    const project = findNearbyProject(positionRef.current);
+    if (project) {
+      setSelection(project, "proximity");
+    } else {
+      setSelection(null, null);
+    }
+  }, [setSelection]);
 
   return (
-    <section className="project-quest" aria-labelledby="project-quest-title">
+    <section
+      className={`project-quest${hasInteracted ? " has-interacted" : ""}`}
+      id="project-quest"
+      aria-labelledby="project-quest-title"
+    >
       <div className="project-quest-intro">
         <p className="eyebrow">Choose your route</p>
-        <h3 id="project-quest-title">Explore the work your way.</h3>
+        <h3 id="project-quest-title">Explore the work.</h3>
         <p>
-          Browse the case studies directly, or walk through a tiny 8-bit town
-          and enter a project house.
+          Move through four areas of Product Operations work, or use the
+          project cards below for the quick route.
         </p>
         <div className="project-quest-actions">
           <button
             className="quest-play-button"
             type="button"
-            onClick={() => {
-              startedRef.current = true;
-              setStarted(true);
-            }}
+            onClick={beginExperience}
           >
-            Play Project Quest <span aria-hidden="true">▶</span>
+            Explore the map <span aria-hidden="true">▶</span>
           </button>
           <a className="quest-browse-link" href="#case-studies">
             Browse case studies <span aria-hidden="true">↓</span>
           </a>
         </div>
-        <div className="quest-instructions">
-          <span><kbd>WASD</kbd> or arrow keys to walk</span>
-          <span><kbd>Enter</kbd> at a door, then again to open</span>
-          <span>Click a house or use the touch controls</span>
+        <div className="quest-instructions" aria-label="Project map instructions">
+          <span><kbd>WASD</kbd> <span>or arrows · Move</span></span>
+          <span><kbd>Enter</kbd> <span>View selected project</span></span>
+          <span><kbd>1–4</kbd> <span>Select a project · R resets</span></span>
+          <span><kbd>Mouse</kbd> <span>Hover or click a destination</span></span>
         </div>
       </div>
 
-      <div className="ops-handheld" aria-label="OPS-04 Portable project game">
+      <div className="ops-handheld" aria-label="OPS-04 Portable project navigator">
         <div className="handheld-brand">
           <span>OPS-04</span>
-          <small>Project Quest · Town Edition</small>
+          <small>Interactive project navigator</small>
         </div>
         <div
           className={`quest-screen${started ? " is-started" : ""}`}
           ref={gameRef}
-          role="application"
-          aria-label="Project Quest town. Use arrow keys or WASD to walk into a project house. Press Enter again inside to open its full case study."
+          role="region"
+          aria-label="Interactive map of four Product Operations case studies. Use WASD or arrow keys to move, number keys to select, and Enter to open. Tab reaches every destination."
           tabIndex={0}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
-          onBlur={() => stopMovement(true)}
+          onBlur={() => stopMovement()}
         >
           <div className="quest-screen-status" aria-live="polite">
             <span>
               {selectedProject
-                ? `Enter: Open ${selectedProject.shortTitle}`
+                ? `Enter · View ${selectedProject.shortTitle}`
                 : nearbyProject
-                  ? `A: Enter ${nearbyProject.shortTitle}`
-                  : "Project Town"}
+                  ? `Enter · Preview ${nearbyProject.shortTitle}`
+                  : "Four projects · Choose a direction"}
             </span>
-            <b>{visited.length}/4 visited</b>
+            <button type="button" onClick={resetPosition} aria-label="Reset character position">
+              R · Reset
+            </button>
           </div>
 
           <div className="quest-map" aria-hidden={!started}>
@@ -426,7 +519,7 @@ export default function ProjectQuest() {
             <span className="quest-pond"><i /><i /><i /></span>
             <span className="quest-fence fence-top" />
             <span className="quest-fence fence-bottom" />
-            <span className="quest-town-sign">PROJECT<br />TOWN</span>
+            <span className="quest-town-sign">4 PROJECTS<br />1 APPROACH</span>
             <span className="quest-mailbox" />
             <span className="quest-npc"><i /></span>
 
@@ -446,27 +539,56 @@ export default function ProjectQuest() {
               />
             ))}
 
-            {projects.map((project) => (
-              <button
-                className={`quest-house house-${project.id}${visited.includes(project.id) ? " is-visited" : ""}`}
-                style={tileStyle(project.building.x, project.building.y)}
-                type="button"
-                key={project.id}
-                onClick={() => enterBuilding(project)}
-                aria-label={`Enter Project ${project.number}: ${project.title}`}
-              >
-                <span className="house-chimney" aria-hidden="true" />
-                <span className="house-roof" aria-hidden="true" />
-                <span className="house-front" aria-hidden="true">
-                  <i className="house-window window-left" />
-                  <i className="house-window window-right" />
-                  <i className="house-door">{project.number}</i>
-                </span>
-                <span className="house-sign" aria-hidden="true">
-                  {project.shortTitle}
-                </span>
-              </button>
-            ))}
+            {projects.map((project) => {
+              const isSelected = selectedProject?.id === project.id;
+              const isNearby = nearbyProject?.id === project.id;
+              const isViewed = viewed.includes(project.id);
+
+              return (
+                <button
+                  className={[
+                    "quest-house",
+                    `house-${project.id}`,
+                    isViewed ? "is-viewed" : "",
+                    isSelected ? "is-selected" : "",
+                    isNearby ? "is-nearby" : "",
+                  ].filter(Boolean).join(" ")}
+                  style={tileStyle(project.building.x, project.building.y)}
+                  type="button"
+                  key={project.id}
+                  onMouseEnter={() => selectProject(project, "hover")}
+                  onMouseLeave={(event) =>
+                    clearTemporarySelection("hover", event.relatedTarget)
+                  }
+                  onFocus={() => selectProject(project, "keyboard")}
+                  onBlur={(event) =>
+                    clearTemporarySelection("keyboard", event.relatedTarget)
+                  }
+                  onClick={() => selectProject(project, "intentional")}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") {
+                      event.preventDefault();
+                      saveAndOpenProject(project);
+                    }
+                  }}
+                  aria-label={`Project ${project.number}: ${project.title}. ${project.capability}.${isViewed ? " Viewed." : ""}`}
+                  aria-pressed={isSelected}
+                >
+                  <span className="house-chimney" aria-hidden="true" />
+                  <span className="house-roof" aria-hidden="true" />
+                  <span className="house-front" aria-hidden="true">
+                    <i className="house-window window-left" />
+                    <i className="house-window window-right" />
+                    <i className="house-door">{project.number}</i>
+                  </span>
+                  <span className="house-sign" aria-hidden="true">
+                    <b>{project.shortTitle}</b>
+                    <small>{project.capability}</small>
+                    {isViewed && <em>Viewed ✓</em>}
+                  </span>
+                </button>
+              );
+            })}
 
             {started && (
               <span
@@ -495,69 +617,64 @@ export default function ProjectQuest() {
               <span className="title-screen-hills" aria-hidden="true" />
               <small>Andrew presents</small>
               <strong>PROJECT<br />QUEST</strong>
-              <p>Explore four operational challenges.</p>
-              <button
-                type="button"
-                onClick={() => {
-                  startedRef.current = true;
-                  setStarted(true);
-                }}
-              >
+              <p>Four projects. Four capabilities.</p>
+              <button type="button" onClick={beginExperience}>
                 Press start
               </button>
             </div>
           )}
 
-          {selectedProject && (
-            <div
-              className={`quest-brief brief-${selectedProject.id}`}
-              role="dialog"
-              aria-label={`${selectedProject.title} project house`}
+          {started && selectedProject && (
+            <aside
+              className={`quest-preview preview-${selectedProject.id}`}
+              aria-live="polite"
+              onMouseLeave={(event) =>
+                clearTemporarySelection("hover", event.relatedTarget)
+              }
             >
-              <div className="quest-brief-heading">
-                <span>Project {selectedProject.number} · {selectedProject.type}</span>
-                <button
-                  type="button"
-                  onClick={leaveProject}
-                  aria-label="Leave project house"
-                >
-                  ×
-                </button>
+              <div className="quest-preview-heading">
+                <span>Project {selectedProject.number}</span>
+                <strong>{selectedProject.capability}</strong>
               </div>
               <h4>{selectedProject.title}</h4>
-              <dl>
-                <div><dt>Role</dt><dd>{selectedProject.role}</dd></div>
-                <div><dt>Result</dt><dd>{selectedProject.result}</dd></div>
-              </dl>
-              <div className="quest-brief-actions">
-                <Link href={selectedProject.route}>
-                  Enter / A: Open <span aria-hidden="true">↗</span>
-                </Link>
-                <button type="button" onClick={leaveProject}>
-                  B: Leave
+              <p>{selectedProject.description}</p>
+              {selectedProject.evidence && <b>{selectedProject.evidence}</b>}
+              <div className="quest-preview-actions">
+                <button
+                  type="button"
+                  onClick={() => saveAndOpenProject(selectedProject)}
+                >
+                  Enter · View case study <span aria-hidden="true">↗</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSelection(null, null)}
+                  aria-label="Close project preview"
+                >
+                  Close
                 </button>
               </div>
-            </div>
+            </aside>
           )}
         </div>
 
-        <div className="handheld-controls" aria-label="Game controls">
+        <div className="handheld-controls" aria-label="Optional handheld controls">
           <div className="quest-dpad" aria-label="Directional controls">
-            <button className="dpad-up" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-up", "up"); }} onPointerUp={() => endMovement("dpad-up")} onPointerCancel={() => endMovement("dpad-up")} aria-label="Walk up">▲</button>
-            <button className="dpad-left" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-left", "left"); }} onPointerUp={() => endMovement("dpad-left")} onPointerCancel={() => endMovement("dpad-left")} aria-label="Walk left">◀</button>
+            <button className="dpad-up" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-up", "up"); }} onPointerUp={() => endMovement("dpad-up")} onPointerCancel={() => endMovement("dpad-up")} aria-label="Move up">▲</button>
+            <button className="dpad-left" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-left", "left"); }} onPointerUp={() => endMovement("dpad-left")} onPointerCancel={() => endMovement("dpad-left")} aria-label="Move left">◀</button>
             <span aria-hidden="true" />
-            <button className="dpad-right" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-right", "right"); }} onPointerUp={() => endMovement("dpad-right")} onPointerCancel={() => endMovement("dpad-right")} aria-label="Walk right">▶</button>
-            <button className="dpad-down" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-down", "down"); }} onPointerUp={() => endMovement("dpad-down")} onPointerCancel={() => endMovement("dpad-down")} aria-label="Walk down">▼</button>
+            <button className="dpad-right" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-right", "right"); }} onPointerUp={() => endMovement("dpad-right")} onPointerCancel={() => endMovement("dpad-right")} aria-label="Move right">▶</button>
+            <button className="dpad-down" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-down", "down"); }} onPointerUp={() => endMovement("dpad-down")} onPointerCancel={() => endMovement("dpad-down")} aria-label="Move down">▼</button>
           </div>
-          <button className="quest-start" type="button" onClick={resetGame}>
-            Start
+          <button className="quest-start" type="button" onClick={resetPosition}>
+            Reset
           </button>
           <div className="quest-action-buttons">
-            <button type="button" onClick={leaveProject} aria-label="Leave project house">B</button>
+            <button type="button" onClick={() => setSelection(null, null)} aria-label="Close project preview">B</button>
             <button
               type="button"
               onClick={interact}
-              aria-label={selectedProject ? "Open selected case study" : "Enter project house"}
+              aria-label={selectedProject ? "Open selected case study" : "Select nearby project"}
             >
               A
             </button>
