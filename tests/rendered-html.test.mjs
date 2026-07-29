@@ -35,13 +35,21 @@ test("renders development preview metadata", async () => {
   assert.match(html, /Project 04/i);
   assert.match(html, /Zero-to-one products/i);
   assert.match(html, /Operational Systems &amp; Automation/i);
-  assert.match(html, /Play Project Quest/i);
+  assert.match(html, /Explore the map/i);
   assert.match(html, /Browse case studies/i);
-  assert.match(html, /Project Quest · Town Edition/i);
-  assert.match(html, /walk through a tiny 8-bit town/i);
-  assert.match(html, /Enter Project 01/i);
-  assert.match(html, /Enter Project 04/i);
+  assert.match(html, /Interactive project navigator/i);
+  assert.match(html, /Move through four areas of Product Operations work/i);
+  assert.match(html, /Project 01: Regional Utility Portal/i);
+  assert.match(html, /Project 04: Operational Systems &amp; Automation/i);
   assert.match(html, /Andrew \| Senior Product Operations Portfolio/i);
+  assert.match(html, /class="hero-ant-stage"/i);
+  assert.match(html, /class="ant-workflow"/i);
+  assert.match(html, /id="ant-silhouette"/i);
+  assert.ok(
+    html.indexOf('class="hero-lead"') < html.indexOf('class="hero-ant-stage"') &&
+      html.indexOf('class="hero-ant-stage"') < html.indexOf('class="hero-links"'),
+    "the decorative ant workflow should render beneath the hero tagline",
+  );
   assert.doesNotMatch(html, /Case study in development|Castle Press/i);
 });
 
@@ -95,6 +103,12 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     const html = await response.text();
     assert.match(html, title);
     assert.match(html, /<meta[^>]+name=["']description["'][^>]+content=/i);
+    if (path.startsWith("/projects/")) {
+      assert.match(html, /Case study workspace/i);
+      assert.match(html, /Case study progress/i);
+      assert.match(html, /What this demonstrates/i);
+      assert.match(html, /Next case study/i);
+    }
     assert.doesNotMatch(html, /Castle Press/i);
     if (path === "/projects/customer-portal-redesign") {
       assert.match(html, /Twenty participants completed the same core CCR report tasks/i);
@@ -119,6 +133,11 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /No percentage or time-saving claim is made/i);
       assert.doesNotMatch(html, /hours saved:\s*\d|reduction:\s*\d+%|customers:\s*\d/i);
     }
+    if (path === "/projects/hearth") {
+      assert.match(html, /The product story starts with the operating system, not the world/i);
+      assert.match(html, /Product expression.*Add personality without blocking the financial workflow/is);
+      assert.match(html, /Hearth World was an experiment/i);
+    }
   }
 });
 
@@ -137,6 +156,8 @@ test("renders the RX growth roadmap with honest statuses and target KPIs", async
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /Growth roadmap and measurement plan/i);
+  assert.match(html, /Improve the customer layer\. Preserve the operational foundation\./i);
+  assert.match(html, /\+1,272%.*Verified traffic growth/is);
   assert.match(html, /Delivered/i);
   assert.match(html, /In progress/i);
   assert.match(html, /Planned/i);
