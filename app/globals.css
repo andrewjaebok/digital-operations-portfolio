@@ -1300,13 +1300,21 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 .ant-four{animation-name:ant-route-four}
 .ant-five{animation-name:ant-route-five}
 .ant-six{animation-name:ant-route-six}
+.frog-route{transform-box:view-box;transform-origin:0 0;animation:frog-route 15s linear infinite;will-change:transform,opacity}
+.frog-hop{transform-box:fill-box;transform-origin:center bottom;animation:frog-hop .72s ease-in-out infinite}
+.frog-body,.frog-head{fill:url(#frog-fill);stroke:#315e38;stroke-width:1}
+.frog-hind-leg{fill:#6eaa55;stroke:#315e38;stroke-width:.9}
+.frog-hind-leg-back{fill:#568f49}
+.frog-hind-foot,.frog-front-leg{fill:#78b65a;stroke:#315e38;stroke-width:.85;stroke-linejoin:round}
+.frog-eye{fill:#d9efbd;stroke:#315e38;stroke-width:.7}
+.frog-pupil{fill:#193927}
+.frog-mouth{fill:none;stroke:#274e31;stroke-width:.85;stroke-linecap:round}
 .ant-leaf{opacity:0;transform:translate(246px,-34px) rotate(-18deg);transform-box:view-box;transform-origin:17px 0;filter:drop-shadow(0 3px 3px rgba(11,31,51,.16));animation:leaf-fall 15s ease-in-out infinite;will-change:transform,opacity}
 .ant-leaf path:last-child{fill:none;stroke:#7f3d1d;stroke-width:1.25;stroke-linecap:round}
 .ant-trail{fill:none;stroke:#708297;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:2 6;opacity:.18}
-.ant-trail-explore-top,.ant-trail-explore-bottom,.ant-trail-solution{opacity:0;animation:ant-trail-explore 15s linear infinite}
-.ant-trail-explore-bottom{animation-delay:.35s}
+.ant-trail-explore-top,.ant-trail-solution{opacity:0;animation:ant-trail-explore 15s linear infinite}
 .ant-trail-solution{stroke:var(--blue);stroke-width:1.6;animation-name:ant-trail-solution}
-.ant-workflow[data-paused] .ant,.ant-workflow[data-paused] .ant-trail,.ant-workflow[data-paused] .ant-leaf{animation-play-state:paused}
+.ant-workflow[data-paused] .ant,.ant-workflow[data-paused] .ant-trail,.ant-workflow[data-paused] .ant-leaf,.ant-workflow[data-paused] .frog-route,.ant-workflow[data-paused] .frog-hop{animation-play-state:paused}
 
 @keyframes ant-route-one{
   0%{transform:translate(2px,41px);opacity:0}
@@ -1326,10 +1334,8 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
   20%{transform:translate(116px,41px)}
   29%{transform:translate(207px,41px)}
   35%{transform:translate(220px,41px)}
-  43%{transform:translate(243px,64px)}
-  49%{transform:translate(270px,53px)}
-  55%{transform:translate(240px,23px)}
-  61%{transform:translate(279px,20px)}
+  45%{transform:translate(249px,17px)}
+  56%{transform:translate(290px,31px)}
   67%{transform:translate(307px,41px)}
   84%{transform:translate(475px,41px);opacity:1}
   88%,100%{transform:translate(505px,41px);opacity:0}
@@ -1386,6 +1392,24 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
   92%{transform:translate(388px,41px);opacity:1}
   96%,100%{transform:translate(420px,41px);opacity:0}
 }
+@keyframes frog-route{
+  0%,16%{transform:translate(-248px,43px);opacity:0}
+  20%{opacity:1}
+  36%{transform:translate(-112px,43px)}
+  50%{transform:translate(-12px,43px)}
+  62%{transform:translate(78px,43px)}
+  74%{transform:translate(148px,43px)}
+  84%{transform:translate(203px,43px)}
+  91%{transform:translate(224px,29px)}
+  96%{transform:translate(251px,19px);opacity:1}
+  100%{transform:translate(270px,25px);opacity:0}
+}
+@keyframes frog-hop{
+  0%,100%{transform:translateY(0) scale(2,1.84)}
+  38%{transform:translateY(-8px) scale(2,2.12)}
+  58%{transform:translateY(-9px) scale(2)}
+  82%{transform:translateY(0) scale(2,1.8)}
+}
 @keyframes leaf-fall{
   0%,20%{transform:translate(246px,-34px) rotate(-18deg);opacity:0}
   22%{opacity:1}
@@ -1405,6 +1429,10 @@ html.dark .ant{color:#ff9a57}
 html.dark .ant-trail{stroke:#9caac0}
 html.dark .ant-trail-solution{stroke:#62c0df}
 html.dark .ant-leaf{filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
+html.dark .frog-body,html.dark .frog-head{stroke:#c2e78d}
+html.dark .frog-hind-leg,html.dark .frog-hind-foot,html.dark .frog-front-leg{stroke:#c2e78d}
+html.dark .frog-eye{fill:#effbdc;stroke:#c2e78d}
+html.dark .frog-mouth{stroke:#d9f2b8}
 
 @media(max-width:560px){
   .hero-ant-stage{height:48px;margin-top:6px}
@@ -1414,8 +1442,8 @@ html.dark .ant-leaf{filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .ant-workflow .ant,.ant-workflow .ant-trail,.ant-workflow .ant-leaf{animation:none}
-  .ant-trail-explore-top,.ant-trail-explore-bottom{opacity:0}
+  .ant-workflow .ant,.ant-workflow .ant-trail,.ant-workflow .ant-leaf,.ant-workflow .frog-route,.ant-workflow .frog-hop{animation:none}
+  .ant-trail-explore-top{opacity:0}
   .ant-trail-solution{opacity:.42}
   .ant-leaf{transform:translate(251px,28px) rotate(8deg);opacity:1}
   .ant-one{transform:translate(70px,41px);opacity:1}
@@ -1424,6 +1452,7 @@ html.dark .ant-leaf{filter:drop-shadow(0 3px 3px rgba(0,0,0,.35))}
   .ant-four{transform:translate(310px,41px);opacity:1}
   .ant-five{transform:translate(390px,41px);opacity:1}
   .ant-six{transform:translate(470px,41px);opacity:1}
+  .frog-route{transform:translate(30px,43px);opacity:1}
 }
 
 /* Project Quest navigator refinement. */
