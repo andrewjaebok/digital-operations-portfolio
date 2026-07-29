@@ -1393,16 +1393,16 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
   96%,100%{transform:translate(420px,41px);opacity:0}
 }
 @keyframes frog-route{
-  0%,16%{transform:translate(-248px,43px);opacity:0}
-  20%{opacity:1}
-  36%{transform:translate(-112px,43px)}
-  50%{transform:translate(-12px,43px)}
-  62%{transform:translate(78px,43px)}
-  74%{transform:translate(148px,43px)}
-  84%{transform:translate(203px,43px)}
-  91%{transform:translate(224px,29px)}
-  96%{transform:translate(251px,19px);opacity:1}
-  100%{transform:translate(270px,25px);opacity:0}
+  0%,22%{transform:translate(-210px,43px);opacity:0}
+  26%{transform:translate(-188px,43px);opacity:1}
+  40%{transform:translate(-112px,43px)}
+  54%{transform:translate(-42px,43px)}
+  67%{transform:translate(18px,43px)}
+  78%{transform:translate(70px,43px)}
+  87%{transform:translate(108px,43px)}
+  94%{transform:translate(136px,43px)}
+  98%{transform:translate(150px,43px);opacity:1}
+  100%{transform:translate(156px,43px);opacity:0}
 }
 @keyframes frog-hop{
   0%,100%{transform:translateY(0) scale(2,1.84)}
@@ -1452,7 +1452,7 @@ html.dark .frog-mouth{stroke:#d9f2b8}
   .ant-four{transform:translate(310px,41px);opacity:1}
   .ant-five{transform:translate(390px,41px);opacity:1}
   .ant-six{transform:translate(470px,41px);opacity:1}
-  .frog-route{transform:translate(30px,43px);opacity:1}
+  .frog-route{transform:translate(8px,43px);opacity:1}
 }
 
 /* Project Quest navigator refinement. */
