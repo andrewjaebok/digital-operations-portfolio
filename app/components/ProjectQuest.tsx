@@ -54,7 +54,7 @@ const projects: Project[] = [
     capability: "Regulated Product & Growth",
     description:
       "Modernized a regulated ordering experience while preserving the existing operational and production foundation.",
-    evidence: "+1,272% new users after the redesign and article program.",
+    evidence: "+1,272% new users following the redesign and search-content program.",
     route: "/projects/prescription-pad-ordering-portal",
     building: { x: 10, y: 1 },
     door: { x: 11, y: 4 },
