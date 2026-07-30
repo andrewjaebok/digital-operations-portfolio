@@ -7,10 +7,10 @@ const monthlyOrders = [
 ];
 
 const recurringQuestions = [
-  { question: "Can I order for multiple prescribers?", before: "5.6", after: "0", change: "−100%" },
-  { question: "What’s the turnaround time?", before: "10", after: "0", change: "−100%" },
-  { question: "Do you have barcodes on your prescription pads?", before: "12.2", after: "0", change: "−100%" },
-  { question: "How many prescriptions are included per pad?", before: "7", after: "0", change: "−100%" },
+  { question: "Can I order for multiple prescribers?", before: "5.6", after: "0", change: "100%" },
+  { question: "What’s the turnaround time?", before: "10", after: "0", change: "100%" },
+  { question: "Do you have barcodes on your prescription pads?", before: "12.2", after: "0", change: "100%" },
+  { question: "How many prescriptions are included per pad?", before: "7", after: "0", change: "100%" },
 ];
 
 export default function RxOperationalResults() {
@@ -61,14 +61,14 @@ export default function RxOperationalResults() {
               <span>Measured self-service follow-up</span>
               <h3 id="rx-question-title">Recurring questions per month</h3>
             </div>
-            <strong><b>−100%</b> all 4 types</strong>
+            <strong><b>100%</b> reduction across all 4 tracked types</strong>
           </div>
           <div className="rx-question-table" role="table" aria-label="Recurring customer questions before and after the content changes">
             <div className="rx-question-row rx-question-header" role="row">
               <span role="columnheader">Question type</span>
               <span role="columnheader">Before / month</span>
               <span role="columnheader">After / month</span>
-              <span role="columnheader">Change</span>
+              <span role="columnheader">Reduction</span>
             </div>
             {recurringQuestions.map(({ question, before, after, change }) => (
               <div className="rx-question-row" role="row" key={question}>
