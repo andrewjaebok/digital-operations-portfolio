@@ -1280,145 +1280,141 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 .hero-period{position:relative;z-index:2}
 .hero-ant-stage{
   width:min(620px,100%);
-  height:58px;
+  height:72px;
   margin-top:8px;
   overflow:hidden;
 }
 .ant-workflow{
   display:block;
   width:100%;
-  height:58px;
+  height:72px;
   overflow:hidden;
   pointer-events:none;
   user-select:none;
 }
-.ant-workflow svg{display:block;width:100%;height:58px;overflow:visible}
-.ant{color:#17283a;fill:currentColor;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;transform-box:view-box;transform-origin:0 0;animation-duration:15s;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform,opacity}
-.ant-one{animation-name:ant-route-one}
-.ant-two{animation-name:ant-route-two}
-.ant-three{animation-name:ant-route-three}
-.ant-four{animation-name:ant-route-four}
-.ant-five{animation-name:ant-route-five}
-.ant-six{animation-name:ant-route-six}
-.ant-rock{filter:drop-shadow(0 3px 3px rgba(11,31,51,.16))}
-.ant-rock>path:nth-of-type(1){stroke:#53606d;stroke-width:1.1;stroke-linejoin:round}
-.ant-rock-shadow{fill:#17283a;opacity:.16}
-.ant-rock-highlight{fill:#c5cbd1;opacity:.58}
-.ant-rock-facet{fill:none;stroke:#687480;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:.72}
-.ant-trail{fill:none;stroke:#708297;stroke-width:1.2;stroke-linecap:round;stroke-dasharray:2 6;opacity:.18}
-.ant-trail-explore-top,.ant-trail-solution{opacity:0;animation:ant-trail-explore 15s linear infinite}
-.ant-trail-solution{stroke:var(--blue);stroke-width:1.6;animation-name:ant-trail-solution}
-.ant-workflow[data-paused] .ant,.ant-workflow[data-paused] .ant-trail{animation-play-state:paused}
+.ant-workflow svg{display:block;width:100%;height:72px;overflow:visible}
+.ant-scene-content{animation:ant-scene-reset 23s linear infinite;transform-box:view-box;transform-origin:center}
+.ant-ground-line{fill:none;stroke:#6f8193;stroke-width:1;stroke-dasharray:2 7;opacity:.2}
+.ant-river-bank{fill:#5aaac4;opacity:.68}
+.ant-river-edge{fill:none;stroke:#327e9d;stroke-width:1.25;opacity:.8}
+.ant-river-current{animation:ant-water-flow 2.8s linear infinite}
+.ant-river-current path{fill:none;stroke:#d4f0f4;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:8 7;opacity:.72}
+.ant-bread{filter:drop-shadow(0 2px 2px rgba(59,43,31,.16))}
+.ant-bread-shadow{fill:#5b493d;opacity:.15}
+.ant-bread-piece{fill:#e8b968;stroke:#9d633e;stroke-width:1.3;stroke-linejoin:round}
+.ant-bread-crust{fill:none;stroke:#b67645;stroke-width:3;stroke-linecap:round}
+.ant-bread-score{fill:none;stroke:#c98750;stroke-width:1.25;stroke-linecap:round}
+.ant-bridge-piece{fill:none;stroke:#754f37;stroke-width:4;stroke-linecap:round;opacity:0;animation:ant-bridge-build 23s linear infinite}
+.bridge-two{animation-name:ant-bridge-build-two}
+.bridge-three{animation-name:ant-bridge-build-three}
+.bridge-four{animation-name:ant-bridge-build-four}
+.ant,.ant-return{color:#17283a;fill:currentColor;stroke:currentColor;stroke-width:1;stroke-linecap:round;transform-box:view-box;transform-origin:0 0;animation-duration:23s;animation-timing-function:linear;animation-iteration-count:infinite;will-change:transform,opacity}
+.ant-one{animation-name:ant-arrive-one}
+.ant-two{animation-name:ant-arrive-two}
+.ant-three{animation-name:ant-arrive-three}
+.ant-four{animation-name:ant-arrive-four}
+.ant-five{animation-name:ant-arrive-five}
+.ant-six{animation-name:ant-arrive-six}
+.ant-inspector{animation-name:ant-inspect}
+.ant-validator{animation-name:ant-validate}
+.ant-material{color:#17283a;fill:currentColor;stroke:currentColor;stroke-linecap:round;opacity:0;transform-box:view-box;transform-origin:0 0;animation:ant-material-one 23s linear infinite}
+.ant-material>path{stroke:#754f37;stroke-width:3}
+.material-two{animation-name:ant-material-two}
+.material-three{animation-name:ant-material-three}
+.material-four{animation-name:ant-material-four}
+.ant-return{opacity:0;transform:scaleX(-1);animation-name:ant-return-one}
+.return-two{animation-name:ant-return-two}
+.return-three{animation-name:ant-return-three}
+.ant-crumb{fill:#e7b15f;stroke:#9d633e;stroke-width:.8}
+.ant-reuse-one{animation-name:ant-reuse-one}
+.ant-reuse-two{animation-name:ant-reuse-two}
+.ant-workflow[data-paused] *{animation-play-state:paused!important}
 
-@keyframes ant-route-one{
-  0%{transform:translate(2px,41px);opacity:0}
-  3%{opacity:1}
-  18%{transform:translate(156px,41px)}
-  27%{transform:translate(215px,41px)}
-  33%{transform:translate(223px,41px)}
-  41%{transform:translate(249px,11px)}
-  48%{transform:translate(290px,31px)}
-  54%{transform:translate(307px,41px)}
-  80%{transform:translate(500px,41px);opacity:1}
-  84%,100%{transform:translate(520px,41px);opacity:0}
+@keyframes ant-water-flow{to{transform:translateY(16px)}}
+@keyframes ant-scene-reset{0%,94%{opacity:1}96%,99%{opacity:0}100%{opacity:1}}
+@keyframes ant-arrive-one{
+  0%{transform:translate(-18px,50px);opacity:0}2%{opacity:1}13%{transform:translate(185px,50px)}17%,44%{transform:translate(252px,50px)}
+  45%,100%{transform:translate(252px,50px);opacity:0}
 }
-@keyframes ant-route-two{
-  0%{transform:translate(-38px,41px);opacity:0}
-  5%{opacity:1}
-  20%{transform:translate(116px,41px)}
-  29%{transform:translate(207px,41px)}
-  35%{transform:translate(220px,41px)}
-  45%{transform:translate(249px,11px)}
-  56%{transform:translate(290px,31px)}
-  67%{transform:translate(307px,41px)}
-  84%{transform:translate(475px,41px);opacity:1}
-  88%,100%{transform:translate(505px,41px);opacity:0}
+@keyframes ant-arrive-two{
+  0%{transform:translate(-54px,50px);opacity:0}3%{opacity:1}15%{transform:translate(160px,50px)}18%,48%{transform:translate(230px,50px)}
+  50%{transform:translate(316px,50px);opacity:1}58%{transform:translate(438px,50px)}64%{transform:translate(490px,50px)}70%,100%{transform:translate(500px,50px);opacity:0}
 }
-@keyframes ant-route-three{
-  0%{transform:translate(-78px,41px);opacity:0}
-  7%{opacity:1}
-  23%{transform:translate(82px,41px)}
-  31%{transform:translate(195px,41px)}
-  38%{transform:translate(218px,41px)}
-  48%{transform:translate(226px,41px)}
-  57%{transform:translate(251px,11px)}
-  64%{transform:translate(292px,31px)}
-  70%{transform:translate(309px,41px)}
-  86%{transform:translate(454px,41px);opacity:1}
-  90%,100%{transform:translate(485px,41px);opacity:0}
+@keyframes ant-arrive-three{
+  0%{transform:translate(-90px,50px);opacity:0}4%{opacity:1}16%{transform:translate(132px,50px)}19%,50%{transform:translate(210px,50px)}
+  53%{transform:translate(316px,50px)}61%{transform:translate(450px,50px)}67%{transform:translate(490px,50px)}71%,100%{opacity:0}
 }
-@keyframes ant-route-four{
-  0%{transform:translate(-118px,41px);opacity:0}
-  9%{opacity:1}
-  25%{transform:translate(48px,41px)}
-  34%{transform:translate(180px,41px)}
-  41%{transform:translate(212px,41px)}
-  54%{transform:translate(221px,41px)}
-  62%{transform:translate(250px,11px)}
-  69%{transform:translate(292px,31px)}
-  75%{transform:translate(309px,41px)}
-  88%{transform:translate(432px,41px);opacity:1}
-  92%,100%{transform:translate(464px,41px);opacity:0}
+@keyframes ant-arrive-four{
+  0%{transform:translate(-126px,50px);opacity:0}5%{opacity:1}17%{transform:translate(105px,50px)}20%,52%{transform:translate(190px,50px)}
+  55%{transform:translate(316px,50px)}63%{transform:translate(462px,50px)}69%{transform:translate(494px,50px)}73%,100%{opacity:0}
 }
-@keyframes ant-route-five{
-  0%{transform:translate(-158px,41px);opacity:0}
-  11%{opacity:1}
-  28%{transform:translate(14px,41px)}
-  37%{transform:translate(150px,41px)}
-  44%{transform:translate(196px,41px)}
-  58%{transform:translate(221px,41px)}
-  67%{transform:translate(251px,11px)}
-  74%{transform:translate(292px,31px)}
-  80%{transform:translate(309px,41px)}
-  90%{transform:translate(410px,41px);opacity:1}
-  94%,100%{transform:translate(442px,41px);opacity:0}
+@keyframes ant-arrive-five{
+  0%{transform:translate(-162px,50px);opacity:0}6%{opacity:1}18%{transform:translate(78px,50px)}21%,54%{transform:translate(170px,50px)}
+  58%{transform:translate(316px,50px)}66%{transform:translate(472px,50px)}71%{transform:translate(500px,50px)}75%,100%{opacity:0}
 }
-@keyframes ant-route-six{
-  0%{transform:translate(-198px,41px);opacity:0}
-  13%{opacity:1}
-  30%{transform:translate(-20px,41px)}
-  40%{transform:translate(120px,41px)}
-  47%{transform:translate(179px,41px)}
-  61%{transform:translate(219px,41px)}
-  72%{transform:translate(251px,11px)}
-  79%{transform:translate(292px,31px)}
-  85%{transform:translate(309px,41px)}
-  92%{transform:translate(388px,41px);opacity:1}
-  96%,100%{transform:translate(420px,41px);opacity:0}
+@keyframes ant-arrive-six{
+  0%{transform:translate(-198px,50px);opacity:0}7%{opacity:1}19%{transform:translate(51px,50px)}22%,56%{transform:translate(150px,50px)}
+  61%{transform:translate(316px,50px)}68%{transform:translate(480px,50px)}73%{transform:translate(504px,50px)}77%,100%{opacity:0}
 }
-@keyframes ant-trail-explore{
-  0%,28%,62%,100%{opacity:0}
-  35%,50%{opacity:.24}
+@keyframes ant-inspect{
+  0%,17%{transform:translate(252px,50px);opacity:0}18%{opacity:1}21%{transform:translate(260px,28px)}24%{transform:translate(250px,62px)}
+  27%,31%{transform:translate(224px,50px);opacity:1}32%,100%{opacity:0}
 }
-@keyframes ant-trail-solution{
-  0%,42%,96%,100%{opacity:0}
-  52%,86%{opacity:.48}
+@keyframes ant-material-one{0%,28%{transform:translate(125px,48px);opacity:0}29%{opacity:1}34%{transform:translate(267px,47px);opacity:1}35%,100%{opacity:0}}
+@keyframes ant-material-two{0%,32%{transform:translate(110px,48px);opacity:0}33%{opacity:1}38%{transform:translate(279px,47px);opacity:1}39%,100%{opacity:0}}
+@keyframes ant-material-three{0%,36%{transform:translate(95px,48px);opacity:0}37%{opacity:1}42%{transform:translate(291px,47px);opacity:1}43%,100%{opacity:0}}
+@keyframes ant-material-four{0%,40%{transform:translate(80px,48px);opacity:0}41%{opacity:1}46%{transform:translate(303px,47px);opacity:1}47%,100%{opacity:0}}
+@keyframes ant-bridge-build{0%,33%{opacity:0}34%,94%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-bridge-build-two{0%,37%{opacity:0}38%,94%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-bridge-build-three{0%,41%{opacity:0}42%,94%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-bridge-build-four{0%,45%{opacity:0}46%,94%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-validate{
+  0%,46%{transform:translate(252px,50px);opacity:0}47%{opacity:1}51%{transform:translate(316px,50px)}57%{transform:translate(500px,50px);opacity:1}
+  60%,100%{transform:translate(500px,50px);opacity:0}
 }
-html.dark .ant{color:#ff9a57}
-html.dark .ant-trail{stroke:#9caac0}
-html.dark .ant-trail-solution{stroke:#62c0df}
-html.dark .ant-rock{filter:drop-shadow(0 3px 3px rgba(0,0,0,.38))}
-html.dark .ant-rock>path:nth-of-type(1){stroke:#b6c0cb}
-html.dark .ant-rock-highlight{fill:#e1e6ea;opacity:.48}
-html.dark .ant-rock-facet{stroke:#c2cbd4}
+@keyframes ant-return-one{
+  0%,69%{transform:translate(500px,50px) scaleX(-1);opacity:0}70%{opacity:1}77%{transform:translate(316px,50px) scaleX(-1)}
+  81%{transform:translate(252px,50px) scaleX(-1)}90%{transform:translate(-25px,50px) scaleX(-1);opacity:1}92%,100%{opacity:0}
+}
+@keyframes ant-return-two{
+  0%,72%{transform:translate(510px,50px) scaleX(-1);opacity:0}73%{opacity:1}80%{transform:translate(316px,50px) scaleX(-1)}
+  84%{transform:translate(252px,50px) scaleX(-1)}92%{transform:translate(-25px,50px) scaleX(-1);opacity:1}94%,100%{opacity:0}
+}
+@keyframes ant-return-three{
+  0%,75%{transform:translate(520px,50px) scaleX(-1);opacity:0}76%{opacity:1}83%{transform:translate(316px,50px) scaleX(-1)}
+  87%{transform:translate(252px,50px) scaleX(-1)}94%{transform:translate(30px,50px) scaleX(-1);opacity:1}96%,100%{opacity:0}
+}
+@keyframes ant-reuse-one{0%,82%{transform:translate(170px,50px);opacity:0}83%{opacity:1}88%{transform:translate(252px,50px)}92%,94%{transform:translate(345px,50px);opacity:1}96%,100%{opacity:0}}
+@keyframes ant-reuse-two{0%,85%{transform:translate(130px,50px);opacity:0}86%{opacity:1}91%{transform:translate(252px,50px)}94%{transform:translate(315px,50px);opacity:1}96%,100%{opacity:0}}
+html.dark .ant,html.dark .ant-return,html.dark .ant-material{color:#ff9a57}
+html.dark .ant-ground-line{stroke:#9caac0;opacity:.24}
+html.dark .ant-river-bank{fill:#387f9f;opacity:.82}
+html.dark .ant-river-edge{stroke:#73b7ce}
+html.dark .ant-river-current path{stroke:#b8dce7;opacity:.6}
+html.dark .ant-bread-piece{fill:#d89d4f;stroke:#f0bd76}
+html.dark .ant-bread-crust{stroke:#f0bd76}
+html.dark .ant-bread-score{stroke:#8f582f}
+html.dark .ant-bridge-piece,html.dark .ant-material>path{stroke:#d49a68}
 
 @media(max-width:560px){
-  .hero-ant-stage{height:48px;margin-top:6px}
-  .ant-workflow{width:100%;height:48px}
-  .ant-workflow svg{width:100%;height:48px}
+  .hero-ant-stage{height:56px;margin-top:6px}
+  .ant-workflow{width:100%;height:56px}
+  .ant-workflow svg{width:100%;height:56px}
   .ant-five,.ant-six{display:none}
+  .bridge-four,.material-four,.return-three,.ant-reuse-two{display:none}
 }
 
 @media(prefers-reduced-motion:reduce){
-  .ant-workflow .ant,.ant-workflow .ant-trail{animation:none}
-  .ant-trail-explore-top{opacity:0}
-  .ant-trail-solution{opacity:.42}
-  .ant-one{transform:translate(70px,41px);opacity:1}
-  .ant-two{transform:translate(190px,41px);opacity:1}
-  .ant-three{transform:translate(246px,11px);opacity:1}
-  .ant-four{transform:translate(310px,41px);opacity:1}
-  .ant-five{transform:translate(390px,41px);opacity:1}
-  .ant-six{transform:translate(470px,41px);opacity:1}
+  .ant-workflow *{animation:none!important}
+  .ant-river-current{transform:none}
+  .ant-bridge-piece{opacity:1}
+  .ant-one{transform:translate(205px,50px);opacity:1}
+  .ant-two{transform:translate(275px,50px);opacity:1}
+  .ant-three{transform:translate(385px,50px);opacity:1}
+  .ant-four,.ant-five,.ant-six,.ant-inspector,.ant-validator,.ant-material,.ant-reuse-two{opacity:0}
+  .return-one{transform:translate(335px,50px) scaleX(-1);opacity:1}
+  .return-two{transform:translate(155px,50px) scaleX(-1);opacity:1}
+  .ant-reuse-one{transform:translate(255px,50px);opacity:1}
 }
 
 /* Project Quest navigator refinement. */
