@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "../../components/PortfolioImage";
-import CaseProgress from "../../components/CaseProgress";
+import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import UtilityUsabilityResults from "../../components/UtilityUsabilityResults";
 import { assetPath } from "@/lib/asset-path";
@@ -11,20 +10,14 @@ export const metadata: Metadata = {
   description: "A Product Operations case study on improving CCR report discovery, proof-status clarity, bilingual access, and responsive usability while preserving production workflows.",
 };
 
-const progressSections = [
-  { id: "case-content", label: "Overview", icon: "◫" },
-  { id: "measured-impact", label: "Impact", icon: "↗" },
-  { id: "ownership", label: "Ownership", icon: "◎" },
-  { id: "assessment", label: "Assessment", icon: "⌕" },
-  { id: "strategy", label: "Strategy", icon: "◇" },
-  { id: "baseline", label: "Before", icon: "◷" },
-  { id: "solution", label: "Solution", icon: "✦" },
-  { id: "results", label: "What changed", icon: "↔" },
-  { id: "usability-results", label: "Measured results", icon: "▦" },
-  { id: "decisions", label: "Operating decisions", icon: "◆" },
-  { id: "process", label: "Process", icon: "⚙" },
-  { id: "outcome", label: "Outcome", icon: "✓" },
-  { id: "validation", label: "Validation", icon: "◌" },
+const caseNavigation = [
+  { id: "overview", label: "Overview" },
+  { id: "assessment", label: "Discovery" },
+  { id: "strategy", label: "Priorities" },
+  { id: "solution", label: "Execution" },
+  { id: "usability-results", label: "Measured results" },
+  { id: "decisions", label: "Decisions" },
+  { id: "outcome", label: "Outcome" },
 ];
 
 const changes = [
@@ -53,54 +46,66 @@ const priorities = [
 ];
 
 export default function CustomerPortalRedesign() {
-  return <main id="top">
-    <CaseProgress sections={progressSections} />
-    <a className="skip-link" href="#case-content">Skip to case study</a>
-    <header className="site-header case-header">
-      <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">◫</i> 01 / Customer Portal Redesign</b></div>
-      <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#results">Jump to results</a></nav>
-    </header>
-
-    <div className="project-context-bar">
-      <div className="shell">
-        <nav className="case-breadcrumb" aria-label="Breadcrumb"><Link href="/">Portfolio</Link><span aria-hidden="true">/</span><strong>Regional Utility Portal</strong></nav>
-        <span className="case-page-label">Project case study · 01</span>
-      </div>
-    </div>
-
-    <section className="case-hero shell" id="case-content">
-      <Link className="back-link" href="/"><span aria-hidden="true">←</span> Back to all projects</Link>
-      <p className="kicker">Product operations · CCR report and proof tracking</p>
-      <h1>Improving a recurring proof-review workflow, not just its interface.</h1>
-      <p className="case-lead">I evaluated and improved a regional utility portal used to find the correct CCR report, understand its production status, select the English or Spanish version, and open it for review or proofing.</p>
-      <aside className="case-noticed"><b>BUSINESS PROBLEM</b><p>Customers had to manually scan a dense regional report matrix, interpret status colors, and locate the correct language file during recurring proofing and approval work.</p></aside>
-      <div className="case-meta">
-        <div><span>Role</span><strong>Product Operations / Digital Services Lead</strong></div>
-        <div><span>Scope</span><strong>Discovery, requirements, delivery, validation</strong></div>
-        <div><span>Platform</span><strong>HTML, CSS, JavaScript</strong></div>
-        <div><span>Initiative</span><strong>Self-directed opportunity</strong></div>
-      </div>
+  return <main id="top" className="case-study-page utility-case-study">
+    <a className="skip-link" href="#overview">Skip to case study</a>
+    <CaseStudyWorkspace
+      number="PROJECT 01"
+      archetype="CUSTOMER PORTAL"
+      shortTitle="Regional Utility"
+      title="Regional Utility Customer Portal"
+      subtitle="Improving a recurring proof-review workflow, not just its interface."
+      summary="I evaluated and improved a portal used to find the correct CCR report, understand its production status, select the English or Spanish version, and open it for recurring review and proofing."
+      metadata={[
+        { label: "Role", value: "Product Operations / Digital Services Lead" },
+        { label: "Scope", value: "Discovery · Requirements · Delivery · Validation" },
+        { label: "Project type", value: "Customer workflow optimization" },
+        { label: "Status", value: "Delivered" },
+      ]}
+      navigation={caseNavigation}
+      accent="utility"
+    >
       <div className="executive-summary" aria-label="Case study executive summary">
         <article><span>Business problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
         <article><span>What I owned</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
         <article><span>Key decision</span><p>Add search and status guidance while preserving the production process behind the portal.</p></article>
-        <article><span>Measured result</span><p>Core report tasks were completed faster, with fewer incorrect selections and higher ease ratings across three of four evaluated workflows.</p></article>
+        <article><span>Measured result</span><p>Core workflows showed approximately 70%+ lower task time, up to 100% fewer incorrect selections, and materially higher ease ratings in a 20-participant retrospective evaluation.</p></article>
         <article><span>Business significance</span><p>A repeatable modernization model for other customer-facing portals.</p></article>
       </div>
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
-    </section>
+    </CaseStudyWorkspace>
 
-    <section className="utility-impact shell" id="measured-impact" aria-labelledby="measured-impact-title">
+    <section className="utility-impact signature-visual shell" id="measured-impact" aria-labelledby="measured-impact-title">
       <div className="utility-impact-heading">
         <div><p className="kicker">Measured impact</p><h2 id="measured-impact-title">Three core workflows improved across time, accuracy, and ease.</h2></div>
-        <p>Results from a <strong>20-participant retrospective usability evaluation</strong>. Completion time is shown as the observed range, not as a single calculated percentage.</p>
+        <p>Results from a <strong>20-participant retrospective usability evaluation</strong>, presented as directional executive outcomes rather than live production analytics.</p>
       </div>
       <div className="utility-impact-grid">
-        <article><span>Find a location</span><div><p><small>Completion time</small><b>30–60 sec → 10–15 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0.32</b></p><p><small>Ease</small><b>2.4 → 4.8 / 5</b></p></div></article>
-        <article><span>Find a region</span><div><p><small>Completion time</small><b>20–30 sec → 5–10 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0</b></p><p><small>Ease</small><b>1.9 → 4.6 / 5</b></p></div></article>
-        <article><span>Identify status</span><div><p><small>Completion time</small><b>30–60 sec → 10–15 sec</b></p><p><small>Incorrect selections</small><b>1.86 → 0.32</b></p><p><small>Ease</small><b>2.4 → 4.8 / 5</b></p></div></article>
+        <article>
+          <span>Find a location</span>
+          <div>
+            <p className="utility-impact-primary"><b>≈72%</b><small>Lower task time</small></p>
+            <p><b>83%</b><small>Fewer incorrect selections</small></p>
+            <p><small>Ease</small><b>2.4 → 4.8 / 5</b></p>
+          </div>
+        </article>
+        <article>
+          <span>Find a region</span>
+          <div>
+            <p className="utility-impact-primary"><b>≈70%</b><small>Lower task time</small></p>
+            <p><b>100%</b><small>Fewer incorrect selections</small></p>
+            <p><small>Ease</small><b>1.9 → 4.6 / 5</b></p>
+          </div>
+        </article>
+        <article>
+          <span>Identify status</span>
+          <div>
+            <p className="utility-impact-primary"><b>≈72%</b><small>Lower task time</small></p>
+            <p><b>83%</b><small>Fewer incorrect selections</small></p>
+            <p><small>Ease</small><b>2.4 → 4.8 / 5</b></p>
+          </div>
+        </article>
       </div>
+      <p className="utility-methodology-note">Task-time percentage reductions are directional comparisons based on the midpoint of the observed completion-time ranges. Raw ranges are preserved in the detailed results below.</p>
       <p className="utility-impact-note">The fourth task, opening the correct English or Spanish file, remains in the detailed results below. Its time range became more consistent while its ease rating remained 4.0/5.</p>
     </section>
 
@@ -202,7 +207,13 @@ export default function CustomerPortalRedesign() {
 
     <section className="feedback-section shell" id="validation"><p className="kicker">Customer feedback</p><blockquote>The customer reported that organizing projects in batches made them easier to find and helped with navigation through the process.</blockquote><p>Paraphrased from direct customer feedback after delivery. The usability evaluation independently added task-time, incorrect-selection, and ease-of-use evidence.</p></section>
 
-    <section className="next-project shell"><p className="kicker">Next transformation</p><h2>Prescription Pad Ordering Experience</h2><span>Product operations · Regulated ordering</span><Link href="/projects/prescription-pad-ordering-portal">View case study →</Link></section>
+    <CaseStudyEnding
+      capabilities={["Customer Discovery", "Workflow Optimization", "Prioritization", "Usability Measurement", "Operational Continuity"]}
+      nextNumber="02"
+      nextTitle="Prescription Pad Ordering Experience"
+      nextDescription="See how the same operating discipline applies inside a regulated commerce and growth environment."
+      nextHref="/projects/prescription-pad-ordering-portal"
+    />
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Professional client work · Product operations</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }
