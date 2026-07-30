@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "../../components/PortfolioImage";
-import CaseProgress from "../../components/CaseProgress";
+import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import RxOperationalResults from "../../components/RxOperationalResults";
 
@@ -10,21 +9,15 @@ export const metadata: Metadata = {
   description: "A regulated ordering transformation that modernized a legacy customer journey, preserved production logic, and supported measurable new-user growth.",
 };
 
-const progressSections = [
-  { id: "case-content", label: "Overview", icon: "✚" },
-  { id: "ownership", label: "Ownership", icon: "◎" },
-  { id: "assessment", label: "Assessment", icon: "⌕" },
-  { id: "strategy", label: "Strategy", icon: "◇" },
-  { id: "baseline", label: "Before", icon: "◷" },
-  { id: "solution", label: "Solution", icon: "✦" },
-  { id: "growth", label: "Growth", icon: "↗" },
-  { id: "analytics", label: "Evidence", icon: "▥" },
-  { id: "operational-evidence", label: "Operational results", icon: "◫" },
-  { id: "results", label: "What changed", icon: "↔" },
-  { id: "leadership", label: "Operating decisions", icon: "◆" },
-  { id: "process", label: "Process", icon: "⚙" },
-  { id: "outcome", label: "Outcome", icon: "✓" },
-  { id: "roadmap", label: "Growth roadmap", icon: "◉" },
+const caseNavigation = [
+  { id: "overview", label: "Overview" },
+  { id: "assessment", label: "Customer signals" },
+  { id: "regulated-workflow", label: "Regulated workflow" },
+  { id: "solution", label: "Execution" },
+  { id: "growth", label: "Growth" },
+  { id: "analytics", label: "Evidence" },
+  { id: "outcome", label: "Outcome" },
+  { id: "roadmap", label: "Roadmap" },
 ];
 
 const changes = [
@@ -49,41 +42,48 @@ const process = [
 ];
 
 export default function PrescriptionPadOrderingPortal() {
-  return <main id="top" className="rx-case-study">
-    <CaseProgress sections={progressSections} />
-    <a className="skip-link" href="#case-content">Skip to case study</a>
-    <header className="site-header case-header">
-      <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">✚</i> 02 / Prescription Pad Ordering</b></div>
-      <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#results">Jump to results</a></nav>
-    </header>
-
-    <div className="project-context-bar">
-      <div className="shell">
-        <nav className="case-breadcrumb" aria-label="Breadcrumb"><Link href="/">Portfolio</Link><span aria-hidden="true">/</span><strong>Prescription Pad Ordering</strong></nav>
-        <span className="case-page-label">Project case study · 02</span>
-      </div>
-    </div>
-
-    <section className="case-hero shell" id="case-content">
-      <Link className="back-link" href="/"><span aria-hidden="true">←</span> Back to all projects</Link>
-      <p className="kicker">Product operations management · Regulated ordering experience</p>
-      <h1>Turning a legacy prescription pad portal into a clearer, more dependable ordering journey.</h1>
-      <p className="case-lead">I evaluated and redesigned two connected California security prescription pad experiences, improving customer decision-making while preserving the 4D ordering logic and production processes that supported fulfillment.</p>
-      <aside className="case-noticed"><b>BUSINESS PROBLEM</b><p>The portal technically supported ordering, but outdated presentation, inconsistent page structures, dense product options, and fragmented guidance increased customer effort and made the experience harder to maintain.</p></aside>
-      <div className="case-meta">
-        <div><span>Role</span><strong>Product Operations Manager</strong></div>
-        <div><span>Scope</span><strong>Assessment, requirements, design, implementation, QA</strong></div>
-        <div><span>Platform</span><strong>4D, HTML, CSS, JavaScript</strong></div>
-        <div><span>Environment</span><strong>Regulated print ordering</strong></div>
-      </div>
+  return <main id="top" className="case-study-page rx-case-study">
+    <a className="skip-link" href="#overview">Skip to case study</a>
+    <CaseStudyWorkspace
+      number="PROJECT 02"
+      archetype="REGULATED COMMERCE"
+      shortTitle="Prescription Pad Ordering"
+      title="Prescription Pad Ordering Experience"
+      subtitle="Modernizing a regulated customer journey while preserving the production system behind it."
+      summary="I evaluated and redesigned two connected California security prescription pad experiences, improving customer decision-making while preserving the 4D ordering logic and production processes that supported fulfillment."
+      metadata={[
+        { label: "Role", value: "Product Operations Manager" },
+        { label: "Scope", value: "Assessment · Requirements · Delivery · QA · Growth" },
+        { label: "Project type", value: "Regulated product and growth operations" },
+        { label: "Status", value: "Delivered · Optimization ongoing" },
+      ]}
+      navigation={caseNavigation}
+      accent="rx"
+    >
       <div className="executive-summary" aria-label="Case study executive summary">
         <article><span>Business problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
         <article><span>What I owned</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
         <article><span>Key decision</span><p>Modernize the customer journey without disrupting 4D ordering logic or production fulfillment.</p></article>
-        <article><span>Verified result</span><p>New-user traffic increased 1,272% after the redesign and search-content launch.</p></article>
+        <article><span>Verified result</span><p>New users increased 1,272% following the redesign and search-content program; four tracked recurring question categories fell to zero.</p></article>
         <article><span>Business significance</span><p>The portal became a clearer acquisition, education, and self-service channel.</p></article>
       </div>
+    </CaseStudyWorkspace>
+
+    <section className="signature-visual rx-signature shell" id="regulated-workflow" aria-labelledby="rx-signature-title">
+      <div className="signature-heading">
+        <div><p className="kicker">Signature workflow</p><h2 id="rx-signature-title">Improve the customer layer. Preserve the operational foundation.</h2></div>
+        <p>Executive impact first, with acquisition analytics, operational follow-up, and raw evidence preserved in the detailed sections below.</p>
+      </div>
+      <div className="rx-executive-impact" aria-label="Prescription pad ordering executive impact summary">
+        <article><span>Acquisition</span><strong>+1,272%</strong><b>new users</b><p>Following the redesign and search-content program.</p></article>
+        <article><span>Self-service</span><strong>100%</strong><b>reduction</b><p>Across the tracked recurring question categories that fell to zero after the change.</p></article>
+        <article><span>Operational continuity</span><strong>20</strong><b>ordering paths preserved</b><p>Pocket and desk configurations for one through ten prescribers remained available.</p></article>
+      </div>
+      <ol className="rx-funnel" aria-label="Regulated prescription pad customer-to-production workflow">
+        {["Discovery", "Product education", "Pad selection", "Prescriber configuration", "Existing compliance and ordering logic", "Production", "Fulfillment"].map((step, index) =>
+          <li key={step} className={index < 4 ? "customer-layer" : "foundation-layer"}><small>{index < 4 ? "Customer layer improved" : "Operational foundation preserved"}</small><strong>{step}</strong>{index < 6 && <span aria-hidden="true">→</span>}</li>
+        )}
+      </ol>
     </section>
 
     <section className="case-cover shell real-case-cover rx-case-cover"><span className="evidence-label">Delivered landing experience</span><Image src="/images/rx-pad-portal/index-after.png" width={1383} height={855} priority alt="Redesigned California security prescription pad landing page with clear navigation, value proposition, order actions, and trust indicators" /></section>
@@ -136,7 +136,7 @@ export default function PrescriptionPadOrderingPortal() {
     </section>
 
     <section className="analytics-section shell" id="analytics" aria-labelledby="analytics-title">
-      <div className="section-intro"><p className="kicker">Post-launch evidence</p><h2 id="analytics-title">New users increased 1,272% as visibility expanded.</h2><p>Google Analytics showed an immediate increase in discovery and site activity following the website conversion and content expansion. The 30-day snapshot recorded 4.2K active users, 4.1K new users, and 14K events.</p></div>
+      <div className="section-intro"><p className="kicker">Post-launch evidence</p><h2 id="analytics-title">New users increased 1,272% following the redesign and search-content program.</h2><p>Google Analytics showed an immediate increase in discovery and site activity following the website conversion and content expansion. The 30-day snapshot recorded 4.2K active users, 4.1K new users, and 14K events.</p></div>
       <div className="analytics-evidence-grid">
         <figure className="evidence-frame analytics-primary"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>30-day acquisition snapshot</span></div><Image src="/images/rx-pad-portal/analytics-30-days.png" width={797} height={411} unoptimized alt="Google Analytics 30-day report showing 4.2 thousand active users, 14 thousand events, and 4.1 thousand new users" /><figcaption><b>Acquisition growth:</b> New users increased 1,272%, active users increased 1,224.4%, and event activity increased 639.8% compared with the previous period.</figcaption></figure>
         <figure className="evidence-frame analytics-pages"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Prescription content visibility</span></div><Image src="/images/rx-pad-portal/analytics-page-views.png" width={294} height={386} unoptimized alt="Google Analytics page report showing increased views across California prescription pad pages" /><figcaption><b>Page-level visibility:</b> Multiple California prescription pad pages recorded substantial increases in views, supporting the content-led SEO and GEO strategy.</figcaption></figure>
@@ -172,7 +172,7 @@ export default function PrescriptionPadOrderingPortal() {
     <section className="impact-section shell" id="outcome">
       <p className="kicker">Outcome</p>
       <h2>A clearer ordering capability that also opened a path for organic growth.</h2>
-      <div className="impact-grid"><div><strong>1,272%</strong><span>Increase in new users</span></div><div><strong>+50%</strong><span>Order increase from June to July</span></div><div><strong>−100%</strong><span>Across four tracked question types</span></div></div>
+      <div className="impact-grid"><div><strong>+1,272%</strong><span>New users following redesign and content</span></div><div><strong>+50%</strong><span>Observed order increase from June to July</span></div><div><strong>100%</strong><span>Reduction across four tracked question types</span></div></div>
       <div className="outcome-columns"><article><h3>Customer experience</h3><ul><li>Clearer page purpose and next steps</li><li>Easier product comparison</li><li>More scannable prescriber selection</li><li>Improved responsive behavior</li></ul></article><article><h3>Operational outcomes</h3><ul><li>Existing order destinations preserved</li><li>Production workflow left unchanged</li><li>Customer calls captured as market insight</li><li>Lower-risk modernization approach</li></ul></article><article><h3>Growth foundation</h3><ul><li>SEO and GEO resource library</li><li>More entry points for high-intent customers</li><li>Observed increase in orders after launch</li><li>Clearer basis for future optimization</li></ul></article></div>
       <p className="impact-note">New users increased 1,272% compared with the previous reporting period. Prescription-page orders rose 50% from 20 in June to 30 in July, the highest count in the five-month series. The four tracked recurring-question categories declined 100%, from a combined baseline of 34.8 per month to zero during the two-month follow-up. Because completed-order events and a formal attribution model were not available, the order trend is presented as an observed signal rather than a sole-cause claim. The question result applies only to the four tracked categories.</p>
     </section>
@@ -203,7 +203,13 @@ export default function PrescriptionPadOrderingPortal() {
       </div>
     </section>
 
-    <section className="next-project shell"><p className="kicker">Next case study</p><h2>Hearth Personal Finance Platform</h2><span>Independent product · Zero-to-one platform</span><Link href="/projects/hearth">View case study →</Link></section>
+    <CaseStudyEnding
+      capabilities={["Regulated Product Operations", "Voice of Customer", "Growth Operations", "Legacy System Management", "Measurement Strategy"]}
+      nextNumber="03"
+      nextTitle="Hearth Personal Finance Platform"
+      nextDescription="Move from an established regulated workflow into zero-to-one product strategy, architecture, and release operations."
+      nextHref="/projects/hearth"
+    />
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Professional client work · Product operations</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }
