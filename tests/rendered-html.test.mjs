@@ -116,7 +116,10 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /1\.86/i);
       assert.match(html, /Most participants used the search bar/i);
       assert.match(html, /Results below are usability-test findings, not live product analytics/i);
-      assert.match(html, /Core report tasks were completed faster/i);
+      assert.match(html, /approximately 70%\+ lower task time/i);
+      assert.match(html, /≈72%.*Lower task time.*83%.*Fewer incorrect selections/is);
+      assert.match(html, /≈70%.*Lower task time.*100%.*Fewer incorrect selections/is);
+      assert.match(html, /Task-time percentage reductions are directional comparisons based on the midpoint/i);
       assert.match(html, /20 participants.*4 core tasks.*Original vs redesigned portal/is);
       assert.match(html, /Reports are reviewed in batches/i);
       assert.match(html, /Workflow evidence determined what mattered first/i);
@@ -157,7 +160,9 @@ test("renders the RX growth roadmap with honest statuses and target KPIs", async
   const html = await response.text();
   assert.match(html, /Growth roadmap and measurement plan/i);
   assert.match(html, /Improve the customer layer\. Preserve the operational foundation\./i);
-  assert.match(html, /\+1,272%.*Verified traffic growth/is);
+  assert.match(html, /\+1,272%.*Following the redesign and search-content program/is);
+  assert.match(html, /100%.*reduction.*tracked recurring question categories/is);
+  assert.match(html, /20.*ordering paths preserved/is);
   assert.match(html, /Delivered/i);
   assert.match(html, /In progress/i);
   assert.match(html, /Planned/i);
