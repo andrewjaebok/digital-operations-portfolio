@@ -1312,17 +1312,17 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 .ant-bread-score{fill:none;stroke:#c98750;stroke-width:1.25;stroke-linecap:round}
 .ant-bread-loose-crumbs{fill:#e7b15f;stroke:#9d633e;stroke-width:.7;animation:ant-loose-crumbs 39s linear infinite}
 .ant-bread-bites{fill:var(--background);opacity:0;animation:ant-bread-bites 39s linear infinite}
-.ant-blueprint{transform-box:view-box;transform-origin:252px 68px;opacity:0;animation:ant-blueprint-open 39s linear infinite}
+.ant-held-blueprint{transform-box:fill-box;transform-origin:19px -4px;opacity:0;animation:ant-blueprint-open 39s linear infinite}
 .ant-blueprint-paper{fill:#e9f2ec;stroke:#638198;stroke-width:1}
 .ant-blueprint-sketch{fill:none;stroke:#456b83;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
 .ant-blueprint-roll{fill:#d5e4de;stroke:#638198;stroke-width:1}
-.ant-hat-cache{fill:#e8a12c;stroke:#9b6518;stroke-width:.8;stroke-linejoin:round;opacity:0;animation:ant-hat-cache 39s linear infinite}
+.ant-blueprint-grip{fill:none;stroke:currentColor;stroke-width:1;stroke-linecap:round}
 .ant-bridge-shadow{fill:none;stroke:#29445a;stroke-width:6;stroke-linecap:round;opacity:0;animation:ant-bridge-shadow 39s linear infinite}
 .ant-bridge-piece{fill:none;stroke:#754f37;stroke-width:4;stroke-linecap:round;opacity:0;animation:ant-bridge-build-one 39s linear infinite}
 .bridge-two{animation-name:ant-bridge-build-two}
 .bridge-three{animation-name:ant-bridge-build-three}
 .bridge-four{animation-name:ant-bridge-build-four}
-.ant-role,.ant-builder,.ant-hat-carrier,.ant-return{
+.ant-role,.ant-builder{
   color:#17283a;
   fill:currentColor;
   stroke:currentColor;
@@ -1338,25 +1338,38 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 }
 .ant-observer{animation-name:ant-observer}
 .ant-planner{animation-name:ant-planner}
-.ant-resource{animation-name:ant-resource}
-.ant-wait-one{animation-name:ant-wait-one}
-.ant-wait-two{animation-name:ant-wait-two}
-.ant-hat-carrier{animation-name:ant-hat-delivery}
-.carried-hats,.ant-worn-hat{fill:#e8a12c;stroke:#9b6518;stroke-width:.8;stroke-linejoin:round}
-.ant-builder .builder-material{stroke:#754f37;stroke-width:3}
+.ant-builder .builder-material{
+  stroke:#754f37;
+  stroke-width:3;
+  opacity:0;
+  animation-duration:39s;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
 .builder-one{animation-name:ant-builder-one}
 .builder-two{animation-name:ant-builder-two}
 .builder-three{animation-name:ant-builder-three}
 .builder-four{animation-name:ant-builder-four}
+.builder-one .builder-material{animation-name:ant-builder-log-one}
+.builder-two .builder-material{animation-name:ant-builder-log-two}
+.builder-three .builder-material{animation-name:ant-builder-log-three}
+.builder-four .builder-material{animation-name:ant-builder-log-four}
 .ant-validator{animation-name:ant-validator}
 .ant-colony-one{animation-name:ant-colony-one}
 .ant-colony-two{animation-name:ant-colony-two}
 .ant-colony-three{animation-name:ant-colony-three}
 .ant-colony-four{animation-name:ant-colony-four}
-.ant-return{transform:scaleX(-1);animation-name:ant-return-one}
-.return-two{animation-name:ant-return-two}
-.return-three{animation-name:ant-return-three}
 .ant-crumb{fill:#e7b15f;stroke:#9d633e;stroke-width:.8}
+.ant-colony .ant-crumb{
+  opacity:0;
+  animation-duration:39s;
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+.ant-colony-one .ant-crumb{animation-name:ant-colony-crumb-one}
+.ant-colony-two .ant-crumb{animation-name:ant-colony-crumb-two}
+.ant-colony-three .ant-crumb{animation-name:ant-colony-crumb-three}
+.ant-colony-four .ant-crumb{animation-name:ant-colony-crumb-four}
 .ant-workflow[data-paused] *{animation-play-state:paused!important}
 
 @keyframes ant-water-flow{to{transform:translateY(16px)}}
@@ -1364,92 +1377,100 @@ html.dark .quest-browse-link{color:#f4f6fb}html.dark .quest-instructions kbd{bor
 @keyframes ant-observer{
   0%{transform:translate(-24px,52px);opacity:0}2%{opacity:1}12%{transform:translate(248px,52px)}
   14%{transform:translate(259px,34px)}16%{transform:translate(249px,67px)}18%{transform:translate(225px,52px)}
-  31%{transform:translate(230px,52px);opacity:1}33%,100%{opacity:0}
+  23%{transform:translate(225px,52px);opacity:1}24%{transform:translate(225px,52px) scaleX(-1)}
+  33%{transform:translate(-28px,52px) scaleX(-1);opacity:1}34%,100%{transform:translate(-28px,52px) scaleX(-1);opacity:0}
 }
 @keyframes ant-planner{
-  0%,17%{transform:translate(120px,54px);opacity:0}18%{opacity:1}24%{transform:translate(216px,54px)}
-  25%,48%{transform:translate(216px,54px);opacity:1}50%,100%{opacity:0}
-}
-@keyframes ant-resource{
-  0%,20%{transform:translate(190px,54px) scaleX(-1);opacity:0}21%{opacity:1}29%{transform:translate(-24px,54px) scaleX(-1);opacity:1}
-  30%,100%{opacity:0}
-}
-@keyframes ant-wait-one{
-  0%{transform:translate(-60px,54px);opacity:0}3%{opacity:1}14%{transform:translate(185px,54px)}
-  20%{transform:translate(195px,51px)}34%{transform:translate(188px,55px)}48%{transform:translate(198px,52px)}
-  50%,100%{opacity:0}
-}
-@keyframes ant-wait-two{
-  0%{transform:translate(-95px,54px);opacity:0}4%{opacity:1}15%{transform:translate(155px,54px)}
-  23%{transform:translate(164px,56px)}36%{transform:translate(158px,52px)}50%{transform:translate(170px,54px)}
-  52%,100%{opacity:0}
+  0%,9%{transform:translate(-28px,54px);opacity:0}10%{opacity:1}16%{transform:translate(205px,54px)}
+  19%{transform:translate(205px,74px);opacity:1}
+  20%,94%{transform:translate(205px,74px);opacity:1}96%,100%{transform:translate(205px,74px);opacity:0}
 }
 @keyframes ant-blueprint-open{
-  0%,24%{opacity:0;transform:scaleX(.08)}25%{opacity:1;transform:scaleX(.08)}
-  29%{opacity:1;transform:scaleX(1)}67%{opacity:1;transform:scaleX(1)}
-  70%,100%{opacity:0;transform:scaleX(1)}
+  0%,19%{opacity:0;transform:scaleX(.08)}20%{opacity:1;transform:scaleX(.08)}
+  22%,94%{opacity:1;transform:scaleX(1)}
+  96%,100%{opacity:0;transform:scaleX(1)}
 }
-@keyframes ant-hat-delivery{
-  0%,27%{transform:translate(45px,47px);opacity:0}28%{opacity:1}34%{transform:translate(216px,47px);opacity:1}
-  35%,100%{opacity:0}
-}
-@keyframes ant-hat-cache{0%,33%{opacity:0}34%,49%{opacity:1}52%,100%{opacity:0}}
 @keyframes ant-builder-one{
-  0%,31%{transform:translate(60px,49px);opacity:0}32%{opacity:1}41%{transform:translate(267px,49px)}
-  43%{transform:translate(267px,57px) rotate(-14deg)}45%{transform:translate(238px,57px);opacity:1}47%,100%{opacity:0}
+  0%{transform:translate(-55px,53px);opacity:0}2%{opacity:1}17%{transform:translate(180px,53px)}
+  23%{transform:translate(180px,53px);opacity:1}24%{transform:translate(180px,53px) scaleX(-1)}
+  31%{transform:translate(-30px,53px) scaleX(-1);opacity:1}32%{opacity:0}
+  34%{transform:translate(-30px,49px);opacity:0}35%{opacity:1}42%{transform:translate(267px,49px)}
+  44%{transform:translate(267px,57px) rotate(-14deg)}45%{transform:translate(250px,57px) scaleX(-1)}
+  52%{transform:translate(-30px,57px) scaleX(-1);opacity:1}53%,100%{transform:translate(-30px,57px) scaleX(-1);opacity:0}
 }
 @keyframes ant-builder-two{
-  0%,36%{transform:translate(40px,49px);opacity:0}37%{opacity:1}45%{transform:translate(279px,49px)}
-  47%{transform:translate(279px,57px) rotate(8deg)}49%{transform:translate(242px,57px);opacity:1}51%,100%{opacity:0}
+  0%{transform:translate(-80px,53px);opacity:0}3%{opacity:1}18%{transform:translate(155px,53px)}
+  24%{transform:translate(155px,53px);opacity:1}25%{transform:translate(155px,53px) scaleX(-1)}
+  33%{transform:translate(-30px,53px) scaleX(-1);opacity:1}34%{opacity:0}
+  37%{transform:translate(-30px,49px);opacity:0}38%{opacity:1}47%{transform:translate(279px,49px)}
+  49%{transform:translate(279px,57px) rotate(8deg)}50%{transform:translate(248px,57px) scaleX(-1)}
+  57%{transform:translate(-30px,57px) scaleX(-1);opacity:1}58%,100%{transform:translate(-30px,57px) scaleX(-1);opacity:0}
 }
 @keyframes ant-builder-three{
-  0%,41%{transform:translate(25px,49px);opacity:0}42%{opacity:1}50%{transform:translate(291px,49px)}
-  52%{transform:translate(291px,57px) rotate(-13deg)}54%{transform:translate(248px,57px);opacity:1}56%,100%{opacity:0}
+  0%{transform:translate(-105px,53px);opacity:0}4%{opacity:1}19%{transform:translate(130px,53px)}
+  24%{transform:translate(130px,53px);opacity:1}25%{transform:translate(130px,53px) scaleX(-1)}
+  35%{transform:translate(-30px,53px) scaleX(-1);opacity:1}36%{opacity:0}
+  41%{transform:translate(-30px,49px);opacity:0}42%{opacity:1}52%{transform:translate(291px,49px)}
+  54%{transform:translate(291px,57px) rotate(-13deg)}55%{transform:translate(245px,57px) scaleX(-1)}
+  62%{transform:translate(-30px,57px) scaleX(-1);opacity:1}63%,100%{transform:translate(-30px,57px) scaleX(-1);opacity:0}
 }
 @keyframes ant-builder-four{
-  0%,46%{transform:translate(10px,49px);opacity:0}47%{opacity:1}54%{transform:translate(303px,49px)}
-  56%{transform:translate(303px,57px) rotate(14deg)}58%{transform:translate(252px,57px);opacity:1}60%,100%{opacity:0}
+  0%{transform:translate(-130px,53px);opacity:0}5%{opacity:1}20%{transform:translate(105px,53px)}
+  25%{transform:translate(105px,53px);opacity:1}26%{transform:translate(105px,53px) scaleX(-1)}
+  36%{transform:translate(-30px,53px) scaleX(-1);opacity:1}37%{opacity:0}
+  45%{transform:translate(-30px,49px);opacity:0}46%{opacity:1}56%{transform:translate(303px,49px)}
+  58%{transform:translate(303px,57px) rotate(14deg)}59%{transform:translate(250px,57px) scaleX(-1)}
+  66%{transform:translate(-30px,57px) scaleX(-1);opacity:1}67%,100%{transform:translate(-30px,57px) scaleX(-1);opacity:0}
 }
-@keyframes ant-bridge-shadow{0%,35%{opacity:0}36%,94%{opacity:.28}96%,100%{opacity:0}}
-@keyframes ant-bridge-build-one{0%,42%{opacity:0}43%,94%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-builder-log-one{0%,33%{opacity:0}34%,43%{opacity:1}44%,100%{opacity:0}}
+@keyframes ant-builder-log-two{0%,36%{opacity:0}37%,48%{opacity:1}49%,100%{opacity:0}}
+@keyframes ant-builder-log-three{0%,40%{opacity:0}41%,53%{opacity:1}54%,100%{opacity:0}}
+@keyframes ant-builder-log-four{0%,44%{opacity:0}45%,57%{opacity:1}58%,100%{opacity:0}}
+@keyframes ant-bridge-shadow{0%,43%{opacity:0}44%,94%{opacity:.28}96%,100%{opacity:0}}
+@keyframes ant-bridge-build-one{0%,43%{opacity:0}44%,94%{opacity:1}96%,100%{opacity:0}}
 @keyframes ant-bridge-build-two{0%,48%{opacity:0}49%,94%{opacity:1}96%,100%{opacity:0}}
 @keyframes ant-bridge-build-three{0%,53%{opacity:0}54%,94%{opacity:1}96%,100%{opacity:0}}
 @keyframes ant-bridge-build-four{0%,57%{opacity:0}58%,94%{opacity:1}96%,100%{opacity:0}}
 @keyframes ant-validator{
-  0%,59%{transform:translate(247px,53px);opacity:0}60%{opacity:1}64%{transform:translate(316px,53px)}
-  68%{transform:translate(352px,53px);opacity:1}70%,100%{opacity:0}
+  0%,59%{transform:translate(-28px,53px);opacity:0}
+  60%{transform:translate(-28px,53px);opacity:1}
+  64%{transform:translate(264px,53px)}
+  66%{transform:translate(288px,48px)}
+  68%{transform:translate(313px,53px)}
+  75%{transform:translate(628px,53px);opacity:1}
+  76%,100%{transform:translate(628px,53px);opacity:0}
 }
 @keyframes ant-colony-one{
-  0%,67%{transform:translate(205px,53px);opacity:0}68%{opacity:1}73%{transform:translate(316px,53px)}
-  80%{transform:translate(492px,53px);opacity:1}82%,100%{opacity:0}
+  0%,67%{transform:translate(-28px,53px);opacity:0}68%{opacity:1}74%{transform:translate(316px,53px)}
+  80%{transform:translate(492px,53px)}82%{transform:translate(492px,53px) scaleX(-1)}
+  87%{transform:translate(316px,53px) scaleX(-1)}89%{transform:translate(252px,53px) scaleX(-1)}
+  94%{transform:translate(-28px,53px) scaleX(-1);opacity:1}95%,100%{opacity:0}
 }
 @keyframes ant-colony-two{
-  0%,69%{transform:translate(180px,53px);opacity:0}70%{opacity:1}75%{transform:translate(316px,53px)}
-  82%{transform:translate(498px,53px);opacity:1}84%,100%{opacity:0}
+  0%,69%{transform:translate(-52px,53px);opacity:0}70%{opacity:1}76%{transform:translate(316px,53px)}
+  82%{transform:translate(498px,53px)}84%{transform:translate(498px,53px) scaleX(-1)}
+  89%{transform:translate(316px,53px) scaleX(-1)}91%{transform:translate(252px,53px) scaleX(-1)}
+  95%{transform:translate(-28px,53px) scaleX(-1);opacity:1}96%,100%{opacity:0}
 }
 @keyframes ant-colony-three{
-  0%,71%{transform:translate(155px,53px);opacity:0}72%{opacity:1}77%{transform:translate(316px,53px)}
-  84%{transform:translate(505px,53px);opacity:1}86%,100%{opacity:0}
+  0%,71%{transform:translate(-76px,53px);opacity:0}72%{opacity:1}78%{transform:translate(316px,53px)}
+  84%{transform:translate(505px,53px)}86%{transform:translate(505px,53px) scaleX(-1)}
+  91%{transform:translate(316px,53px) scaleX(-1)}93%{transform:translate(252px,53px) scaleX(-1)}
+  96%{transform:translate(-28px,53px) scaleX(-1);opacity:1}97%,100%{opacity:0}
 }
 @keyframes ant-colony-four{
-  0%,73%{transform:translate(130px,53px);opacity:0}74%{opacity:1}79%{transform:translate(316px,53px)}
-  86%{transform:translate(510px,53px);opacity:1}88%,100%{opacity:0}
+  0%,73%{transform:translate(-100px,53px);opacity:0}74%{opacity:1}80%{transform:translate(316px,53px)}
+  86%{transform:translate(510px,53px)}88%{transform:translate(510px,53px) scaleX(-1)}
+  93%{transform:translate(316px,53px) scaleX(-1)}95%{transform:translate(252px,53px) scaleX(-1)}
+  97%{transform:translate(-28px,53px) scaleX(-1);opacity:1}98%,100%{opacity:0}
 }
 @keyframes ant-loose-crumbs{0%,79%{opacity:1}82%,100%{opacity:0}}
 @keyframes ant-bread-bites{0%,81%{opacity:0}83%,94%{opacity:1}96%,100%{opacity:0}}
-@keyframes ant-return-one{
-  0%,81%{transform:translate(500px,53px) scaleX(-1);opacity:0}82%{opacity:1}86%{transform:translate(316px,53px) scaleX(-1)}
-  89%{transform:translate(252px,53px) scaleX(-1)}93%{transform:translate(-28px,53px) scaleX(-1);opacity:1}94%,100%{opacity:0}
-}
-@keyframes ant-return-two{
-  0%,83%{transform:translate(508px,53px) scaleX(-1);opacity:0}84%{opacity:1}88%{transform:translate(316px,53px) scaleX(-1)}
-  91%{transform:translate(252px,53px) scaleX(-1)}94%{transform:translate(8px,53px) scaleX(-1);opacity:1}95%,100%{opacity:0}
-}
-@keyframes ant-return-three{
-  0%,85%{transform:translate(516px,53px) scaleX(-1);opacity:0}86%{opacity:1}90%{transform:translate(316px,53px) scaleX(-1)}
-  93%{transform:translate(252px,53px) scaleX(-1)}95%{transform:translate(70px,53px) scaleX(-1);opacity:1}96%,100%{opacity:0}
-}
-html.dark .ant-role,html.dark .ant-return,html.dark .ant-builder,html.dark .ant-hat-carrier{color:#ff9a57}
+@keyframes ant-colony-crumb-one{0%,81%{opacity:0}82%,94%{opacity:1}95%,100%{opacity:0}}
+@keyframes ant-colony-crumb-two{0%,83%{opacity:0}84%,95%{opacity:1}96%,100%{opacity:0}}
+@keyframes ant-colony-crumb-three{0%,85%{opacity:0}86%,96%{opacity:1}97%,100%{opacity:0}}
+@keyframes ant-colony-crumb-four{0%,87%{opacity:0}88%,97%{opacity:1}98%,100%{opacity:0}}
+html.dark .ant-role,html.dark .ant-builder{color:#ff9a57}
 html.dark .ant-ground-line{stroke:#9caac0;opacity:.24}
 html.dark .ant-river-bank{fill:#387f9f;opacity:.82}
 html.dark .ant-river-edge{stroke:#73b7ce}
@@ -1467,8 +1488,8 @@ html.dark .ant-bridge-shadow{stroke:#12202d}
   .hero-ant-stage{height:56px;margin-top:6px}
   .ant-workflow{width:100%;height:56px}
   .ant-workflow svg{width:100%;height:56px}
-  .ant-wait-two,.builder-three,.builder-four,.bridge-four,.ant-colony-four,.return-three{display:none}
-  .ant-blueprint{transform-origin:252px 68px}
+  .builder-three,.builder-four,.bridge-four,.ant-colony-four{display:none}
+  .ant-held-blueprint{transform-origin:19px -4px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -1476,12 +1497,13 @@ html.dark .ant-bridge-shadow{stroke:#12202d}
   .ant-river-current{transform:none}
   .ant-bridge-piece{opacity:1}
   .ant-bridge-shadow{opacity:.28}
-  .ant-blueprint{opacity:1;transform:scaleX(1)}
-  .ant-hat-cache{opacity:1}
+  .ant-planner{transform:translate(205px,74px);opacity:1}
+  .ant-held-blueprint{opacity:1;transform:scaleX(1)}
   .ant-builder.builder-one{transform:translate(220px,54px);opacity:1}
   .ant-validator{transform:translate(285px,53px);opacity:1}
-  .return-one{transform:translate(365px,53px) scaleX(-1);opacity:1}
-  .ant-observer,.ant-planner,.ant-resource,.ant-wait-one,.ant-wait-two,.ant-hat-carrier,.builder-two,.builder-three,.builder-four,.ant-colony-one,.ant-colony-two,.ant-colony-three,.ant-colony-four,.return-two,.return-three{opacity:0}
+  .ant-colony-one{transform:translate(365px,53px) scaleX(-1);opacity:1}
+  .ant-colony-one .ant-crumb{opacity:1}
+  .ant-observer,.builder-two,.builder-three,.builder-four,.ant-colony-two,.ant-colony-three,.ant-colony-four{opacity:0}
   .ant-bread-loose-crumbs{opacity:0}
   .ant-bread-bites{opacity:1}
 }
