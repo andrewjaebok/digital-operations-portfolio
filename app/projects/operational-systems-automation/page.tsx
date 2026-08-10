@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CaseProgress from "../../components/CaseProgress";
+import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
 export const metadata: Metadata = {
   title: "Operational Systems & Automation | Product Operations Case Study",
   description: "A Senior Product Operations case study on root-cause analysis, workflow automation, QA, asset continuity, and repeatable digital-production systems.",
 };
 
-const progressSections = [
-  { id: "overview", label: "Overview", icon: "⚙" },
-  { id: "operating-model", label: "Operating model", icon: "→" },
-  { id: "prioritization", label: "Prioritization", icon: "◎" },
-  { id: "production-automation", label: "Production automation", icon: "◇" },
-  { id: "asset-persistence", label: "Asset persistence", icon: "↻" },
-  { id: "lifecycle-learning", label: "System learning", icon: "↗" },
-  { id: "quality", label: "QA and rollout", icon: "✓" },
-  { id: "scorecard", label: "Impact scorecard", icon: "▦" },
-  { id: "standardization", label: "Standardization", icon: "⌘" },
-  { id: "backlog", label: "Next steps", icon: "☷" },
+const caseNavigation = [
+  { id: "overview", label: "Overview" },
+  { id: "operating-model", label: "Operating model" },
+  { id: "production-automation", label: "Automation" },
+  { id: "asset-persistence", label: "Asset persistence" },
+  { id: "quality", label: "QA" },
+  { id: "scorecard", label: "Impact" },
+  { id: "standardization", label: "Standardization" },
 ];
 
 const operatingModel = [
@@ -128,30 +124,24 @@ const backlog = [
 ];
 
 export default function OperationalSystemsAutomation() {
-  return <main id="top" className="operations-case-study">
-    <CaseProgress sections={progressSections} />
+  return <main id="top" className="case-study-page operations-case-study">
     <a className="skip-link" href="#overview">Skip to case study</a>
-
-    <header className="site-header case-header">
-      <Link className="brand" href="/" aria-label="Portfolio home"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Case study</span><b><i aria-hidden="true">⚙</i> 04 / Operational Systems</b></div>
-      <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#scorecard">Evidence</a><a href="#backlog">Backlog</a></nav>
-    </header>
-
-    <div className="project-context-bar">
-      <div className="shell">
-        <nav className="case-breadcrumb" aria-label="Breadcrumb"><Link href="/">Portfolio</Link><span aria-hidden="true">/</span><strong>Operational Systems &amp; Automation</strong></nav>
-        <span className="case-page-label">Project case study · 04</span>
-      </div>
-    </div>
-
-    <section className="case-hero shell operations-hero" id="overview">
-      <Link className="back-link" href="/"><span aria-hidden="true">←</span> Back to all projects</Link>
-      <p className="kicker">Senior Product Operations · Digital production systems</p>
-      <h1>Operational Systems &amp; Automation</h1>
-      <p className="operations-subtitle">Building repeatable systems behind digital production.</p>
-      <p className="case-lead">I identified recurring friction across proof and production workflows, investigated root causes, and moved repeatable behaviors into more dependable systems. The operating principle was simple: fix recurring problems at the system level instead of repeatedly treating individual symptoms.</p>
-
+    <CaseStudyWorkspace
+      number="PROJECT 04"
+      archetype="OPERATIONAL SYSTEMS"
+      shortTitle="Operational Systems"
+      title="Operational Systems & Automation"
+      subtitle="Building repeatable systems behind digital production."
+      summary="I identified recurring friction across proof and production workflows, investigated root causes, and moved repeatable behaviors into more dependable systems."
+      metadata={[
+        { label: "Role", value: "Senior Product Operations / Digital Services" },
+        { label: "Scope", value: "Assessment · Requirements · Automation · QA · Improvement" },
+        { label: "Project type", value: "Digital production systems" },
+        { label: "Status", value: "Implemented · Measurement maturing" },
+      ]}
+      navigation={caseNavigation}
+      accent="operations"
+    >
       <div className="executive-summary operations-summary" aria-label="Case study executive summary">
         <article><span>Operational problem</span><p>Recurring manual tasks, production exceptions, and workflow failures created unnecessary intervention across customer-facing proof and production processes.</p></article>
         <article><span>What I owned</span><p>Workflow assessment, problem identification, requirements, prioritization, automation design, implementation, QA, troubleshooting, and continuous improvement.</p></article>
@@ -165,7 +155,7 @@ export default function OperationalSystemsAutomation() {
         <span><strong>Directional:</strong> automated behaviors required less repeated manual handling, but the effect was not formally quantified.</span>
         <span><strong>Future measurement:</strong> time, volume, interventions, corrections, rework, and workflow reliability.</span>
       </div>
-    </section>
+    </CaseStudyWorkspace>
 
     <section className="operations-section shell" id="operating-model">
       <div className="operations-section-heading">
@@ -175,6 +165,10 @@ export default function OperationalSystemsAutomation() {
       <ol className="operations-flow" aria-label="Operational systems improvement process">
         {operatingModel.map((step, index) => <li key={step}><small>{String(index + 1).padStart(2, "0")}</small><strong>{step}</strong>{index < operatingModel.length - 1 && <span aria-hidden="true">→</span>}</li>)}
       </ol>
+      <div className="operations-initiative-index" aria-label="Documented operational initiatives">
+        <a href="#production-automation"><span>Initiative 01</span><strong>Production Workflow Automation</strong><p>Standardize predictable production behaviors.</p></a>
+        <a href="#asset-persistence"><span>Initiative 02</span><strong>Proof Asset Persistence</strong><p>Protect customer assets through the revision lifecycle.</p></a>
+      </div>
     </section>
 
     <section className="operations-section operations-priority shell" id="prioritization">
@@ -320,7 +314,13 @@ export default function OperationalSystemsAutomation() {
       <h2>I identify recurring operational friction and build repeatable systems that reduce unnecessary intervention, improve workflow reliability, and create operational leverage across digital production.</h2>
     </section>
 
-    <section className="next-project shell"><span>Return to the portfolio</span><h2>See the customer-facing and zero-to-one work these operating principles support.</h2><Link href="/">View all projects <b aria-hidden="true">↗</b></Link></section>
+    <CaseStudyEnding
+      capabilities={["Root Cause Analysis", "Process Automation", "Quality Assurance", "Operational Excellence", "System Standardization"]}
+      nextNumber="05"
+      nextTitle="University Logo Directory Redesign"
+      nextDescription="See how discovery signals, KPI design, and matched synthetic scenario testing shaped a second product iteration."
+      nextHref="/projects/university-logo-directory"
+    />
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Digital operations · Product transformation</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }

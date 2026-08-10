@@ -21,7 +21,7 @@ type CaseStudyWorkspaceProps = {
   summary: string;
   metadata: MetaItem[];
   navigation: NavItem[];
-  accent: "utility" | "rx" | "hearth" | "operations";
+  accent: "utility" | "rx" | "hearth" | "operations" | "finder";
   children?: ReactNode;
 };
 

@@ -71,13 +71,14 @@ export default function Home() {
       </section>
 
       <section className="bento-section shell" id="work">
-        <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Four kinds of systems. One operating mindset.</h2></div><p>Each case study applies the same Product Operations approach to a different kind of business problem.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">Selected projects</p><h2>Five case studies. One operating mindset.</h2></div><p>Each case study applies the same Product Operations approach to a different kind of business problem.</p></div>
         <ProjectQuest />
         <div className="project-archetypes" id="case-studies" aria-label="Project types">
           <span className="utility-type"><i aria-hidden="true">◫</i> Customer portal</span>
           <span className="rx-type"><i aria-hidden="true">✚</i> Regulated commerce</span>
           <span className="hearth-type"><i aria-hidden="true">◇</i> Product platform</span>
           <span className="operations-type"><i aria-hidden="true">⚙</i> Operational system</span>
+          <span className="finder-type"><i aria-hidden="true">⌕</i> Discovery &amp; validation</span>
         </div>
         <div className="project-gallery balanced-project-gallery">
           <Link className="bento-card portfolio-project-card utility-project" href="/projects/customer-portal-redesign">
@@ -121,8 +122,28 @@ export default function Home() {
             <div className="portfolio-card-footer"><span>Senior Product Operations / Digital Operations</span><b>View case study ↗</b></div>
           </Link>
 
+          <Link className="bento-card portfolio-project-card finder-project" href="/projects/university-logo-directory">
+            <div className="project-topline"><span><i aria-hidden="true">⌕</i> Project 05</span><b>Discovery &amp; validation</b></div>
+            <div className="portfolio-card-media project-compare-media" aria-label="University logo directory before and after">
+              <figure><span>Before</span><Image src="/images/university-logo-directory/original-directory.jpg" width={1200} height={1145} alt="Original static university logo directory requiring manual scrolling" /></figure>
+              <figure><span>After</span><Image src="/images/university-logo-directory/redesigned-directory.jpg" width={1200} height={1012} alt="Searchable university logo directory showing explicit organizational paths" /></figure>
+            </div>
+            <div className="portfolio-card-copy">
+              <p className="project-label">Product operations · Legacy workflow modernization</p>
+              <h3>University Logo Directory Redesign</h3>
+              <p>Converted a static 195-entry reference list into a searchable, persistent directory, then used two matched rounds of synthetic persona testing to prioritize and evaluate the next iteration.</p>
+              <div className="finder-card-kpis" aria-label="Synthetic Round 2 modeled KPI results">
+                <span><strong>99%</strong> Modeled completion</span>
+                <span><strong>20 sec</strong> Modeled median time</span>
+                <span><strong>3%</strong> Modeled assistance</span>
+              </div>
+              <small className="finder-card-caveat">Synthetic pre-launch model, not observed user behavior.</small>
+            </div>
+            <div className="portfolio-card-footer"><span>Senior Product Operations / Digital Services</span><b>View case study ↗</b></div>
+          </Link>
+
         </div>
-        <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>4</strong><span>Documented case studies</span></div><p>Each project is documented around the problem, constraints, decisions, responsibilities, and verified outcome.</p></div>
+        <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>5</strong><span>Documented case studies</span></div><p>Each project separates verified delivery, directional evidence, modeled evaluation, and future measurement.</p></div>
       </section>
 
       <section className="capability-section shell" id="capabilities">

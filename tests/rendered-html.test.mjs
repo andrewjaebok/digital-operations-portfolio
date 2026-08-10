@@ -33,14 +33,16 @@ test("renders development preview metadata", async () => {
   assert.match(html, developmentPreviewMeta);
   assert.match(html, /Project 03/i);
   assert.match(html, /Project 04/i);
+  assert.match(html, /Project 05/i);
   assert.match(html, /Zero-to-one products/i);
   assert.match(html, /Operational Systems &amp; Automation/i);
   assert.match(html, /Explore the map/i);
   assert.match(html, /Browse case studies/i);
   assert.match(html, /Interactive project navigator/i);
-  assert.match(html, /Move through four areas of Product Operations work/i);
+  assert.match(html, /Move through five areas of Product Operations work/i);
   assert.match(html, /Project 01: Regional Utility Portal/i);
   assert.match(html, /Project 04: Operational Systems &amp; Automation/i);
+  assert.match(html, /Project 05: University Logo Directory/i);
   assert.match(html, /Andrew \| Senior Product Operations Portfolio/i);
   assert.match(html, /class="hero-ant-stage"/i);
   assert.match(html, /class="ant-workflow"/i);
@@ -91,6 +93,7 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     ["/projects/prescription-pad-ordering-portal", /Prescription Pad Ordering \| Product Operations Case Study/i],
     ["/projects/hearth", /Hearth \| Zero-to-One Product Operations Case Study/i],
     ["/projects/operational-systems-automation", /Operational Systems &amp; Automation \| Product Operations Case Study/i],
+    ["/projects/university-logo-directory", /University Logo Directory \| Product Operations Case Study/i],
   ];
 
   for (const [path, title] of routes) {
@@ -140,6 +143,17 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /The product story starts with the operating system, not the world/i);
       assert.match(html, /Product expression.*Add personality without blocking the financial workflow/is);
       assert.match(html, /Hearth World was an experiment/i);
+    }
+    if (path === "/projects/university-logo-directory") {
+      assert.match(html, /195 organization and logo entries/i);
+      assert.match(html, /100 personas were structured test profiles, not 100 human participants/i);
+      assert.match(html, /95%.*99%/is);
+      assert.match(html, /24.*20 sec/is);
+      assert.match(html, /7%.*3%/is);
+      assert.match(html, /11 \/ 11.*Modeled KPI thresholds met/is);
+      assert.match(html, /synthetic pre-launch model, not observed user behavior/i);
+      assert.match(html, /recordings demonstrate the interface change, but they do not perform the same timed task/i);
+      assert.match(html, /Real-user and production analytics remain the validation gate/i);
     }
   }
 });

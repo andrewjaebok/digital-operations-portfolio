@@ -1,26 +1,21 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import CaseProgress from "../../components/CaseProgress";
+import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
 export const metadata: Metadata = {
   title: "Hearth | Zero-to-One Product Operations Case Study",
   description: "Hearth is an independently owned personal finance product shaped through strategy, architecture, release operations, user feedback, responsive delivery, and continuous simplification.",
 };
 
-const progressSections = [
-  { id: "overview", label: "Overview", icon: "⌂" },
-  { id: "opportunity", label: "Opportunity", icon: "◌" },
-  { id: "principles", label: "Product principles", icon: "◆" },
-  { id: "evolution", label: "Evolution", icon: "↗" },
-  { id: "feedback", label: "Feedback", icon: "↔" },
-  { id: "prioritization", label: "Prioritization", icon: "◎" },
-  { id: "stakeholders", label: "Stakeholders", icon: "◉" },
-  { id: "tradeoffs", label: "Tradeoffs", icon: "⇄" },
-  { id: "architecture", label: "Architecture", icon: "⌘" },
-  { id: "launch", label: "Launch", icon: "✓" },
-  { id: "measurement", label: "Measurement", icon: "▦" },
-  { id: "backlog", label: "Backlog", icon: "☷" },
-  { id: "learning", label: "Learning", icon: "✦" },
+const caseNavigation = [
+  { id: "overview", label: "Overview" },
+  { id: "evolution", label: "Product evolution" },
+  { id: "feedback", label: "Feedback" },
+  { id: "prioritization", label: "Prioritization" },
+  { id: "tradeoffs", label: "Tradeoffs" },
+  { id: "architecture", label: "Architecture" },
+  { id: "launch", label: "Releases" },
+  { id: "measurement", label: "Measurement" },
+  { id: "backlog", label: "Backlog" },
 ];
 
 const principles = [
@@ -92,27 +87,24 @@ const backlog = [
 ];
 
 export default function HearthCaseStudy() {
-  return <main id="top" className="hearth-case-study">
-    <CaseProgress sections={progressSections} />
+  return <main id="top" className="case-study-page hearth-case-study">
     <a className="skip-link" href="#overview">Skip to case study</a>
-    <header className="site-header case-header">
-      <Link className="brand" href="/"><span className="brand-mark">A</span><span>Andrew</span></Link>
-      <div className="case-header-context" aria-label="Current page"><span>Independent product</span><b><i aria-hidden="true">⌂</i> 03 / Hearth</b></div>
-      <nav aria-label="Case study navigation"><Link href="/">All projects</Link><a href="#measurement">Evidence</a><a href="#backlog">Backlog</a></nav>
-    </header>
-    <div className="project-context-bar"><div className="shell"><div className="case-breadcrumb"><Link href="/">Projects</Link><span>/</span><strong>Hearth Personal Finance Platform</strong></div><span className="case-page-label">Zero-to-one product operations</span></div></div>
-
-    <section className="case-hero shell hearth-hero" id="overview">
-      <Link className="back-link" href="/"><span>←</span> Back to all projects</Link>
-      <p className="kicker">Independent product · Privacy-first personal finance</p>
-      <h1>Hearth: Building a Privacy-First Personal Finance Platform</h1>
-      <p className="case-summary">I am taking Hearth from product concept toward an operating cloud-backed platform, owning the strategy, roadmap, requirements, architecture decisions, releases, quality assurance, feedback response, and business-model tradeoffs.</p>
-      <div className="case-meta hearth-meta">
-        <div><span>Role</span><strong>Product Owner / Product Operations</strong></div>
-        <div><span>Stage</span><strong>Active development and validation</strong></div>
-        <div><span>Model</span><strong>One-time purchase · No ads</strong></div>
-        <div><span>Environment</span><strong>Production + staging</strong></div>
-      </div>
+    <CaseStudyWorkspace
+      number="PROJECT 03"
+      archetype="ZERO-TO-ONE PRODUCT PLATFORM"
+      shortTitle="Hearth"
+      title="Hearth: Building a Privacy-First Personal Finance Platform"
+      subtitle="Building the product system, release discipline, and learning loop behind a monthly financial home."
+      summary="I am taking Hearth from product concept toward an operating cloud-backed platform, owning the strategy, roadmap, requirements, architecture decisions, releases, quality assurance, feedback response, and business-model tradeoffs."
+      metadata={[
+        { label: "Role", value: "Product Owner / Product Operations" },
+        { label: "Scope", value: "Strategy · Roadmap · Architecture · Releases · Validation" },
+        { label: "Project type", value: "Independent zero-to-one platform" },
+        { label: "Status", value: "Active development and validation" },
+      ]}
+      navigation={caseNavigation}
+      accent="hearth"
+    >
       <div className="executive-summary" aria-label="Case study executive summary">
         <article><span>Business problem</span><p>Personal finance tools can feel complex, impersonal, and difficult to justify as another subscription.</p></article>
         <article><span>What I own</span><p>Strategy, roadmap, requirements, UX direction, architecture decisions, QA, releases, and feedback response.</p></article>
@@ -120,10 +112,15 @@ export default function HearthCaseStudy() {
         <article><span>Verified result</span><p>A working cloud-backed foundation with authentication, RLS, responsive workflows, and separate release environments.</p></article>
         <article><span>Business significance</span><p>Zero-to-one ownership across customer, operational, commercial, and technical decisions.</p></article>
       </div>
-      <div className="hearth-hero-panel" aria-label="Hearth product summary">
-        <div><span>Your monthly financial home</span><strong>Clarity before complexity.</strong><p>Core financial workflows, data ownership, and household planning in one understandable product.</p></div>
-        <ul><li>React + TypeScript</li><li>Supabase + PostgreSQL</li><li>Row Level Security</li><li>Stripe Checkout</li><li>Vercel</li><li>GitHub environments</li></ul>
-      </div>
+    </CaseStudyWorkspace>
+
+    <section className="signature-visual hearth-signature shell" aria-labelledby="hearth-signature-title">
+      <div className="signature-heading"><div><p className="kicker">Product evolution</p><h2 id="hearth-signature-title">The product story starts with the operating system, not the world.</h2></div><p>Hearth World is one expression of the product. The primary work is the sequence of customer, product, technical, and release decisions that made the platform more dependable.</p></div>
+      <ol className="hearth-evolution-line" aria-label="Hearth product evolution">
+        {["Financial foundation", "Household planning", "Experience system", "Cloud architecture", "Strategic simplification", "Release operations", "Validation"].map((step, index) =>
+          <li key={step}><small>{String(index + 1).padStart(2, "0")}</small><strong>{step}</strong>{index < 6 && <span aria-hidden="true">→</span>}</li>
+        )}
+      </ol>
     </section>
 
     <section className="project-framework shell" id="opportunity">
@@ -145,6 +142,16 @@ export default function HearthCaseStudy() {
 
     <section className="project-framework shell" id="tradeoffs"><div className="section-intro"><p className="kicker">Decisions and tradeoffs</p><h2>Each decision names the benefit and the cost.</h2></div><div className="hearth-tradeoff-table" role="table" aria-label="Hearth product tradeoffs"><div className="tradeoff-row tradeoff-header" role="row"><span>Decision</span><span>Reason</span><span>Risk</span><span>Postponed or excluded</span></div>{tradeoffs.map(([decision,reason,risk,deferred])=><div className="tradeoff-row" role="row" key={decision}><strong>{decision}</strong><span>{reason}</span><span>{risk}</span><span>{deferred}</span></div>)}</div></section>
 
+    <section className="project-framework hearth-world-expression" id="product-expression">
+      <div className="shell">
+        <div className="section-intro split-heading"><div><p className="kicker">Product expression</p><h2>Add personality without blocking the financial workflow.</h2></div><p>Hearth World was an experiment in making financial navigation warmer and more memorable. Core financial tasks remain available through conventional navigation, so the expressive layer is optional rather than a gate.</p></div>
+        <div className="hearth-world-review">
+          <div className="world-route" aria-label="Hearth World optional navigation destinations"><span>Transactions / ATM</span><span>Planning / Bank</span><span>Manage Lists / School</span><span>Dashboard / Town Hall</span></div>
+          <div><b>Decision</b><p>Use a visual household world to connect financial destinations and product personality.</p><b>Boundary</b><p>Do not require the world for core tasks, and do not let game-like exploration outrank clarity, speed, or accessibility.</p></div>
+        </div>
+      </div>
+    </section>
+
     <section className="project-framework hearth-architecture" id="architecture"><div className="shell"><div className="section-intro"><p className="kicker">Technical and operational foundation</p><h2>Architecture choices support trust and safer releases.</h2><p>The objective is not engineering complexity. It is reliable identity, household-level data isolation, controlled payments, and a release path that can be tested before production.</p></div><div className="architecture-flow" aria-label="Hearth application architecture"><span>User</span><b>→</b><span>React + TypeScript</span><b>→</b><span>Supabase Auth</span><b>→</b><span>PostgreSQL + RLS</span><b>→</b><span>Stripe purchase</span><b>→</b><span>Vercel</span></div><div className="release-branches"><article><span>GitHub main</span><b>Production</b><p>Release-ready code and production configuration.</p></article><article><span>GitHub staging</span><b>Preview and testing</b><p>Functional, responsive, auth, RLS, and migration validation.</p></article></div></div></section>
 
     <section className="project-framework launch-view" id="launch"><div className="shell"><div className="section-intro"><p className="kicker">Launch and release management</p><h2>Move changes toward production through controlled gates.</h2></div><ol className="hearth-launch-flow">{launchStages.map(([number,title,copy])=><li key={number}><b>{number}</b><div><h3>{title}</h3><p>{copy}</p></div></li>)}</ol><p className="hearth-release-note">Environment variables are separated by deployment. Database migrations are sequenced before dependent application changes, and rollback planning protects data when a release cannot move forward safely.</p></div></section>
@@ -155,7 +162,13 @@ export default function HearthCaseStudy() {
 
     <section className="feedback-section shell" id="learning"><p className="kicker">Leadership and learning</p><blockquote>Building Hearth means owning the next learning cycle, not just shipping the next feature.</blockquote><p>The work demonstrates that I can turn an idea into an operating product, make customer-business-technical tradeoffs, respond to feedback, simplify earlier decisions, protect data integrity, manage environments, and distinguish delivered functionality from proven outcomes.</p></section>
 
-    <section className="next-project shell"><p className="kicker">Continue exploring</p><h2>How I approach product operations.</h2><span>Discovery · Prioritization · Delivery · Measurement</span><Link href="/how-i-work">View operating model →</Link></section>
+    <CaseStudyEnding
+      capabilities={["Zero-to-One Product Ownership", "Product Strategy", "Release Operations", "Technical Decision-Making", "Continuous Simplification"]}
+      nextNumber="04"
+      nextTitle="Operational Systems & Automation"
+      nextDescription="See how recurring production friction becomes reusable workflow logic, QA, and operational standards."
+      nextHref="/projects/operational-systems-automation"
+    />
     <footer className="site-footer shell"><div><span className="brand-mark">A</span><strong>Andrew</strong></div><p>Independent product · Product operations</p><a href="#top">Back to top ↑</a></footer>
   </main>;
 }

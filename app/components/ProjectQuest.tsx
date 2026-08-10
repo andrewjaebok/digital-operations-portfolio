@@ -83,6 +83,20 @@ const projects: Project[] = [
     building: { x: 10, y: 7 },
     door: { x: 11, y: 10 },
   },
+  {
+    id: "finder",
+    number: "05",
+    shortTitle: "Logo Directory",
+    title: "University Logo Directory",
+    capability: "Discovery & Validation",
+    description:
+      "Turned a static 195-entry reference list into a searchable directory, then used a matched synthetic evaluation to guide a second iteration.",
+    evidence:
+      "Synthetic planning model: 95% → 99% completion and 7% → 3% assistance after Round 2 changes.",
+    route: "/projects/university-logo-directory",
+    building: { x: 6, y: 1 },
+    door: { x: 7, y: 4 },
+  },
 ];
 
 const trees = [
@@ -93,7 +107,7 @@ const trees = [
 ] as const;
 
 const flowers = [
-  [6, 2], [7, 2], [8, 2], [9, 2], [6, 9], [7, 9], [8, 9], [9, 9],
+  [6, 5], [9, 5], [6, 9], [7, 9], [8, 9], [9, 9],
 ] as const;
 
 const startPosition = { x: 7, y: 6 };
@@ -400,7 +414,7 @@ export default function ProjectQuest() {
       return;
     }
 
-    if (["Digit1", "Digit2", "Digit3", "Digit4"].includes(event.code)) {
+    if (["Digit1", "Digit2", "Digit3", "Digit4", "Digit5"].includes(event.code)) {
       event.preventDefault();
       const project = projects[Number(event.code.slice(-1)) - 1];
       if (project) selectProject(project, "shortcut");
@@ -458,7 +472,7 @@ export default function ProjectQuest() {
         <p className="eyebrow">Choose your route</p>
         <h3 id="project-quest-title">Explore the work.</h3>
         <p>
-          Move through four areas of Product Operations work, or use the
+          Move through five areas of Product Operations work, or use the
           project cards below for the quick route.
         </p>
         <div className="project-quest-actions">
@@ -476,21 +490,21 @@ export default function ProjectQuest() {
         <div className="quest-instructions" aria-label="Project map instructions">
           <span><kbd>WASD</kbd> <span>or arrows · Move</span></span>
           <span><kbd>Enter</kbd> <span>View selected project</span></span>
-          <span><kbd>1–4</kbd> <span>Select a project · R resets</span></span>
+          <span><kbd>1–5</kbd> <span>Select a project · R resets</span></span>
           <span><kbd>Mouse</kbd> <span>Hover or click a destination</span></span>
         </div>
       </div>
 
-      <div className="ops-handheld" aria-label="OPS-04 Portable project navigator">
+      <div className="ops-handheld" aria-label="OPS-05 Portable project navigator">
         <div className="handheld-brand">
-          <span>OPS-04</span>
+          <span>OPS-05</span>
           <small>Interactive project navigator</small>
         </div>
         <div
           className={`quest-screen${started ? " is-started" : ""}`}
           ref={gameRef}
           role="region"
-          aria-label="Interactive map of four Product Operations case studies. Use WASD or arrow keys to move, number keys to select, and Enter to open. Tab reaches every destination."
+          aria-label="Interactive map of five Product Operations case studies. Use WASD or arrow keys to move, number keys to select, and Enter to open. Tab reaches every destination."
           tabIndex={0}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
@@ -502,7 +516,7 @@ export default function ProjectQuest() {
                 ? `Enter · View ${selectedProject.shortTitle}`
                 : nearbyProject
                   ? `Enter · Preview ${nearbyProject.shortTitle}`
-                  : "Four projects · Choose a direction"}
+                  : "Five projects · Choose a direction"}
             </span>
             <button type="button" onClick={resetPosition} aria-label="Reset character position">
               R · Reset
@@ -516,10 +530,11 @@ export default function ProjectQuest() {
             <span className="quest-path path-rx" />
             <span className="quest-path path-hearth" />
             <span className="quest-path path-operations" />
+            <span className="quest-path path-finder" />
             <span className="quest-pond"><i /><i /><i /></span>
             <span className="quest-fence fence-top" />
             <span className="quest-fence fence-bottom" />
-            <span className="quest-town-sign">4 PROJECTS<br />1 APPROACH</span>
+            <span className="quest-town-sign">5 PROJECTS<br />1 APPROACH</span>
             <span className="quest-mailbox" />
             <span className="quest-npc"><i /></span>
 
@@ -617,7 +632,7 @@ export default function ProjectQuest() {
               <span className="title-screen-hills" aria-hidden="true" />
               <small>Andrew presents</small>
               <strong>PROJECT<br />QUEST</strong>
-              <p>Four projects. Four capabilities.</p>
+              <p>Five projects. One operating mindset.</p>
               <button type="button" onClick={beginExperience}>
                 Press start
               </button>
