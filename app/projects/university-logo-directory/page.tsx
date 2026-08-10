@@ -74,9 +74,6 @@ const nextSteps = [
   ["Medium", "Review wrong-level selections", "Monitor whether users choose a parent school when a department-level logo is needed."],
 ];
 
-const hostedVideo = (fileName: string) =>
-  `https://digital-operations-portfolio.achong888381.chatgpt.site/videos/university-logo-directory/${fileName}`;
-
 export default function UniversityLogoDirectory() {
   return <main id="top" className="case-study-page finder-case-study">
     <a className="skip-link" href="#overview">Skip to case study</a>
@@ -147,11 +144,11 @@ export default function UniversityLogoDirectory() {
       </div>
       <div className="finder-video-grid" aria-label="Original and redesigned directory recordings">
         <figure>
-          <div><span>Before</span><video controls playsInline preload="metadata" poster={assetPath("/images/university-logo-directory/original-directory.jpg")} aria-label="Original static university logo directory recording"><source src={hostedVideo("original-directory.mp4")} type="video/mp4" /></video></div>
+          <div><span>Before</span><video controls playsInline preload="metadata" poster={assetPath("/images/university-logo-directory/original-directory.jpg")} aria-label="Original static university logo directory recording"><source src={assetPath("/videos/university-logo-directory/original-directory.mp4")} type="video/mp4" /></video></div>
           <figcaption><strong>Static reference list</strong><p>Manual scrolling, color-and-indentation hierarchy, and no direct path from lookup to confirmed selection.</p></figcaption>
         </figure>
         <figure>
-          <div><span>After</span><video controls playsInline preload="metadata" poster={assetPath("/images/university-logo-directory/redesigned-directory.jpg")} aria-label="Redesigned searchable university logo directory recording"><source src={hostedVideo("redesigned-directory.mp4")} type="video/mp4" /></video></div>
+          <div><span>After</span><video controls playsInline preload="metadata" poster={assetPath("/images/university-logo-directory/redesigned-directory.jpg")} aria-label="Redesigned searchable university logo directory recording"><source src={assetPath("/videos/university-logo-directory/redesigned-directory.mp4")} type="video/mp4" /></video></div>
           <figcaption><strong>Searchable persistent directory</strong><p>Aliases, categories, A–Z browsing, explicit paths, copy controls, and recovery actions inside a reusable window.</p></figcaption>
         </figure>
       </div>
