@@ -5,7 +5,7 @@ import ProjectQuest from "./components/ProjectQuest";
 import AntWorkflow from "./components/AntWorkflow";
 
 export const metadata: Metadata = {
-  title: "Andrew | Senior Product Operations Portfolio",
+  title: "Andrew | Senior Product Operations / Digital Services",
   description: "Senior Product Operations case studies spanning customer portal modernization, regulated digital ordering, operational systems, automation, and zero-to-one product development.",
 };
 
@@ -30,7 +30,7 @@ export default function Home() {
 
       <section className="product-hero shell" id="main-content">
         <div className="hero-copy">
-          <p className="eyebrow"><span /> Digital Operations · Product Transformation</p>
+          <p className="eyebrow"><span /> Senior Product Operations / Digital Services</p>
           <h1>
             I notice where the work <mark>gets stuck,</mark> then build a better way through it
             <span className="hero-period">.</span>
@@ -49,10 +49,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="operating-scope shell" aria-labelledby="operating-scope-title">
+        <div className="operating-scope-intro">
+          <p className="eyebrow">Operating scope</p>
+          <h2 id="operating-scope-title">Customer experiences and the systems behind them.</h2>
+          <p>The work spans customer portals, regulated ordering, operational systems, workflow automation, and independent product development.</p>
+        </div>
+        <div className="operating-scope-grid">
+          <article><strong>7+</strong><span>Customer-facing portals supported</span></article>
+          <article><strong>5</strong><span>Documented case studies</span></article>
+          <article><strong>Customer + internal systems</strong><span>Digital experiences and operational workflows</span></article>
+          <article><strong>Discovery → launch → iteration</strong><span>End-to-end initiative ownership</span></article>
+        </div>
+      </section>
+
       <section className="role-mandate shell" aria-labelledby="role-title">
         <div className="role-overview">
           <p className="eyebrow">Current scope</p>
-          <h2 id="role-title">Senior Product/Digital Operations</h2>
+          <h2 id="role-title">Senior Product Operations / Digital Services</h2>
           <p>I lead the strategy, development, implementation, and continuous improvement of customer-facing digital services for a commercial printing and digital-services organization. My scope includes online portals, web platforms, digital ordering systems, workflow optimization, customer implementations, and digital growth initiatives.</p>
         </div>
         <div className="operating-mandate">
@@ -87,8 +101,14 @@ export default function Home() {
               <figure><span>Before</span><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} priority alt="Original regional utility report portal" /></figure>
               <figure><span>After</span><Image src="/images/utility-portal/portal-after.png" width={1216} height={895} priority alt="Improved regional utility report portal with search, status filtering, and bilingual navigation" /></figure>
             </div>
-            <div className="portfolio-card-copy"><p className="project-label">Product operations · Customer experience</p><h3>Regional Utility Customer Portal</h3><p>Led a customer portal improvement initiative from operational assessment and requirements definition through implementation and validation.</p></div>
-            <div className="portfolio-card-footer"><span>Product operations lead</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-copy">
+              <p className="project-label">Customer Workflow</p><h3>Regional Utility Customer Portal</h3>
+              <p className="project-business-problem"><span>Business problem</span>Customers had to scan a dense report matrix and interpret production status manually.</p>
+              <div className="project-card-impact"><span>Impact · Measured</span><strong>≈70%+ lower task time</strong><strong>83–100% fewer incorrect selections</strong></div>
+              <p className="project-card-role"><span>Project role</span>Product Operations Lead</p>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Discovery</span><span>Prioritization</span><span>Delivery</span><span>Measurement</span></div>
+            </div>
+            <div className="portfolio-card-footer"><span>20-participant retrospective evaluation</span><b>View case study ↗</b></div>
           </Link>
 
           <Link className="bento-card portfolio-project-card rx-project" href="/projects/prescription-pad-ordering-portal">
@@ -97,8 +117,14 @@ export default function Home() {
               <figure><span>Before</span><Image src="/images/rx-pad-portal/order-before.png" width={1502} height={888} alt="Original California prescription pad ordering experience" /></figure>
               <figure><span>After</span><Image src="/images/rx-pad-portal/order-after.png" width={1225} height={788} alt="Redesigned California prescription pad ordering experience" /></figure>
             </div>
-            <div className="portfolio-card-copy"><p className="project-label">Product operations · Regulated ordering</p><h3>Prescription Pad Ordering Experience</h3><p>Reframed a legacy ordering portal into a clearer customer journey while preserving the 4D backend and production workflow.</p></div>
-            <div className="portfolio-card-footer"><span>Product Operations Manager</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-copy">
+              <p className="project-label">Regulated Product &amp; Growth</p><h3>Prescription Pad Ordering Experience</h3>
+              <p className="project-business-problem"><span>Business problem</span>A legacy journey made compliant product selection and guidance harder to understand.</p>
+              <div className="project-card-impact"><span>Impact · Measured signals</span><strong>+1,272% new users</strong><strong>100% reduction across 4 tracked recurring question categories</strong><small>Redesign and search-content program occurred together; causal attribution is directional.</small></div>
+              <p className="project-card-role"><span>Project role</span>Product Operations Lead</p>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Requirements</span><span>Compliance</span><span>Launch</span><span>Growth</span></div>
+            </div>
+            <div className="portfolio-card-footer"><span>Customer + production workflow</span><b>View case study ↗</b></div>
           </Link>
 
           <Link className="bento-card portfolio-project-card hearth-project" href="/projects/hearth">
@@ -106,8 +132,14 @@ export default function Home() {
             <div className="portfolio-card-media hearth-card-media" aria-label="Hearth product operating model illustration">
               <div className="hearth-card-window" aria-hidden="true"><span>Monthly overview</span><strong>$8,420</strong><div><i/><i/><i/></div><small>Privacy-first · One-time purchase</small></div>
             </div>
-            <div className="portfolio-card-copy"><p className="project-label">Independent product · Zero-to-one platform</p><h3>Hearth Personal Finance Platform</h3><p>Building and operationalizing a privacy-first financial platform from product concept through cloud architecture, release environments, user feedback, and continuous simplification.</p></div>
-            <div className="portfolio-card-footer"><span>Product Owner / Product Operations</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-copy">
+              <p className="project-label">0→1 Product Development</p><h3>Hearth Personal Finance Platform</h3>
+              <p className="project-business-problem"><span>Business problem</span>Personal finance products can feel complex, impersonal, and difficult to justify as another subscription.</p>
+              <div className="project-card-impact"><span>Impact · Verified delivery</span><strong>Working end-to-end product</strong><strong>Auth · payments · production deployment · release management</strong></div>
+              <p className="project-card-role"><span>Project role</span>Product Owner / Product Operations</p>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Strategy</span><span>Roadmap</span><span>Architecture</span><span>Releases</span></div>
+            </div>
+            <div className="portfolio-card-footer"><span>No adoption or revenue claims</span><b>View case study ↗</b></div>
           </Link>
 
           <Link className="bento-card portfolio-project-card operations-project" href="/projects/operational-systems-automation">
@@ -118,8 +150,14 @@ export default function Home() {
               </div>
               <p>Recurring friction <b>→</b> repeatable operations</p>
             </div>
-            <div className="portfolio-card-copy"><p className="project-label">Product operations · Operational excellence</p><h3>Operational Systems &amp; Automation</h3><p>Improving the systems behind digital production through workflow automation, root-cause analysis, QA, and repeatable operational standards.</p><div className="project-tag-row" aria-label="Project capabilities"><span>Process Automation</span><span>Root Cause Analysis</span><span>Workflow Design</span><span>QA</span><span>Operational Excellence</span></div></div>
-            <div className="portfolio-card-footer"><span>Senior Product Operations / Digital Operations</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-copy">
+              <p className="project-label">Operational Systems</p><h3>Operational Systems &amp; Automation</h3>
+              <p className="project-business-problem"><span>Business problem</span>Recurring manual work and production exceptions created avoidable intervention and inconsistent handling.</p>
+              <div className="project-card-impact"><span>Impact · Verified + Directional</span><strong>Implemented workflows actively used</strong><strong>Less repeated handling · more consistent execution</strong><small>No fabricated time-saving or efficiency percentages.</small></div>
+              <p className="project-card-role"><span>Project role</span>Senior Product Operations / Digital Services</p>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Root cause</span><span>Automation</span><span>QA</span><span>Standardization</span></div>
+            </div>
+            <div className="portfolio-card-footer"><span>Future KPIs defined in case study</span><b>View case study ↗</b></div>
           </Link>
 
           <Link className="bento-card portfolio-project-card finder-project" href="/projects/university-logo-directory">
@@ -129,37 +167,36 @@ export default function Home() {
               <figure><span>After</span><Image src="/images/university-logo-directory/redesigned-directory.jpg" width={1200} height={1012} alt="Searchable university logo directory showing explicit organizational paths" /></figure>
             </div>
             <div className="portfolio-card-copy">
-              <p className="project-label">Product operations · Legacy workflow modernization</p>
+              <p className="project-label">Discovery &amp; Validation</p>
               <h3>University Logo Directory Redesign</h3>
-              <p>Converted a static 195-entry reference list into a searchable, persistent directory, then used two matched rounds of synthetic persona testing to prioritize and evaluate the next iteration.</p>
-              <div className="finder-card-kpis" aria-label="Synthetic Round 2 modeled KPI results">
-                <span><strong>99%</strong> Modeled completion</span>
-                <span><strong>20 sec</strong> Modeled median time</span>
-                <span><strong>3%</strong> Modeled assistance</span>
-              </div>
-              <small className="finder-card-caveat">Synthetic pre-launch model, not observed user behavior.</small>
+              <p className="project-business-problem"><span>Business problem</span>A static 195-entry list required manual scanning, memory, and a second lookup in the ordering workflow.</p>
+              <div className="project-card-impact project-card-impact-modeled" aria-label="Synthetic Round 2 modeled KPI results"><span>Impact · Modeled pre-launch results</span><strong>11 / 11 modeled KPI thresholds met</strong><strong>95% → 99% completion · 24s → 20s lookup</strong></div>
+              <small className="finder-card-caveat"><b>Synthetic pre-launch evaluation.</b> Decision-support model, not observed user research.</small>
+              <p className="project-card-role"><span>Project role</span>Senior Product Operations / Digital Services</p>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Discovery</span><span>KPI design</span><span>Iteration</span><span>Validation</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>Senior Product Operations / Digital Services</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-footer"><span>Hypothesis → evaluation → iteration</span><b>View case study ↗</b></div>
           </Link>
 
         </div>
-        <div className="portfolio-summary"><div><strong>7+</strong><span>Client portals supported</span></div><div><strong>5</strong><span>Documented case studies</span></div><p>Each project separates verified delivery, directional evidence, modeled evaluation, and future measurement.</p></div>
+        <div className="portfolio-summary evidence-summary"><p><strong>Evidence discipline:</strong> each case study separates verified implementation, measured outcomes, directional signals, modeled evaluation, and future KPIs.</p></div>
       </section>
 
       <section className="capability-section shell" id="capabilities">
-        <div className="section-heading"><div><p className="eyebrow">How I think</p><h2>A practical approach to improving systems.</h2></div><p>Delivery is not the end of a product initiative. It is the start of a capability that should keep getting better.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">How I think</p><h2>A practical philosophy for improving systems.</h2></div><p>Notice the friction. Understand what must remain. Improve the system in a way people can trust.</p></div>
         <div className="capability-grid">{capabilities.map(([number,title,copy])=><article key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>)}</div>
         <Link className="framework-cta" href="/how-i-work"><span>See the complete operating system</span><b>Discovery, prioritization, stakeholders, launch, and measurement →</b></Link>
       </section>
 
       <section className="portfolio-operating-model shell" aria-labelledby="operating-model-title">
-        <div className="section-heading"><div><p className="eyebrow">Portfolio operating model</p><h2 id="operating-model-title">How I prioritize and manage digital improvements.</h2></div><p>Each initiative is evaluated as part of a broader customer-facing product portfolio, not as an isolated design request.</p></div>
+        <div className="section-heading"><div><p className="eyebrow">Portfolio operating model</p><h2 id="operating-model-title">Intake → prioritize → align → deliver → measure → improve.</h2></div><p>This is the repeatable process used to move initiatives through the portfolio, from an operating signal to the next evidence-led iteration.</p></div>
         <div className="operating-model-grid">
           <article><span>01</span><h3>Intake signals</h3><p>Customer questions, support friction, operational bottlenecks, usage patterns, compliance needs, and growth opportunities.</p></article>
           <article><span>02</span><h3>Prioritize</h3><p>Balance customer impact, portal volume, revenue potential, implementation effort, and operational risk.</p></article>
           <article><span>03</span><h3>Align</h3><p>Translate customer, production, support, compliance, and technical needs into a shared scope.</p></article>
           <article><span>04</span><h3>Deliver</h3><p>Coordinate requirements, implementation, quality assurance, launch readiness, and workflow continuity.</p></article>
-          <article><span>05</span><h3>Improve</h3><p>Use customer feedback, product analytics, and operational outcomes to shape the next iteration.</p></article>
+          <article><span>05</span><h3>Measure</h3><p>Separate verified outcomes, measured results, directional signals, modeled evidence, and future instrumentation.</p></article>
+          <article><span>06</span><h3>Improve</h3><p>Use customer feedback, product analytics, and operational outcomes to shape the next iteration.</p></article>
         </div>
       </section>
 

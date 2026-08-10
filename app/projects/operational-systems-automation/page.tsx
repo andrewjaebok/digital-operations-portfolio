@@ -134,26 +134,32 @@ export default function OperationalSystemsAutomation() {
       subtitle="Building repeatable systems behind digital production."
       summary="I identified recurring friction across proof and production workflows, investigated root causes, and moved repeatable behaviors into more dependable systems."
       metadata={[
-        { label: "Role", value: "Senior Product Operations / Digital Services" },
+        { label: "Project Role", value: "Senior Product Operations / Digital Services" },
         { label: "Scope", value: "Assessment · Requirements · Automation · QA · Improvement" },
         { label: "Project type", value: "Digital production systems" },
         { label: "Status", value: "Implemented · Measurement maturing" },
       ]}
       navigation={caseNavigation}
       accent="operations"
+      story={[
+        { label: "Discovery", copy: "Recurring proof and production exceptions revealed patterns of repeated manual handling, inconsistent outcomes, and avoidable workflow interruption." },
+        { label: "Decision", copy: "Prioritize recurring problems where a reusable system improvement could create operational leverage without introducing unacceptable production risk." },
+        { label: "Delivery", copy: "Translated production rules into reusable automation, improved asset continuity through proof revisions, documented expected behavior, and validated normal and edge cases." },
+        { label: "Impact", copy: "Verified workflows are implemented and actively used. Reduced manual handling and more consistent execution are directional because reliable pre-change baselines were not captured." },
+      ]}
     >
       <div className="executive-summary operations-summary" aria-label="Case study executive summary">
-        <article><span>Operational problem</span><p>Recurring manual tasks, production exceptions, and workflow failures created unnecessary intervention across customer-facing proof and production processes.</p></article>
-        <article><span>What I owned</span><p>Workflow assessment, problem identification, requirements, prioritization, automation design, implementation, QA, troubleshooting, and continuous improvement.</p></article>
-        <article><span>Operating principle</span><p>Fix recurring problems at the system level rather than repeatedly treating individual symptoms.</p></article>
-        <article><span>Primary outcome</span><p>More standardized and resilient digital-to-production workflows with less unnecessary manual handling of the automated behaviors.</p></article>
+        <article><span>Problem</span><p>Recurring manual tasks, production exceptions, and workflow failures created unnecessary intervention across customer-facing proof and production processes.</p></article>
+        <article><span>My ownership</span><p>Workflow assessment, requirements, prioritization, automation design, implementation, QA, troubleshooting, and continuous improvement.</p></article>
+        <article><span>Key decision</span><p>Fix recurring problems at the system level rather than repeatedly treating individual symptoms.</p></article>
+        <article><span>Impact · Verified + Directional</span><p>Implemented workflows are actively used; reduced manual handling and more consistent execution remain directional until formal baselines are captured.</p></article>
       </div>
 
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
         <span><strong>Verified:</strong> workflow improvements were implemented and used in live production workflows.</span>
         <span><strong>Directional:</strong> automated behaviors required less repeated manual handling, but the effect was not formally quantified.</span>
-        <span><strong>Future measurement:</strong> time, volume, interventions, corrections, rework, and workflow reliability.</span>
+        <span><strong>Future KPI:</strong> manual interventions per week, processing time per workflow, exception rate, error and rework rate, volume handled, and workflow reliability.</span>
       </div>
     </CaseStudyWorkspace>
 
@@ -210,7 +216,7 @@ export default function OperationalSystemsAutomation() {
       </div>
 
       <div className="measurement-opportunities">
-        <div><p className="kicker">Future measurement</p><h3>Build the operational baseline next.</h3><p>These are measurement opportunities, not existing results.</p></div>
+        <div><p className="kicker">Future KPI</p><h3>Build the operational baseline next.</h3><p>These are measurement opportunities, not existing results.</p></div>
         <ul>{productionMetrics.map(metric => <li key={metric}>{metric}</li>)}</ul>
       </div>
     </section>
@@ -282,7 +288,7 @@ export default function OperationalSystemsAutomation() {
         <p>The scorecard is designed to grow as additional operational initiatives are documented.</p>
       </div>
       <div className="impact-scorecard" role="table" aria-label="Operational impact scorecard">
-        <div className="scorecard-row scorecard-header" role="row"><span role="columnheader">Initiative</span><span role="columnheader">Problem</span><span role="columnheader">Verified implementation</span><span role="columnheader">Directional impact</span><span role="columnheader">Future measurement</span></div>
+        <div className="scorecard-row scorecard-header" role="row"><span role="columnheader">Initiative</span><span role="columnheader">Problem</span><span role="columnheader">Verified implementation</span><span role="columnheader">Directional impact</span><span role="columnheader">Future KPI</span></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Production Workflow Automation</strong><p role="cell">Repetitive manual production handling</p><p role="cell">Recurring production behaviors standardized through reusable automation</p><p role="cell">Less repeated handling of automated behaviors</p><p role="cell">Time, interventions, errors, volume</p></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Proof Asset Persistence</strong><p role="cell">Customer assets could require retrieval or re-upload during revisions</p><p role="cell">Appropriate asset retained through proof revision scenarios</p><p role="cell">Known source of unnecessary retrieval work removed</p><p role="cell">Reuploads, employee interventions, revision delays</p></div>
       </div>

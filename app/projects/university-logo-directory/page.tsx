@@ -85,26 +85,31 @@ export default function UniversityLogoDirectory() {
       subtitle="Turning a static reference list into a measurable self-service workflow."
       summary="I reframed a legacy directory as a product workflow: preserve the production contract, reduce lookup friction, define success measures, test assumptions, and iterate against the remaining risks."
       metadata={[
-        { label: "Role", value: "Senior Product Operations / Digital Services" },
+        { label: "Project Role", value: "Senior Product Operations / Digital Services" },
         { label: "Scope", value: "Discovery · Requirements · UX · Testing · Iteration" },
         { label: "Directory scale", value: "195 organization and logo entries" },
         { label: "Evidence", value: "Verified interface change · Synthetic pre-launch model" },
       ]}
       navigation={caseNavigation}
       accent="finder"
+      story={[
+        { label: "Discovery", copy: "The 195-entry popup was a reference list, not a finder: users had to scan, infer hierarchy, remember a name, and repeat the lookup elsewhere." },
+        { label: "Decision", copy: "Preserve the data and production handoff while adding a searchable, persistent reference experience with explicit paths and recovery tools." },
+        { label: "Delivery", copy: "Implemented search, aliases, filters, A–Z browsing, copy actions, no-results recovery, keyboard behavior, and a reusable popup window." },
+        { label: "Impact", copy: "In the synthetic pre-launch model, Round 2 met 11 of 11 thresholds: completion moved from 95% to 99%, median lookup time from 24 to 20 seconds, and assistance from 7% to 3%." },
+      ]}
     >
       <div className="executive-summary finder-summary" aria-label="Case study executive summary">
-        <article><span>Operational problem</span><p>A fixed directory required users to manually scan a long, color-coded hierarchy and remember the result elsewhere.</p></article>
-        <article><span>Product decision</span><p>Preserve the underlying data and production handoff while replacing the customer-facing lookup experience.</p></article>
-        <article><span>Evaluation design</span><p>Model the same 100 synthetic profiles across the original experience, Round 1, and Round 2.</p></article>
-        <article><span>Modeled Round 2</span><p>99% completion, 20-second median lookup, 3% assistance, and all 11 modeled thresholds met.</p></article>
-        <article><span>Evidence limit</span><p>The KPI results are scenario projections for planning. Real-user and production analytics remain the validation gate.</p></article>
+        <article><span>Problem</span><p>A fixed directory required users to manually scan a long, color-coded hierarchy and remember the result elsewhere.</p></article>
+        <article><span>My ownership</span><p>Discovery, requirements, legacy integration, interface direction, KPI design, scenario modeling, and iteration.</p></article>
+        <article><span>Key decision</span><p>Preserve the underlying data and production handoff while replacing the customer-facing lookup experience.</p></article>
+        <article><span>Impact · Modeled</span><p>Round 2 reached 99% completion, a 20-second median lookup, 3% assistance, and 11 of 11 modeled thresholds met.</p></article>
       </div>
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
         <span><strong>Verified:</strong> 195-entry source, original interface limitations, delivered finder features, and before/after recordings.</span>
         <span><strong>Modeled:</strong> task completion, time, assistance, mobile completion, wrong selections, and KPI threshold performance.</span>
-        <span><strong>To validate:</strong> real-user task results, production usage, support demand, accessibility, and sustained search success.</span>
+        <span><strong>Future KPI:</strong> real-user task results, production usage, support demand, accessibility, and sustained search success. Real-user and production analytics remain the validation gate.</span>
       </div>
     </CaseStudyWorkspace>
 

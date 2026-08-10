@@ -12,6 +12,11 @@ type MetaItem = {
   value: string;
 };
 
+type StoryItem = {
+  label: "Discovery" | "Decision" | "Delivery" | "Impact";
+  copy: string;
+};
+
 type CaseStudyWorkspaceProps = {
   number: string;
   archetype: string;
@@ -22,6 +27,7 @@ type CaseStudyWorkspaceProps = {
   metadata: MetaItem[];
   navigation: NavItem[];
   accent: "utility" | "rx" | "hearth" | "operations" | "finder";
+  story: StoryItem[];
   children?: ReactNode;
 };
 
@@ -43,6 +49,7 @@ export function CaseStudyWorkspace({
   metadata,
   navigation,
   accent,
+  story,
   children,
 }: CaseStudyWorkspaceProps) {
   return <>
@@ -82,6 +89,20 @@ export function CaseStudyWorkspace({
       }))}
     />
     {children && <section className={`case-executive case-executive-${accent}`} aria-label={`${shortTitle} executive summary`}><div className="shell">{children}</div></section>}
+    <section className={`case-story case-story-${accent}`} aria-labelledby={`${accent}-story-title`}>
+      <div className="shell">
+        <div className="case-story-heading">
+          <p className="kicker">The 2-minute story</p>
+          <h2 id={`${accent}-story-title`}>Discovery → decision → delivery → impact</h2>
+        </div>
+        <ol>
+          {story.map((item, index) => <li key={item.label}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <div><h3>{item.label}</h3><p>{item.copy}</p></div>
+          </li>)}
+        </ol>
+      </div>
+    </section>
   </>;
 }
 

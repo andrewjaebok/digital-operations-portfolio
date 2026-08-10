@@ -56,20 +56,25 @@ export default function CustomerPortalRedesign() {
       subtitle="Improving a recurring proof-review workflow, not just its interface."
       summary="I evaluated and improved a portal used to find the correct CCR report, understand its production status, select the English or Spanish version, and open it for recurring review and proofing."
       metadata={[
-        { label: "Role", value: "Product Operations / Digital Services Lead" },
+        { label: "Project Role", value: "Product Operations Lead" },
         { label: "Scope", value: "Discovery · Requirements · Delivery · Validation" },
         { label: "Project type", value: "Customer workflow optimization" },
         { label: "Status", value: "Delivered" },
       ]}
       navigation={caseNavigation}
       accent="utility"
+      story={[
+        { label: "Discovery", copy: "Customer feedback and a current-state audit showed that dense report scanning, unclear status meaning, and bilingual navigation were the main workflow barriers." },
+        { label: "Decision", copy: "Improve discovery and status guidance while preserving familiar production terminology, report links, and the underlying proof workflow." },
+        { label: "Delivery", copy: "Implemented search, batch and region structure, interactive status guidance, bilingual navigation, summaries, and responsive behavior." },
+        { label: "Impact", copy: "A 20-participant retrospective evaluation showed approximately 70%+ lower task time and 83–100% fewer incorrect selections across the measured core tasks." },
+      ]}
     >
       <div className="executive-summary" aria-label="Case study executive summary">
-        <article><span>Business problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
-        <article><span>What I owned</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
+        <article><span>Problem</span><p>Customers had to scan a dense report matrix and interpret production status manually.</p></article>
+        <article><span>My ownership</span><p>Assessment, requirements, prioritization, implementation, launch coordination, and validation.</p></article>
         <article><span>Key decision</span><p>Add search and status guidance while preserving the production process behind the portal.</p></article>
-        <article><span>Measured result</span><p>Core workflows showed approximately 70%+ lower task time, up to 100% fewer incorrect selections, and materially higher ease ratings in a 20-participant retrospective evaluation.</p></article>
-        <article><span>Business significance</span><p>A repeatable modernization model for other customer-facing portals.</p></article>
+        <article><span>Impact · Measured</span><p>Core workflows showed approximately 70%+ lower task time, 83–100% fewer incorrect selections, and materially higher ease ratings in a 20-participant retrospective evaluation.</p></article>
       </div>
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
     </CaseStudyWorkspace>

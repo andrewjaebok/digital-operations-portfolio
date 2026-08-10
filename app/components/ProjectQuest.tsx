@@ -92,7 +92,7 @@ const projects: Project[] = [
     description:
       "Turned a static 195-entry reference list into a searchable directory, then used a matched synthetic evaluation to guide a second iteration.",
     evidence:
-      "Synthetic planning model: 95% → 99% completion and 7% → 3% assistance after Round 2 changes.",
+      "Modeled pre-launch results: 11/11 synthetic thresholds met. This is decision-support modeling, not observed user research.",
     route: "/projects/university-logo-directory",
     building: { x: 6, y: 1 },
     door: { x: 7, y: 4 },

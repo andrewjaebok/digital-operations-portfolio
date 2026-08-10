@@ -97,20 +97,25 @@ export default function HearthCaseStudy() {
       subtitle="Building the product system, release discipline, and learning loop behind a monthly financial home."
       summary="I am taking Hearth from product concept toward an operating cloud-backed platform, owning the strategy, roadmap, requirements, architecture decisions, releases, quality assurance, feedback response, and business-model tradeoffs."
       metadata={[
-        { label: "Role", value: "Product Owner / Product Operations" },
+        { label: "Project Role", value: "Product Owner / Product Operations" },
         { label: "Scope", value: "Strategy · Roadmap · Architecture · Releases · Validation" },
         { label: "Project type", value: "Independent zero-to-one platform" },
         { label: "Status", value: "Active development and validation" },
       ]}
       navigation={caseNavigation}
       accent="hearth"
+      story={[
+        { label: "Discovery", copy: "Research and iteration exposed a gap between feature breadth and the clarity, trust, and simplicity people need from a household finance product." },
+        { label: "Decision", copy: "Prioritize privacy, financial clarity, and a dependable core before advanced integrations or novelty." },
+        { label: "Delivery", copy: "Built the cloud-backed product foundation, authentication, PostgreSQL behavior, RLS, responsive workflows, staging and production releases, and one-time purchase architecture." },
+        { label: "Impact", copy: "Verified delivery is a working end-to-end product and release system. Adoption, conversion, retention, and revenue remain future validation metrics." },
+      ]}
     >
       <div className="executive-summary" aria-label="Case study executive summary">
-        <article><span>Business problem</span><p>Personal finance tools can feel complex, impersonal, and difficult to justify as another subscription.</p></article>
-        <article><span>What I own</span><p>Strategy, roadmap, requirements, UX direction, architecture decisions, QA, releases, and feedback response.</p></article>
+        <article><span>Problem</span><p>Personal finance tools can feel complex, impersonal, and difficult to justify as another subscription.</p></article>
+        <article><span>My ownership</span><p>Strategy, roadmap, requirements, UX direction, architecture decisions, QA, releases, and feedback response.</p></article>
         <article><span>Key decision</span><p>Prioritize privacy, financial clarity, and a dependable core before expanding novelty.</p></article>
-        <article><span>Verified result</span><p>A working cloud-backed foundation with authentication, RLS, responsive workflows, and separate release environments.</p></article>
-        <article><span>Business significance</span><p>Zero-to-one ownership across customer, operational, commercial, and technical decisions.</p></article>
+        <article><span>Impact · Verified</span><p>A working end-to-end product with authentication, RLS, responsive workflows, payments architecture, production deployment, and release management.</p></article>
       </div>
     </CaseStudyWorkspace>
 

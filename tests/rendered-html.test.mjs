@@ -43,7 +43,12 @@ test("renders development preview metadata", async () => {
   assert.match(html, /Project 01: Regional Utility Portal/i);
   assert.match(html, /Project 04: Operational Systems &amp; Automation/i);
   assert.match(html, /Project 05: University Logo Directory/i);
-  assert.match(html, /Andrew \| Senior Product Operations Portfolio/i);
+  assert.match(html, /Andrew \| Senior Product Operations \/ Digital Services/i);
+  assert.match(html, /Operating scope/i);
+  assert.match(html, /7\+.*Customer-facing portals supported/is);
+  assert.match(html, /Discovery.*launch.*iteration/is);
+  assert.match(html, /11 \/ 11 modeled KPI thresholds met/i);
+  assert.match(html, /Decision-support model, not observed user research/i);
   assert.match(html, /class="hero-ant-stage"/i);
   assert.match(html, /class="ant-workflow"/i);
   assert.match(html, /id="ant-silhouette"/i);
@@ -79,7 +84,8 @@ test("renders the Hearth case study directly", async () => {
   const html = await response.text();
   assert.match(html, /Hearth: Building a Privacy-First Personal Finance Platform/i);
   assert.match(html, /Product images coming soon/i);
-  assert.match(html, /Business significance/i);
+  assert.match(html, /Impact · Verified/i);
+  assert.match(html, /Discovery.*decision.*delivery.*impact/is);
   assert.doesNotMatch(html, /Screenshot needed|Visual evidence needed/i);
 });
 
@@ -109,6 +115,9 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
     if (path.startsWith("/projects/")) {
       assert.match(html, /Case study workspace/i);
       assert.match(html, /Case study progress/i);
+      assert.match(html, /Project Role/i);
+      assert.match(html, /The 2-minute story/i);
+      assert.match(html, /Discovery.*decision.*delivery.*impact/is);
       assert.match(html, /What this demonstrates/i);
       assert.match(html, /Next case study/i);
     }
@@ -135,7 +144,7 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /Proof Asset Persistence/i);
       assert.match(html, /Verified implementation/i);
       assert.match(html, /Directional impact/i);
-      assert.match(html, /Future measurement/i);
+      assert.match(html, /Future KPI/i);
       assert.match(html, /No percentage or time-saving claim is made/i);
       assert.doesNotMatch(html, /hours saved:\s*\d|reduction:\s*\d+%|customers:\s*\d/i);
     }

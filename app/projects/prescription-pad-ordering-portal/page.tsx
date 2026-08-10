@@ -52,20 +52,25 @@ export default function PrescriptionPadOrderingPortal() {
       subtitle="Modernizing a regulated customer journey while preserving the production system behind it."
       summary="I evaluated and redesigned two connected California security prescription pad experiences, improving customer decision-making while preserving the 4D ordering logic and production processes that supported fulfillment."
       metadata={[
-        { label: "Role", value: "Product Operations Manager" },
+        { label: "Project Role", value: "Product Operations Lead" },
         { label: "Scope", value: "Assessment · Requirements · Delivery · QA · Growth" },
         { label: "Project type", value: "Regulated product and growth operations" },
         { label: "Status", value: "Delivered · Optimization ongoing" },
       ]}
       navigation={caseNavigation}
       accent="rx"
+      story={[
+        { label: "Discovery", copy: "A connected audit of the education and ordering surfaces revealed dense content, unclear product comparison, repeated customer questions, and fragile 4D dependencies." },
+        { label: "Decision", copy: "Separate education from selection and modernize the customer layer without rebuilding the regulated ordering or production foundation." },
+        { label: "Delivery", copy: "Standardized both surfaces, clarified pad and prescriber choices, preserved 20 ordering paths, and added search-focused educational content." },
+        { label: "Impact", copy: "New users increased 1,272% following the redesign and search-content program, while four tracked recurring support-question categories fell to zero." },
+      ]}
     >
       <div className="executive-summary" aria-label="Case study executive summary">
-        <article><span>Business problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
-        <article><span>What I owned</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
+        <article><span>Problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
+        <article><span>My ownership</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
         <article><span>Key decision</span><p>Modernize the customer journey without disrupting 4D ordering logic or production fulfillment.</p></article>
-        <article><span>Verified result</span><p>New users increased 1,272% following the redesign and search-content program; four tracked recurring question categories fell to zero.</p></article>
-        <article><span>Business significance</span><p>The portal became a clearer acquisition, education, and self-service channel.</p></article>
+        <article><span>Impact · Measured</span><p>New users increased 1,272% following the redesign and search-content program; four tracked recurring question categories fell to zero.</p></article>
       </div>
     </CaseStudyWorkspace>
 
