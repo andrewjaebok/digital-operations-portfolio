@@ -36,10 +36,12 @@ test("renders development preview metadata", async () => {
   assert.match(html, /Project 05/i);
   assert.match(html, /Zero-to-one products/i);
   assert.match(html, /Operational Systems &amp; Automation/i);
-  assert.match(html, /Explore the map/i);
+  assert.match(html, /Enter the district/i);
   assert.match(html, /Browse case studies/i);
-  assert.match(html, /Interactive project navigator/i);
-  assert.match(html, /Move through five areas of Product Operations work/i);
+  assert.match(html, /Operations District · five live systems/i);
+  assert.match(html, /Each destination begins with a real operational problem/i);
+  assert.match(html, /Manual report scanning.*Search \+ status clarity/is);
+  assert.match(html, /195 entries to scan.*Searchable hierarchy/is);
   assert.match(html, /Project 01: Regional Utility Portal/i);
   assert.match(html, /Project 04: Operational Systems &amp; Automation/i);
   assert.match(html, /Project 05: University Logo Directory/i);
@@ -137,6 +139,10 @@ test("renders unique case-study metadata and evidence-safe utility results", asy
       assert.match(html, /Workflow evidence determined what mattered first/i);
       assert.match(html, /evaluation occurred after implementation/i);
       assert.match(html, /Discovery.*prioritization.*execution.*validation.*iteration/is);
+      assert.match(html, /Scroll through the transformation/i);
+      assert.match(html, /20–30 seconds to 5–10 seconds/i);
+      assert.match(html, /Incorrect selections:.*1\.86.*0/is);
+      assert.match(html, /does not represent live production analytics/i);
     }
     if (path === "/projects/operational-systems-automation") {
       assert.match(html, /Operational signal.*Workflow assessment.*Root-cause analysis.*Prioritization.*Requirements.*System improvement.*QA.*Rollout.*Measurement.*Standardization/is);

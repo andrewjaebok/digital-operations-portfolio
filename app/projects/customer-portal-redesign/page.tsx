@@ -3,6 +3,7 @@ import Image from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import UtilityUsabilityResults from "../../components/UtilityUsabilityResults";
+import UtilityScrollTransformation from "../../components/UtilityScrollTransformation";
 import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 
 const caseNavigation = [
   { id: "overview", label: "Overview" },
+  { id: "workflow-transformation", label: "Transformation" },
   { id: "assessment", label: "Discovery" },
   { id: "strategy", label: "Priorities" },
   { id: "solution", label: "Execution" },
@@ -78,6 +80,8 @@ export default function CustomerPortalRedesign() {
       </div>
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
     </CaseStudyWorkspace>
+
+    <UtilityScrollTransformation />
 
     <section className="utility-impact signature-visual shell" id="measured-impact" aria-labelledby="measured-impact-title">
       <div className="utility-impact-heading">

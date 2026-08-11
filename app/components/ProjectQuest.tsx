@@ -29,6 +29,8 @@ type Project = {
   route: string;
   building: Position;
   door: Position;
+  problemLabel: string;
+  solutionLabel: string;
 };
 
 const projects: Project[] = [
@@ -45,6 +47,8 @@ const projects: Project[] = [
     route: "/projects/customer-portal-redesign",
     building: { x: 2, y: 1 },
     door: { x: 3, y: 4 },
+    problemLabel: "Manual report scanning",
+    solutionLabel: "Search + status clarity",
   },
   {
     id: "rx",
@@ -58,6 +62,8 @@ const projects: Project[] = [
     route: "/projects/prescription-pad-ordering-portal",
     building: { x: 10, y: 1 },
     door: { x: 11, y: 4 },
+    problemLabel: "Questions + unclear steps",
+    solutionLabel: "Guided compliant ordering",
   },
   {
     id: "hearth",
@@ -70,6 +76,8 @@ const projects: Project[] = [
     route: "/projects/hearth",
     building: { x: 2, y: 7 },
     door: { x: 3, y: 10 },
+    problemLabel: "Disconnected money tools",
+    solutionLabel: "One financial world",
   },
   {
     id: "operations",
@@ -82,6 +90,8 @@ const projects: Project[] = [
     route: "/projects/operational-systems-automation",
     building: { x: 10, y: 7 },
     door: { x: 11, y: 10 },
+    problemLabel: "Recurring production jams",
+    solutionLabel: "Repeatable automated flow",
   },
   {
     id: "finder",
@@ -96,6 +106,8 @@ const projects: Project[] = [
     route: "/projects/university-logo-directory",
     building: { x: 6, y: 1 },
     door: { x: 7, y: 4 },
+    problemLabel: "195 entries to scan",
+    solutionLabel: "Searchable hierarchy",
   },
 ];
 
@@ -114,6 +126,54 @@ const startPosition = { x: 7, y: 6 };
 const stepDuration = 118;
 const storagePositionKey = "project-quest-position";
 const storageViewedKey = "project-quest-viewed";
+const storageEntryKey = "project-quest-entry";
+
+function ProjectScene({ project }: { project: Project }) {
+  if (project.id === "utility") {
+    return <span className="district-scene utility-scene" aria-hidden="true">
+      <i className="utility-river" />
+      <i className="utility-report report-one" />
+      <i className="utility-report report-two" />
+      <i className="utility-report report-three" />
+      <i className="utility-bridge"><b /><b /><b /></i>
+      <i className="utility-search">⌕</i>
+    </span>;
+  }
+
+  if (project.id === "rx") {
+    return <span className="district-scene rx-scene" aria-hidden="true">
+      <i className="rx-route" />
+      <i className="rx-question question-one">?</i>
+      <i className="rx-question question-two">?</i>
+      <i className="rx-form">Rx</i>
+      <i className="rx-seal">✓</i>
+    </span>;
+  }
+
+  if (project.id === "hearth") {
+    return <span className="district-scene hearth-scene" aria-hidden="true">
+      <i className="hearth-sky"><b /><b /><b /></i>
+      <i className="hearth-home"><b /><b /><b /></i>
+      <i className="hearth-dashboard"><b /><b /><b /></i>
+    </span>;
+  }
+
+  if (project.id === "operations") {
+    return <span className="district-scene operations-scene" aria-hidden="true">
+      <i className="operations-belt"><b /><b /></i>
+      <i className="operations-gear gear-one">✣</i>
+      <i className="operations-gear gear-two">✣</i>
+      <i className="operations-alert">!</i>
+      <i className="operations-check">✓</i>
+    </span>;
+  }
+
+  return <span className="district-scene finder-scene" aria-hidden="true">
+    <i className="finder-wall"><b /><b /><b /><b /><b /></i>
+    <i className="finder-search">⌕ <b>Samueli</b></i>
+    <i className="finder-path">School › Department</i>
+  </span>;
+}
 
 const directionVectors: Record<Direction, Position> = {
   up: { x: 0, y: -1 },
@@ -172,14 +232,19 @@ export default function ProjectQuest() {
   const [walking, setWalking] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [viewed, setViewed] = useState<string[]>([]);
+  const [activatingId, setActivatingId] = useState<string | null>(null);
+  const [enteringId, setEnteringId] = useState<string | null>(null);
   const gameRef = useRef<HTMLDivElement>(null);
   const positionRef = useRef<Position>(startPosition);
   const startedRef = useRef(false);
+  const viewedRef = useRef<string[]>([]);
   const selectedIdRef = useRef<string | null>(null);
   const selectionSourceRef = useRef<SelectionSource>(null);
   const activeInputsRef = useRef<Array<{ source: string; direction: Direction }>>([]);
   const movementTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const stepEndTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const activationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navigationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const selectedProject = useMemo(
     () => projects.find((project) => project.id === selectedId) ?? null,
@@ -200,7 +265,8 @@ export default function ProjectQuest() {
     const frame = requestAnimationFrame(() => {
       try {
         const savedPosition = window.sessionStorage.getItem(storagePositionKey);
-        const savedViewed = window.sessionStorage.getItem(storageViewedKey);
+        const savedViewed = window.localStorage.getItem(storageViewedKey)
+          ?? window.sessionStorage.getItem(storageViewedKey);
 
         if (savedPosition) {
           const parsed = JSON.parse(savedPosition) as Position;
@@ -221,11 +287,18 @@ export default function ProjectQuest() {
 
         if (savedViewed) {
           const parsed = JSON.parse(savedViewed) as string[];
-          setViewed(parsed.filter((id) => projects.some((project) => project.id === id)));
+          const validViewed = parsed.filter((id) => projects.some((project) => project.id === id));
+          viewedRef.current = validViewed;
+          setViewed(validViewed);
         }
       } catch {
-        window.sessionStorage.removeItem(storagePositionKey);
-        window.sessionStorage.removeItem(storageViewedKey);
+        try {
+          window.sessionStorage.removeItem(storagePositionKey);
+          window.sessionStorage.removeItem(storageViewedKey);
+          window.localStorage.removeItem(storageViewedKey);
+        } catch {
+          // Storage is optional; the district remains fully usable without it.
+        }
       }
     });
 
@@ -242,6 +315,8 @@ export default function ProjectQuest() {
     () => () => {
       if (movementTimerRef.current) clearInterval(movementTimerRef.current);
       if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
+      if (activationTimerRef.current) clearTimeout(activationTimerRef.current);
+      if (navigationTimerRef.current) clearTimeout(navigationTimerRef.current);
     },
     [],
   );
@@ -343,19 +418,52 @@ export default function ProjectQuest() {
     }
   }, []);
 
+  const markProjectResolved = useCallback((project: Project) => {
+    const nextViewed = Array.from(new Set([...viewedRef.current, project.id]));
+    viewedRef.current = nextViewed;
+    setViewed(nextViewed);
+    try {
+      window.localStorage.setItem(storageViewedKey, JSON.stringify(nextViewed));
+    } catch {
+      try {
+        window.sessionStorage.setItem(storageViewedKey, JSON.stringify(nextViewed));
+      } catch {
+        // Storage is optional; the current visit still keeps its resolved state.
+      }
+    }
+  }, []);
+
+  const activateProject = useCallback(
+    (project: Project) => {
+      beginExperience();
+      setHasInteracted(true);
+      setSelection(project, "intentional");
+      setActivatingId(project.id);
+      markProjectResolved(project);
+      if (activationTimerRef.current) clearTimeout(activationTimerRef.current);
+      activationTimerRef.current = setTimeout(() => setActivatingId(null), 1500);
+    },
+    [beginExperience, markProjectResolved, setSelection],
+  );
+
   const saveAndOpenProject = useCallback(
     (project: Project) => {
+      if (enteringId) return;
       stopMovement();
-      const nextViewed = Array.from(new Set([...viewed, project.id]));
-      setViewed(nextViewed);
+      markProjectResolved(project);
       window.sessionStorage.setItem(
         storagePositionKey,
         JSON.stringify(positionRef.current),
       );
-      window.sessionStorage.setItem(storageViewedKey, JSON.stringify(nextViewed));
-      router.push(project.route);
+      window.sessionStorage.setItem(storageEntryKey, project.id);
+      setEnteringId(project.id);
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      navigationTimerRef.current = setTimeout(
+        () => router.push(project.route),
+        reduceMotion ? 80 : 860,
+      );
     },
-    [router, stopMovement, viewed],
+    [enteringId, markProjectResolved, router, stopMovement],
   );
 
   const selectProject = useCallback(
@@ -449,7 +557,7 @@ export default function ProjectQuest() {
 
     if (
       nextTarget instanceof Element &&
-      nextTarget.closest(".quest-house, .quest-preview")
+      nextTarget.closest(".district-site, .quest-preview")
     ) {
       return;
     }
@@ -469,11 +577,11 @@ export default function ProjectQuest() {
       aria-labelledby="project-quest-title"
     >
       <div className="project-quest-intro">
-        <p className="eyebrow">Choose your route</p>
-        <h3 id="project-quest-title">Explore the work.</h3>
+        <p className="eyebrow">Interactive operations district</p>
+        <h3 id="project-quest-title">Solve the friction. See the system change.</h3>
         <p>
-          Move through five areas of Product Operations work, or use the
-          project cards below for the quick route.
+          Each destination begins with a real operational problem. Select it to
+          transform the system, then enter the case study to see the decisions and evidence behind it.
         </p>
         <div className="project-quest-actions">
           <button
@@ -481,7 +589,7 @@ export default function ProjectQuest() {
             type="button"
             onClick={beginExperience}
           >
-            Explore the map <span aria-hidden="true">▶</span>
+            Enter the district <span aria-hidden="true">▶</span>
           </button>
           <a className="quest-browse-link" href="#case-studies">
             Browse case studies <span aria-hidden="true">↓</span>
@@ -495,10 +603,10 @@ export default function ProjectQuest() {
         </div>
       </div>
 
-      <div className="ops-handheld" aria-label="OPS-05 Portable project navigator">
+      <div className="ops-handheld" aria-label="OPS-05 Interactive Operations District">
         <div className="handheld-brand">
           <span>OPS-05</span>
-          <small>Interactive project navigator</small>
+          <small>Operations District · five live systems</small>
         </div>
         <div
           className={`quest-screen${started ? " is-started" : ""}`}
@@ -513,10 +621,10 @@ export default function ProjectQuest() {
           <div className="quest-screen-status" aria-live="polite">
             <span>
               {selectedProject
-                ? `Enter · View ${selectedProject.shortTitle}`
+                ? `${viewed.length}/5 transformed · Enter ${selectedProject.shortTitle}`
                 : nearbyProject
                   ? `Enter · Preview ${nearbyProject.shortTitle}`
-                  : "Five projects · Choose a direction"}
+                  : `${viewed.length}/5 transformed · Choose a system`}
             </span>
             <button type="button" onClick={resetPosition} aria-label="Reset character position">
               R · Reset
@@ -534,7 +642,7 @@ export default function ProjectQuest() {
             <span className="quest-pond"><i /><i /><i /></span>
             <span className="quest-fence fence-top" />
             <span className="quest-fence fence-bottom" />
-            <span className="quest-town-sign">5 PROJECTS<br />1 APPROACH</span>
+            <span className="quest-town-sign">OPERATIONS<br />DISTRICT</span>
             <span className="quest-mailbox" />
             <span className="quest-npc"><i /></span>
 
@@ -562,9 +670,10 @@ export default function ProjectQuest() {
               return (
                 <button
                   className={[
-                    "quest-house",
-                    `house-${project.id}`,
+                    "district-site",
+                    `site-${project.id}`,
                     isViewed ? "is-viewed" : "",
+                    activatingId === project.id ? "is-activating" : "",
                     isSelected ? "is-selected" : "",
                     isNearby ? "is-nearby" : "",
                   ].filter(Boolean).join(" ")}
@@ -579,27 +688,15 @@ export default function ProjectQuest() {
                   onBlur={(event) =>
                     clearTemporarySelection("keyboard", event.relatedTarget)
                   }
-                  onClick={() => selectProject(project, "intentional")}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter") {
-                      event.preventDefault();
-                      saveAndOpenProject(project);
-                    }
-                  }}
-                  aria-label={`Project ${project.number}: ${project.title}. ${project.capability}.${isViewed ? " Viewed." : ""}`}
+                  onClick={() => activateProject(project)}
+                  aria-label={`Project ${project.number}: ${project.title}. ${project.capability}. ${project.problemLabel} becomes ${project.solutionLabel}.${isViewed ? " District transformed." : ""}`}
                   aria-pressed={isSelected}
                 >
-                  <span className="house-chimney" aria-hidden="true" />
-                  <span className="house-roof" aria-hidden="true" />
-                  <span className="house-front" aria-hidden="true">
-                    <i className="house-window window-left" />
-                    <i className="house-window window-right" />
-                    <i className="house-door">{project.number}</i>
-                  </span>
-                  <span className="house-sign" aria-hidden="true">
+                  <ProjectScene project={project} />
+                  <span className="site-sign" aria-hidden="true">
                     <b>{project.shortTitle}</b>
                     <small>{project.capability}</small>
-                    {isViewed && <em>Viewed ✓</em>}
+                    {isViewed && <em>Transformed ✓</em>}
                   </span>
                 </button>
               );
@@ -631,8 +728,8 @@ export default function ProjectQuest() {
             <div className="quest-title-screen">
               <span className="title-screen-hills" aria-hidden="true" />
               <small>Andrew presents</small>
-              <strong>PROJECT<br />QUEST</strong>
-              <p>Five projects. One operating mindset.</p>
+              <strong>OPERATIONS<br />DISTRICT</strong>
+              <p>Five systems. Transform the friction.</p>
               <button type="button" onClick={beginExperience}>
                 Press start
               </button>
@@ -653,6 +750,11 @@ export default function ProjectQuest() {
               </div>
               <h4>{selectedProject.title}</h4>
               <p>{selectedProject.description}</p>
+              <div className="quest-transformation-copy">
+                <span>{selectedProject.problemLabel}</span>
+                <i aria-hidden="true">→</i>
+                <strong>{selectedProject.solutionLabel}</strong>
+              </div>
               {selectedProject.evidence && <b>{selectedProject.evidence}</b>}
               <div className="quest-preview-actions">
                 <button
@@ -671,6 +773,15 @@ export default function ProjectQuest() {
               </div>
             </aside>
           )}
+
+          {enteringId && (() => {
+            const enteringProject = projects.find((project) => project.id === enteringId);
+            return enteringProject ? <div className={`quest-entry-transition entry-${enteringProject.id}`} aria-live="polite">
+              <span>Entering project {enteringProject.number}</span>
+              <strong>{enteringProject.title}</strong>
+              <i aria-hidden="true" />
+            </div> : null;
+          })()}
         </div>
 
         <div className="handheld-controls" aria-label="Optional handheld controls">
