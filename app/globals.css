@@ -2198,3 +2198,42 @@ html.dark .case-story{background:color-mix(in srgb,var(--case-tint) 12%,#171e2c)
 html.dark .project-quest{background:#16251f;border-color:#364b3e}html.dark .quest-detail-panel{background:#202f27;border-color:#425442;color:#e2ecdc}html.dark .quest-project-selector button{background:#293b2e;color:#e1eadb;border-color:#44553e}html.dark .quest-project-selector button[aria-pressed=true]{background:#405738}html.dark .quest-preview,html.dark .quest-empty-detail h4{color:#e2ecdc}html.dark .quest-preview>p,html.dark .quest-empty-detail p{color:#bac9b1}
 @media(max-width:950px){.project-quest-intro{display:block}.project-quest-intro>p:not(.eyebrow){max-width:650px}.ops-handheld{grid-template-columns:minmax(0,1.15fr) minmax(260px,1fr);padding:16px;gap:14px}.site-sign small{display:none}.site-sign b{font-size:6px}}
 @media(max-width:700px){.project-quest{padding:18px}.ops-handheld{grid-template-columns:1fr;padding:12px;gap:14px}.handheld-brand{flex-wrap:wrap;gap:6px}.handheld-brand small{font-size:8px}.quest-screen{aspect-ratio:1.25}.quest-detail-panel{grid-row:4;padding:16px}.handheld-controls{grid-row:3}.quest-preview h4{font-size:23px}.quest-preview>p{font-size:13px}.quest-preview>b{font-size:12px}.quest-preview-actions button{font-size:10px}.site-sign b{font-size:7px}.quest-instructions{display:flex}.quest-empty-detail{padding-top:20px}}
+
+/* Village refinement: one visual system, less chrome, one project picker. */
+.project-quest-intro{margin-bottom:24px;align-items:center}
+.project-quest-intro h3{font-size:clamp(28px,3.2vw,40px)}
+.ops-handheld{padding:20px;gap:18px;grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr)}
+.quest-screen{aspect-ratio:4/3;border-width:5px}.quest-screen:after{display:none}
+.quest-map{background:#c9dcb2!important;background-image:none!important}
+.quest-map:before,.quest-map:after{display:none!important}
+.quest-path{background:#e9dfbd!important;border-color:#d2c59e!important;box-shadow:none!important;opacity:1}
+.quest-fence{display:none}.quest-tree{filter:saturate(.65);transform:scale(.78);opacity:.8}
+.district-site{width:25%;height:25%;image-rendering:auto;filter:none!important}
+.district-site:before{display:none}.district-site.is-selected:after,.district-site.is-nearby:after{inset:0 4% 0;border:2px solid #577b56;border-radius:12px;background:#ffffff22;animation:none}
+.village-building{position:absolute;inset:0 2% 15%;width:96%;height:85%;overflow:visible;filter:drop-shadow(0 3px 1px #263e2410)}
+.site-sign,.district-site.is-viewed .site-sign{left:0;right:0;bottom:-1%;min-height:0;padding:4px 2px;border:0;border-radius:4px;background:#f4f4e8e8;box-shadow:none;text-align:center}
+.site-sign b{font:600 clamp(7px,.75vw,11px)/1.2 var(--font-jakarta),sans-serif;text-transform:none;letter-spacing:0;white-space:normal;overflow:visible}
+.site-sign small,.site-sign em{display:none}
+.quest-character{width:4.2%!important;height:10%!important;filter:none!important;background:none!important;border:0!important;box-shadow:none!important;z-index:5}
+.quest-character:before,.quest-character:after{display:none!important}.explorer-sprite{width:100%;height:100%;overflow:visible}
+.quest-character.faces-left .explorer-sprite{transform:scaleX(-1)}.quest-character.is-walking .explorer-sprite{animation:explorer-step .22s steps(2) infinite}
+@keyframes explorer-step{50%{transform:translateY(-2px)}}
+.quest-directory-heading{padding-bottom:12px;border-bottom:1px solid #dce3d6}
+.quest-picker-label{display:block;margin:16px 0 7px;font-size:11px;color:#677860}
+.quest-project-picker{width:100%;padding:12px;border:1px solid #b7c8af;border-radius:7px;background:#fff;color:#293e2e;font:600 13px var(--font-jakarta),sans-serif}
+.quest-preview{margin-top:20px;padding-top:0;border:0}.quest-preview h4{font:700 23px/1.2 var(--font-jakarta),sans-serif;letter-spacing:-.03em}.quest-preview>p{font-family:var(--font-jakarta),sans-serif;font-size:13px;line-height:1.6}
+.quest-preview-heading strong{display:none}.quest-preview>b{font:600 12px/1.6 var(--font-jakarta),sans-serif}
+.quest-transformation-copy{display:none}.quest-preview-actions button:last-child{display:none}
+.quest-preview-actions button:first-child{width:100%;font:700 12px var(--font-jakarta),sans-serif;text-transform:none}
+.quest-empty-detail h4{font-size:23px}.quest-empty-detail small{display:none}
+.handheld-controls{display:flex;justify-content:space-between;max-width:none;border-top:1px solid #ffffff20;padding:14px 0 0;align-items:center}
+.quest-dpad{transform:scale(.7);transform-origin:left center;margin:-15px -20px -15px 0}
+.quest-action-buttons{transform:scale(.72);transform-origin:right center;margin:-15px 0}
+.quest-start{font-size:10px}.quest-screen-status{font-size:9px;letter-spacing:0}
+.quest-title-screen{background:#c9dcb2}.title-screen-hills{display:none}
+.quest-title-screen strong{font-size:clamp(26px,3.2vw,44px);text-shadow:none;letter-spacing:-.04em}
+.quest-title-screen p{background:transparent}.quest-title-screen button{background:#355c48;color:#f5f8eb;border:0;box-shadow:0 3px #213e30}
+html.dark .quest-project-picker{background:#2b3d2d;color:#e5ecdc;border-color:#607356}
+@media(max-width:850px){.ops-handheld{grid-template-columns:1fr}.quest-screen{aspect-ratio:4/3}.quest-detail-panel{grid-row:4}.handheld-controls{grid-row:3}.site-sign b{font-size:11px}.quest-detail-panel{padding:18px}.quest-empty-detail{padding-top:18px}.quest-preview h4{font-size:23px}}
+@media(max-width:480px){.ops-handheld{padding:10px}.site-sign b{font-size:8px}.quest-screen-status{font-size:7px}.quest-screen-status button{font-size:7px}.handheld-brand small{display:none}.quest-preview>p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.quest-character.is-walking .explorer-sprite{animation:none}}

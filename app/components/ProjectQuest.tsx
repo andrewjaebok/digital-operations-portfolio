@@ -143,52 +143,21 @@ const storageViewedKey = "project-quest-viewed";
 const storageEntryKey = "project-quest-entry";
 
 function ProjectScene({ project }: { project: Project }) {
-  if (project.id === "utility") {
-    return <span className="district-scene utility-scene" aria-hidden="true">
-      <i className="utility-river" />
-      <i className="utility-report report-one" />
-      <i className="utility-report report-two" />
-      <i className="utility-report report-three" />
-      <i className="utility-bridge"><b /><b /><b /></i>
-      <i className="utility-search">⌕</i>
-    </span>;
-  }
-
-  if (project.id === "rx") {
-    return <span className="district-scene rx-scene" aria-hidden="true">
-      <i className="rx-route" />
-      <i className="rx-question question-one">?</i>
-      <i className="rx-question question-two">?</i>
-      <i className="rx-form">Rx</i>
-      <i className="rx-seal">✓</i>
-    </span>;
-  }
-
-  if (project.id === "hearth") {
-    return <span className="district-scene hearth-scene" aria-hidden="true">
-      <i className="hearth-sky"><b /><b /><b /></i>
-      <i className="hearth-home"><b /><b /><b /></i>
-      <i className="hearth-dashboard"><b /><b /><b /></i>
-    </span>;
-  }
-
-  if (project.id === "protection") { return <span className="district-scene protection-scene" aria-hidden="true"><i className="protection-shield">◇</i><b>✓</b><small>PROTECT</small></span>; }
-
-  if (project.id === "operations") {
-    return <span className="district-scene operations-scene" aria-hidden="true">
-      <i className="operations-belt"><b /><b /></i>
-      <i className="operations-gear gear-one">✣</i>
-      <i className="operations-gear gear-two">✣</i>
-      <i className="operations-alert">!</i>
-      <i className="operations-check">✓</i>
-    </span>;
-  }
-
-  return <span className="district-scene finder-scene" aria-hidden="true">
-    <i className="finder-wall"><b /><b /><b /><b /><b /></i>
-    <i className="finder-search">⌕ <b>Samueli</b></i>
-    <i className="finder-path">School › Department</i>
-  </span>;
+  const colors: Record<string, string> = { utility: "#548b9b", rx: "#ba7163", hearth: "#8b80a9", operations: "#a38a54", finder: "#5a947a", protection: "#557a98" };
+  return <svg className="village-building" viewBox="0 0 140 100" aria-hidden="true">
+    <ellipse cx="70" cy="88" rx="53" ry="7" fill="#203d2c" opacity=".12"/>
+    <rect x="28" y="37" width="84" height="49" rx="2" fill="#f4edd9" stroke="#445847" strokeWidth="2"/>
+    <path d="M19 40 38 15H102L121 40Z" fill={colors[project.id]} stroke="#445847" strokeWidth="2" strokeLinejoin="round"/>
+    <path d="M27 35H113M32 28H108M37 21H103" stroke="white" opacity=".18" strokeWidth="2"/>
+    <rect x="89" y="9" width="9" height="16" fill="#d8c9ac" stroke="#445847" strokeWidth="2"/>
+    <rect x="60" y="59" width="20" height="27" rx="2" fill="#596e59" stroke="#445847" strokeWidth="2"/>
+    <circle cx="75" cy="73" r="1.5" fill="#e6ca7c"/>
+    <g fill="#a9cdd0" stroke="#445847" strokeWidth="2"><rect x="36" y="51" width="15" height="17" rx="1"/><rect x="89" y="51" width="15" height="17" rx="1"/></g>
+    <path d="M43.5 52V67M37 59.5H50M96.5 52V67M90 59.5H103" stroke="#e9f2e8" strokeWidth="1.5"/>
+    <rect x="56" y="41" width="28" height="13" rx="3" fill="#fffcf1"/>
+    <text x="70" y="51" textAnchor="middle" fontSize="9" fontFamily="monospace" fontWeight="bold" fill="#445847">{project.number}</text>
+    <path d="M55 88H85" stroke="#c3b79a" strokeWidth="4" strokeLinecap="round"/>
+  </svg>;
 }
 
 const directionVectors: Record<Direction, Position> = {
@@ -598,29 +567,11 @@ export default function ProjectQuest() {
         <p>
           Explore six projects in an interactive district. Walk the map or choose a destination to discover the decisions, systems, and results behind the work.
         </p>
-        <div className="project-quest-actions">
-          <button
-            className="quest-play-button"
-            type="button"
-            onClick={beginExperience}
-          >
-            Enter the district <span aria-hidden="true">▶</span>
-          </button>
-          <a className="quest-browse-link" href="#case-studies">
-            Browse case studies <span aria-hidden="true">↓</span>
-          </a>
-        </div>
-        <div className="quest-instructions" aria-label="Project map instructions">
-          <span><kbd>WASD</kbd> <span>or arrows · Move</span></span>
-          <span><kbd>Enter</kbd> <span>View selected project</span></span>
-          <span><kbd>1–6</kbd> <span>Select a project · R resets</span></span>
-          <span><kbd>Mouse</kbd> <span>Hover or click a destination</span></span>
-        </div>
       </div>
 
       <div className="ops-handheld" aria-label="OPS-06 Interactive Operations District">
         <div className="handheld-brand">
-          <span>OPS-05</span>
+          <span>OPS-06</span>
           <small>Operations District · six project destinations</small>
         </div>
         <div
@@ -654,12 +605,12 @@ export default function ProjectQuest() {
             <span className="quest-path path-hearth" />
             <span className="quest-path path-operations" />
             <span className="quest-path path-finder" />
-            <span className="quest-pond"><i /><i /><i /></span>
+            
             <span className="quest-fence fence-top" />
             <span className="quest-fence fence-bottom" />
-            <span className="quest-town-sign">OPERATIONS<br />DISTRICT</span>
-            <span className="quest-mailbox" />
-            <span className="quest-npc"><i /></span>
+            
+            
+            
 
             {trees.map(([x, y]) => (
               <span
@@ -710,7 +661,7 @@ export default function ProjectQuest() {
                   <ProjectScene project={project} />
                   <span className="site-sign" aria-hidden="true">
                     <b>{project.shortTitle}</b>
-                    <small>{project.capability}</small>
+                    
                     {isViewed && <em>Transformed ✓</em>}
                   </span>
                 </button>
@@ -723,18 +674,16 @@ export default function ProjectQuest() {
                 style={tileStyle(position.x, position.y)}
                 aria-hidden="true"
               >
-                <i className="character-shadow" />
-                <i className="character-head">
-                  <b className="character-cap" />
-                  <b className="character-hair" />
-                  <b className="character-face" />
-                </i>
-                <i className="character-body">
-                  <b className="character-scarf" />
-                  <b className="character-pack" />
-                </i>
-                <i className="character-arms"><b className="character-hands" /></i>
-                <i className="character-feet" />
+                <svg viewBox="0 0 24 32" className="explorer-sprite" shapeRendering="crispEdges">
+                  <ellipse cx="12" cy="29" rx="9" ry="2" fill="#294b35" opacity=".2"/>
+                  <path d="M6 5H18V8H20V16H17V18H7V16H4V8H6Z" fill="#e6b68b" stroke="#354f42" strokeWidth="1"/>
+                  <path d="M5 5H7V3H17V5H19V9H5Z" fill="#355e58"/><path d="M5 8H20V10H5Z" fill="#e3bf69"/>
+                  <path d="M8 12H10V14H8ZM15 12H17V14H15Z" fill="#263c34"/>
+                  <path d="M7 18H17V26H7Z" fill="#578d9a" stroke="#354f42"/>
+                  <path d="M4 19H7V25H4ZM17 19H20V25H17Z" fill="#e6b68b"/>
+                  <path d="M7 26H11V30H6V28H7ZM13 26H17V28H18V30H13Z" fill="#354f42"/>
+                  <path d="M7 18H17V20H7Z" fill="#e3bf69"/>
+                </svg>
               </span>
             )}
           </div>
@@ -763,9 +712,11 @@ export default function ProjectQuest() {
 
         <div className="quest-detail-panel">
           <div className="quest-directory-heading"><span>PROJECT LIBRARY</span><b>{viewed.length} / {projects.length} explored</b></div>
-          <div className="quest-project-selector" aria-label="Choose a project">
-            {projects.map(project => <button key={project.id} type="button" aria-pressed={selectedId === project.id} onClick={() => { beginExperience(); selectProject(project, "intentional"); }}><span>{project.number}</span>{project.shortTitle}<i aria-hidden="true">{viewed.includes(project.id) ? "✓" : "↗"}</i></button>)}
-          </div>
+          <label className="quest-picker-label" htmlFor="quest-project-picker">Jump to a destination</label>
+          <select id="quest-project-picker" className="quest-project-picker" value={selectedId ?? ""} onChange={event => { const project = projects.find(item => item.id === event.target.value); if (project) { beginExperience(); selectProject(project, "intentional"); } }}>
+            <option value="">Choose a project</option>
+            {projects.map(project => <option key={project.id} value={project.id}>{project.number} · {project.shortTitle}</option>)}
+          </select>
           {selectedProject && (
             <aside
               className={`quest-preview preview-${selectedProject.id}`}
