@@ -3,7 +3,7 @@ import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyW
 
 export const metadata: Metadata = {
   title: "Operational Systems & Automation | Product Operations Case Study",
-  description: "A Senior Product Operations case study on root-cause analysis, workflow automation, QA, asset continuity, and repeatable digital-production systems.",
+  description: "A Senior Product Operations case study on root-cause analysis, workflow automation, QA, asset continuity, and protection for customer ordering infrastructure.",
 };
 
 const caseNavigation = [
@@ -11,6 +11,7 @@ const caseNavigation = [
   { id: "operating-model", label: "Operating model" },
   { id: "production-automation", label: "Automation" },
   { id: "asset-persistence", label: "Asset persistence" },
+  { id: "traffic-protection", label: "Traffic protection" },
   { id: "quality", label: "QA" },
   { id: "scorecard", label: "Impact" },
   { id: "standardization", label: "Standardization" },
@@ -131,12 +132,12 @@ export default function OperationalSystemsAutomation() {
       archetype="OPERATIONAL SYSTEMS"
       shortTitle="Operational Systems"
       title="Operational Systems & Automation"
-      subtitle="Building repeatable systems behind digital production."
-      summary="I identified recurring friction across proof and production workflows, investigated root causes, and moved repeatable behaviors into more dependable systems."
+      subtitle="Building dependable systems behind digital production and customer ordering."
+      summary="I investigated production friction and infrastructure risks, automated repeatable workflows, and implemented layered protection for customer ordering websites."
       metadata={[
         { label: "Project Role", value: "Senior Product Operations / Digital Services" },
-        { label: "Scope", value: "Assessment · Requirements · Automation · QA · Improvement" },
-        { label: "Project type", value: "Digital production systems" },
+        { label: "Scope", value: "Assessment · Automation · QA · Infrastructure protection" },
+        { label: "Project type", value: "Production and ordering systems" },
         { label: "Status", value: "Implemented · Measurement maturing" },
       ]}
       navigation={caseNavigation}
@@ -145,19 +146,19 @@ export default function OperationalSystemsAutomation() {
         { label: "Discovery", copy: "Recurring proof and production exceptions revealed patterns of repeated manual handling, inconsistent outcomes, and avoidable workflow interruption." },
         { label: "Decision", copy: "Prioritize recurring problems where a reusable system improvement could create operational leverage without introducing unacceptable production risk." },
         { label: "Delivery", copy: "Translated production rules into reusable automation, improved asset continuity through proof revisions, documented expected behavior, and validated normal and edge cases." },
-        { label: "Impact", copy: "Verified workflows are implemented and actively used. Reduced manual handling and more consistent execution are directional because reliable pre-change baselines were not captured." },
+        { label: "Impact", copy: "Production workflows are implemented and actively used. Layered traffic protection was implemented for customer ordering; production time savings remain directional." },
       ]}
     >
       <div className="executive-summary operations-summary" aria-label="Case study executive summary">
         <article><span>Problem</span><p>Recurring manual tasks, production exceptions, and workflow failures created unnecessary intervention across customer-facing proof and production processes.</p></article>
         <article><span>My ownership</span><p>Workflow assessment, requirements, prioritization, automation design, implementation, QA, troubleshooting, and continuous improvement.</p></article>
         <article><span>Key decision</span><p>Fix recurring problems at the system level rather than repeatedly treating individual symptoms.</p></article>
-        <article><span>Impact · Verified + Directional</span><p>Implemented workflows are actively used; reduced manual handling and more consistent execution remain directional until formal baselines are captured.</p></article>
+        <article><span>Impact · Verified + Directional</span><p>Production workflows are actively used. Customer ordering protection is implemented; production efficiency gains remain directional.</p></article>
       </div>
 
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
-        <span><strong>Verified:</strong> workflow improvements were implemented and used in live production workflows.</span>
+        <span><strong>Documented:</strong> live production workflow improvements and layered protection for customer ordering. Detailed traffic data and security configuration are excluded from this public case study.</span>
         <span><strong>Directional:</strong> automated behaviors required less repeated manual handling, but the effect was not formally quantified.</span>
         <span><strong>Future KPI:</strong> manual interventions per week, processing time per workflow, exception rate, error and rework rate, volume handled, and workflow reliability.</span>
       </div>
@@ -174,6 +175,7 @@ export default function OperationalSystemsAutomation() {
       <div className="operations-initiative-index" aria-label="Documented operational initiatives">
         <a href="#production-automation"><span>Initiative 01</span><strong>Production Workflow Automation</strong><p>Standardize predictable production behaviors.</p></a>
         <a href="#asset-persistence"><span>Initiative 02</span><strong>Proof Asset Persistence</strong><p>Protect customer assets through the revision lifecycle.</p></a>
+        <a href="#traffic-protection"><span>Initiative 03</span><strong>Customer Ordering Protection</strong><p>Reduce unwanted traffic reaching the ordering infrastructure.</p></a>
       </div>
     </section>
 
@@ -249,6 +251,26 @@ export default function OperationalSystemsAutomation() {
       </div>
     </section>
 
+    <section className="operations-initiative shell" id="traffic-protection">
+      <header className="initiative-heading"><span>Initiative 03</span><div><p className="kicker">Customer Ordering Protection · 2026</p><h2>Protect the systems behind customer ordering.</h2></div></header>
+      <div className="initiative-brief">
+        <article><span>Business context</span><p>Castle Press relies on customer ordering websites supported by Apache and 4D. Unusually heavy automated traffic prompted an investigation into protecting the platform and maintaining customer access.</p></article>
+        <article><span>My ownership</span><p>Investigated the hosting environment and traffic patterns, configured Cloudflare and DNS, troubleshot browser connectivity, and reviewed traffic data following the changes.</p></article>
+        <article><span>Key decision</span><p>Introduce layered protection around the existing platform. Evaluate the full request path and balance traffic filtering with accessibility for legitimate customers.</p></article>
+        <article><span>Constraints</span><p>Work within the existing production environment and preserve the customer ordering experience while introducing infrastructure improvements.</p></article>
+      </div>
+      <div className="root-cause-grid">
+        <article><span>01 · Investigate</span><p>Reviewed the relationship between DNS, web hosting, and the ordering application. Used traffic patterns to guide the response rather than treating high activity as customer demand.</p></article>
+        <article><span>02 · Implement</span><p>Configured Cloudflare protection and updated DNS settings as part of a broader infrastructure response around the existing Apache and 4D platform.</p></article>
+        <article><span>03 · Troubleshoot</span><p>Investigated browser connectivity issues during rollout, adjusted the configuration, and confirmed website access afterward.</p></article>
+        <article><span>04 · Review</span><p>Reviewed request data following the changes to assess the response and guide further adjustments. Implementation and measured effectiveness were treated as separate questions.</p></article>
+      </div>
+      <div className="initiative-outcome">
+        <div><span className="evidence-state verified">Implemented</span><h3>Layered traffic protection added to the customer ordering environment.</h3><p>Cloudflare protection was configured and website access was verified following the rollout. Traffic reviews informed the subsequent response. Internal traffic figures and security settings are omitted from this public case study.</p></div>
+        <div><span className="evidence-state directional">Operational learning</span><h3>Infrastructure changes need both technical checks and customer access validation.</h3><p>The work extended my operational ownership from ordering workflows to the infrastructure supporting them. A configuration change is only useful when the platform remains accessible and its effects are reviewed.</p></div>
+      </div>
+    </section>
+
     <section className="operations-section lifecycle-learning shell" id="lifecycle-learning">
       <div className="operations-section-heading">
         <div><p className="kicker">From isolated fixes to systemic thinking</p><h2>Early improvements can reveal a deeper workflow requirement.</h2></div>
@@ -291,6 +313,7 @@ export default function OperationalSystemsAutomation() {
         <div className="scorecard-row scorecard-header" role="row"><span role="columnheader">Initiative</span><span role="columnheader">Problem</span><span role="columnheader">Verified implementation</span><span role="columnheader">Directional impact</span><span role="columnheader">Future KPI</span></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Production Workflow Automation</strong><p role="cell">Repetitive manual production handling</p><p role="cell">Recurring production behaviors standardized through reusable automation</p><p role="cell">Less repeated handling of automated behaviors</p><p role="cell">Time, interventions, errors, volume</p></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Proof Asset Persistence</strong><p role="cell">Customer assets could require retrieval or re-upload during revisions</p><p role="cell">Appropriate asset retained through proof revision scenarios</p><p role="cell">Known source of unnecessary retrieval work removed</p><p role="cell">Reuploads, employee interventions, revision delays</p></div>
+        <div className="scorecard-row" role="row"><strong role="rowheader">Customer Ordering Protection</strong><p role="cell">Heavy automated traffic reaching Apache and 4D infrastructure</p><p role="cell">Cloudflare and layered traffic protection implemented; website access verified</p><p role="cell">Reduced exposure to unwanted traffic; no public quantified impact claim</p><p role="cell">Request trends and legitimate customer access</p></div>
       </div>
     </section>
 
@@ -321,7 +344,7 @@ export default function OperationalSystemsAutomation() {
     </section>
 
     <CaseStudyEnding
-      capabilities={["Root Cause Analysis", "Process Automation", "Quality Assurance", "Operational Excellence", "System Standardization"]}
+      capabilities={["Root Cause Analysis", "Process Automation", "Quality Assurance", "Operational Excellence", "System Standardization", "Infrastructure Troubleshooting"]}
       nextNumber="05"
       nextTitle="University Logo Directory Redesign"
       nextDescription="See how discovery signals, KPI design, and matched synthetic scenario testing shaped a second product iteration."

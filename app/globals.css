@@ -2161,3 +2161,7 @@ html.dark .case-story{background:color-mix(in srgb,var(--case-tint) 12%,#171e2c)
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
 }
+
+/* Keep the three operational initiatives aligned on wide screens. */
+.operations-initiative-index{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:760px){.operations-initiative-index{grid-template-columns:1fr}}
