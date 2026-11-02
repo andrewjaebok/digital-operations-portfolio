@@ -193,20 +193,20 @@ const isPassable = (position: Position) => {
 
   return !projects.some(
     (project) =>
-      position.x >= project.building.x &&
-      position.x <= project.building.x + 3 &&
-      position.y >= project.building.y &&
+      position.x >= project.building.x + 1 &&
+      position.x <= project.building.x + 2 &&
+      position.y >= project.building.y + 1 &&
       position.y <= project.building.y + 2,
   );
 };
 
-const findNearbyProject = (position: Position) =>
-  projects.find(
-    (project) =>
-      Math.abs(project.door.x - position.x) +
-        Math.abs(project.door.y - position.y) <=
-      2,
-  ) ?? null;
+const findNearbyProject = (position: Position) => {
+  const ranked = projects.map(project => ({
+    project,
+    distance: Math.abs(project.door.x - position.x) + Math.abs(project.door.y - position.y),
+  })).sort((a, b) => a.distance - b.distance);
+  return ranked[0]?.distance <= 2 ? ranked[0].project : null;
+};
 
 export default function ProjectQuest() {
   const router = useRouter();
@@ -342,29 +342,13 @@ export default function ProjectQuest() {
       return;
     }
 
-    if (
-      selectionSourceRef.current === "keyboard" ||
-      selectionSourceRef.current === "shortcut"
-    ) {
-      setSelection(null, null);
-    }
-
     if (stepEndTimerRef.current) clearTimeout(stepEndTimerRef.current);
     positionRef.current = next;
     setPosition(next);
     setWalking(true);
 
-    if (
-      selectionSourceRef.current !== "hover" &&
-      selectionSourceRef.current !== "intentional"
-    ) {
-      const nextNearbyProject = findNearbyProject(next);
-      if (nextNearbyProject) {
-        setSelection(nextNearbyProject, "proximity");
-      } else if (selectionSourceRef.current === "proximity") {
-        setSelection(null, null);
-      }
-    }
+    // Walking takes precedence over earlier hover, click, or shortcut selections.
+    setSelection(findNearbyProject(next), "proximity");
   }, [setSelection]);
 
   const startMovement = useCallback((source: string, nextDirection: Direction) => {
@@ -582,7 +566,7 @@ export default function ProjectQuest() {
           tabIndex={0}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
-          onBlur={() => stopMovement()}
+          onBlur={(event) => { if (!event.currentTarget.parentElement?.contains(event.relatedTarget as Node | null)) stopMovement(); }}
         >
           <div className="quest-screen-status" aria-live="polite">
             <span>
@@ -761,7 +745,7 @@ export default function ProjectQuest() {
 
         <div className="handheld-controls" aria-label="Optional handheld controls">
           <div className="quest-dpad" aria-label="Directional controls">
-            <button className="dpad-up" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-up", "up"); }} onPointerUp={() => endMovement("dpad-up")} onPointerCancel={() => endMovement("dpad-up")} aria-label="Move up">▲</button>
+            <button className="dpad-up" type="button" onPointerDown={(event) => { event.preventDefault(); gameRef.current?.focus({ preventScroll: true }); event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-up", "up"); }} onPointerUp={() => endMovement("dpad-up")} onPointerCancel={() => endMovement("dpad-up")} aria-label="Move up">▲</button>
             <button className="dpad-left" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-left", "left"); }} onPointerUp={() => endMovement("dpad-left")} onPointerCancel={() => endMovement("dpad-left")} aria-label="Move left">◀</button>
             <span aria-hidden="true" />
             <button className="dpad-right" type="button" onPointerDown={(event) => { event.currentTarget.setPointerCapture(event.pointerId); startMovement("dpad-right", "right"); }} onPointerUp={() => endMovement("dpad-right")} onPointerCancel={() => endMovement("dpad-right")} aria-label="Move right">▶</button>
