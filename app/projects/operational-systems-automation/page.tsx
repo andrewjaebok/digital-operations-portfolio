@@ -158,7 +158,7 @@ export default function OperationalSystemsAutomation() {
 
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
-        <span><strong>Documented:</strong> live production workflow improvements and layered protection for customer ordering. Detailed traffic data and security configuration are excluded from this public case study.</span>
+        <span><strong>Documented:</strong> live production workflow improvements and layered protection for customer ordering. Traffic results are detailed in Initiative 03; sensitive security configuration is excluded.</span>
         <span><strong>Directional:</strong> automated behaviors required less repeated manual handling, but the effect was not formally quantified.</span>
         <span><strong>Future KPI:</strong> manual interventions per week, processing time per workflow, exception rate, error and rework rate, volume handled, and workflow reliability.</span>
       </div>
@@ -265,8 +265,20 @@ export default function OperationalSystemsAutomation() {
         <article><span>03 · Troubleshoot</span><p>Investigated browser connectivity issues during rollout, adjusted the configuration, and confirmed website access afterward.</p></article>
         <article><span>04 · Review</span><p>Reviewed request data following the changes to assess the response and guide further adjustments. Implementation and measured effectiveness were treated as separate questions.</p></article>
       </div>
+      <div className="measurement-opportunities">
+        <div><p className="kicker">Traffic results · Oct 30 – Nov 1, 2026</p><h3>97.3% lower measured request volume reaching the server.</h3><p>Average HTTP requests per minute reaching Apache. Figures represent requests, not unique visitors, bots, or orders.</p></div>
+        <ol>
+          <li><strong>1,877 requests/minute · Original flood</strong><p>Baseline request rate before the origin access restriction.</p></li>
+          <li><strong>50.7 requests/minute · Measured after origin restriction</strong><p>About 1,826 fewer requests per minute, a 97.3% reduction compared with the original flood.</p></li>
+          <li><strong>12.7 requests/minute · Estimated after two high-volume IP blocks</strong><p>Projected 99.3% reduction from the original flood, or approximately 75.0% below the 50.7 stage. This is an estimate, not a verified post-block result.</p></li>
+        </ol>
+      </div>
+      <div className="initiative-detail-grid">
+        <div><p className="kicker">Why this was beneficial</p><h3>Reduce unnecessary work reaching the ordering infrastructure.</h3><p>Fewer unwanted requests reaching Apache means fewer requests for the server to handle. This reduces traffic pressure around the customer ordering platform and supports the goal of preserving capacity for legitimate customers.</p><p>The measured benefit is lower incoming request volume. Faster checkout, lower CPU usage, higher conversion, and avoided downtime were not measured and are not claimed.</p></div>
+        <div><p className="kicker">How the figures were assessed</p><p>The 1,877 and 50.7 rates are documented in the Castle Press Website Traffic Reduction review for Oct 30 – Nov 1, 2026. The 12.7 estimate was calculated by removing the two blocked sources’ prior requests from an observed six-hour sample. A fresh post-block log is needed to verify that projection.</p><p>These are comparisons across observation periods, not a controlled experiment. Traffic patterns may also vary over time.</p></div>
+      </div>
       <div className="initiative-outcome">
-        <div><span className="evidence-state verified">Implemented</span><h3>Layered traffic protection added to the customer ordering environment.</h3><p>Cloudflare protection was configured and website access was verified following the rollout. Traffic reviews informed the subsequent response. Internal traffic figures and security settings are omitted from this public case study.</p></div>
+        <div><span className="evidence-state verified">Implemented</span><h3>Layered traffic protection added to the customer ordering environment.</h3><p>Cloudflare protection was configured and website access was verified following the rollout. Traffic reviews informed the subsequent response. The documented measured request rate fell 97.3%. Detailed security settings remain private.</p></div>
         <div><span className="evidence-state directional">Operational learning</span><h3>Infrastructure changes need both technical checks and customer access validation.</h3><p>The work extended my operational ownership from ordering workflows to the infrastructure supporting them. A configuration change is only useful when the platform remains accessible and its effects are reviewed.</p></div>
       </div>
     </section>
@@ -313,7 +325,7 @@ export default function OperationalSystemsAutomation() {
         <div className="scorecard-row scorecard-header" role="row"><span role="columnheader">Initiative</span><span role="columnheader">Problem</span><span role="columnheader">Verified implementation</span><span role="columnheader">Directional impact</span><span role="columnheader">Future KPI</span></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Production Workflow Automation</strong><p role="cell">Repetitive manual production handling</p><p role="cell">Recurring production behaviors standardized through reusable automation</p><p role="cell">Less repeated handling of automated behaviors</p><p role="cell">Time, interventions, errors, volume</p></div>
         <div className="scorecard-row" role="row"><strong role="rowheader">Proof Asset Persistence</strong><p role="cell">Customer assets could require retrieval or re-upload during revisions</p><p role="cell">Appropriate asset retained through proof revision scenarios</p><p role="cell">Known source of unnecessary retrieval work removed</p><p role="cell">Reuploads, employee interventions, revision delays</p></div>
-        <div className="scorecard-row" role="row"><strong role="rowheader">Customer Ordering Protection</strong><p role="cell">Heavy automated traffic reaching Apache and 4D infrastructure</p><p role="cell">Cloudflare and layered traffic protection implemented; website access verified</p><p role="cell">Reduced exposure to unwanted traffic; no public quantified impact claim</p><p role="cell">Request trends and legitimate customer access</p></div>
+        <div className="scorecard-row" role="row"><strong role="rowheader">Customer Ordering Protection</strong><p role="cell">Heavy automated traffic reaching Apache and 4D infrastructure</p><p role="cell">Cloudflare and layered traffic protection implemented; website access verified</p><p role="cell">97.3% lower measured request rate; further reduction is projected</p><p role="cell">Request trends and legitimate customer access</p></div>
       </div>
     </section>
 
