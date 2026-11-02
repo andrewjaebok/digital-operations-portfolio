@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PortfolioImage from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
 export const metadata: Metadata = {
@@ -264,6 +265,34 @@ export default function OperationalSystemsAutomation() {
         <article><span>02 · Implement</span><p>Configured Cloudflare protection and updated DNS settings as part of a broader infrastructure response around the existing Apache and 4D platform.</p></article>
         <article><span>03 · Troubleshoot</span><p>Investigated browser connectivity issues during rollout, adjusted the configuration, and confirmed website access afterward.</p></article>
         <article><span>04 · Review</span><p>Reviewed request data following the changes to assess the response and guide further adjustments. Implementation and measured effectiveness were treated as separate questions.</p></article>
+      </div>
+      <figure style={{ margin: "32px 0", padding: "24px", border: "1px solid var(--line)", borderRadius: 14 }}>
+        <figcaption><p className="kicker">Traffic comparison</p><h3>Fewer requests reaching the ordering server</h3><p>Average HTTP requests per minute · Oct 30 – Nov 1, 2026</p></figcaption>
+        <svg viewBox="0 0 900 350" role="img" aria-labelledby="traffic-chart-title traffic-chart-description" style={{ width: "100%", height: "auto", display: "block" }}>
+          <title id="traffic-chart-title">97.3% lower measured origin request rate</title>
+          <desc id="traffic-chart-description">Original flood: 1,877 requests per minute. After origin restriction: 50.7 measured. After two IP blocks: 12.7 estimated, not yet verified. All bars use the same linear scale.</desc>
+          <g fill="currentColor" fontSize="17">
+            <text x="10" y="40">Original flood</text><text x="875" y="40" textAnchor="end">1,877 / min</text>
+            <text x="10" y="135">After restriction · measured</text><text x="875" y="135" textAnchor="end">50.7 / min</text>
+            <text x="10" y="230">After IP blocks · estimated</text><text x="875" y="230" textAnchor="end">12.7 / min</text>
+          </g>
+          <g fill="#e2e8f0"><rect x="10" y="55" width="865" height="28" rx="4"/><rect x="10" y="150" width="865" height="28" rx="4"/><rect x="10" y="245" width="865" height="28" rx="4"/></g>
+          <rect x="10" y="55" width="865" height="28" rx="4" fill="#64748b"/>
+          <rect x="10" y="150" width="23.36" height="28" fill="#c75b20"/>
+          <rect x="10" y="245" width="5.85" height="28" fill="#c75b20" fillOpacity=".45" stroke="#c75b20" strokeDasharray="3 2"/>
+          <text x="10" y="318" fill="currentColor" fontSize="17">Measured reduction: 97.3% · Projected total reduction: 99.3%</text>
+        </svg>
+        <p>Bars use a shared linear scale. The final stage is a projection calculated from an earlier sample, not a measured post-block result.</p>
+      </figure>
+      <div className="initiative-detail-grid">
+        <figure style={{ margin: 0, minWidth: 0 }}>
+          <PortfolioImage src="/images/ordering-protection/cloudflare-traffic.png" width={1205} height={390} alt="Cloudflare request graph from an earlier observation window: 1.44k total, 105 mitigated, 31 served by Cloudflare, and 1.31k served by origin." style={{ width: "100%", height: "auto", background: "white", borderRadius: 8 }} />
+          <figcaption><h3>Traffic investigation evidence</h3><p>Original Cloudflare graph from Oct 30. This earlier dashboard window shows requests mitigated and served; it is separate from the origin-log comparison above. Source IPs and unrelated panels have been cropped out.</p></figcaption>
+        </figure>
+        <figure style={{ margin: 0, minWidth: 0 }}>
+          <PortfolioImage src="/images/ordering-protection/cloudflare-actions.png" width={400} height={197} alt="Cloudflare security actions panel showing 91 blocks and 14 managed challenges." style={{ width: "100%", maxWidth: 400, height: "auto", background: "white", borderRadius: 8 }} />
+          <figcaption><h3>Security actions observed</h3><p>The captured dashboard lists 91 blocks and 14 managed challenges. These counts document actions in that dashboard window; they do not establish the later rate limiting rule’s effectiveness or the 97.3% origin reduction.</p></figcaption>
+        </figure>
       </div>
       <div className="measurement-opportunities">
         <div><p className="kicker">Traffic results · Oct 30 – Nov 1, 2026</p><h3>97.3% lower measured request volume reaching the server.</h3><p>Average HTTP requests per minute reaching Apache. Figures represent requests, not unique visitors, bots, or orders.</p></div>
