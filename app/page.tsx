@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "./components/PortfolioImage";
 import ProjectQuest from "./components/ProjectQuest";
-import AntWorkflow from "./components/AntWorkflow";
 
 export const metadata: Metadata = {
   title: "Andrew | Senior Product Operations / Digital Services",
@@ -36,9 +35,6 @@ export default function Home() {
             <span className="hero-period">.</span>
           </h1>
           <p className="hero-lead">A portfolio of customer portal modernization, regulated digital ordering, operational systems, and independent product development.</p>
-          <div className="hero-ant-stage">
-            <AntWorkflow />
-          </div>
           <div className="hero-links"><a className="primary-button" href="#work">View projects</a><Link className="secondary-link" href="/how-i-work">How I work <span>↗</span></Link></div>
         </div>
         <div className="hero-summary" aria-label="Portfolio disciplines">
