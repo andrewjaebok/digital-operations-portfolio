@@ -2165,3 +2165,36 @@ html.dark .case-story{background:color-mix(in srgb,var(--case-tint) 12%,#171e2c)
 /* Keep the three operational initiatives aligned on wide screens. */
 .operations-initiative-index{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:760px){.operations-initiative-index{grid-template-columns:1fr}}
+
+/* Expanded operations console: map and project details stay visible together. */
+.project-quest{display:block;padding:clamp(22px,4vw,48px);background:#f3f5f2;border-color:#dce2dc;border-radius:24px}
+.project-quest-intro{display:grid;grid-template-columns:1.25fr 1fr;column-gap:48px;align-items:start;margin-bottom:30px}
+.project-quest-intro .eyebrow{grid-column:1/-1;color:#496957}
+.project-quest-intro h3{font-size:clamp(30px,4vw,48px);margin:10px 0;max-width:620px}
+.project-quest-intro>p:not(.eyebrow){grid-column:2;grid-row:2;font-size:15px}
+.project-quest-actions{margin-top:18px}.quest-instructions{grid-column:2;display:flex;flex-wrap:wrap;margin-top:18px;gap:10px 16px}
+.quest-instructions kbd{min-width:auto}.project-quest.has-interacted .quest-instructions{opacity:1}
+.ops-handheld{width:100%;max-width:none;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:20px;padding:24px;border-radius:24px;background:linear-gradient(145deg,#283a35,#192923);border:1px solid #45574e;box-shadow:0 24px 50px #132b2320,inset 0 1px #ffffff20}
+.handheld-brand{grid-column:1/-1;color:#e0e9df;justify-content:space-between;margin:0 4px 0}.handheld-brand span{font-size:15px}.handheld-brand small{font-size:10px;letter-spacing:.08em}
+.quest-screen{aspect-ratio:1.18;border:6px solid #101e19;border-radius:14px;align-self:start;box-shadow:0 0 0 1px #506357}
+.quest-screen:after{opacity:.22}.quest-screen-status{font-size:9px;padding:8px;min-height:32px;background:#d6e2bf;border-bottom:1px solid #91a878}.quest-screen-status button{font-size:9px;padding:5px}
+.quest-map{top:32px}.quest-title-screen{top:32px;background:radial-gradient(ellipse at 50% 30%,#e4eccf,#adc28d)}
+.quest-title-screen small{font-size:10px}.quest-title-screen strong{font-size:clamp(28px,4vw,50px);line-height:.96;letter-spacing:-.05em;text-shadow:2px 3px #9eb483}.quest-title-screen p{font-size:11px}.quest-title-screen button{font-size:12px;padding:13px 24px;border-radius:7px}
+.quest-detail-panel{padding:20px;background:#f8faf5;border:1px solid #d6dfd2;border-radius:12px;color:#25382c;min-width:0;align-self:stretch}
+.quest-directory-heading{display:flex;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.08em;color:#647360}.quest-directory-heading b{font-weight:500;letter-spacing:0}
+.quest-project-selector{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:16px}
+.quest-project-selector button{display:flex;align-items:center;gap:7px;min-height:44px;text-align:left;padding:9px;border:1px solid #dce3d6;border-radius:7px;background:white;color:#344638;font:600 11px/1.3 var(--font-jakarta),sans-serif;cursor:pointer}
+.quest-project-selector button span{font:500 10px ui-monospace,monospace;color:#7b8977}.quest-project-selector button i{margin-left:auto;font-style:normal;color:#84937e}
+.quest-project-selector button:hover,.quest-project-selector button[aria-pressed=true]{background:#e2ecd8;border-color:#779669}
+.quest-preview{position:relative;inset:auto;min-height:0;margin-top:20px;padding:20px 0 0;border:0;border-top:1px solid #dce3d6;background:transparent;box-shadow:none;color:#25382c;animation:none}
+.quest-preview:before{display:none}.quest-preview-heading,.quest-preview-heading strong{font-size:10px;line-height:1.5}.quest-preview h4{font-size:24px;line-height:1.15;margin:12px 0}.quest-preview>p{font-size:13px;line-height:1.7;color:#596754}.quest-preview>b{display:block;font-size:12px;line-height:1.6;margin-top:16px}
+.quest-transformation-copy{font-size:10px;padding:11px;margin-top:15px;background:#edf2e6;border-color:#d4deca;line-height:1.5}
+.quest-preview-actions{gap:8px;margin-top:20px}.quest-preview-actions button{min-height:42px;font-size:10px;border-radius:6px;padding:10px}
+.quest-empty-detail{padding:28px 0 4px}.quest-empty-detail>span{font-size:10px;letter-spacing:.1em;color:#77886c}.quest-empty-detail h4{font-size:25px;line-height:1.2;margin:14px 0}.quest-empty-detail p{font-size:13px;line-height:1.7;color:#64735c}.quest-empty-detail small{font-size:11px;color:#77886c}
+.handheld-controls{grid-column:1/-1;margin:0;padding:0 8px;max-width:560px;width:100%;justify-self:center}.handheld-speaker{display:none}
+.site-sign b{font-size:7px}.site-sign small{font-size:5px}.site-sign em{font-size:4px}
+.site-protection{--site-accent:#3a6879}.protection-scene{background:linear-gradient(135deg,#dceaf0,#a4c2cd);border:2px solid #3a6879;border-radius:12px}
+.protection-shield{inset:8% 25%;display:grid!important;place-items:center;font-size:50px;color:#355b6c}.protection-scene>b{position:absolute;inset:30% 42%;font-size:18px;color:#2c596a}.protection-scene small{position:absolute;bottom:8%;left:0;right:0;font-size:7px;color:#2c596a;text-align:center}
+html.dark .project-quest{background:#16251f;border-color:#364b3e}html.dark .quest-detail-panel{background:#202f27;border-color:#425442;color:#e2ecdc}html.dark .quest-project-selector button{background:#293b2e;color:#e1eadb;border-color:#44553e}html.dark .quest-project-selector button[aria-pressed=true]{background:#405738}html.dark .quest-preview,html.dark .quest-empty-detail h4{color:#e2ecdc}html.dark .quest-preview>p,html.dark .quest-empty-detail p{color:#bac9b1}
+@media(max-width:950px){.project-quest-intro{display:block}.project-quest-intro>p:not(.eyebrow){max-width:650px}.ops-handheld{grid-template-columns:minmax(0,1.15fr) minmax(260px,1fr);padding:16px;gap:14px}.site-sign small{display:none}.site-sign b{font-size:6px}}
+@media(max-width:700px){.project-quest{padding:18px}.ops-handheld{grid-template-columns:1fr;padding:12px;gap:14px}.handheld-brand{flex-wrap:wrap;gap:6px}.handheld-brand small{font-size:8px}.quest-screen{aspect-ratio:1.25}.quest-detail-panel{grid-row:4;padding:16px}.handheld-controls{grid-row:3}.quest-preview h4{font-size:23px}.quest-preview>p{font-size:13px}.quest-preview>b{font-size:12px}.quest-preview-actions button{font-size:10px}.site-sign b{font-size:7px}.quest-instructions{display:flex}.quest-empty-detail{padding-top:20px}}

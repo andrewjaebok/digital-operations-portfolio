@@ -172,7 +172,9 @@ function ProjectScene({ project }: { project: Project }) {
     </span>;
   }
 
-  if (project.id === "operations" || project.id === "protection") {
+  if (project.id === "protection") { return <span className="district-scene protection-scene" aria-hidden="true"><i className="protection-shield">◇</i><b>✓</b><small>PROTECT</small></span>; }
+
+  if (project.id === "operations") {
     return <span className="district-scene operations-scene" aria-hidden="true">
       <i className="operations-belt"><b /><b /></i>
       <i className="operations-gear gear-one">✣</i>
@@ -592,10 +594,9 @@ export default function ProjectQuest() {
     >
       <div className="project-quest-intro">
         <p className="eyebrow">Interactive operations district</p>
-        <h3 id="project-quest-title">Solve the friction. See the system change.</h3>
+        <h3 id="project-quest-title">A small world. Real operational impact.</h3>
         <p>
-          Each destination begins with a real operational problem. Select it to
-          transform the system, then enter the case study to see the decisions and evidence behind it.
+          Explore six projects in an interactive district. Walk the map or choose a destination to discover the decisions, systems, and results behind the work.
         </p>
         <div className="project-quest-actions">
           <button
@@ -617,7 +618,7 @@ export default function ProjectQuest() {
         </div>
       </div>
 
-      <div className="ops-handheld" aria-label="OPS-05 Interactive Operations District">
+      <div className="ops-handheld" aria-label="OPS-06 Interactive Operations District">
         <div className="handheld-brand">
           <span>OPS-05</span>
           <small>Operations District · six project destinations</small>
@@ -635,7 +636,7 @@ export default function ProjectQuest() {
           <div className="quest-screen-status" aria-live="polite">
             <span>
               {selectedProject
-                ? `${viewed.length}/5 transformed · Enter ${selectedProject.shortTitle}`
+                ? `${viewed.length}/${projects.length} transformed · Enter ${selectedProject.shortTitle}`
                 : nearbyProject
                   ? `Enter · Preview ${nearbyProject.shortTitle}`
                   : `${viewed.length}/5 transformed · Choose a system`}
@@ -685,7 +686,7 @@ export default function ProjectQuest() {
                 <button
                   className={[
                     "district-site",
-                    `site-${project.id === "protection" ? "operations" : project.id}`,
+                    `site-${project.id}`,
                     isViewed ? "is-viewed" : "",
                     activatingId === project.id ? "is-activating" : "",
                     isSelected ? "is-selected" : "",
@@ -750,7 +751,22 @@ export default function ProjectQuest() {
             </div>
           )}
 
-          {started && selectedProject && (
+          {enteringId && (() => {
+            const enteringProject = projects.find((project) => project.id === enteringId);
+            return enteringProject ? <div className={`quest-entry-transition entry-${enteringProject.id}`} aria-live="polite">
+              <span>Entering project {enteringProject.number}</span>
+              <strong>{enteringProject.title}</strong>
+              <i aria-hidden="true" />
+            </div> : null;
+          })()}
+        </div>
+
+        <div className="quest-detail-panel">
+          <div className="quest-directory-heading"><span>PROJECT LIBRARY</span><b>{viewed.length} / {projects.length} explored</b></div>
+          <div className="quest-project-selector" aria-label="Choose a project">
+            {projects.map(project => <button key={project.id} type="button" aria-pressed={selectedId === project.id} onClick={() => { beginExperience(); selectProject(project, "intentional"); }}><span>{project.number}</span>{project.shortTitle}<i aria-hidden="true">{viewed.includes(project.id) ? "✓" : "↗"}</i></button>)}
+          </div>
+          {selectedProject && (
             <aside
               className={`quest-preview preview-${selectedProject.id}`}
               aria-live="polite"
@@ -788,14 +804,8 @@ export default function ProjectQuest() {
             </aside>
           )}
 
-          {enteringId && (() => {
-            const enteringProject = projects.find((project) => project.id === enteringId);
-            return enteringProject ? <div className={`quest-entry-transition entry-${enteringProject.id}`} aria-live="polite">
-              <span>Entering project {enteringProject.number}</span>
-              <strong>{enteringProject.title}</strong>
-              <i aria-hidden="true" />
-            </div> : null;
-          })()}
+
+          {!selectedProject && <div className="quest-empty-detail"><span>YOUR NEXT STOP</span><h4>Explore the work behind the world.</h4><p>Select a project above or move through the district. Each destination reveals the problem, the approach, and the evidence.</p><small>Six destinations. Choose your own route.</small></div>}
         </div>
 
         <div className="handheld-controls" aria-label="Optional handheld controls">
