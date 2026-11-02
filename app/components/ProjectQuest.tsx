@@ -109,6 +109,20 @@ const projects: Project[] = [
     problemLabel: "195 entries to scan",
     solutionLabel: "Searchable hierarchy",
   },
+  {
+    id: "protection",
+    number: "06",
+    shortTitle: "Ordering Protection",
+    title: "Customer Ordering Protection",
+    capability: "Infrastructure & Reliability",
+    description: "Investigated automated traffic and implemented layered Cloudflare protection around the Apache and 4D customer ordering platform.",
+    evidence: "Measured: 1,877 → 50.7 requests/minute, a 97.3% reduction. Further reduction to 12.7/minute (99.3% total) is projected, not verified.",
+    route: "/projects/operational-systems-automation/#traffic-protection",
+    building: { x: 6, y: 7 },
+    door: { x: 7, y: 10 },
+    problemLabel: "Unwanted traffic pressure",
+    solutionLabel: "Layered traffic protection",
+  },
 ];
 
 const trees = [
@@ -119,7 +133,7 @@ const trees = [
 ] as const;
 
 const flowers = [
-  [6, 5], [9, 5], [6, 9], [7, 9], [8, 9], [9, 9],
+  [6, 5], [9, 5],
 ] as const;
 
 const startPosition = { x: 7, y: 6 };
@@ -158,7 +172,7 @@ function ProjectScene({ project }: { project: Project }) {
     </span>;
   }
 
-  if (project.id === "operations") {
+  if (project.id === "operations" || project.id === "protection") {
     return <span className="district-scene operations-scene" aria-hidden="true">
       <i className="operations-belt"><b /><b /></i>
       <i className="operations-gear gear-one">✣</i>
@@ -522,7 +536,7 @@ export default function ProjectQuest() {
       return;
     }
 
-    if (["Digit1", "Digit2", "Digit3", "Digit4", "Digit5"].includes(event.code)) {
+    if (["Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6"].includes(event.code)) {
       event.preventDefault();
       const project = projects[Number(event.code.slice(-1)) - 1];
       if (project) selectProject(project, "shortcut");
@@ -598,7 +612,7 @@ export default function ProjectQuest() {
         <div className="quest-instructions" aria-label="Project map instructions">
           <span><kbd>WASD</kbd> <span>or arrows · Move</span></span>
           <span><kbd>Enter</kbd> <span>View selected project</span></span>
-          <span><kbd>1–5</kbd> <span>Select a project · R resets</span></span>
+          <span><kbd>1–6</kbd> <span>Select a project · R resets</span></span>
           <span><kbd>Mouse</kbd> <span>Hover or click a destination</span></span>
         </div>
       </div>
@@ -606,13 +620,13 @@ export default function ProjectQuest() {
       <div className="ops-handheld" aria-label="OPS-05 Interactive Operations District">
         <div className="handheld-brand">
           <span>OPS-05</span>
-          <small>Operations District · five live systems</small>
+          <small>Operations District · six project destinations</small>
         </div>
         <div
           className={`quest-screen${started ? " is-started" : ""}`}
           ref={gameRef}
           role="region"
-          aria-label="Interactive map of five Product Operations case studies. Use WASD or arrow keys to move, number keys to select, and Enter to open. Tab reaches every destination."
+          aria-label="Interactive map of six Product Operations project destinations. Use WASD or arrow keys to move, number keys to select, and Enter to open. Tab reaches every destination."
           tabIndex={0}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
@@ -671,7 +685,7 @@ export default function ProjectQuest() {
                 <button
                   className={[
                     "district-site",
-                    `site-${project.id}`,
+                    `site-${project.id === "protection" ? "operations" : project.id}`,
                     isViewed ? "is-viewed" : "",
                     activatingId === project.id ? "is-activating" : "",
                     isSelected ? "is-selected" : "",
@@ -729,7 +743,7 @@ export default function ProjectQuest() {
               <span className="title-screen-hills" aria-hidden="true" />
               <small>Andrew presents</small>
               <strong>OPERATIONS<br />DISTRICT</strong>
-              <p>Five systems. Transform the friction.</p>
+              <p>Six destinations. Transform the friction.</p>
               <button type="button" onClick={beginExperience}>
                 Press start
               </button>
