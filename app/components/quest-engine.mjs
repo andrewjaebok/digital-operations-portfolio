@@ -1,0 +1,26 @@
+export const spawn = { x: 400, y: 330 };
+export const doors = [{ x: 168, y: 190 }, { x: 400, y: 140 }, { x: 632, y: 190 }];
+export const paths = [
+  { x: 60, y: 300, width: 680, height: 60 },
+  ...doors.map(d => ({ x: d.x - 26, y: d.y, width: 52, height: 140 + (190 - d.y) })),
+];
+export function walkable(p) {
+  return paths.some(r => p.x >= r.x + 7 && p.x <= r.x + r.width - 7 && p.y >= r.y + 5 && p.y <= r.y + r.height - 5);
+}
+export function advance(p, dx, dy, seconds, width, height) {
+  const length = Math.hypot(dx, dy);
+  if (!length) return p;
+  const distance = 115 * Math.min(seconds, .05);
+  const x = p.x + dx / length * distance * 800 / width;
+  const y = p.y + dy / length * distance * 400 / height;
+  let next = walkable({x,y}) ? {x,y} : p;
+  if (next === p) {
+    if (walkable({x,y:p.y})) next = {x,y:p.y};
+    if (walkable({x:next.x,y})) next = {x:next.x,y};
+  }
+  return next;
+}
+export function nearby(p) {
+  const index = doors.findIndex(d => Math.abs(p.x-d.x) <= 24 && p.y >= d.y && p.y <= d.y+38);
+  return index < 0 ? null : index;
+}
