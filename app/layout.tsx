@@ -17,9 +17,6 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Andrew | Senior Product Operations / Digital Services",
   description: "Senior Product Operations / Digital Services case studies spanning customer portals, regulated ordering, operational systems, workflow automation, and independent product development.",
-  other: {
-    "codex-preview": "development",
-  },
   icons: {
     icon: assetPath("/favicon.svg"),
     shortcut: assetPath("/favicon.svg"),
