@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "../../components/PortfolioImage";
 import PortfolioNav from "../../components/PortfolioNav";
 import { categories } from "../../data/categories";
+import "../../components/ITDecisionNarrative.css";
 export const metadata = { title: "IT Work | Andrew", description: "Reliable systems behind the customer experience." };
 export default function CategoryPage(){return <main><PortfolioNav/><section className="category-intro shell"><Link className="back-link" href="/#work">← All three areas</Link><p className="eyebrow">Explore the work</p><h1>IT Work</h1><p>Reliable systems behind the customer experience.</p><nav className="category-tabs" aria-label="Project categories">{categories.map(c=><Link key={c.id} href={c.route} aria-current={c.id === "it-work" ? "page" : undefined}>{c.title}</Link>)}</nav></section><section className="shell it-decision-intro" aria-labelledby="it-decision-intro-title">
   <div><p className="eyebrow">Technical judgment &amp; operational ownership</p><h2 id="it-decision-intro-title">The important work happened before and after the fix.</h2><p>Each initiative began with a recurring operational signal. The work involved narrowing the root cause, weighing service continuity against change risk, implementing a targeted improvement, and checking whether the workflow still supported employees and customers.</p></div>
