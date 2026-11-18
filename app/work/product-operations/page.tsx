@@ -3,7 +3,13 @@ import Image from "../../components/PortfolioImage";
 import PortfolioNav from "../../components/PortfolioNav";
 import { categories } from "../../data/categories";
 export const metadata = { title: "Digital Operations | Andrew", description: "Customer experiences, from friction to launch." };
-export default function CategoryPage(){return <main><PortfolioNav/><section className="category-intro shell"><Link className="back-link" href="/#work">← All three areas</Link><p className="eyebrow">Explore the work</p><h1>Digital Operations</h1><p>Customer experiences, from friction to launch.</p><nav className="category-tabs" aria-label="Project categories">{categories.map(c=><Link key={c.id} href={c.route} aria-current={c.id === "product-operations" ? "page" : undefined}>{c.title}</Link>)}</nav></section><section className="shell category-projects" aria-label="Digital Operations projects"><div className="project-gallery balanced-project-gallery">          <Link className="bento-card portfolio-project-card utility-project" href="/projects/customer-portal-redesign">
+export default function CategoryPage(){return <main><PortfolioNav/><section className="category-intro category-intro--three shell"><Link className="back-link" href="/#work">← All three areas</Link><h1>Digital Operations</h1><p>Customer experiences, from friction to launch.</p><nav className="category-tabs" aria-label="Project categories">{categories.map(c=><Link key={c.id} href={c.route} aria-current={c.id === "product-operations" ? "page" : undefined}>{c.title}</Link>)}</nav></section><section className="shell category-projects" aria-label="Digital Operations projects"><nav className="category-case-index" aria-label="Case studies in this category">
+          <span>3 case studies</span>
+          <Link href="/projects/customer-portal-redesign">Regional Utility Portal <span aria-hidden="true">↗</span></Link>
+          <Link href="/projects/prescription-pad-ordering-portal">RX Pads <span aria-hidden="true">↗</span></Link>
+          <Link href="/projects/university-logo-directory">University Logo Directory <span aria-hidden="true">↗</span></Link>
+        </nav>
+        <div className="project-gallery balanced-project-gallery three-project-gallery">          <Link className="bento-card portfolio-project-card utility-project" href="/projects/customer-portal-redesign">
             <div className="project-topline"><span><i aria-hidden="true">◫</i> Project 01</span><b>Customer portal</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Regional utility portal before and after">
               <figure><span>Before</span><Image src="/images/utility-portal/portal-before.png" width={1513} height={667} priority alt="Original regional utility report portal" /></figure>

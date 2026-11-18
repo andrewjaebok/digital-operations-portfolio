@@ -144,3 +144,70 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+.category-case-index {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 18px;
+}
+.category-case-index > span {
+  flex: 0 0 100%;
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--muted);
+}
+.category-case-index a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+.category-case-index a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+.balanced-project-gallery.three-project-gallery { grid-auto-rows: auto; }
+.balanced-project-gallery.three-project-gallery .portfolio-project-card {
+  grid-column: auto;
+  min-height: 0;
+}
+@media (min-width: 1000px) {
+  .balanced-project-gallery.three-project-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .balanced-project-gallery.three-project-gallery .portfolio-project-card .portfolio-card-media {
+    height: 210px;
+  }
+  .three-project-gallery .personal-card-media img { height: 100%; }
+  .three-project-gallery .portfolio-card-footer { flex-wrap: wrap; gap: 6px 14px; }
+}
+.category-intro--three { padding-block: 32px 18px; }
+@media (max-width: 560px) {
+  .category-intro--three { padding-block: 24px 14px; }
+  .category-intro--three h1 { margin: 10px 0; }
+  .category-intro--three > p:not(.eyebrow) { margin: 8px 0; font-size: 16px; }
+}
+@media (max-width: 560px) {
+  .category-case-index {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: 6px;
+  }
+  .category-case-index > span { grid-column: 1 / -1; }
+  .category-case-index a {
+    justify-content: center;
+    padding-inline: 5px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .category-case-index a > span { display: none; }
+}
