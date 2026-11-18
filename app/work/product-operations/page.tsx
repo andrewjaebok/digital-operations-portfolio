@@ -19,7 +19,7 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-footer"><span>20-participant retrospective evaluation</span><b>View case study ↗</b></div>
           </Link>
           <Link className="bento-card portfolio-project-card rx-project" href="/projects/prescription-pad-ordering-portal">
-            <div className="project-topline"><span><i aria-hidden="true">✚</i> Project 02</span><b>Regulated commerce</b></div>
+            <div className="project-topline"><span><i aria-hidden="true">✚</i> Project 02</span><b>UX case study + interactive prototype</b></div>
             <div className="portfolio-card-media project-compare-media" aria-label="Prescription pad ordering experience before and after">
               <figure><span>Before</span><Image src="/images/rx-pad-portal/order-before.png" width={1502} height={888} alt="Original California prescription pad ordering experience" /></figure>
               <figure><span>After</span><Image src="/images/rx-pad-portal/order-after.png" width={1225} height={788} alt="Redesigned California prescription pad ordering experience" /></figure>
@@ -29,9 +29,9 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
               <p className="project-business-problem"><span>Business problem</span>A legacy journey made compliant product selection and guidance harder to understand.</p>
               <div className="project-card-impact"><span>Impact · Measured signals</span><strong>+1,272% new users</strong><strong>100% reduction across 4 tracked recurring question categories</strong><small>Redesign and search-content program occurred together; causal attribution is directional.</small></div>
               <p className="project-card-role"><span>Project role</span>Product Operations Lead</p>
-              <div className="project-tag-row" aria-label="Project capabilities"><span>Requirements</span><span>Compliance</span><span>Launch</span><span>Growth</span></div>
+              <div className="project-tag-row" aria-label="Project capabilities"><span>Customer journey</span><span>Wireframes</span><span>Prototype</span><span>WCAG review</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>Customer + production workflow</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-footer"><span>6 new UX deliverables included</span><b>Explore RX Pads case study ↗</b></div>
           </Link>
           <Link className="bento-card portfolio-project-card finder-project" href="/projects/university-logo-directory">
             <div className="project-topline"><span><i aria-hidden="true">⌕</i> Project 05</span><b>Discovery &amp; validation</b></div>
