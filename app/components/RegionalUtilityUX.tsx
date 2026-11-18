@@ -19,6 +19,8 @@ export default function RegionalUtilityUX() {
     <>
       <section className="shell utility-ux-section" id="ux-design" aria-labelledby="utility-ux-title">
         <div className="utility-ux-heading"><p className="kicker">UX design rationale</p><h2 id="utility-ux-title">From report matrix to task-focused experience.</h2><p>The delivered interface is documented through four concrete interaction decisions. The diagrams below are <strong>retrospective explanatory reconstructions</strong>, not original pre-development wireframes or a claim that a formal Figma design process was used.</p></div>
+        <h3 className="utility-ux-subheading" id="ux-decisions">01 / Annotated UX design decisions</h3>
+        <div className="utility-ux-decisions">{decisions.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p><strong>Friction:</strong> {item.problem}</p><p><strong>Design decision:</strong> {item.choice}</p><p><strong>Why:</strong> {item.reason}</p></article>)}</div>
         <h3 className="utility-ux-subheading" id="ux-task-flow">02 / User task-flow comparison</h3>
         <nav className="utility-ux-jump" aria-label="Six UX portfolio improvements"><a href="#ux-decisions">01 Design decisions</a><a href="#ux-task-flow">02 Task flow</a><a href="#ux-wireframes">03 Wireframes</a><a href="#ux-accessibility">04 Accessibility</a><a href="#study-context">05 Research methods</a><a href="#ux-design-system">06 Components</a></nav>
         <div className="utility-ux-flow" aria-label="Retrospective task-flow comparison">
@@ -62,8 +64,6 @@ export default function RegionalUtilityUX() {
         </div>
         <p className="utility-ux-boundary">This mobile card layout is a design exploration, not a claim that this exact layout shipped. Compare against the delivered screenshots and videos below.</p>
         <p className="utility-ux-boundary">These simplified diagrams communicate information architecture only. Actual delivered screenshots and interaction videos are shown in the execution section.</p>
-        <h3 className="utility-ux-subheading" id="ux-decisions">01 / Annotated UX design decisions</h3>
-        <div className="utility-ux-decisions">{decisions.map(item=><article key={item.number}><span>{item.number}</span><h3>{item.title}</h3><p><strong>Friction:</strong> {item.problem}</p><p><strong>Design decision:</strong> {item.choice}</p><p><strong>Why:</strong> {item.reason}</p></article>)}</div>
       </section>
       <section className="shell utility-ux-section" id="interaction-specification" aria-labelledby="utility-pattern-title">
         <div className="utility-ux-heading"><p className="kicker">Interaction specification</p><h2 id="utility-pattern-title">Four patterns that support the task.</h2><p>A concise documentation layer for design and QA. These are interaction descriptions, not a separate Figma prototype or a completed design-system audit.</p></div>
