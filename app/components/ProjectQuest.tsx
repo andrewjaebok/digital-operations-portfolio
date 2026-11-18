@@ -17,7 +17,7 @@ const projects = [
   ],
   [
     {title:"Systems & Automation", description:"Practical improvements to internal workflows.", route:"/projects/operational-systems-automation"},
-    {title:"Customer Ordering Protection", description:"Investigating and reducing automated server traffic.", route:"/projects/operational-systems-automation/#traffic-protection"},
+    {title:"Customer Ordering Protection", description:"Investigating and reducing automated server traffic.", route:"/projects/customer-ordering-protection"},
   ],
   [{title:"Lumafi", description:"An independent personal finance product, from idea to delivery.", route:"/projects/hearth"}],
 ];

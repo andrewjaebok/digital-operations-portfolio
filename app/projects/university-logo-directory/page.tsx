@@ -262,7 +262,7 @@ export default function UniversityLogoDirectory() {
         {nextSteps.map(([priority, item, reason], index) => <article key={item}><b>{String(index + 1).padStart(2, "0")}</b><span className={`priority ${priority.toLowerCase()}`}>{priority}</span><h3>{item}</h3><p>{reason}</p></article>)}
       </div>
       <div className="finder-measurement-plan">
-        <article><span>Real-user test</span><p>Correct result, time, help needed, scroll actions, confidence, and ease rating using the same tasks in both versions.</p></article>
+        <article><span>Planned lookup session</span><p>Give a representative user a department name shared by two branches. Ask them to confirm the right organization path, then recover from a search with no matches. Record the selection, recovery path, and any help they needed.</p></article>
         <article><span>Production events</span><p>Finder opened, search started, no result, filter used, result selected, selection changed, assistance clicked, and elapsed time.</p></article>
         <article><span>Decision rule</span><p>If real completion or assistance misses target, review failed queries and wrong-level selections before expanding scope.</p></article>
       </div>

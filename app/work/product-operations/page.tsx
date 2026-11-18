@@ -12,7 +12,7 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-copy">
               <p className="project-label">Customer Workflow</p><h3>Regional Utility Customer Portal</h3>
               <p className="project-business-problem"><span>Business problem</span>Customers had to scan a dense report matrix and interpret production status manually.</p>
-              <div className="project-card-impact"><span>Impact · Measured</span><strong>≈70%+ lower task time</strong><strong>83–100% fewer incorrect selections</strong></div>
+              <div className="project-card-impact"><span>Report lookup · Retrospective usability evaluation</span><strong>30–60 seconds → 10–15 seconds</strong><small>Time to find the correct location</small></div>
               <p className="project-card-role"><span>Project role</span>Product Operations Lead</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Discovery</span><span>Prioritization</span><span>Delivery</span><span>Measurement</span></div>
             </div>
@@ -27,11 +27,11 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-copy">
               <p className="project-label">Regulated Product &amp; Growth</p><h3>Prescription Pad Ordering Experience</h3>
               <p className="project-business-problem"><span>Business problem</span>A legacy journey made compliant product selection and guidance harder to understand.</p>
-              <div className="project-card-impact"><span>Impact · Measured signals</span><strong>+1,272% new users</strong><strong>100% reduction across 4 tracked recurring question categories</strong><small>Redesign and search-content program occurred together; causal attribution is directional.</small></div>
+              <div className="project-card-impact"><span>Customer support follow-up</span><strong>Four recurring question categories fell to zero</strong><small>Observed during the two-month follow-up</small></div>
               <p className="project-card-role"><span>Project role</span>Product Operations Lead</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Customer journey</span><span>Wireframes</span><span>Prototype</span><span>WCAG review</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>6 new UX deliverables included</span><b>Explore RX Pads case study ↗</b></div>
+            <div className="portfolio-card-footer"><span>Customer journey and ordering prototype</span><b>Explore RX Pads case study ↗</b></div>
           </Link>
           <Link className="bento-card portfolio-project-card finder-project" href="/projects/university-logo-directory">
             <div className="project-topline"><span><i aria-hidden="true">⌕</i> Project 05</span><b>Discovery &amp; validation</b></div>
@@ -43,10 +43,9 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
               <p className="project-label">Discovery &amp; Validation</p>
               <h3>University Logo Directory Redesign</h3>
               <p className="project-business-problem"><span>Business problem</span>A static 195-entry list required manual scanning, memory, and a second lookup in the ordering workflow.</p>
-              <div className="project-card-impact project-card-impact-modeled" aria-label="Synthetic Round 2 modeled KPI results"><span>Impact · Modeled pre-launch results</span><strong>11 / 11 modeled KPI thresholds met</strong><strong>95% → 99% completion · 24s → 20s lookup</strong></div>
-              <small className="finder-card-caveat"><b>Synthetic pre-launch evaluation.</b> Decision-support model, not observed user research.</small>
+              <div className="project-card-impact"><span>Search interaction</span><strong>Search by familiar names and confirm the full organization path</strong><small>Recover from an empty search with A–Z browsing</small></div>
               <p className="project-card-role"><span>Project role</span>Senior Product Operations / Digital Services</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Discovery</span><span>KPI design</span><span>Iteration</span><span>Validation</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>Hypothesis → evaluation → iteration</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-footer"><span>Interactive finder and Figma wireframes</span><b>View case study ↗</b></div>
           </Link></div></section><footer className="site-footer shell"><Link href="/#work">← Return to the hub</Link><a href="mailto:andrewjaebok@gmail.com">Get in touch ↗</a></footer></main>}

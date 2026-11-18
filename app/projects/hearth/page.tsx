@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PortfolioImage from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
 export const metadata: Metadata = {
@@ -122,11 +123,21 @@ export default function LumafiCaseStudy() {
     <section className="shell featured-evidence" aria-labelledby="lumafi-spending-title">
       <h2 id="lumafi-spending-title">How much can I safely spend this month?</h2>
       <p>Lumafi is an independent household finance app. Its dashboard gives people a place to start with Safe to Spend, then use planning and transaction views to review upcoming commitments and recent activity.</p>
-      <ol className="featured-evidence-grid">
-        <li><strong>Start at the dashboard.</strong> Find Safe to Spend in the monthly overview.</li>
-        <li><strong>Review the context.</strong> Check the household plan and recent transactions before deciding what can wait or what to spend.</li>
-        <li><strong>Proposed improvement.</strong> Add a breakdown next to the amount and prompt users to review missing information when the monthly plan is incomplete.</li>
-      </ol>
+      <div className="featured-evidence-grid lumafi-mobile-evidence">
+        <figure>
+          <PortfolioImage src="/images/lumafi/mobile-safe-to-spend-qa.webp" width={320} height={655} alt="Earlier mobile dashboard showing Safe to Spend at zero dollars in an empty household, with the amount described as what remains after spending, bills, cards, and goals." />
+          <figcaption>Mobile QA capture from the v18.5 build, when Lumafi was called Hearth. The household has no financial entries.</figcaption>
+        </figure>
+        <div>
+          <h3>Find the number and check what it means</h3>
+          <ol>
+            <li>Open the monthly dashboard and find Safe to Spend alongside the other household figures.</li>
+            <li>Read the explanation below the amount. It accounts for spending, bills, cards, and goals.</li>
+            <li>Review the household plan and transaction activity before deciding what to spend.</li>
+          </ol>
+          <p><strong>Proposed improvement.</strong> Give an incomplete plan its own state, explain why a reliable amount is unavailable, and link to the missing information. Once the plan is complete, show a breakdown next to the amount.</p>
+        </div>
+      </div>
     </section>
 
     <section className="signature-visual hearth-signature shell" aria-labelledby="hearth-signature-title">

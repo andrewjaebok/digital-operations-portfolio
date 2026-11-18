@@ -238,7 +238,7 @@ export default function CustomerPortalRedesign() {
     <RegionalUtilityPrototype />
     <section className="shell featured-evidence" aria-labelledby="prototype-focus-title">
       <h2 id="prototype-focus-title">Keep keyboard focus in the search flow</h2>
-      <p>In the portfolio prototype, clearing an empty search removed the focused button. The clear action now returns focus to the search field and preserves the selected language. The result status region also includes the empty-state message. A manual screen reader pass remains pending.</p>
+      <p>In the portfolio prototype, clearing an empty search removed the focused button. The clear action now returns focus to the search field and preserves the selected language. The result status region includes the empty-state message. Closing the sample file preview also returns focus to the report button that opened it. A manual screen reader pass remains pending.</p>
     </section>
 
     <div className="shell utility-chapter-marker"><span>Chapter 04</span><strong>Validation & accessibility</strong><a href="#ux-accessibility">Jump to WCAG evidence ↗</a></div>

@@ -11,7 +11,7 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-copy">
               <p className="project-label">0→1 Product Development</p><h3>Lumafi Personal Finance Platform</h3>
               <p className="project-business-problem"><span>Business problem</span>Personal finance products can feel complex, impersonal, and difficult to justify as another subscription.</p>
-              <div className="project-card-impact"><span>Impact · Verified delivery</span><strong>Working end-to-end product</strong><strong>Auth · payments · production deployment · release management</strong></div>
+              <div className="project-card-impact"><span>Impact · Verified delivery</span><strong>Help households understand what they can spend this month</strong><small>Includes a mobile QA capture of the Safe to Spend view.</small></div>
               <p className="project-card-role"><span>Project role</span>Product Owner / Product Operations</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Strategy</span><span>Roadmap</span><span>Architecture</span><span>Releases</span></div>
             </div>

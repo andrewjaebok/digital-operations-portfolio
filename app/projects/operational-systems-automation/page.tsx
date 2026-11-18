@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import PortfolioImage from "../../components/PortfolioImage";
+import Link from "next/link";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ITDecisionNarrative from "../../components/ITDecisionNarrative";
 
@@ -135,11 +135,11 @@ export default function OperationalSystemsAutomation() {
       archetype="OPERATIONAL SYSTEMS"
       shortTitle="Operational Systems"
       title="Operational Systems & Automation"
-      subtitle="Building dependable systems behind digital production and customer ordering."
-      summary="I investigated production friction and infrastructure risks, automated repeatable workflows, and implemented layered protection for customer ordering websites."
+      subtitle="Keeping customer uploads available through proof revisions."
+      summary="When a proof needed changes, regenerating it could require someone to retrieve the original customer upload again. I updated the workflow to preserve the file and checked that a regenerated proof could reuse it."
       metadata={[
         { label: "Project Role", value: "Senior Product Operations / Digital Services" },
-        { label: "Scope", value: "Assessment · Automation · QA · Infrastructure protection" },
+        { label: "Scope", value: "Workflow assessment · Automation · QA" },
         { label: "Project type", value: "Production and ordering systems" },
         { label: "Status", value: "Implemented · Measurement maturing" },
       ]}
@@ -149,7 +149,7 @@ export default function OperationalSystemsAutomation() {
         { label: "Discovery", copy: "Recurring proof and production exceptions revealed patterns of repeated manual handling, inconsistent outcomes, and avoidable workflow interruption." },
         { label: "Decision", copy: "Prioritize recurring problems where a reusable system improvement could create operational leverage without introducing unacceptable production risk." },
         { label: "Delivery", copy: "Translated production rules into reusable automation, improved asset continuity through proof revisions, documented expected behavior, and validated normal and edge cases." },
-        { label: "Impact", copy: "Production workflows are implemented and actively used. Layered traffic protection was implemented for customer ordering; production time savings remain directional." },
+        { label: "Impact", copy: "Regenerating a proof can reuse the original upload. Production workflows are active, and time savings remain to be measured." },
       ]}
     >
       <div className="executive-summary operations-summary" aria-label="Case study executive summary">
@@ -161,7 +161,7 @@ export default function OperationalSystemsAutomation() {
 
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
-        <span><strong>Documented:</strong> live production workflow improvements and layered protection for customer ordering. Traffic results are detailed in Initiative 03; sensitive security configuration is excluded.</span>
+        <span><strong>Documented:</strong> live production workflow improvements and layered protection for customer ordering. The linked Customer Ordering Protection case study documents the traffic results.</span>
         <span><strong>Directional:</strong> automated behaviors required less repeated manual handling, but the effect was not formally quantified.</span>
         <span><strong>Future KPI:</strong> manual interventions per week, processing time per workflow, exception rate, error and rework rate, volume handled, and workflow reliability.</span>
       </div>
@@ -178,7 +178,7 @@ export default function OperationalSystemsAutomation() {
       <div className="operations-initiative-index" aria-label="Documented operational initiatives">
         <a href="#production-automation"><span>Initiative 01</span><strong>Production Workflow Automation</strong><p>Standardize predictable production behaviors.</p></a>
         <a href="#asset-persistence"><span>Initiative 02</span><strong>Proof Asset Persistence</strong><p>Protect customer assets through the revision lifecycle.</p></a>
-        <a href="#traffic-protection"><span>Initiative 03</span><strong>Customer Ordering Protection</strong><p>Reduce unwanted traffic reaching the ordering infrastructure.</p></a>
+        <Link href="/projects/customer-ordering-protection"><span>Related case study</span><strong>Customer Ordering Protection</strong><p>Reduce unwanted traffic reaching the ordering infrastructure.</p></Link>
       </div>
     </section>
 
@@ -244,8 +244,9 @@ export default function OperationalSystemsAutomation() {
       </div>
 
       <div className="validation-matrix">
-        <div><p className="kicker">Customer workflow check</p><h3>Confirm that a proof revision keeps the original upload.</h3>
-          <p>I checked the revision workflow after the change. When a new proof was generated from a revision, the workflow could reuse the existing customer upload.</p>
+        <div><p className="kicker">Customer workflow check</p><h3>Regenerate a proof after a revision request</h3>
+          <p>I used the initial upload and revision scenario to check whether the regenerated proof could reuse the existing file.</p>
+          <p><strong>Observed result.</strong> The regenerated proof could reuse the original upload. The validation scenarios below also cover explicit replacement and missing files.</p>
         </div>
         <div role="table" aria-label="Proof asset persistence validation scenarios">
           {persistenceTests.map(([input, expected]) => <div role="row" key={input}><span role="cell">{input}</span><b aria-hidden="true">→</b><strong role="cell">{expected}</strong></div>)}
@@ -258,64 +259,9 @@ export default function OperationalSystemsAutomation() {
       </div>
     </section>
 
-    <section className="operations-initiative shell" id="traffic-protection">
-      <header className="initiative-heading"><span>Initiative 03</span><div><p className="kicker">Customer Ordering Protection · 2026</p><h2>Protect the systems behind customer ordering.</h2></div></header>
-      <div className="initiative-brief">
-        <article><span>Business context</span><p>Castle Press relies on customer ordering websites supported by Apache and 4D. Unusually heavy automated traffic prompted an investigation into protecting the platform and maintaining customer access.</p></article>
-        <article><span>My ownership</span><p>Investigated the hosting environment and traffic patterns, configured Cloudflare and DNS, troubleshot browser connectivity, and reviewed traffic data following the changes.</p></article>
-        <article><span>Key decision</span><p>Introduce layered protection around the existing platform. Evaluate the full request path and balance traffic filtering with accessibility for legitimate customers.</p></article>
-        <article><span>Constraints</span><p>Work within the existing production environment and preserve the customer ordering experience while introducing infrastructure improvements.</p></article>
-      </div>
-      <div className="root-cause-grid">
-        <article><span>01 · Investigate</span><p>Reviewed the relationship between DNS, web hosting, and the ordering application. Used traffic patterns to guide the response rather than treating high activity as customer demand.</p></article>
-        <article><span>02 · Implement</span><p>Configured Cloudflare protection and updated DNS settings as part of a broader infrastructure response around the existing Apache and 4D platform.</p></article>
-        <article><span>03 · Troubleshoot</span><p>Investigated browser connectivity issues during rollout, adjusted the configuration, and confirmed website access afterward.</p></article>
-        <article><span>04 · Review</span><p>Reviewed request data following the changes to assess the response and guide further adjustments. Implementation and measured effectiveness were treated as separate questions.</p></article>
-      </div>
-      <figure style={{ margin: "32px 0", padding: "24px", border: "1px solid var(--line)", borderRadius: 14 }}>
-        <figcaption><p className="kicker">Traffic comparison</p><h3>Fewer requests reaching the ordering server</h3><p>Average HTTP requests per minute · Oct 30 – Nov 1, 2026</p></figcaption>
-        <svg viewBox="0 0 900 350" role="img" aria-labelledby="traffic-chart-title traffic-chart-description" style={{ width: "100%", height: "auto", display: "block" }}>
-          <title id="traffic-chart-title">97.3% lower measured origin request rate</title>
-          <desc id="traffic-chart-description">Original flood: 1,877 requests per minute. After origin restriction: 50.7 measured. After two IP blocks: 12.7 estimated, not yet verified. All bars use the same linear scale.</desc>
-          <g fill="currentColor" fontSize="17">
-            <text x="10" y="40">Original flood</text><text x="875" y="40" textAnchor="end">1,877 / min</text>
-            <text x="10" y="135">After restriction · measured</text><text x="875" y="135" textAnchor="end">50.7 / min</text>
-            <text x="10" y="230">After IP blocks · estimated</text><text x="875" y="230" textAnchor="end">12.7 / min</text>
-          </g>
-          <g fill="#e2e8f0"><rect x="10" y="55" width="865" height="28" rx="4"/><rect x="10" y="150" width="865" height="28" rx="4"/><rect x="10" y="245" width="865" height="28" rx="4"/></g>
-          <rect x="10" y="55" width="865" height="28" rx="4" fill="#64748b"/>
-          <rect x="10" y="150" width="23.36" height="28" fill="#c75b20"/>
-          <rect x="10" y="245" width="5.85" height="28" fill="#c75b20" fillOpacity=".45" stroke="#c75b20" strokeDasharray="3 2"/>
-          <text x="10" y="318" fill="currentColor" fontSize="17">Measured reduction: 97.3% · Projected total reduction: 99.3%</text>
-        </svg>
-        <p>Bars use a shared linear scale. The final stage is a projection calculated from an earlier sample, not a measured post-block result.</p>
-      </figure>
-      <div className="initiative-detail-grid">
-        <figure style={{ margin: 0, minWidth: 0 }}>
-          <PortfolioImage src="/images/ordering-protection/cloudflare-traffic.png" width={1205} height={390} alt="Cloudflare request graph from an earlier observation window: 1.44k total, 105 mitigated, 31 served by Cloudflare, and 1.31k served by origin." style={{ width: "100%", height: "auto", background: "white", borderRadius: 8 }} />
-          <figcaption><h3>Traffic investigation evidence</h3><p>Original Cloudflare graph from Oct 30. This earlier dashboard window shows requests mitigated and served; it is separate from the origin-log comparison above. Source IPs and unrelated panels have been cropped out.</p></figcaption>
-        </figure>
-        <figure style={{ margin: 0, minWidth: 0 }}>
-          <PortfolioImage src="/images/ordering-protection/cloudflare-actions.png" width={400} height={197} alt="Cloudflare security actions panel showing 91 blocks and 14 managed challenges." style={{ width: "100%", maxWidth: 400, height: "auto", background: "white", borderRadius: 8 }} />
-          <figcaption><h3>Security actions observed</h3><p>The captured dashboard lists 91 blocks and 14 managed challenges. These counts document actions in that dashboard window; they do not establish the later rate limiting rule’s effectiveness or the 97.3% origin reduction.</p></figcaption>
-        </figure>
-      </div>
-      <div className="measurement-opportunities">
-        <div><p className="kicker">Traffic results · Oct 30 – Nov 1, 2026</p><h3>97.3% lower measured request volume reaching the server.</h3><p>Average HTTP requests per minute reaching Apache. Figures represent requests, not unique visitors, bots, or orders.</p></div>
-        <ol>
-          <li><strong>1,877 requests/minute · Original flood</strong><p>Baseline request rate before the origin access restriction.</p></li>
-          <li><strong>50.7 requests/minute · Measured after origin restriction</strong><p>About 1,826 fewer requests per minute, a 97.3% reduction compared with the original flood.</p></li>
-          <li><strong>12.7 requests/minute · Estimated after two high-volume IP blocks</strong><p>Projected 99.3% reduction from the original flood, or approximately 75.0% below the 50.7 stage. This is an estimate, not a verified post-block result.</p></li>
-        </ol>
-      </div>
-      <div className="initiative-detail-grid">
-        <div><p className="kicker">Why this was beneficial</p><h3>Reduce unnecessary work reaching the ordering infrastructure.</h3><p>Fewer unwanted requests reaching Apache means fewer requests for the server to handle. This reduces traffic pressure around the customer ordering platform and supports the goal of preserving capacity for legitimate customers.</p><p>The measured benefit is lower incoming request volume. Faster checkout, lower CPU usage, higher conversion, and avoided downtime were not measured and are not claimed.</p></div>
-        <div><p className="kicker">How the figures were assessed</p><p>The 1,877 and 50.7 rates are documented in the Castle Press Website Traffic Reduction review for Oct 30 – Nov 1, 2026. The 12.7 estimate was calculated by removing the two blocked sources’ prior requests from an observed six-hour sample. A fresh post-block log is needed to verify that projection.</p><p>These are comparisons across observation periods, not a controlled experiment. Traffic patterns may also vary over time.</p></div>
-      </div>
-      <div className="initiative-outcome">
-        <div><span className="evidence-state verified">Implemented</span><h3>Layered traffic protection added to the customer ordering environment.</h3><p>Cloudflare protection was configured and website access was verified following the rollout. Traffic reviews informed the subsequent response. The documented measured request rate fell 97.3%. Detailed security settings remain private.</p></div>
-        <div><span className="evidence-state directional">Operational learning</span><h3>Infrastructure changes need both technical checks and customer access validation.</h3><p>The work extended my operational ownership from ordering workflows to the infrastructure supporting them. A configuration change is only useful when the platform remains accessible and its effects are reviewed.</p></div>
-      </div>
+    <section className="shell featured-evidence" id="traffic-protection" aria-labelledby="related-protection-title">
+      <h2 id="related-protection-title">Related case study</h2>
+      <p><Link href="/projects/customer-ordering-protection">Customer Ordering Protection</Link> covers the traffic investigation, measured server request rate, and access check after rollout.</p>
     </section>
 
     <section className="operations-section lifecycle-learning shell" id="lifecycle-learning">

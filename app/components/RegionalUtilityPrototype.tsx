@@ -18,6 +18,7 @@ type Filter=typeof statuses[number];
 
 export default function RegionalUtilityPrototype(){
  const searchInput = useRef<HTMLInputElement>(null);
+ const previewTrigger = useRef<HTMLButtonElement>(null);
  const [query,setQuery]=useState("");
  const [filter,setFilter]=useState<Filter>("All");
  const [language,setLanguage]=useState<"English"|"Español">("English");
@@ -30,6 +31,11 @@ export default function RegionalUtilityPrototype(){
    setFilter("All");
    setOpened(null);
    searchInput.current?.focus();
+ };
+ const closePreview = () => {
+   setOpened(null);
+   if (previewTrigger.current?.isConnected) previewTrigger.current.focus();
+   else searchInput.current?.focus();
  };
  const reset = () => {
    clearFilters();
@@ -52,9 +58,12 @@ export default function RegionalUtilityPrototype(){
         <div className="utility-proto-lang" role="group" aria-label="Report language">{(["English","Español"] as const).map(value=><button type="button" key={value} aria-pressed={language===value} onClick={()=>{setLanguage(value);setOpened(null)}}>{value}</button>)}</div>
         {matches.length===0?<div className="utility-proto-empty"><p>{labels.empty}</p><button type="button" onClick={clearFilters}>{labels.clear}</button></div>:<div className="utility-proto-list">
           <div className="utility-proto-tablehead" aria-hidden="true"><b>{labels.region}</b><b>{labels.report}</b><b>{labels.status}</b><b>{labels.action}</b></div>
-          {matches.map(r=><div className="utility-proto-report" key={r.name}><div><span className="utility-proto-mobile-label">{labels.region}: </span>{r.region}<small>{r.batch}</small></div><div><span className="utility-proto-mobile-label">{labels.report}: </span><strong>{r.name}</strong><small className="utility-proto-filename">{sampleFilename(r.name,language)}</small></div><div><span className="utility-proto-mobile-label">{labels.status}: </span><span className="utility-proto-status">{r.status}</span></div><div><button type="button" aria-label={`${labels.open} ${r.name}`} onClick={()=>setOpened(sampleFilename(r.name,language))}>{labels.open} <span aria-hidden="true">↗</span></button></div></div>)}
+          {matches.map(r=><div className="utility-proto-report" key={r.name}><div><span className="utility-proto-mobile-label">{labels.region}: </span>{r.region}<small>{r.batch}</small></div><div><span className="utility-proto-mobile-label">{labels.report}: </span><strong>{r.name}</strong><small className="utility-proto-filename">{sampleFilename(r.name,language)}</small></div><div><span className="utility-proto-mobile-label">{labels.status}: </span><span className="utility-proto-status">{r.status}</span></div><div><button type="button" aria-label={`${labels.open} ${r.name}`} onClick={(event)=>{
+            previewTrigger.current = event.currentTarget;
+            setOpened(sampleFilename(r.name,language));
+          }}>{labels.open} <span aria-hidden="true">↗</span></button></div></div>)}
         </div>}
-        {opened&&<div className="utility-proto-toast" role="status"><span>{labels.notice}: {opened}</span><button type="button" onClick={()=>setOpened(null)}>{labels.close}</button></div>}
+        {opened&&<div className="utility-proto-toast" role="status"><span>{labels.notice}: {opened}</span><button type="button" onClick={closePreview}>{labels.close}</button></div>}
       </div>
     </div>
   </div>

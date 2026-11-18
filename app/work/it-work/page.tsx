@@ -19,14 +19,14 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-copy">
               <p className="project-label">Operational Systems</p><h3>Operational Systems &amp; Automation</h3>
               <p className="project-business-problem"><span>Business problem</span>Recurring manual work and production exceptions created avoidable intervention and inconsistent handling.</p>
-              <div className="project-card-impact"><span>Impact · Verified + Directional</span><strong>Implemented workflows actively used</strong><strong>Less repeated handling · more consistent execution</strong><small>No fabricated time-saving or efficiency percentages.</small></div>
+              <div className="project-card-impact"><span>Verified workflow change</span><strong>Customer uploads carry through proof revisions</strong><small>Reusing the file reduces the need for manual retrieval.</small></div>
               <p className="project-card-role"><span>Project role</span>Senior Product Operations / Digital Services</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Root cause</span><span>Automation</span><span>QA</span><span>Standardization</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>Future KPIs defined in case study</span><b>View case study ↗</b></div>
+            <div className="portfolio-card-footer"><span>Proof revision and QA scenarios</span><b>View case study ↗</b></div>
           </Link>
-          <Link className="bento-card portfolio-project-card operations-project" href="/projects/operational-systems-automation/#traffic-protection">
-            <div className="project-topline"><span><i aria-hidden="true">↗</i> Project 04 · Initiative 03</span><b>Infrastructure protection</b></div>
+          <Link className="bento-card portfolio-project-card operations-project" href="/projects/customer-ordering-protection">
+            <div className="project-topline"><span><i aria-hidden="true">↗</i> Project 06</span><b>Infrastructure protection</b></div>
             <div className="portfolio-card-media operations-card-media" aria-label="Customer ordering traffic protection result">
               <div className="operations-card-flow" aria-hidden="true"><span>Investigate</span><i>→</i><span>Protect</span><i>→</i><span>Validate</span></div>
               <p><b>97.3%</b> lower measured server request rate</p>
@@ -34,9 +34,9 @@ export default function CategoryPage(){return <main><PortfolioNav/><section clas
             <div className="portfolio-card-copy">
               <p className="project-label">Customer Ordering Infrastructure</p><h3>Customer Ordering Protection</h3>
               <p className="project-business-problem"><span>Business problem</span>Heavy automated traffic put pressure on the infrastructure supporting customer ordering.</p>
-              <div className="project-card-impact"><span>Impact · Measured request reduction</span><strong>1,877 → 50.7 requests per minute</strong><strong>97.3% lower measured request rate</strong><small>12.7 requests/minute and 99.3% total reduction are projected after additional IP blocks, pending verification.</small></div>
+              <div className="project-card-impact"><span>Impact · Measured request reduction</span><strong>1,877 → 50.7 requests per minute</strong><strong>97.3% lower measured request rate</strong><small>Website access checked after rollout.</small></div>
               <p className="project-card-role"><span>Project role</span>Digital Operations · Investigation, implementation, and validation</p>
               <div className="project-tag-row" aria-label="Project capabilities"><span>Cloudflare</span><span>Apache</span><span>4D</span><span>Troubleshooting</span></div>
             </div>
-            <div className="portfolio-card-footer"><span>Part of Operational Systems &amp; Automation</span><b>View protection project ↗</b></div>
+            <div className="portfolio-card-footer"><span>Measured traffic and rollout checks</span><b>View protection project ↗</b></div>
           </Link></div></section><footer className="site-footer shell"><Link href="/#work">← Return to the hub</Link><a href="mailto:andrewjaebok@gmail.com">Get in touch ↗</a></footer></main>}
