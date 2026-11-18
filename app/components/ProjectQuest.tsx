@@ -19,7 +19,11 @@ const projects = [
     {title:"Systems & Automation", description:"Practical improvements to internal workflows.", route:"/projects/operational-systems-automation"},
     {title:"Customer Ordering Protection", description:"Investigating and reducing automated server traffic.", route:"/projects/customer-ordering-protection"},
   ],
-  [{title:"Lumafi", description:"An independent personal finance product, from idea to delivery.", route:"/projects/hearth"}],
+  [
+    {title:"Lumafi", description:"An independent personal finance product, from idea to delivery.", route:"/projects/hearth"},
+    {title:"Gogi Snacks", description:"A snack concept shaped by packaging exploration and supplier samples.", route:"/projects/gogi-snacks"},
+    {title:"EmberWake", description:"A mobile RPG focused on first-session clarity and reliable progression.", route:"/projects/emberwake"},
+  ],
 ];
 export default function ProjectQuest() {
   const [open,setOpen]=useState(true);

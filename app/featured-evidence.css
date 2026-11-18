@@ -81,3 +81,41 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
   border-radius: 10px;
 }
 .lumafi-dashboard-evidence figcaption { margin-top: 10px; }
+
+.personal-evidence-figure {
+  width: fit-content;
+  max-width: 100%;
+  margin: 18px auto 0;
+}
+.personal-evidence-figure img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: min(75vh, 760px);
+  object-fit: contain;
+}
+.personal-evidence-figure figcaption { margin-top: 10px; }
+.personal-process-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 245px), 1fr));
+  gap: 22px;
+  margin: 20px 0 0;
+}
+.personal-process-list dt { font-weight: 750; }
+.personal-process-list dd {
+  margin: 8px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.personal-card-media {
+  display: grid;
+  place-items: center;
+  background: #111b26;
+}
+.personal-card-media img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+}
