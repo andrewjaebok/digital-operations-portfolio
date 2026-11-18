@@ -19,7 +19,7 @@ type PersonalProjectStudyProps = {
   status: string;
   role: string;
   story: { discovery: string; decision: string; delivery: string; impact: string };
-  gameplay?: { src: string; poster: string; caption: string };
+  playDemo?: { href: string; description: string };
   visualTitle: string;
   visuals: readonly { title: string; src: string; width: number; height: number; alt: string; caption: string }[];
   sections: readonly EvidenceSection[];
@@ -29,7 +29,7 @@ type PersonalProjectStudyProps = {
 
 export default function PersonalProjectStudy({
   number, name, title, archetype, subtitle, summary, status, role, story,
-  gameplay, visualTitle, visuals, sections, capabilities, next,
+  playDemo, visualTitle, visuals, sections, capabilities, next,
 }: PersonalProjectStudyProps) {
   return (
     <main id="top" className="case-study-page">
@@ -47,7 +47,7 @@ export default function PersonalProjectStudy({
         ]}
         navigation={[
           { id: "overview", label: "Overview" },
-          ...(gameplay ? [{ id: "gameplay", label: "Gameplay video" }] : []),
+          ...(playDemo ? [{ id: "gameplay", label: "Playable demo" }] : []),
           { id: "design-evidence", label: visualTitle },
           ...sections.map(({ id, label }) => ({ id, label })),
         ]}
@@ -59,18 +59,13 @@ export default function PersonalProjectStudy({
           { label: "Impact", copy: story.impact },
         ]}
       />
-      {gameplay && (
+      {playDemo && (
         <section className="shell featured-evidence" id="gameplay" aria-labelledby="gameplay-title">
-          <h2 id="gameplay-title">Watch EmberWake gameplay</h2>
-          <figure className="personal-gameplay">
-            <video controls playsInline preload="none" width={430} height={932}
-              poster={assetPath(gameplay.poster)} aria-label="EmberWake mobile gameplay recording"
-              aria-describedby="gameplay-caption">
-              <source src={assetPath(gameplay.src)} type="video/mp4" />
-              <a href={assetPath(gameplay.src)}>Open the gameplay video</a>
-            </video>
-            <figcaption id="gameplay-caption">{gameplay.caption}</figcaption>
-          </figure>
+          <h2 id="gameplay-title">Play EmberWake</h2>
+          <p>{playDemo.description}</p>
+          <nav className="featured-case-links" aria-label="EmberWake playable demo">
+            <a href={assetPath(playDemo.href)} target="_blank" rel="noopener">Play EmberWake Demo <span>Opens in a new tab</span></a>
+          </nav>
         </section>
       )}
       <section className="shell featured-evidence" id="design-evidence" aria-labelledby="design-evidence-title">

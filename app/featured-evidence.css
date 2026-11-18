@@ -144,17 +144,3 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-
-.personal-gameplay {
-  width: min(100%, 430px);
-  margin: 18px auto 0;
-}
-.personal-gameplay video {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 430 / 932;
-  border-radius: 10px;
-  background: #111b26;
-}
-.personal-gameplay figcaption { margin-top: 10px; }
