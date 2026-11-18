@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PortfolioImage from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
+import ITDecisionNarrative from "../../components/ITDecisionNarrative";
 
 export const metadata: Metadata = {
   title: "Operational Systems & Automation | Product Operations Case Study",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 const caseNavigation = [
   { id: "overview", label: "Overview" },
   { id: "operating-model", label: "Operating model" },
+  { id: "decision-records", label: "Decision records" },
   { id: "production-automation", label: "Automation" },
   { id: "asset-persistence", label: "Asset persistence" },
   { id: "traffic-protection", label: "Traffic protection" },
@@ -190,6 +192,8 @@ export default function OperationalSystemsAutomation() {
       </div>
       <p className="operations-principle"><strong>Decision principle</strong> Prioritize recurring problems where a system-level improvement creates meaningful operational leverage.</p>
     </section>
+
+    <ITDecisionNarrative />
 
     <section className="operations-initiative shell" id="production-automation">
       <header className="initiative-heading"><span>Initiative 01</span><div><p className="kicker">Production Workflow Automation</p><h2>Move predictable production behaviors out of repeated manual handling.</h2></div></header>
