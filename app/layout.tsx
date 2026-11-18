@@ -3,6 +3,7 @@ import { Manrope, Plus_Jakarta_Sans } from "next/font/google";
 import ThemeToggle from "./components/ThemeToggle";
 import { assetPath } from "@/lib/asset-path";
 import "./globals.css";
+import "./featured-evidence.css";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",

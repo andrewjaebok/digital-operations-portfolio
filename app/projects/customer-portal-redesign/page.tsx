@@ -80,6 +80,22 @@ export default function CustomerPortalRedesign() {
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
     </CaseStudyWorkspace>
 
+    <section className="shell featured-evidence" aria-labelledby="report-discovery-title">
+      <h2 id="report-discovery-title">Finding the right location took 10–15 seconds after the redesign</h2>
+      <p>Down from 30–60 seconds in a 20-participant retrospective usability evaluation comparing the two interfaces.</p>
+      <div className="featured-evidence-grid">
+        <figure>
+          <Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original portal with reports organized in a dense matrix" />
+          <figcaption><strong>Before.</strong> Customer feedback identified the effort of scanning rows and interpreting status colors.</figcaption>
+        </figure>
+        <figure>
+          <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Redesigned portal with report search, status filters, and language tabs" />
+          <figcaption><strong>After.</strong> I added search and status filtering, keeping the status terms customers and production teams already used.</figcaption>
+        </figure>
+      </div>
+      <p>The same approach can help members find the right document or understand a familiar status in online banking.</p>
+    </section>
+
     <section className="shell utility-feature-links" aria-labelledby="utility-feature-links-title">
       <div className="utility-feature-links-heading"><p className="kicker">Explore the UX evidence</p><h2 id="utility-feature-links-title">Prototype and accessibility review</h2><p>Go directly to the working interaction prototype or the evidence-labeled WCAG review, alongside the original case study and measured user outcomes.</p></div>
       <div className="utility-feature-link-grid">
@@ -220,6 +236,10 @@ export default function CustomerPortalRedesign() {
     <div className="shell utility-chapter-marker"><span>Chapter 03</span><strong>UX design & prototype</strong></div>
     <RegionalUtilityUX />
     <RegionalUtilityPrototype />
+    <section className="shell featured-evidence" aria-labelledby="prototype-focus-title">
+      <h2 id="prototype-focus-title">Keep keyboard focus in the search flow</h2>
+      <p>In the portfolio prototype, clearing an empty search removed the focused button. The clear action now returns focus to the search field and preserves the selected language. The result status region also includes the empty-state message. A manual screen reader pass remains pending.</p>
+    </section>
 
     <div className="shell utility-chapter-marker"><span>Chapter 04</span><strong>Validation & accessibility</strong><a href="#ux-accessibility">Jump to WCAG evidence ↗</a></div>
     <UtilityUsabilityResults />

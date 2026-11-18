@@ -244,7 +244,9 @@ export default function OperationalSystemsAutomation() {
       </div>
 
       <div className="validation-matrix">
-        <div><p className="kicker">Validation scenarios</p><h3>Test the complete proof lifecycle.</h3></div>
+        <div><p className="kicker">Customer workflow check</p><h3>Confirm that a proof revision keeps the original upload.</h3>
+          <p>I checked the revision workflow after the change. When a new proof was generated from a revision, the workflow could reuse the existing customer upload.</p>
+        </div>
         <div role="table" aria-label="Proof asset persistence validation scenarios">
           {persistenceTests.map(([input, expected]) => <div role="row" key={input}><span role="cell">{input}</span><b aria-hidden="true">→</b><strong role="cell">{expected}</strong></div>)}
         </div>

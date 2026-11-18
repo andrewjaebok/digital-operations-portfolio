@@ -116,6 +116,19 @@ export default function UniversityLogoDirectory() {
       </div>
     </CaseStudyWorkspace>
 
+    <section className="shell featured-evidence" aria-labelledby="finder-walkthrough-title">
+      <h2 id="finder-walkthrough-title">Help people confirm the right result and recover from a missed search</h2>
+      <ol className="featured-evidence-grid">
+        <li><strong>Search using familiar terms.</strong> Alias matching helps users look up a logo without knowing the official name.</li>
+        <li><strong>Confirm the organizational path.</strong> Similar names can refer to different departments, so each result shows where it sits in the hierarchy.</li>
+        <li><strong>Recover from no results.</strong> Clear the query or switch to A–Z browsing to continue without leaving the finder.</li>
+      </ol>
+      <nav className="featured-case-links" aria-label="Finder design evidence">
+        <a href="#directory-prototype">Try the finder</a>
+        <a href="https://www.figma.com/design/1W8tVKqQV5M1MACeG4Wxdx">View Figma wireframes</a>
+      </nav>
+    </section>
+
     <section className="shell finder-ux-entry" aria-label="Explore Project 05 UX deliverables">
       <div><p className="kicker">UX evidence & interaction design</p><h2>See the redesign. Try the finder. Explore the wireframes.</h2><p>Start with actual interface media, a working sample-data demonstration and editable Figma wireframes. Synthetic modeling remains explicitly separate from observed customer outcomes.</p></div>
       <nav aria-label="Project 05 UX shortcuts"><a href="#finder-gallery">Before / after screenshots</a><a href="#finder-taskflow">Customer task flow</a><a href="#directory-prototype">Try the finder prototype</a><a href="#finder-accessibility">WCAG review</a><a href="https://www.figma.com/design/1W8tVKqQV5M1MACeG4Wxdx" target="_blank" rel="noopener noreferrer">Editable Figma wireframes ↗</a></nav>

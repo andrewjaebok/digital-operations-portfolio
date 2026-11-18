@@ -82,6 +82,23 @@ export default function PrescriptionPadOrderingPortal() {
       </div>
     </CaseStudyWorkspace>
 
+    <section className="shell featured-evidence" aria-labelledby="rx-feedback-title">
+      <h2 id="rx-feedback-title">Customer calls showed what the ordering pages needed to explain</h2>
+      <p>Four tracked question categories fell to zero during a two-month follow-up. Two examples show how I used those questions to decide what guidance to surface.</p>
+      <div className="featured-evidence-grid">
+        <figure>
+          <Image src="/images/rx-pad-portal/selection-after.png" width={1222} height={561} alt="Pocket and desk pad choices with options for one through ten prescribers" />
+          <figcaption><strong>Can I order for multiple prescribers?</strong> I put the prescriber count directly in the pad selection cards. This question went from 5.6 per month to zero observed.</figcaption>
+        </figure>
+        <figure>
+          <Image src="/images/rx-pad-portal/index-after.png" width={1383} height={855} alt="Redesigned landing page with production timing surfaced alongside product guidance" />
+          <figcaption><strong>What’s the turnaround time?</strong> I surfaced production timing earlier on the landing page. This question went from 10 per month to zero observed.</figcaption>
+        </figure>
+      </div>
+      <p>The same design principle applies to regulated financial tasks: surface eligibility, timing, and next steps before people have to call for help.</p>
+      <p><strong>GA4 acquisition snapshot.</strong> The post-launch 30-day report recorded 4.1K new users, up 1,272% from the previous period. <a href="#analytics">View the acquisition reports</a>.</p>
+    </section>
+
     <section className="shell rx-exp-shortcuts" aria-label="Explore new UX case study work">
       <div><p className="kicker">New UX portfolio evidence</p><h2>Explore the design, test plan, and prototype.</h2><p>These sections extend the original redesign case study using real project context, clearly labeled reconstructed diagrams, and sample interactions.</p></div>
       <nav aria-label="RX Pads UX evidence shortcuts"><a href="#rx-journey">Customer journey ↗</a><a href="#rx-wireframes">Wireframes ↗</a><a href="#rx-prototype">Interactive prototype ↗</a><a href="#rx-validation">Usability evaluation ↗</a><a href="#rx-accessibility">WCAG review ↗</a><a href="#rx-design-measurement">Analytics & components ↗</a></nav>
@@ -227,7 +244,7 @@ export default function PrescriptionPadOrderingPortal() {
     <CaseStudyEnding
       capabilities={["Regulated Product Operations", "Voice of Customer", "Growth Operations", "Legacy System Management", "Measurement Strategy"]}
       nextNumber="03"
-      nextTitle="Hearth Personal Finance Platform"
+      nextTitle="Lumafi Personal Finance Platform"
       nextDescription="Move from an established regulated workflow into zero-to-one product strategy, architecture, and release operations."
       nextHref="/projects/hearth"
     />
