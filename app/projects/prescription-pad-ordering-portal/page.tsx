@@ -3,6 +3,8 @@ import Image from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import RxOperationalResults from "../../components/RxOperationalResults";
+import RxExperienceEvidence from "../../components/RxExperienceEvidence";
+import RxExperiencePrototype from "../../components/RxExperiencePrototype";
 
 export const metadata: Metadata = {
   title: "Prescription Pad Ordering | Product Operations Case Study",
@@ -10,14 +12,15 @@ export const metadata: Metadata = {
 };
 
 const caseNavigation = [
-  { id: "overview", label: "Overview" },
-  { id: "assessment", label: "Customer signals" },
-  { id: "regulated-workflow", label: "Regulated workflow" },
-  { id: "solution", label: "Execution" },
-  { id: "growth", label: "Growth" },
-  { id: "analytics", label: "Evidence" },
-  { id: "outcome", label: "Outcome" },
-  { id: "roadmap", label: "Roadmap" },
+  { id: "overview", label: "Overview & impact" },
+  { id: "assessment", label: "Discovery" },
+  { id: "rx-journey", label: "Customer journey" },
+  { id: "rx-wireframes", label: "UX design" },
+  { id: "rx-prototype", label: "Prototype" },
+  { id: "rx-validation", label: "Validation" },
+  { id: "rx-accessibility", label: "WCAG review" },
+  { id: "rx-design-measurement", label: "Design & analytics" },
+  { id: "outcome", label: "Outcomes" },
 ];
 
 const changes = [
@@ -130,6 +133,9 @@ export default function PrescriptionPadOrderingPortal() {
         <article><span>4D</span><h3>Backend continuity</h3><p>Modernize the interface while retaining the existing server-side ordering foundation.</p></article>
       </div>
     </section>
+
+    <RxExperienceEvidence />
+    <RxExperiencePrototype />
 
     <section className="growth-section shell" id="growth">
       <div className="growth-story">
