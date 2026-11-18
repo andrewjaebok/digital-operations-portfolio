@@ -14,18 +14,11 @@ export const metadata: Metadata = {
 };
 
 const caseNavigation = [
-  { id: "overview", label: "Overview" },
-  { id: "workflow-transformation", label: "Transformation" },
-  { id: "assessment", label: "Discovery" },
-  { id: "strategy", label: "Priorities" },
-  { id: "solution", label: "Execution" },
-  { id: "ux-design", label: "UX design" },
-  { id: "interactive-prototype", label: "Live prototype" },
-  { id: "ux-accessibility", label: "WCAG review" },
-  { id: "interaction-specification", label: "Interaction patterns" },
-  { id: "usability-results", label: "Measured results" },
-  { id: "decisions", label: "Decisions" },
-  { id: "outcome", label: "Outcome" },
+  { id: "overview", label: "01 Overview & impact" },
+  { id: "assessment", label: "02 Discovery & strategy" },
+  { id: "ux-design", label: "03 UX design & prototype" },
+  { id: "usability-results", label: "04 Validation & accessibility" },
+  { id: "outcome", label: "05 Delivery & learnings" },
 ];
 
 const changes = [
@@ -149,7 +142,7 @@ export default function CustomerPortalRedesign() {
       <div className="ownership-column"><p className="kicker">Business objective</p><p>Improve access to the existing proof-review workflow without replacing it or retraining users on new production terminology.</p><ul><li>Clearer regional and batch organization</li><li>Consistent bilingual access</li><li>Scalable report structure</li><li>Existing platform and report-link compatibility</li></ul></div>
     </section>
 
-    <section className="review-section utility-evidence-section shell" id="assessment">
+    <section className="review-section utility-evidence-section shell" id="assessment"><div className="utility-chapter-marker"><span>Chapter 02</span><strong>Discovery & strategy</strong></div>
       <div><p className="kicker">Discovery evidence</p><h2>The roadmap came from customer and workflow evidence.</h2><p>I combined direct customer feedback with an audit of the original portal, workflow observation, and operational and technical constraints. The usability evaluation came later and validated the delivered solution.</p></div>
       <div>
         <div className="review-grid"><span>Customer feedback</span><span>Original portal audit</span><span>Workflow evaluation</span><span>Operational constraints</span><span>Technical constraints</span><span>Bilingual requirements</span></div>
@@ -224,16 +217,18 @@ export default function CustomerPortalRedesign() {
       </div>
     </section>
 
+    <div className="shell utility-chapter-marker"><span>Chapter 03</span><strong>UX design & prototype</strong></div>
     <RegionalUtilityUX />
     <RegionalUtilityPrototype />
 
+    <div className="shell utility-chapter-marker"><span>Chapter 04</span><strong>Validation & accessibility</strong><a href="#ux-accessibility">Jump to WCAG evidence ↗</a></div>
     <UtilityUsabilityResults />
 
     <section className="timeline-section product-process utility-process shell" id="process"><div className="section-intro"><p className="kicker">Product Operations Process</p><h2>Discovery → prioritization → execution → validation → iteration.</h2><p>The retrospective study sits after delivery so discovery evidence and validation evidence cannot be mistaken for each other.</p></div><ol>{process.map(([number,title,why]) => <li key={number}><b>{number}</b><span>{title}</span><p>{why}</p></li>)}</ol></section>
 
     <ProjectOperatingViews variant="utility" />
 
-    <section className="impact-section shell" id="outcome">
+    <section className="impact-section shell" id="outcome"><div className="utility-chapter-marker"><span>Chapter 05</span><strong>Delivery & learnings</strong></div>
       <p className="kicker">06 · Outcome</p>
       <h2>A stronger customer capability with the operational foundation preserved.</h2>
       <div className="impact-grid"><div><strong>7</strong><span>Geographic service regions</span></div><div><strong>2</strong><span>Report languages</span></div><div><strong>6</strong><span>Production statuses preserved</span></div></div>
