@@ -23,6 +23,11 @@ export default function EmberWakePage() {
         delivery: "I redesigned the opening, home, hero selection, equipment, stage selection, and outcome screens. I documented release cases for reward overflow and save recovery.",
         impact: "The redesigned flow gives the prototype a defined path from hero selection to a run result. First-session completion and retention still need player data.",
       }}
+      gameplay={{
+        src: "/images/personal-projects/emberwake-stage-one.mp4",
+        poster: "/images/personal-projects/emberwake-stage-one-poster.webp",
+        caption: "Silent gameplay recording from the saved EmberWake v49 build. The Spellcaster plays the opening story stage with the battle area and skill controls visible on a phone viewport.",
+      }}
       visualTitle="From menu concept to gameplay"
       visuals={[
         {
