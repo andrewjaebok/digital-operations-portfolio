@@ -70,6 +70,18 @@ export default function RegionalUtilityUX() {
         <h3 className="utility-ux-subheading" id="ux-design-system">06 / Interaction patterns and component states</h3>
         <div className="utility-ux-patterns">{patterns.map(item=><article key={item.name}><h3>{item.name}</h3><dl><dt>User action</dt><dd>{item.input}</dd><dt>Expected response</dt><dd>{item.response}</dd><dt>Validation focus</dt><dd>{item.check}</dd></dl></article>)}</div>
         <div className="utility-ux-a11y" id="ux-accessibility"><div><p className="kicker">04 / Accessibility · validation backlog</p><h3>Testing to complete before making WCAG conformance claims</h3><p>Responsive behavior and core controls were functionally checked, but this case study does not yet include a documented accessibility audit. The checks below are planned, not reported as passed.</p></div><ul><li>Keyboard-only search, filtering, tabs, and report links</li><li>Visible focus, selected-state cues, and screen-reader labels</li><li>Text and status contrast, including information not conveyed by color alone</li><li>200% zoom, narrow viewport reflow, and touch targets</li><li>Document findings, remediation, and WCAG 2.2 AA criteria by result</li></ul></div>
+        <div className="utility-ux-audit" aria-label="Accessibility implementation review">
+          <h3>Initial source-based accessibility review</h3>
+          <p>This is a <strong>code inspection of the new portfolio prototype</strong>, not a manual audit of the production customer portal or a WCAG conformance certification. Findings should be retested in a browser with assistive technology.</p>
+          <div className="utility-ux-audit-grid">
+            <article><span>Implemented in prototype</span><h4>Explicitly labeled search</h4><p>The prototype search input has a matching visible label, input type search, and focus styling.</p></article>
+            <article><span>Implemented in prototype</span><h4>Selected states</h4><p>Filter and language buttons use an accessible pressed state rather than depending solely on color.</p></article>
+            <article><span>Implemented in prototype</span><h4>Empty-result feedback</h4><p>The result state includes text, a reset action, and a live status region.</p></article>
+            <article><span>Needs manual testing</span><h4>Keyboard and screen reader</h4><p>Test reading order, focus movement, dynamic announcements, and usability with NVDA or VoiceOver.</p></article>
+            <article><span>Needs verification</span><h4>Contrast and zoom</h4><p>Measure all text, badges and interactive states against WCAG 2.2 AA; test 200% zoom and 320px reflow.</p></article>
+            <article><span>Not yet established</span><h4>Production portal conformance</h4><p>Actual customer portal DOM, focus behavior, screen-reader support, and touch targets require a separate audit.</p></article>
+          </div>
+        </div>
       </section>
       <section className="shell utility-ux-section utility-ux-study" id="study-context" aria-labelledby="utility-study-context-title">
         <div className="utility-ux-heading"><p className="kicker">05 / Research methodology and limitations</p><h2 id="utility-study-context-title">What the usability evaluation can and cannot establish.</h2></div>
