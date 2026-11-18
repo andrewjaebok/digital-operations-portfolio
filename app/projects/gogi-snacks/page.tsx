@@ -23,13 +23,37 @@ export default function GogiSnacksPage() {
         delivery: "I created a packaging direction, compared supplier options, and identified what the next sample needs to prove.",
         impact: "The first sample gave me a concrete texture issue to take into the next supplier conversation. Consumer response, unit economics, and demand are still open questions.",
       }}
-      visual={{
-        src: "/images/personal-projects/gogi-packaging.webp",
-        width: 1280,
-        height: 853,
-        alt: "Gogi Snacks concept board comparing Korean stamp marks, wordmarks, pouch colors, and packaging mockups.",
-        caption: "Early brand and packaging concepts. The board shows alternatives explored before final production artwork.",
-      }}
+      visualTitle="How the packaging design took shape"
+      visuals={[
+        {
+          title: "Visual direction",
+          src: "/images/personal-projects/gogi-inspiration.webp",
+          width: 840, height: 1260,
+          alt: "Gogi Snacks moodboard showing earth tones, Korean food photography, and an early wordmark.",
+          caption: "The inspiration board explored warm neutrals, understated type, and imagery rooted in Korean food and culture.",
+        },
+        {
+          title: "Identity and stamp exploration",
+          src: "/images/personal-projects/gogi-packaging.webp",
+          width: 1280, height: 853,
+          alt: "Concept board comparing wordmarks, Korean stamp shapes, pouch colors, and packaging mockups.",
+          caption: "I compared wordmarks, seal shapes, and pouch colors to see how each worked as a repeatable brand system.",
+        },
+        {
+          title: "Matte pouch layouts",
+          src: "/images/personal-projects/gogi-pouch-iterations.webp",
+          width: 1100, height: 880,
+          alt: "Ten matte black pouch concepts with different positions for the wordmark, flavor label, and red stamp.",
+          caption: "The black-pouch studies tested how a cream wordmark, a single red accent, and compact flavor labels could share the front panel.",
+        },
+        {
+          title: "Selected front panel",
+          src: "/images/personal-projects/gogi-front-artwork.webp",
+          width: 850, height: 1020,
+          alt: "Draft front artwork with a vertical GOGI wordmark, KBBQ 001 flavor identifier, beef jerky chips label, and a red Korean stamp.",
+          caption: "The selected KBBQ 001 layout brings together the vertical wordmark, product name, and red Korean stamp. This is draft artwork for a 5 × 6 inch pouch. Packaging claims and weight are placeholders until verified.",
+        },
+      ]}
       sections={[
         { id: "discovery", label: "Discovery", title: "Define what the supplier and customer need to understand", items: [
           { title: "Supplier signal", detail: "One early sample did not meet the chip texture target, and another supplier quoted a 2,000 lb minimum. A small sample run helps answer the texture question before a volume commitment." },

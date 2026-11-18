@@ -18,7 +18,8 @@ type PersonalProjectStudyProps = {
   status: string;
   role: string;
   story: { discovery: string; decision: string; delivery: string; impact: string };
-  visual: { src: string; width: number; height: number; alt: string; caption: string };
+  visualTitle: string;
+  visuals: readonly { title: string; src: string; width: number; height: number; alt: string; caption: string }[];
   sections: readonly EvidenceSection[];
   capabilities: string[];
   next: { number: string; title: string; description: string; href: string };
@@ -26,9 +27,8 @@ type PersonalProjectStudyProps = {
 
 export default function PersonalProjectStudy({
   number, name, title, archetype, subtitle, summary, status, role, story,
-  visual, sections, capabilities, next,
+  visualTitle, visuals, sections, capabilities, next,
 }: PersonalProjectStudyProps) {
-  const { caption, ...image } = visual;
   return (
     <main id="top" className="case-study-page">
       <a className="skip-link" href="#overview">Skip to case study</a>
@@ -45,7 +45,7 @@ export default function PersonalProjectStudy({
         ]}
         navigation={[
           { id: "overview", label: "Overview" },
-          { id: "design-evidence", label: "Design evidence" },
+          { id: "design-evidence", label: visualTitle },
           ...sections.map(({ id, label }) => ({ id, label })),
         ]}
         accent="hearth"
@@ -57,11 +57,17 @@ export default function PersonalProjectStudy({
         ]}
       />
       <section className="shell featured-evidence" id="design-evidence" aria-labelledby="design-evidence-title">
-        <h2 id="design-evidence-title">Design evidence</h2>
-        <figure className="personal-evidence-figure">
-          <PortfolioImage {...image} />
-          <figcaption>{caption}</figcaption>
-        </figure>
+        <h2 id="design-evidence-title">{visualTitle}</h2>
+        <ol className="personal-visual-sequence">
+          {visuals.map(({ title, caption, ...image }) => (
+            <li key={image.src}>
+              <figure className="personal-evidence-figure">
+                <PortfolioImage {...image} />
+                <figcaption><strong>{title}</strong><p>{caption}</p></figcaption>
+              </figure>
+            </li>
+          ))}
+        </ol>
       </section>
       {sections.map(({ id, title, items }) => (
         <section className="shell featured-evidence" id={id} aria-labelledby={id + "-title"} key={id}>

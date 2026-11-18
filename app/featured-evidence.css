@@ -119,3 +119,28 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
   height: 220px;
   object-fit: contain;
 }
+
+.personal-visual-sequence {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 24px;
+  margin: 18px 0 0;
+  padding-inline-start: 26px;
+}
+.personal-visual-sequence > li::marker { font-weight: 750; }
+.personal-visual-sequence .personal-evidence-figure {
+  width: 100%;
+  margin: 0;
+}
+.personal-visual-sequence .personal-evidence-figure img {
+  width: 100%;
+  max-height: 480px;
+  background: #111b26;
+  border-radius: 10px;
+}
+.personal-visual-sequence figcaption p { margin: 6px 0 0; }
+@media (min-width: 670px) {
+  .personal-visual-sequence:has(> li:nth-child(4)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

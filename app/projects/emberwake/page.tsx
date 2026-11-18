@@ -23,13 +23,30 @@ export default function EmberWakePage() {
         delivery: "I redesigned the opening, home, hero selection, equipment, stage selection, and outcome screens. I documented release cases for reward overflow and save recovery.",
         impact: "The redesigned flow gives the prototype a defined path from hero selection to a run result. First-session completion and retention still need player data.",
       }}
-      visual={{
-        src: "/images/personal-projects/emberwake-menu.webp",
-        width: 900,
-        height: 1200,
-        alt: "EmberWake home screen concept with a campfire scene, a prominent Play button, a hero carousel, and navigation.",
-        caption: "Campfire home-screen concept used to explore the Play action, hero carousel, and visual hierarchy.",
-      }}
+      visualTitle="From menu concept to gameplay"
+      visuals={[
+        {
+          title: "Campfire home concept",
+          src: "/images/personal-projects/emberwake-menu.webp",
+          width: 900, height: 1200,
+          alt: "EmberWake home screen concept with a prominent Play button, hero carousel, and navigation.",
+          caption: "The menu concept explored the placement of Play, the hero carousel, and the always-visible navigation.",
+        },
+        {
+          title: "Mobile combat",
+          src: "/images/personal-projects/emberwake-mobile-combat.webp",
+          width: 390, height: 844,
+          alt: "EmberWake gameplay showing the Spellcaster and an enemy on the battlefield, with health and skill controls at the bottom.",
+          caption: "A saved 390 × 844 gameplay QA capture showing the enemy, the playable hero, and the combat controls in one phone viewport.",
+        },
+        {
+          title: "Wave clear and rewards",
+          src: "/images/personal-projects/emberwake-wave-clear.webp",
+          width: 390, height: 844,
+          alt: "EmberWake mobile gameplay showing a Road Clear banner and a wave message confirming that rewards were banked.",
+          caption: "A saved 390 × 844 gameplay QA capture showing the feedback after a wave, including confirmation that rewards were banked.",
+        },
+      ]}
       sections={[
         { id: "first-session", label: "Player journey", title: "Design the first session from home to rewards", items: [
           { title: "Start a run", detail: "Home → select a hero → select a stage → auto-run combat → review the result. Keep Play prominent and reserve the hero carousel for decisions before combat." },
