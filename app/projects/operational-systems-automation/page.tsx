@@ -143,6 +143,17 @@ export default function OperationalSystemsAutomation() {
         { label: "Project type", value: "Production and ordering systems" },
         { label: "Status", value: "Implemented · Measurement maturing" },
       ]}
+      leadEvidence={(
+        <section className="shell featured-evidence" aria-labelledby="proof-revision-title">
+          <h2 id="proof-revision-title">One upload through a proof revision</h2>
+          <ol className="featured-evidence-grid">
+            <li><strong>Original upload.</strong> A customer supplied an image for the first proof.</li>
+            <li><strong>Revision failure.</strong> Regenerating the proof could lose the reference to that image and require staff to retrieve it again.</li>
+            <li><strong>Observed retest.</strong> After the fix, the regenerated proof reused the original upload.</li>
+          </ol>
+          <p><a href="#asset-persistence">See the proof revision and exception checks</a></p>
+        </section>
+      )}
       navigation={caseNavigation}
       accent="operations"
       story={[

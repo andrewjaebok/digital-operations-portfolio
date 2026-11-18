@@ -96,12 +96,12 @@ export default function LumafiCaseStudy() {
       shortTitle="Lumafi"
       title="Lumafi: Building a Privacy-First Personal Finance Platform"
       subtitle="Building the product system, release discipline, and learning loop behind a monthly financial home."
-      summary="I am taking Lumafi from product concept toward an operating cloud-backed platform, owning the strategy, roadmap, requirements, architecture decisions, releases, quality assurance, feedback response, and business-model tradeoffs."
+      summary="I developed LumaFi from a product concept into a working cloud-backed household finance app. I owned strategy, roadmap, requirements, architecture decisions, releases, quality assurance, feedback response, and business-model tradeoffs."
       metadata={[
         { label: "Project Role", value: "Product Owner / Product Operations" },
         { label: "Scope", value: "Strategy · Roadmap · Architecture · Releases · Validation" },
         { label: "Project type", value: "Independent zero-to-one platform" },
-        { label: "Status", value: "Active development and validation" },
+        { label: "Status", value: "Development paused · Saved prototype" },
       ]}
       navigation={caseNavigation}
       accent="hearth"
@@ -122,7 +122,7 @@ export default function LumafiCaseStudy() {
 
     <section className="shell featured-evidence" aria-labelledby="lumafi-spending-title">
       <h2 id="lumafi-spending-title">How much can I safely spend this month?</h2>
-      <p>Lumafi is an independent household finance app. Its dashboard gives people a place to start with Safe to Spend, then use planning and transaction views to review upcoming commitments and recent activity.</p>
+      <p>In the saved v21.1.0 build, a fictional household with $5,800 in monthly income sees $5,115 in Safe to Spend. The dashboard shows both figures together. The household can review upcoming commitments and recent transactions before making a spending decision.</p>
       <figure className="lumafi-dashboard-evidence">
         <PortfolioImage src="/images/lumafi/dashboard-v21-1.webp" width={1440} height={960} alt="LumaFi desktop dashboard showing the monthly overview, income, Safe to Spend, net worth, and Financial Health." />
         <figcaption>Desktop dashboard captured from the saved LumaFi v21.1.0 build with fictional household data.</figcaption>
@@ -130,14 +130,14 @@ export default function LumafiCaseStudy() {
       <div className="featured-evidence-grid lumafi-mobile-evidence">
         <figure>
           <PortfolioImage src="/images/lumafi/mobile-summary-v21-1.webp" width={732} height={1294} alt="LumaFi mobile overview showing four stacked summary cards, including monthly income and Safe to Spend." />
-          <figcaption>The same sample household in the mobile overview.</figcaption>
+          <figcaption>The mobile overview from v21.1.0 shows $5,800 in income and $5,115 in Safe to Spend for the same fictional household.</figcaption>
         </figure>
         <div>
           <h3>Find the number and check what it means</h3>
           <ol>
-            <li>Open the monthly dashboard and find Safe to Spend alongside the other household figures.</li>
-            <li>Read the short explanation below the amount and compare it with the income and equity figures nearby.</li>
-            <li>Review the household plan and transaction activity before deciding what to spend.</li>
+            <li><strong>Inputs.</strong> Start with the household’s income, recent spending, bills, cards, and goals.</li>
+            <li><strong>Answer.</strong> Find the Safe to Spend amount on the monthly dashboard. The card labels it as an amount within planned commitments.</li>
+            <li><strong>Cross-check.</strong> Open the plan and transactions to review upcoming commitments and recent activity.</li>
           </ol>
           <p><strong>Proposed improvement.</strong> Give an incomplete plan its own state, explain why a reliable amount is unavailable, and link to the missing information. Once the plan is complete, show a breakdown next to the amount.</p>
         </div>

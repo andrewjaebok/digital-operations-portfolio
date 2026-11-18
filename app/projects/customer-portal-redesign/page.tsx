@@ -64,16 +64,22 @@ export default function CustomerPortalRedesign() {
       ]}
       leadEvidence={(
     <section className="shell featured-evidence utility-lead-evidence" id="lookup-result" aria-labelledby="report-discovery-title">
-      <h2 id="report-discovery-title">Finding the right location took 10–15 seconds after the redesign</h2>
-      <p>Down from 30–60 seconds in a 20-participant retrospective usability evaluation comparing the two interfaces.</p>
+      <h2 id="report-discovery-title">Find a CCR report by location</h2>
+      <p><strong>30–60 seconds → 10–15 seconds.</strong> Location lookup in a retrospective usability evaluation with 20 participants comparing the original and redesigned portals.</p>
       <div className="featured-evidence-grid">
         <figure>
-          <Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original portal with reports organized in a dense matrix" />
-          <figcaption><strong>Before.</strong> The original lookup required scanning the report grid and interpreting the color legend.</figcaption>
+          <div className="utility-lookup-image">
+            <Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original portal with reports organized in a dense matrix" />
+            <span className="utility-lookup-highlight utility-lookup-highlight--before" aria-hidden="true" />
+          </div>
+          <figcaption><strong>Before · Scan the report grid.</strong> Pick a region, then scan filenames for the location. Use the color legend to check the report’s status.</figcaption>
         </figure>
         <figure>
-          <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Redesigned portal with report search, status filters, and language tabs" />
-          <figcaption><strong>After.</strong> Search narrows the report list. The clickable status key explains existing terms, and the language tabs remain beside the reports.</figcaption>
+          <div className="utility-lookup-image">
+            <Image src="/images/utility-portal/portal-after.png" width={1212} height={896} alt="Redesigned portal with a report search above the report list" />
+            <span className="utility-lookup-highlight utility-lookup-highlight--after" aria-hidden="true" />
+          </div>
+          <figcaption><strong>After · Search for the same location.</strong> Type the location in the search field to narrow the list, then open the matching report.</figcaption>
         </figure>
       </div>
       <p><a href="#interactive-prototype">Try the lookup</a> · <a href="#prototype-keyboard-audit">Read the accessibility check</a></p>

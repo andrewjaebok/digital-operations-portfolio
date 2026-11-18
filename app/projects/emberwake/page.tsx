@@ -25,7 +25,7 @@ export default function EmberWakePage() {
       }}
       playDemo={{
         href: "/play/emberwake/",
-        description: "Play Mossgate Road as the Spellcaster. Your hero attacks automatically. Cast spells as energy builds, take on five waves, and see your results at the end.",
+        description: "Try one task: clear the first wave of Mossgate Road. Your Spellcaster attacks automatically. Cast a spell when it becomes available, then watch for the wave-clear message. The stage result shows coins and XP for the run.",
       }}
       visualTitle="From menu concept to gameplay"
       visuals={[
@@ -41,14 +41,14 @@ export default function EmberWakePage() {
           src: "/images/personal-projects/emberwake-mobile-combat.webp",
           width: 390, height: 844,
           alt: "EmberWake gameplay showing the Spellcaster and an enemy on the battlefield, with health and skill controls at the bottom.",
-          caption: "A saved 390 × 844 gameplay QA capture showing the enemy, the playable hero, and the combat controls in one phone viewport.",
+          caption: "Mobile layout retest at 390 × 844. Earlier builds could cut off enemies or crowd the HUD. In this capture, the enemy, hero, and skill controls all fit in the same viewport.",
         },
         {
           title: "Wave clear and rewards",
           src: "/images/personal-projects/emberwake-wave-clear.webp",
           width: 390, height: 844,
           alt: "EmberWake mobile gameplay showing a Road Clear banner and a wave message confirming that rewards were banked.",
-          caption: "A saved 390 × 844 gameplay QA capture showing the feedback after a wave, including confirmation that rewards were banked.",
+          caption: "The wave-clear message confirms that rewards were banked for this run. The portfolio demo resets between runs. Save recovery and inventory overflow remain release checks for the full game.",
         },
       ]}
       sections={[

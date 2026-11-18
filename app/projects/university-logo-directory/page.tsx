@@ -18,9 +18,9 @@ const caseNavigation = [
   { id: "finder-search-states", label: "UX decisions" },
   { id: "directory-prototype", label: "Try the finder" },
   { id: "search-handoff", label: "Developer handoff" },
-  { id: "finder-accessibility", label: "WCAG review" },
-  { id: "testing", label: "Scenario modeling" },
+  { id: "search-recovery-retest", label: "Accessibility retest" },
   { id: "validation", label: "Next validation" },
+  { id: "testing", label: "Scenario modeling" },
 ];
 
 const painPoints = [
@@ -201,6 +201,32 @@ export default function UniversityLogoDirectory() {
       </ol>
     </section>
 
+    <section className="shell featured-evidence" id="search-recovery-retest" aria-labelledby="search-recovery-retest-title">
+      <h2 id="search-recovery-retest-title">Search recovery accessibility test</h2>
+      <p><time dateTime="2026-11-18">November 18, 2026</time> · Portfolio demo with sample data · Chromium at 1440 px and 390 px</p>
+      <dl className="personal-process-list">
+        <div><dt>Keyboard recovery</dt><dd>Entered “mech eng” and found one result with its full organization path. Entered an unmatched term, applied category and letter filters, then used Tab and Enter or Space to clear them. Both widths restored all 10 results and returned focus to the unobscured search field.</dd></div>
+        <div><dt>Focus contrast</dt><dd>The original orange focus ring measured 2.59:1 against white. I replaced it with a 3 px blue outline that measures 8.31:1 against white.</dd></div>
+        <div><dt>Status messages</dt><dd>Chromium exposed one polite status region that changed from “No matching entries” to “10 results.” Spoken output in VoiceOver or NVDA still needs verification.</dd></div>
+      </dl>
+      <p><a href="#directory-prototype">Try the keyboard recovery flow</a></p>
+    </section>
+
+    <section className="finder-section shell" id="validation">
+      <div className="finder-section-heading">
+        <div><p className="kicker">07 · Launch and measurement</p><h2>Use the synthetic result to decide what to validate, not what to claim.</h2></div>
+        <p>The next gate is a small matched test with real users followed by anonymous production analytics. Those sources determine whether the modeled gains translate into actual behavior.</p>
+      </div>
+      <div className="backlog-table finder-backlog">
+        {nextSteps.map(([priority, item, reason], index) => <article key={item}><b>{String(index + 1).padStart(2, "0")}</b><span className={`priority ${priority.toLowerCase()}`}>{priority}</span><h3>{item}</h3><p>{reason}</p></article>)}
+      </div>
+      <div className="finder-measurement-plan">
+        <article><span>Planned customer task test</span><p>Ask 3–5 people who regularly place orders to find a department with a similar name in another branch, confirm its full path, then recover from a search with no matches. Use the same script for each participant. Record correct selections, recovery time, and when help is needed.</p></article>
+        <article><span>Production events</span><p>Finder opened, search started, no result, filter used, result selected, selection changed, assistance clicked, and elapsed time.</p></article>
+        <article><span>Decision rule</span><p>If real completion or assistance misses target, review failed queries and wrong-level selections before expanding scope.</p></article>
+      </div>
+    </section>
+
     <section className="finder-section finder-testing-section" id="testing">
       <div className="shell">
         <div className="finder-section-heading">
@@ -267,21 +293,6 @@ export default function UniversityLogoDirectory() {
         <div className="finder-iteration-list">
           {roundTwoChanges.map(([signal, change, modeledEffect], index) => <article key={signal}><b>{String(index + 1).padStart(2, "0")}</b><div><span>Signal</span><h3>{signal}</h3></div><div><span>Product response</span><p>{change}</p></div><div><span>Modeled effect</span><strong>{modeledEffect}</strong></div></article>)}
         </div>
-      </div>
-    </section>
-
-    <section className="finder-section shell" id="validation">
-      <div className="finder-section-heading">
-        <div><p className="kicker">07 · Launch and measurement</p><h2>Use the synthetic result to decide what to validate, not what to claim.</h2></div>
-        <p>The next gate is a small matched test with real users followed by anonymous production analytics. Those sources determine whether the modeled gains translate into actual behavior.</p>
-      </div>
-      <div className="backlog-table finder-backlog">
-        {nextSteps.map(([priority, item, reason], index) => <article key={item}><b>{String(index + 1).padStart(2, "0")}</b><span className={`priority ${priority.toLowerCase()}`}>{priority}</span><h3>{item}</h3><p>{reason}</p></article>)}
-      </div>
-      <div className="finder-measurement-plan">
-        <article><span>Planned lookup session</span><p>Give a representative user a department name shared by two branches. Ask them to confirm the right organization path, then recover from a search with no matches. Record the selection, recovery path, and any help they needed.</p></article>
-        <article><span>Production events</span><p>Finder opened, search started, no result, filter used, result selected, selection changed, assistance clicked, and elapsed time.</p></article>
-        <article><span>Decision rule</span><p>If real completion or assistance misses target, review failed queries and wrong-level selections before expanding scope.</p></article>
       </div>
     </section>
 

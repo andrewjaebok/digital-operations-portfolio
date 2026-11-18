@@ -50,6 +50,10 @@ export default function CustomerOrderingProtection() {
         <article><span>03 · Troubleshoot</span><p>Investigated browser connectivity issues during rollout, adjusted the configuration, and confirmed website access afterward.</p></article>
         <article><span>04 · Review</span><p>Reviewed request data following the changes to assess the response and guide further adjustments. Implementation and measured effectiveness were treated as separate questions.</p></article>
       </div>
+      <section className="featured-evidence" aria-labelledby="ordering-access-check-title">
+        <h2 id="ordering-access-check-title">Browser access check after rollout</h2>
+        <p>During rollout, browser connectivity became an issue. I adjusted the configuration, then checked that the customer-facing website could open in a browser again. That confirmed page access for this check. Order completion was outside its scope.</p>
+      </section>
       <figure style={{ margin: "32px 0", padding: "24px", border: "1px solid var(--line)", borderRadius: 14 }}>
         <figcaption><p className="kicker">Traffic comparison</p><h3>Fewer requests reaching the ordering server</h3><p>Average HTTP requests per minute · Oct 30 – Nov 1, 2026</p></figcaption>
         <svg viewBox="0 0 900 215" role="img" aria-labelledby="traffic-chart-title traffic-chart-description" style={{ width: "100%", height: "auto", display: "block" }}>

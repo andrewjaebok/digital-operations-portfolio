@@ -85,24 +85,24 @@ export default function PrescriptionPadOrderingPortal() {
 
     <section className="shell featured-evidence" aria-labelledby="rx-feedback-title">
       <h2 id="rx-feedback-title">Customer calls showed what the ordering pages needed to explain</h2>
-      <p>Four tracked question categories fell to zero during a two-month follow-up. Two examples show how I used those questions to decide what guidance to surface.</p>
+      <p><strong>Recurring question, paraphrased from tracked support questions:</strong> Can I order for multiple prescribers? Questions on this topic averaged 5.6 per month before the change. The two-month follow-up recorded zero.</p>
       <div className="featured-evidence-grid">
         <figure>
-          <Image src="/images/rx-pad-portal/selection-after.png" width={1222} height={561} alt="Pocket and desk pad choices with options for one through ten prescribers" />
-          <figcaption><strong>Can I order for multiple prescribers?</strong> I put the prescriber count directly in the pad selection cards. This question went from 5.6 per month to zero observed.</figcaption>
+          <Image src="/images/rx-pad-portal/selection-before.png" width={514} height={430} alt="Original ordering links listed one through ten doctors beneath each of the two pad formats" />
+          <figcaption><strong>Before.</strong> Customers could order for multiple prescribers, but the counts appeared as long lists of links under each pad format.</figcaption>
         </figure>
         <figure>
-          <Image src="/images/rx-pad-portal/index-after.png" width={1383} height={855} alt="Redesigned landing page with production timing surfaced alongside product guidance" />
-          <figcaption><strong>What’s the turnaround time?</strong> I surfaced production timing earlier on the landing page. This question went from 10 per month to zero observed.</figcaption>
+          <Image src="/images/rx-pad-portal/selection-after.png" width={1222} height={561} alt="Redesigned selection page with numbered doctor buttons grouped inside pocket and desk pad cards" />
+          <figcaption><strong>After.</strong> I grouped the counts inside the pocket and desk pad cards and added a prompt to choose a pad type, then the number of prescribers.</figcaption>
         </figure>
       </div>
-      <p>The same design principle applies to regulated financial tasks: surface eligibility, timing, and next steps before people have to call for help.</p>
+      <p>I also surfaced production timing earlier on the landing page. Turnaround questions averaged 10 per month before the change, with zero observed during the same follow-up.</p>
       <p><strong>GA4 acquisition snapshot.</strong> The post-launch 30-day report recorded 4.1K new users, up 1,272% from the previous period. <a href="#analytics">View the acquisition reports</a>.</p>
     </section>
 
     <section className="shell featured-evidence" id="rx-support-handoff" aria-labelledby="rx-handoff-title">
       <h2 id="rx-handoff-title">Rollout example · Ordering for multiple prescribers</h2>
-      <p>Customer calls revealed confusion about ordering for multiple prescribers. I moved the prescriber count into the pad selection cards so it was visible before the order started. The case study documents release checks on the existing 4D order paths and zero observed questions in this category during the two-month follow-up.</p>
+      <p>Customer calls revealed confusion about ordering for multiple prescribers. I grouped the existing prescriber choices inside the redesigned pad selection cards so customers could scan them before starting an order. The case study documents release checks on the existing 4D order paths and zero observed questions in this category during the two-month follow-up.</p>
       <div className="featured-evidence-grid">
         <article><h3>Frontline FAQ</h3><p><strong>What should I point the customer to?</strong> Start with the pocket or desk pad format, then show them where to select their prescriber count. Escalate questions about eligibility or exceptions to the appropriate reviewer.</p></article>
         <article><h3>Readiness and follow-up</h3><p>Walk support through the revised path on mobile and desktop. Have the appropriate reviewer check wording before sharing it. Track repeat questions and report any mismatch between a selected count and the ordering destination.</p></article>

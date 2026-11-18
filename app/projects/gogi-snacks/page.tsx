@@ -44,14 +44,14 @@ export default function GogiSnacksPage() {
           src: "/images/personal-projects/gogi-pouch-iterations.webp",
           width: 1100, height: 880,
           alt: "Ten matte black pouch concepts with different positions for the wordmark, flavor label, and red stamp.",
-          caption: "The black-pouch studies tested how a cream wordmark, a single red accent, and compact flavor labels could share the front panel.",
+          caption: "Compare the top-left concept, which uses the upper-right slot for origin copy, with the bottom-left concept, which gives that position to a flavor number. Both keep the cream wordmark and red seal.",
         },
         {
           title: "Selected front panel",
           src: "/images/personal-projects/gogi-front-artwork.webp",
           width: 850, height: 1020,
           alt: "Draft front artwork with a vertical GOGI wordmark, KBBQ 001 flavor identifier, beef jerky chips label, and a red Korean stamp.",
-          caption: "The selected KBBQ 001 layout brings together the vertical wordmark, product name, and red Korean stamp. This is draft artwork for a 5 × 6 inch pouch. Packaging claims and weight are placeholders until verified.",
+          caption: "I chose the KBBQ 001 treatment so the upper-right slot names the flavor. The front also spells out “beef jerky chips” to explain the product at a glance. Claims and weight on this 5 × 6 inch draft are placeholders pending verification.",
         },
       ]}
       sections={[
