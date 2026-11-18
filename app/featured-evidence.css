@@ -211,3 +211,12 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
   }
   .category-case-index a > span { display: none; }
 }
+
+.utility-lead-evidence { margin-block: 18px 28px; }
+.utility-lead-evidence figure img {
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  object-position: center top;
+}
+#search-handoff figcaption a { text-decoration: underline; }
+#search-handoff li { margin-block: 8px; }

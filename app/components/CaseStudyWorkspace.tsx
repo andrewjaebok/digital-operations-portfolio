@@ -28,6 +28,7 @@ type CaseStudyWorkspaceProps = {
   navigation: NavItem[];
   accent: "utility" | "rx" | "hearth" | "operations" | "finder";
   story: StoryItem[];
+  leadEvidence?: ReactNode;
   children?: ReactNode;
 };
 
@@ -50,6 +51,7 @@ export function CaseStudyWorkspace({
   navigation,
   accent,
   story,
+  leadEvidence,
   children,
 }: CaseStudyWorkspaceProps) {
   return <>
@@ -75,6 +77,8 @@ export function CaseStudyWorkspace({
         </dl>
       </div>
     </section>
+
+    {leadEvidence}
 
     <nav className={`case-study-nav case-study-nav-${accent}`} id="case-navigation" aria-label={`${shortTitle} case study sections`}>
       <div className="shell">

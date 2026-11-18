@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "../../components/PortfolioImage";
 import { assetPath } from "@/lib/asset-path";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import UniversityDirectoryEvidence from "../../components/UniversityDirectoryEvidence";
@@ -16,6 +17,7 @@ const caseNavigation = [
   { id: "finder-taskflow", label: "Task flow" },
   { id: "finder-search-states", label: "UX decisions" },
   { id: "directory-prototype", label: "Try the finder" },
+  { id: "search-handoff", label: "Developer handoff" },
   { id: "finder-accessibility", label: "WCAG review" },
   { id: "testing", label: "Scenario modeling" },
   { id: "validation", label: "Next validation" },
@@ -125,7 +127,7 @@ export default function UniversityLogoDirectory() {
       </ol>
       <nav className="featured-case-links" aria-label="Finder design evidence">
         <a href="#directory-prototype">Try the finder</a>
-        <a href="https://www.figma.com/design/1W8tVKqQV5M1MACeG4Wxdx">View Figma wireframes</a>
+        <a href="#search-handoff">View the search handoff</a>
       </nav>
     </section>
 
@@ -183,6 +185,21 @@ export default function UniversityLogoDirectory() {
 
     <UniversityDirectoryEvidence />
     <UniversityDirectoryPrototype />
+    <section className="shell featured-evidence" id="search-handoff" aria-labelledby="search-handoff-title">
+      <h2 id="search-handoff-title">Developer handoff · Directory search recovery</h2>
+      <p>Retrospective specification for the mobile prototype. The Figma board documents results, no results, and recovery as reusable search states.</p>
+      <figure className="personal-evidence-figure">
+        <Image src="/images/university-logo-directory/search-handoff.webp" width={1170} height={590} alt="Figma handoff showing results for mech eng, an empty search with a clear action, and a reset state with focus returned to the search field." />
+        <figcaption><a href="https://www.figma.com/design/1W8tVKqQV5M1MACeG4Wxdx?node-id=2-27" target="_blank" rel="noopener noreferrer">Open the editable Figma handoff ↗</a></figcaption>
+      </figure>
+      <p><strong>User story.</strong> As a customer looking for a logo, I want to recover from an empty search so I can find and confirm the right organization.</p>
+      <h3>Acceptance criteria</h3>
+      <ol>
+        <li>When I search for “mech eng,” show Mechanical Engineering and its full organization path.</li>
+        <li>When the current search and filters match nothing, show “No matching entries” and offer a clear action. Expose a single status message for the result state.</li>
+        <li>When I activate “Clear search and filters,” reset the query, category, and letter, restore the result count, and return keyboard focus to the search field.</li>
+      </ol>
+    </section>
 
     <section className="finder-section finder-testing-section" id="testing">
       <div className="shell">

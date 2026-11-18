@@ -20,6 +20,7 @@ const caseNavigation = [
   { id: "rx-accessibility", label: "WCAG review" },
   { id: "rx-design-measurement", label: "Components & analytics" },
   { id: "rx-prototype", label: "Prototype" },
+  { id: "rx-support-handoff", label: "Support handoff" },
   { id: "outcome", label: "Outcomes" },
 ];
 
@@ -66,19 +67,19 @@ export default function PrescriptionPadOrderingPortal() {
         { label: "Discovery", copy: "A connected audit of the education and ordering surfaces revealed dense content, unclear product comparison, repeated customer questions, and fragile 4D dependencies." },
         { label: "Decision", copy: "Separate education from selection and modernize the customer layer without rebuilding the regulated ordering or production foundation." },
         { label: "Delivery", copy: "Standardized both surfaces, clarified pad and prescriber choices, preserved 20 ordering paths, and added search-focused educational content." },
-        { label: "Impact", copy: "New users increased 1,272% following the redesign and search-content program, while four tracked recurring support-question categories fell to zero." },
+        { label: "Impact", copy: "Four tracked recurring support-question categories fell to zero over two months after launch." },
       ]}
     >
       <div className="rx-new-ux-banner" aria-label="Six new UX and digital experience additions">
-        <strong>NEW · UX &amp; DIGITAL EXPERIENCE CASE STUDY</strong>
-        <p>Explore six new additions: customer journey, wireframes, interactive ordering prototype, accessibility review, usability evaluation plan, and design system with analytics.</p>
+        <strong>Ordering experience walkthrough</strong>
+        <p>See how customer questions shaped the journey, from product comparison to selecting a prescriber count.</p>
         <div><a href="#rx-wireframes">See wireframes ↗</a><a href="#rx-prototype">Try prototype ↗</a><a href="#rx-accessibility">WCAG review ↗</a></div>
       </div>
       <div className="executive-summary" aria-label="Case study executive summary">
         <article><span>Problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
         <article><span>My ownership</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
         <article><span>Key decision</span><p>Modernize the customer journey without disrupting 4D ordering logic or production fulfillment.</p></article>
-        <article><span>Impact · Measured</span><p>New users increased 1,272% following the redesign and search-content program; four tracked recurring question categories fell to zero.</p></article>
+        <article><span>Impact · Measured</span><p>Four tracked recurring question categories fell to zero during the two-month follow-up.</p></article>
       </div>
     </CaseStudyWorkspace>
 
@@ -97,6 +98,16 @@ export default function PrescriptionPadOrderingPortal() {
       </div>
       <p>The same design principle applies to regulated financial tasks: surface eligibility, timing, and next steps before people have to call for help.</p>
       <p><strong>GA4 acquisition snapshot.</strong> The post-launch 30-day report recorded 4.1K new users, up 1,272% from the previous period. <a href="#analytics">View the acquisition reports</a>.</p>
+    </section>
+
+    <section className="shell featured-evidence" id="rx-support-handoff" aria-labelledby="rx-handoff-title">
+      <h2 id="rx-handoff-title">Rollout example · Ordering for multiple prescribers</h2>
+      <p>Customer calls revealed confusion about ordering for multiple prescribers. I moved the prescriber count into the pad selection cards so it was visible before the order started. The case study documents release checks on the existing 4D order paths and zero observed questions in this category during the two-month follow-up.</p>
+      <div className="featured-evidence-grid">
+        <article><h3>Frontline FAQ</h3><p><strong>What should I point the customer to?</strong> Start with the pocket or desk pad format, then show them where to select their prescriber count. Escalate questions about eligibility or exceptions to the appropriate reviewer.</p></article>
+        <article><h3>Readiness and follow-up</h3><p>Walk support through the revised path on mobile and desktop. Have the appropriate reviewer check wording before sharing it. Track repeat questions and report any mismatch between a selected count and the ordering destination.</p></article>
+      </div>
+      <p><strong>Retrospective example.</strong> I drafted this support handoff from the delivered changes and rollout evidence. It illustrates how I would brief support and compliance reviewers for a similar release.</p>
     </section>
 
     <section className="shell rx-exp-shortcuts" aria-label="Explore new UX case study work">
@@ -174,7 +185,7 @@ export default function PrescriptionPadOrderingPortal() {
     </section>
 
     <section className="analytics-section shell" id="analytics" aria-labelledby="analytics-title">
-      <div className="section-intro"><p className="kicker">Post-launch evidence</p><h2 id="analytics-title">New users increased 1,272% following the redesign and search-content program.</h2><p>Google Analytics showed an immediate increase in discovery and site activity following the website conversion and content expansion. The 30-day snapshot recorded 4.2K active users, 4.1K new users, and 14K events.</p></div>
+      <div className="section-intro"><p className="kicker">Post-launch evidence</p><h2 id="analytics-title">GA4 acquisition increased after the redesign and content expansion</h2><p>Google Analytics showed an immediate increase in discovery and site activity following the website conversion and content expansion. The 30-day snapshot recorded 4.2K active users, 4.1K new users, and 14K events.</p></div>
       <div className="analytics-evidence-grid">
         <figure className="evidence-frame analytics-primary"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>30-day acquisition snapshot</span></div><Image src="/images/rx-pad-portal/analytics-30-days.png" width={797} height={411} unoptimized alt="Google Analytics 30-day report showing 4.2 thousand active users, 14 thousand events, and 4.1 thousand new users" /><figcaption><b>Acquisition growth:</b> New users increased 1,272%, active users increased 1,224.4%, and event activity increased 639.8% compared with the previous period.</figcaption></figure>
         <figure className="evidence-frame analytics-pages"><div className="browser-bar" aria-hidden="true"><i/><i/><i/><span>Prescription content visibility</span></div><Image src="/images/rx-pad-portal/analytics-page-views.png" width={294} height={386} unoptimized alt="Google Analytics page report showing increased views across California prescription pad pages" /><figcaption><b>Page-level visibility:</b> Multiple California prescription pad pages recorded substantial increases in views, supporting the content-led SEO and GEO strategy.</figcaption></figure>
@@ -210,7 +221,7 @@ export default function PrescriptionPadOrderingPortal() {
     <section className="impact-section shell" id="outcome">
       <p className="kicker">Outcome</p>
       <h2>A clearer ordering capability that also opened a path for organic growth.</h2>
-      <div className="impact-grid"><div><strong>+1,272%</strong><span>New users following redesign and content</span></div><div><strong>+50%</strong><span>Observed order increase from June to July</span></div><div><strong>100%</strong><span>Reduction across four tracked question types</span></div></div>
+      <div className="impact-grid"><div><strong>Zero</strong><span>Observed contacts in four tracked question categories during the two-month follow-up</span></div><div><strong>+50%</strong><span>Observed order increase from June to July</span></div><div><strong>+1,272%</strong><span>GA4 new users following redesign and content</span></div></div>
       <div className="outcome-columns"><article><h3>Customer experience</h3><ul><li>Clearer page purpose and next steps</li><li>Easier product comparison</li><li>More scannable prescriber selection</li><li>Improved responsive behavior</li></ul></article><article><h3>Operational outcomes</h3><ul><li>Existing order destinations preserved</li><li>Production workflow left unchanged</li><li>Customer calls captured as market insight</li><li>Lower-risk modernization approach</li></ul></article><article><h3>Growth foundation</h3><ul><li>SEO and GEO resource library</li><li>More entry points for high-intent customers</li><li>Observed increase in orders after launch</li><li>Clearer basis for future optimization</li></ul></article></div>
       <p className="impact-note">New users increased 1,272% compared with the previous reporting period. Prescription-page orders rose 50% from 20 in June to 30 in July, the highest count in the five-month series. The four tracked recurring-question categories declined 100%, from a combined baseline of 34.8 per month to zero during the two-month follow-up. Because completed-order events and a formal attribution model were not available, the order trend is presented as an observed signal rather than a sole-cause claim. The question result applies only to the four tracked categories.</p>
     </section>

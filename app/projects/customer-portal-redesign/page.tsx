@@ -62,6 +62,23 @@ export default function CustomerPortalRedesign() {
         { label: "Project type", value: "Customer workflow optimization" },
         { label: "Status", value: "Delivered" },
       ]}
+      leadEvidence={(
+    <section className="shell featured-evidence utility-lead-evidence" id="lookup-result" aria-labelledby="report-discovery-title">
+      <h2 id="report-discovery-title">Finding the right location took 10–15 seconds after the redesign</h2>
+      <p>Down from 30–60 seconds in a 20-participant retrospective usability evaluation comparing the two interfaces.</p>
+      <div className="featured-evidence-grid">
+        <figure>
+          <Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original portal with reports organized in a dense matrix" />
+          <figcaption><strong>Before.</strong> The original lookup required scanning the report grid and interpreting the color legend.</figcaption>
+        </figure>
+        <figure>
+          <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Redesigned portal with report search, status filters, and language tabs" />
+          <figcaption><strong>After.</strong> Search narrows the report list. The clickable status key explains existing terms, and the language tabs remain beside the reports.</figcaption>
+        </figure>
+      </div>
+      <p><a href="#interactive-prototype">Try the lookup</a> · <a href="#prototype-keyboard-audit">Read the accessibility check</a></p>
+    </section>
+      )}
       navigation={caseNavigation}
       accent="utility"
       story={[
@@ -80,21 +97,7 @@ export default function CustomerPortalRedesign() {
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
     </CaseStudyWorkspace>
 
-    <section className="shell featured-evidence" aria-labelledby="report-discovery-title">
-      <h2 id="report-discovery-title">Finding the right location took 10–15 seconds after the redesign</h2>
-      <p>Down from 30–60 seconds in a 20-participant retrospective usability evaluation comparing the two interfaces.</p>
-      <div className="featured-evidence-grid">
-        <figure>
-          <Image src="/images/utility-portal/portal-before.png" width={1513} height={667} alt="Original portal with reports organized in a dense matrix" />
-          <figcaption><strong>Before.</strong> Customer feedback identified the effort of scanning rows and interpreting status colors.</figcaption>
-        </figure>
-        <figure>
-          <Image src="/images/utility-portal/portal-after.png" width={1216} height={895} alt="Redesigned portal with report search, status filters, and language tabs" />
-          <figcaption><strong>After.</strong> I added search and status filtering, keeping the status terms customers and production teams already used.</figcaption>
-        </figure>
-      </div>
-      <p>The same approach can help members find the right document or understand a familiar status in online banking.</p>
-    </section>
+
 
     <section className="shell utility-feature-links" aria-labelledby="utility-feature-links-title">
       <div className="utility-feature-links-heading"><p className="kicker">Explore the UX evidence</p><h2 id="utility-feature-links-title">Prototype and accessibility review</h2><p>Go directly to the working interaction prototype or the evidence-labeled WCAG review, alongside the original case study and measured user outcomes.</p></div>
@@ -108,7 +111,7 @@ export default function CustomerPortalRedesign() {
         <a href="#ux-accessibility" className="utility-feature-link">
           <span className="utility-feature-link-label">WCAG 2.2 AA · Review in progress</span>
           <strong>View accessibility findings and validation plan</strong>
-          <p>See the source-inspection findings, implemented accessible interactions, and testing still required for an actual conformance assessment.</p>
+          <p>See the keyboard and language changes, their browser retest, and the checks still needed on the client portal.</p>
           <b>Open WCAG review ↗</b>
         </a>
       </div>
@@ -236,9 +239,14 @@ export default function CustomerPortalRedesign() {
     <div className="shell utility-chapter-marker"><span>Chapter 03</span><strong>UX design & prototype</strong></div>
     <RegionalUtilityUX />
     <RegionalUtilityPrototype />
-    <section className="shell featured-evidence" aria-labelledby="prototype-focus-title">
-      <h2 id="prototype-focus-title">Keep keyboard focus in the search flow</h2>
-      <p>In the portfolio prototype, clearing an empty search removed the focused button. The clear action now returns focus to the search field and preserves the selected language. The result status region includes the empty-state message. Closing the sample file preview also returns focus to the report button that opened it. A manual screen reader pass remains pending.</p>
+    <section className="shell featured-evidence" id="prototype-keyboard-audit" aria-labelledby="prototype-focus-title">
+      <h2 id="prototype-focus-title">Keyboard and language check</h2>
+      <p><strong>Scope.</strong> I checked the portfolio prototype in Chromium at 320 CSS pixels using keyboard input and the browser’s accessibility tree. The check covered search, status filtering, the empty state, language switching, and opening and closing a sample PDF preview.</p>
+      <div className="featured-evidence-grid">
+        <article><h3>Preview focus</h3><p>Opening a report left focus on its trigger while the new Close button appeared after the list. I moved focus to Close, associated it with the preview description, and kept the return to the originating button. The retest confirmed both focus moves. <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html">WCAG 2.4.3 · Focus Order</a>.</p></article>
+        <article><h3>Spanish language</h3><p>The Spanish search inherited the page’s English language setting. I marked the translated region as Spanish, translated the status labels, and retained language metadata on the toggle. The retest confirmed Spanish on the search and result controls. <a href="https://www.w3.org/WAI/WCAG22/Understanding/language-of-parts.html">WCAG 3.1.2 · Language of Parts</a>.</p></article>
+      </div>
+      <p><strong>Recovery.</strong> In the retest, clearing an empty result restored the list and returned focus to search. The prototype fit at the tested width. Spoken announcements in VoiceOver or NVDA, and production portal conformance, remain unverified.</p>
     </section>
 
     <div className="shell utility-chapter-marker"><span>Chapter 04</span><strong>Validation & accessibility</strong><a href="#ux-accessibility">Jump to WCAG evidence ↗</a></div>
