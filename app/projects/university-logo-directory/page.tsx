@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import { assetPath } from "@/lib/asset-path";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
+import UniversityDirectoryEvidence from "../../components/UniversityDirectoryEvidence";
+import UniversityDirectoryPrototype from "../../components/UniversityDirectoryPrototype";
 
 export const metadata: Metadata = {
   title: "University Logo Directory | Product Operations Case Study",
-  description: "A Senior Product Operations case study on modernizing a 195-entry legacy directory, defining KPIs, and using two matched rounds of synthetic scenario testing to guide iteration.",
+  description: "A Product Operations UX case study on transforming a 195-entry static logo directory into a searchable, persistent self-service finder while preserving legacy workflows.",
 };
 
 const caseNavigation = [
   { id: "overview", label: "Overview" },
   { id: "problem", label: "Problem" },
-  { id: "decisions", label: "Decisions" },
-  { id: "solution", label: "Solution" },
-  { id: "testing", label: "Testing" },
-  { id: "kpis", label: "KPIs" },
-  { id: "iteration", label: "Iteration" },
+  { id: "finder-gallery", label: "Interface evidence" },
+  { id: "finder-taskflow", label: "Task flow" },
+  { id: "finder-search-states", label: "UX decisions" },
+  { id: "directory-prototype", label: "Try the finder" },
+  { id: "finder-accessibility", label: "WCAG review" },
+  { id: "testing", label: "Scenario modeling" },
   { id: "validation", label: "Next validation" },
 ];
 
@@ -88,7 +91,7 @@ export default function UniversityLogoDirectory() {
         { label: "Project Role", value: "Senior Product Operations / Digital Services" },
         { label: "Scope", value: "Discovery · Requirements · UX · Testing · Iteration" },
         { label: "Directory scale", value: "195 organization and logo entries" },
-        { label: "Evidence", value: "Verified interface change · Synthetic pre-launch model" },
+        { label: "Evidence", value: "Before/after recordings · Synthetic model separately labeled" },
       ]}
       navigation={caseNavigation}
       accent="finder"
@@ -96,14 +99,14 @@ export default function UniversityLogoDirectory() {
         { label: "Discovery", copy: "The 195-entry popup was a reference list, not a finder: users had to scan, infer hierarchy, remember a name, and repeat the lookup elsewhere." },
         { label: "Decision", copy: "Preserve the data and production handoff while adding a searchable, persistent reference experience with explicit paths and recovery tools." },
         { label: "Delivery", copy: "Implemented search, aliases, filters, A–Z browsing, copy actions, no-results recovery, keyboard behavior, and a reusable popup window." },
-        { label: "Impact", copy: "In the synthetic pre-launch model, Round 2 met 11 of 11 thresholds: completion moved from 95% to 99%, median lookup time from 24 to 20 seconds, and assistance from 7% to 3%." },
+        { label: "Impact", copy: "Verified delivery added a searchable directory, explicit hierarchy, recovery paths and persistent reference access. Real-user outcome measurement is pending; scenario-model figures are presented separately." },
       ]}
     >
       <div className="executive-summary finder-summary" aria-label="Case study executive summary">
         <article><span>Problem</span><p>A fixed directory required users to manually scan a long, color-coded hierarchy and remember the result elsewhere.</p></article>
         <article><span>My ownership</span><p>Discovery, requirements, legacy integration, interface direction, KPI design, scenario modeling, and iteration.</p></article>
         <article><span>Key decision</span><p>Preserve the underlying data and production handoff while replacing the customer-facing lookup experience.</p></article>
-        <article><span>Impact · Modeled</span><p>Round 2 reached 99% completion, a 20-second median lookup, 3% assistance, and 11 of 11 modeled thresholds met.</p></article>
+        <article><span>Delivered experience</span><p>Search, alias matching, hierarchy paths, filtering, copy actions, and a persistent reference window. Actual usability gains await customer testing.</p></article>
       </div>
       <div className="evidence-boundary" aria-label="Evidence boundary">
         <b>Evidence boundary</b>
@@ -112,6 +115,11 @@ export default function UniversityLogoDirectory() {
         <span><strong>Future KPI:</strong> real-user task results, production usage, support demand, accessibility, and sustained search success. Real-user and production analytics remain the validation gate.</span>
       </div>
     </CaseStudyWorkspace>
+
+    <section className="shell finder-ux-entry" aria-label="Explore Project 05 UX deliverables">
+      <div><p className="kicker">UX evidence & interaction design</p><h2>See the redesign. Try the finder. Explore the wireframes.</h2><p>Start with actual interface media, a working sample-data demonstration and editable Figma wireframes. Synthetic modeling remains explicitly separate from observed customer outcomes.</p></div>
+      <nav aria-label="Project 05 UX shortcuts"><a href="#finder-gallery">Before / after screenshots</a><a href="#finder-taskflow">Customer task flow</a><a href="#directory-prototype">Try the finder prototype</a><a href="#finder-accessibility">WCAG review</a><a href="https://www.figma.com/design/1W8tVKqQV5M1MACeG4Wxdx" target="_blank" rel="noopener noreferrer">Editable Figma wireframes ↗</a></nav>
+    </section>
 
     <section className="finder-section shell" id="problem">
       <div className="finder-section-heading">
@@ -160,10 +168,13 @@ export default function UniversityLogoDirectory() {
       <p className="finder-video-note"><strong>Visual evidence only:</strong> the recordings demonstrate the interface change, but they do not perform the same timed task and therefore are not used to claim a measured speed improvement.</p>
     </section>
 
+    <UniversityDirectoryEvidence />
+    <UniversityDirectoryPrototype />
+
     <section className="finder-section finder-testing-section" id="testing">
       <div className="shell">
         <div className="finder-section-heading">
-          <div><p className="kicker">04 · Evaluation design</p><h2>Use a matched synthetic cohort to stress-test the plan before real-user validation.</h2></div>
+          <div><p className="kicker">Supporting research model · Not real-user testing</p><h2>Use a matched synthetic cohort to stress-test the plan before real-user validation.</h2></div>
           <p>The 100 personas were structured test profiles, not 100 human participants. Reusing the same profiles across rounds kept role, device, familiarity, and task difficulty constant while the interface changed.</p>
         </div>
         <div className="finder-method">
@@ -201,7 +212,7 @@ export default function UniversityLogoDirectory() {
 
     <section className="finder-section shell" id="kpis">
       <div className="finder-section-heading">
-        <div><p className="kicker">05 · KPI scorecard</p><h2>Round 2 improved every KPI targeted by the changes.</h2></div>
+        <div><p className="kicker">Synthetic KPI scorecard · Not observed performance</p><h2>Round 2 improved every modeled KPI targeted by the changes.</h2></div>
         <p>The strongest modeled change was not just higher completion. Assistance demand moved below its target, and mobile completion gained enough margin to reduce a clear launch risk.</p>
       </div>
       <div className="finder-kpi-highlights" aria-label="Round 1 to Round 2 synthetic KPI changes">
