@@ -8,3 +8,19 @@
 
 
 .utility-ux-audit{margin-top:2rem;border-top:1px solid rgba(128,140,153,.25);padding-top:1.8rem}.utility-ux-audit>h3{font-size:1.25rem;margin:0 0 .5rem}.utility-ux-audit>p{font-size:.87rem;line-height:1.65;max-width:850px;opacity:.8}.utility-ux-audit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem;margin-top:1.2rem}.utility-ux-audit-grid article{background:rgba(128,140,153,.06);border:1px solid rgba(128,140,153,.2);border-radius:12px;padding:1rem}.utility-ux-audit-grid span{font-size:.69rem;font-weight:750;text-transform:uppercase;letter-spacing:.04em;opacity:.7}.utility-ux-audit-grid h4{margin:.5rem 0;font-size:.95rem}.utility-ux-audit-grid p{font-size:.83rem;opacity:.78;line-height:1.55;margin:0}@media(max-width:760px){.utility-ux-audit-grid{grid-template-columns:1fr}}
+
+
+/* Prominent case study links to prototype and WCAG review */
+.utility-feature-links{padding-top:2.25rem;padding-bottom:2.5rem}
+.utility-feature-links-heading{max-width:760px;margin-bottom:1.2rem}
+.utility-feature-links-heading h2{font-size:clamp(1.65rem,2.8vw,2.45rem);letter-spacing:-.035em;margin:.45rem 0 .7rem}
+.utility-feature-links-heading>p:last-child{font-size:.94rem;line-height:1.65;opacity:.78}
+.utility-feature-link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.utility-feature-link{display:flex;flex-direction:column;align-items:flex-start;gap:.75rem;text-decoration:none;color:inherit;padding:1.5rem;border:1px solid rgba(20,116,145,.32);border-radius:16px;background:rgba(20,116,145,.055);transition:background .15s,border-color .15s}
+.utility-feature-link:hover{background:rgba(20,116,145,.12);border-color:rgba(20,116,145,.65)}
+.utility-feature-link:focus-visible{outline:3px solid #df9840;outline-offset:3px}
+.utility-feature-link-label{font-size:.75rem;font-weight:750;letter-spacing:.04em;text-transform:uppercase;opacity:.75}
+.utility-feature-link strong{font-size:1.15rem;line-height:1.35}
+.utility-feature-link p{font-size:.88rem;line-height:1.6;opacity:.78;margin:0}
+.utility-feature-link>b{font-size:.82rem;margin-top:auto}
+@media(max-width:720px){.utility-feature-link-grid{grid-template-columns:1fr}.utility-feature-link{padding:1.15rem}}
