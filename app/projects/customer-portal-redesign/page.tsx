@@ -5,6 +5,7 @@ import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import UtilityUsabilityResults from "../../components/UtilityUsabilityResults";
 import UtilityScrollTransformation from "../../components/UtilityScrollTransformation";
 import RegionalUtilityUX from "../../components/RegionalUtilityUX";
+import RegionalUtilityPrototype from "../../components/RegionalUtilityPrototype";
 import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ const caseNavigation = [
   { id: "strategy", label: "Priorities" },
   { id: "solution", label: "Execution" },
   { id: "ux-design", label: "UX design" },
+  { id: "interactive-prototype", label: "Prototype" },
   { id: "interaction-specification", label: "Interaction patterns" },
   { id: "usability-results", label: "Measured results" },
   { id: "decisions", label: "Decisions" },
@@ -204,6 +206,7 @@ export default function CustomerPortalRedesign() {
     </section>
 
     <RegionalUtilityUX />
+    <RegionalUtilityPrototype />
 
     <UtilityUsabilityResults />
 
