@@ -71,3 +71,13 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
 @media (min-width: 690px) {
   .lumafi-mobile-evidence { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); }
 }
+
+.lumafi-dashboard-evidence { margin: 24px 0; }
+.lumafi-dashboard-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.lumafi-dashboard-evidence figcaption { margin-top: 10px; }
