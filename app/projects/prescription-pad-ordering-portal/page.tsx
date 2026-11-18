@@ -69,6 +69,11 @@ export default function PrescriptionPadOrderingPortal() {
         { label: "Impact", copy: "New users increased 1,272% following the redesign and search-content program, while four tracked recurring support-question categories fell to zero." },
       ]}
     >
+      <div className="rx-new-ux-banner" aria-label="Six new UX and digital experience additions">
+        <strong>NEW · UX &amp; DIGITAL EXPERIENCE CASE STUDY</strong>
+        <p>Explore six new additions: customer journey, wireframes, interactive ordering prototype, accessibility review, usability evaluation plan, and design system with analytics.</p>
+        <div><a href="#rx-wireframes">See wireframes ↗</a><a href="#rx-prototype">Try prototype ↗</a><a href="#rx-accessibility">WCAG review ↗</a></div>
+      </div>
       <div className="executive-summary" aria-label="Case study executive summary">
         <article><span>Problem</span><p>A legacy ordering experience made compliant product selection and guidance harder to understand.</p></article>
         <article><span>My ownership</span><p>Discovery, requirements, UX direction, implementation, QA, rollout readiness, and growth follow-through.</p></article>
