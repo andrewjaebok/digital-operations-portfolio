@@ -34,6 +34,7 @@ export default function RxExperienceEvidence(){
  </section>
  <section className="shell rx-exp-section" id="rx-wireframes" aria-labelledby="rx-wireframes-title">
   <p className="kicker">02 / Wireframes and visual decisions</p><h2 id="rx-wireframes-title">One decision at a time, without rebuilding the order system.</h2>
+  <p className="rx-exp-lead"><a href="https://www.figma.com/design/KanUNezk6RWc7Is8tEhM7t" target="_blank" rel="noopener noreferrer" style={{fontWeight:750,textDecoration:"underline"}}>Open editable RX Pads wireframes in Figma ↗</a> · Four conceptual screens: desktop landing, pad format, prescriber selection, and mobile layout.</p>
   <p className="rx-exp-lead"><strong>Reconstructed wireframes:</strong> these are retrospective diagrams of the design logic, not original pre-development drawings or Figma files. Original before/after production screenshots remain in the execution section.</p>
   <div className="rx-wireframe-grid">
    <figure><div className="rx-wireframe rx-wireframe-before"><div className="rx-wireframe-bar">Legacy entry / conceptual</div><div className="rx-wf-row"><span/><span/><span/></div><div className="rx-wf-grid">{Array.from({length:12},(_,i)=><i key={i}/>)}</div><div className="rx-wf-row"><span/><span/><span/></div></div><figcaption><b>Before:</b> Education, options, and actions compete within a dense view.</figcaption></figure>
