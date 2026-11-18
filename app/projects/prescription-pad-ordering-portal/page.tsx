@@ -16,10 +16,10 @@ const caseNavigation = [
   { id: "assessment", label: "Discovery" },
   { id: "rx-journey", label: "Customer journey" },
   { id: "rx-wireframes", label: "UX design" },
-  { id: "rx-prototype", label: "Prototype" },
   { id: "rx-validation", label: "Validation" },
   { id: "rx-accessibility", label: "WCAG review" },
-  { id: "rx-design-measurement", label: "Design & analytics" },
+  { id: "rx-design-measurement", label: "Components & analytics" },
+  { id: "rx-prototype", label: "Prototype" },
   { id: "outcome", label: "Outcomes" },
 ];
 
@@ -76,6 +76,11 @@ export default function PrescriptionPadOrderingPortal() {
         <article><span>Impact · Measured</span><p>New users increased 1,272% following the redesign and search-content program; four tracked recurring question categories fell to zero.</p></article>
       </div>
     </CaseStudyWorkspace>
+
+    <section className="shell rx-exp-shortcuts" aria-label="Explore new UX case study work">
+      <div><p className="kicker">New UX portfolio evidence</p><h2>Explore the design, test plan, and prototype.</h2><p>These sections extend the original redesign case study using real project context, clearly labeled reconstructed diagrams, and sample interactions.</p></div>
+      <nav aria-label="RX Pads UX evidence shortcuts"><a href="#rx-journey">Customer journey ↗</a><a href="#rx-wireframes">Wireframes ↗</a><a href="#rx-prototype">Interactive prototype ↗</a><a href="#rx-validation">Usability evaluation ↗</a><a href="#rx-accessibility">WCAG review ↗</a><a href="#rx-design-measurement">Analytics & components ↗</a></nav>
+    </section>
 
     <section className="signature-visual rx-signature shell" id="regulated-workflow" aria-labelledby="rx-signature-title">
       <div className="signature-heading">
