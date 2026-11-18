@@ -4,6 +4,7 @@ import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyW
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
 import UtilityUsabilityResults from "../../components/UtilityUsabilityResults";
 import UtilityScrollTransformation from "../../components/UtilityScrollTransformation";
+import RegionalUtilityUX from "../../components/RegionalUtilityUX";
 import { assetPath } from "@/lib/asset-path";
 
 export const metadata: Metadata = {
@@ -17,6 +18,8 @@ const caseNavigation = [
   { id: "assessment", label: "Discovery" },
   { id: "strategy", label: "Priorities" },
   { id: "solution", label: "Execution" },
+  { id: "ux-design", label: "UX design" },
+  { id: "interaction-specification", label: "Interaction patterns" },
   { id: "usability-results", label: "Measured results" },
   { id: "decisions", label: "Decisions" },
   { id: "outcome", label: "Outcome" },
@@ -199,6 +202,8 @@ export default function CustomerPortalRedesign() {
         {changes.map(([area,before,after]) => <div className="comparison-row" role="row" key={area}><strong role="rowheader">{area}</strong><span role="cell">{before}</span><span role="cell">{after}</span></div>)}
       </div>
     </section>
+
+    <RegionalUtilityUX />
 
     <UtilityUsabilityResults />
 
