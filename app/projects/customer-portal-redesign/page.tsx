@@ -20,7 +20,8 @@ const caseNavigation = [
   { id: "strategy", label: "Priorities" },
   { id: "solution", label: "Execution" },
   { id: "ux-design", label: "UX design" },
-  { id: "interactive-prototype", label: "Prototype" },
+  { id: "interactive-prototype", label: "Live prototype" },
+  { id: "ux-accessibility", label: "WCAG review" },
   { id: "interaction-specification", label: "Interaction patterns" },
   { id: "usability-results", label: "Measured results" },
   { id: "decisions", label: "Decisions" },
@@ -85,6 +86,24 @@ export default function CustomerPortalRedesign() {
       </div>
       <p className="executive-methodology"><strong>20 participants</strong><span aria-hidden="true">·</span><strong>4 core tasks</strong><span aria-hidden="true">·</span><strong>Original vs redesigned portal</strong><span>Retrospective usability evaluation, not live production analytics</span></p>
     </CaseStudyWorkspace>
+
+    <section className="shell utility-feature-links" aria-labelledby="utility-feature-links-title">
+      <div className="utility-feature-links-heading"><p className="kicker">Explore the UX evidence</p><h2 id="utility-feature-links-title">Prototype and accessibility review</h2><p>Go directly to the working interaction prototype or the evidence-labeled WCAG review, alongside the original case study and measured user outcomes.</p></div>
+      <div className="utility-feature-link-grid">
+        <a href="#interactive-prototype" className="utility-feature-link">
+          <span className="utility-feature-link-label">Interactive prototype · Desktop + mobile</span>
+          <strong>Try the redesigned report experience</strong>
+          <p>Search reports, apply status filters, switch languages, and explore responsive states using demonstration data.</p>
+          <b>Open interactive prototype ↗</b>
+        </a>
+        <a href="#ux-accessibility" className="utility-feature-link">
+          <span className="utility-feature-link-label">WCAG 2.2 AA · Review in progress</span>
+          <strong>View accessibility findings and validation plan</strong>
+          <p>See the source-inspection findings, implemented accessible interactions, and testing still required for an actual conformance assessment.</p>
+          <b>Open WCAG review ↗</b>
+        </a>
+      </div>
+    </section>
 
     <UtilityScrollTransformation />
 
