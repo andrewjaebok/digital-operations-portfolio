@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WireframeBoard from "../../components/WireframeBoard";
 import Image from "../../components/PortfolioImage";
 import { assetPath } from "@/lib/asset-path";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
@@ -21,6 +22,7 @@ const caseNavigation = [
   { id: "search-recovery-retest", label: "Accessibility retest" },
   { id: "validation", label: "Next validation" },
   { id: "testing", label: "Scenario modeling" },
+  { id: "full-wireframe", label: "Full wireframe board" },
 ];
 
 const painPoints = [
@@ -185,6 +187,7 @@ export default function UniversityLogoDirectory() {
 
     <UniversityDirectoryEvidence />
     <UniversityDirectoryPrototype />
+    <WireframeBoard file="university-directory" name="University Logo Directory" description="Follow the mobile search from the first query through ambiguous results, organizational confirmation, and empty-state recovery. The board documents the workflow retrospectively." />
     <section className="shell featured-evidence" id="search-handoff" aria-labelledby="search-handoff-title">
       <h2 id="search-handoff-title">Developer handoff · Directory search recovery</h2>
       <p>Retrospective specification for the mobile prototype. The Figma board documents results, no results, and recovery as reusable search states.</p>

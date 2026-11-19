@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { assetPath } from "../../../lib/asset-path";
 import PortfolioImage from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 
 const caseNavigation = [
   { id: "overview", label: "Overview" },
+  { id: "lumafi-sample", label: "Try LumaFi" },
   { id: "evolution", label: "Product evolution" },
+  { id: "product-expression", label: "World & avatar design" },
   { id: "feedback", label: "Feedback" },
   { id: "prioritization", label: "Prioritization" },
   { id: "tradeoffs", label: "Tradeoffs" },
@@ -120,6 +123,16 @@ export default function LumafiCaseStudy() {
       </div>
     </CaseStudyWorkspace>
 
+    <section className="shell featured-evidence" id="lumafi-sample" aria-labelledby="lumafi-sample-title">
+      <h2 id="lumafi-sample-title">Try LumaFi</h2>
+      <p>Explore the landing page’s interactive product previews, then customize an explorer and visit the City Park neighborhood. Each building opens a sample financial workspace.</p>
+      <nav className="featured-case-links" aria-label="LumaFi samples">
+        <a href={assetPath("/play/lumafi/")}>Explore the landing page <span>Dashboard, transactions, planning, and reports</span></a>
+        <a href={assetPath("/play/lumafi/world.html")}>Visit LumaFi World <span>Customize an explorer and visit five destinations</span></a>
+      </nav>
+      <p>The samples use fictional household data and require no account.</p>
+    </section>
+
     <section className="shell featured-evidence" aria-labelledby="lumafi-spending-title">
       <h2 id="lumafi-spending-title">How much can I safely spend this month?</h2>
       <p>In the saved v21.1.0 build, a fictional household with $5,800 in monthly income sees $5,115 in Safe to Spend. The dashboard shows both figures together. The household can review upcoming commitments and recent transactions before making a spending decision.</p>
@@ -172,13 +185,22 @@ export default function LumafiCaseStudy() {
 
     <section className="project-framework shell" id="tradeoffs"><div className="section-intro"><p className="kicker">Decisions and tradeoffs</p><h2>Each decision names the benefit and the cost.</h2></div><div className="hearth-tradeoff-table" role="table" aria-label="Lumafi product tradeoffs"><div className="tradeoff-row tradeoff-header" role="row"><span>Decision</span><span>Reason</span><span>Risk</span><span>Postponed or excluded</span></div>{tradeoffs.map(([decision,reason,risk,deferred])=><div className="tradeoff-row" role="row" key={decision}><strong>{decision}</strong><span>{reason}</span><span>{risk}</span><span>{deferred}</span></div>)}</div></section>
 
-    <section className="project-framework hearth-world-expression" id="product-expression">
-      <div className="shell">
-        <div className="section-intro split-heading"><div><p className="kicker">Product expression</p><h2>Add personality without blocking the financial workflow.</h2></div><p>Lumafi World was an experiment in making financial navigation warmer and more memorable. Core financial tasks remain available through conventional navigation, so the expressive layer is optional rather than a gate.</p></div>
-        <div className="hearth-world-review">
-          <div className="world-route" aria-label="Lumafi World optional navigation destinations"><span>Transactions / ATM</span><span>Planning / Bank</span><span>Manage Lists / School</span><span>Dashboard / Town Hall</span></div>
-          <div><b>Decision</b><p>Use a visual household world to connect financial destinations and product personality.</p><b>Boundary</b><p>Do not require the world for core tasks, and do not let game-like exploration outrank clarity, speed, or accessibility.</p></div>
-        </div>
+    <section className="shell featured-evidence" id="product-expression" aria-labelledby="lumafi-design-title">
+      <h2 id="lumafi-design-title">Designing the mini characters and their world</h2>
+      <p>Household Studio uses the same character traits across the finance app and the world. I mapped each building to a familiar financial action and added front-facing cameras and doorway prompts to make destinations easy to identify.</p>
+      <div className="featured-evidence-grid lumafi-world-evidence">
+        <figure>
+          <PortfolioImage src="/images/lumafi/household-studio.webp" width={1180} height={904} alt="The original LumaFi Household Studio with controls for a fictional character’s appearance and a live model preview." />
+          <figcaption><strong>Build a mini character.</strong> Layer skin tone, hair, clothing, expression, and accessories. A live preview shows how the pieces look together.</figcaption>
+        </figure>
+        <figure>
+          <PortfolioImage src="/images/lumafi/place-studio.webp" width={1180} height={904} alt="The original LumaFi Places tab showing illustrated neighborhood options beside the mini household preview." />
+          <figcaption><strong>Choose a setting.</strong> The Places tab previews environments such as City Park, Downtown, and Forest with the same household characters.</figcaption>
+        </figure>
+        <figure>
+          <PortfolioImage src="/images/lumafi/city-park.webp" width={1110} height={700} alt="A render of LumaFi’s City Park scene with a mini character in the plaza and paths to the Bank, Town Hall, ATM, School, and Observatory." />
+          <figcaption><strong>Connect places to tasks.</strong> Paths link the central plaza to five destinations. The Bank leads to Planning and Town Hall leads to the Dashboard. This view was rendered from the saved v21.1.0 scene.</figcaption>
+        </figure>
       </div>
     </section>
 

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="Japanese garden with a pond, arched bridge, cherry trees, and stone lantern">
+  <defs>
+    <linearGradient id="jg-sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8d8e3"/><stop offset=".58" stop-color="#fff0e9"/><stop offset="1" stop-color="#f4f3d9"/></linearGradient>
+    <linearGradient id="jg-ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#82bd75"/><stop offset="1" stop-color="#4f9562"/></linearGradient>
+    <linearGradient id="jg-water" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8bcbd5"/><stop offset="1" stop-color="#4f9fb0"/></linearGradient>
+  </defs>
+  <rect width="240" height="120" fill="url(#jg-sky)"/>
+  <circle cx="205" cy="22" r="13" fill="#f7c69f" opacity=".42"/>
+  <path d="M0 69C33 59 61 66 91 58c37-10 66-3 94-10 22-5 39-2 55 1v71H0Z" fill="#7bab68" opacity=".72"/>
+  <path d="M0 82c37-9 68-2 102-10 44-10 92-6 138-1v49H0Z" fill="url(#jg-ground)"/>
+  <path d="M73 86c17-12 43-15 66-11 22 3 39 13 45 24-23 12-84 13-119 1 0-5 3-10 8-14Z" fill="url(#jg-water)"/>
+  <path d="M82 96c26 5 61 5 90-1" fill="none" stroke="#d6f4f2" stroke-width="1.6" opacity=".7"/>
+  <ellipse cx="96" cy="94" rx="7" ry="2.2" fill="#60945b"/><ellipse cx="154" cy="97" rx="8" ry="2.4" fill="#60945b"/>
+  <path d="M91 82Q120 57 149 82" fill="none" stroke="#9b4f42" stroke-width="6" stroke-linecap="round"/>
+  <path d="M94 81Q120 62 146 81" fill="none" stroke="#df6b61" stroke-width="3" stroke-linecap="round"/>
+  <path d="M91 84h58" stroke="#713b32" stroke-width="2"/>
+  <g fill="#8e493f"><rect x="94" y="78" width="3" height="11"/><rect x="143" y="78" width="3" height="11"/></g>
+  <g>
+    <rect x="28" y="40" width="6" height="48" rx="2" fill="#6d4933"/>
+    <path d="M31 54 17 43m15 4 17-16" stroke="#6d4933" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="18" cy="37" r="14" fill="#ef9fbd"/><circle cx="34" cy="29" r="18" fill="#f3b3ca"/><circle cx="52" cy="38" r="14" fill="#f6c2d4"/><circle cx="29" cy="46" r="13" fill="#ed9aba"/>
+  </g>
+  <g>
+    <rect x="207" y="45" width="6" height="43" rx="2" fill="#6d4933"/>
+    <path d="M210 56 196 43m15 5 14-15" stroke="#6d4933" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="197" cy="38" r="14" fill="#ef9fbd"/><circle cx="213" cy="31" r="18" fill="#f3b3ca"/><circle cx="226" cy="43" r="13" fill="#f6c2d4"/>
+  </g>
+  <g fill="#c9beb0" stroke="#877d72" stroke-width="1">
+    <rect x="51" y="69" width="4" height="20" rx="1"/>
+    <path d="M46 69h14l-3-5h-8Z"/>
+    <rect x="48" y="72" width="10" height="7" rx="1"/>
+  </g>
+  <g fill="#d6687c" opacity=".9"><circle cx="72" cy="39" r="1.6"/><circle cx="180" cy="34" r="1.4"/><circle cx="65" cy="57" r="1.3"/><circle cx="190" cy="61" r="1.5"/></g>
+</svg>

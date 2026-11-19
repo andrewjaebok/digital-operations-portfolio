@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WireframeBoard from "../../components/WireframeBoard";
 import Image from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
@@ -22,6 +23,7 @@ const caseNavigation = [
   { id: "rx-prototype", label: "Prototype" },
   { id: "rx-support-handoff", label: "Support handoff" },
   { id: "outcome", label: "Outcomes" },
+  { id: "full-wireframe", label: "Full wireframe board" },
 ];
 
 const changes = [
@@ -173,6 +175,7 @@ export default function PrescriptionPadOrderingPortal() {
     </section>
 
     <RxExperienceEvidence />
+    <WireframeBoard file="rx-ordering" name="Prescription Pad Ordering Portal" description="Follow the order from entry and prescriber selection through review, confirmation, and recovery. The board documents the workflow retrospectively." />
     <RxExperiencePrototype />
 
     <section className="growth-section shell" id="growth">

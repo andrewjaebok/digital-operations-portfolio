@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="desertsunset neighborhood background">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e98a60"/><stop offset=".56" stop-color="#d8644d"/><stop offset="1" stop-color="#f0b36f"/></linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b97647"/><stop offset="1" stop-color="#8c5735"/></linearGradient>
+  </defs>
+  <rect width="240" height="120" fill="url(#sky)"/>
+  <circle cx="185" cy="38" r="15" fill="#ffd166" opacity=".95"/>
+  <path d="M0 78 C42 66 85 73 124 64 C167 54 205 68 240 58 L240 120 L0 120 Z" fill="#9c5f45" opacity=".42"/>
+  <path d="M0 94 C46 84 88 90 124 82 C168 72 204 86 240 78 L240 120 L0 120 Z" fill="url(#ground)"/>
+  <path d="M31 72 h8 v25 h-8z M22 83 h12 v7 h-12z M36 78 h13 v7 h-13z" fill="#2f7d4b" opacity=".9"/>
+  <path d="M199 77 h7 v21 h-7z M190 86 h12 v6 h-12z M204 82 h12 v6 h-12z" fill="#2f7d4b" opacity=".85"/>
+  <path d="M92 98 h40" stroke="#8b5a2b" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+</svg>

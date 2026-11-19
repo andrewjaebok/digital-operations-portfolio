@@ -225,3 +225,48 @@ ol.featured-evidence-grid { padding-inline-start: 24px; column-gap: 32px; }
 .utility-lookup-highlight--after { inset: 17% 12% 76% 12%; }
 #search-handoff figcaption a { text-decoration: underline; }
 #search-handoff li { margin-block: 8px; }
+
+.wireframe-board summary {
+  width: fit-content;
+  cursor: pointer;
+  font-weight: 750;
+}
+
+.wireframe-board img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.wireframe-board summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.case-study-page:has(#gameplay) .personal-visual-sequence {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+@media (min-width: 960px) {
+  .case-study-page:has(#gameplay) .personal-visual-sequence {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.lumafi-world-evidence {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lumafi-world-evidence figure:last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 640px) {
+  .lumafi-world-evidence {
+    grid-template-columns: 1fr;
+  }
+}

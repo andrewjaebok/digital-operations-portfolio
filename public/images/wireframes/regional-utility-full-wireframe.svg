@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="2170" viewBox="0 0 1360 2170" role="img" aria-labelledby="title description">
+<title id="title">Regional Utility CCR Portal</title>
+<desc id="description">Report discovery and review · retrospective workflow specification. Full retrospective wireframe process with 8 editable screen frames, flow, annotations, and acceptance criteria.</desc>
+<rect width="100%" height="100%" fill="#f3f6f9"/>
+<text x="48" y="58" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="750" fill="#172b41">Regional Utility CCR Portal</text>
+<text x="48" y="88" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#52677d">Report discovery and review · retrospective workflow specification</text>
+<text x="48" y="124" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#0758a5">RETROSPECTIVE PRODUCT DESIGN PROCESS  ·  STRUCTURE → TASK FLOW → STATES → HANDOFF</text>
+<rect x="48" y="145" width="1264" height="86" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="173" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">CUSTOMER TASK FLOW</text>
+<rect x="68" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="78" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Open</text>
+<rect x="241.14285714285714" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="251.14285714285714" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Search</text>
+<rect x="414.2857142857143" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="424.2857142857143" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Filter</text>
+<rect x="587.4285714285714" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="597.4285714285714" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Choose language</text>
+<rect x="760.5714285714286" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="770.5714285714286" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Verify</text>
+<rect x="933.7142857142857" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="943.7142857142857" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Open report</text>
+<rect x="1106.857142857143" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="1116.857142857143" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Recover</text>
+<text x="48" y="268" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#172b41">SCREEN WIREFRAMES</text>
+<text x="48" y="290" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#52677d">Each frame shows one meaningful customer state. Arrows and labels describe transitions between frames.</text>
+<g id="frame-1">
+<text x="48" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">01  Open the report center</text>
+<text x="48" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Start with reports and orientation</text>
+<rect x="48" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="64" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Annual reports · sample labels</text>
+<text x="64" y="434" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">CCR reports</text>
+<rect x="64" y="443" width="368" height="49" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="463" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Choose a region and report year</text>
+<text x="75" y="482" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Report list is organized by service area.</text>
+<text x="64" y="514" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Search reports</text>
+<text x="64" y="535" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="64" y="541" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="563" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Region, city, or filename</text>
+<rect x="64" y="583" width="56.4" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="73" y="603" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">English</text>
+<rect x="127.4" y="583" width="56.4" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="136.4" y="603" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Spanish</text>
+<rect x="64" y="624" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="643" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">North service area</text>
+<text x="75" y="661" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 Consumer Confidence Report</text>
+<text x="343" y="651" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="64" y="680" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="699" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Central service area</text>
+<text x="75" y="717" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 Consumer Confidence Report</text>
+<text x="343" y="707" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="64" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Keep report names and grouping recognizable.</text>
+</g>
+<g id="frame-2">
+<text x="480" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">02  Search a location</text>
+<text x="480" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Narrow a long report matrix</text>
+<rect x="480" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="496" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Search · Orange County</text>
+<text x="496" y="432" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="496" y="438" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="460" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Orange County</text>
+<rect x="496" y="480" width="368" height="42" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="500" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">2 matching reports</text>
+<text x="507" y="519" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Results grouped by reporting region.</text>
+<rect x="496" y="530" width="368" height="51" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="549" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Orange County · North</text>
+<text x="507" y="567" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 CCR · English</text>
+<text x="775" y="557" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="496" y="587" width="368" height="51" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="606" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Orange County · North</text>
+<text x="507" y="624" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 CCR · Spanish</text>
+<text x="775" y="614" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<text x="496" y="658" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Search matches filename and region</text>
+<rect x="496" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Search should tolerate partial names.</text>
+</g>
+<g id="frame-3">
+<text x="912" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">03  Filter by status</text>
+<text x="912" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Make the legend actionable</text>
+<rect x="912" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="928" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Filtered · Proof ready</text>
+<text x="928" y="432" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="928" y="438" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="460" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Orange County</text>
+<text x="928" y="494" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Production status</text>
+<rect x="928" y="503" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="937" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">All</text>
+<rect x="980" y="503" width="56.4" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="989" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Waiting</text>
+<rect x="1043.4" y="503" width="81.2" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="1052.4" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Proof ready</text>
+<rect x="1131.6000000000001" y="503" width="62.6" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1140.6000000000001" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Approved</text>
+<rect x="928" y="544" width="368" height="43" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="564" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">1 report ready for review</text>
+<text x="939" y="583" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Status is labeled as text, not color alone.</text>
+<rect x="928" y="595" width="368" height="57" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="614" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Orange County · North</text>
+<text x="939" y="632" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 CCR · English · Proof ready</text>
+<text x="1207" y="622" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="928" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Selected status remains clear when filtered.</text>
+</g>
+<g id="frame-4">
+<text x="48" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">04  Switch language</text>
+<text x="48" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Preserve report identity</text>
+<rect x="48" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="64" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Language · Spanish</text>
+<text x="64" y="971" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="64" y="977" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="999" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Orange County</text>
+<rect x="64" y="1019" width="56.4" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="73" y="1039" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">English</text>
+<rect x="127.4" y="1019" width="56.4" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="136.4" y="1039" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Spanish</text>
+<rect x="64" y="1060" width="368" height="48" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1080" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Spanish report selected</text>
+<text x="75" y="1099" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">The report remains associated with the same region and year.</text>
+<rect x="64" y="1116" width="368" height="61" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1135" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Orange County · North</text>
+<text x="75" y="1153" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Informe de confianza del consumidor 2025</text>
+<text x="343" y="1143" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="64" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Keep Spanish content and language semantics explicit.</text>
+</g>
+<g id="frame-5">
+<text x="480" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">05  Verify report status</text>
+<text x="480" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Explain unfamiliar production states</text>
+<rect x="480" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="496" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Status detail · interactive key</text>
+<text x="496" y="973" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Production status</text>
+<rect x="496" y="982" width="368" height="48" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1001" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Waiting</text>
+<text x="507" y="1019" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Not yet released to the customer</text>
+<text x="775" y="1009" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Info</text>
+<rect x="496" y="1036" width="368" height="48" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1055" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Proof ready</text>
+<text x="507" y="1073" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Review copy available</text>
+<text x="775" y="1063" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Info</text>
+<rect x="496" y="1090" width="368" height="48" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1109" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Revisions required</text>
+<text x="507" y="1127" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Changes are in progress</text>
+<text x="775" y="1117" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Info</text>
+<rect x="496" y="1144" width="368" height="48" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1163" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Approved</text>
+<text x="507" y="1181" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Final report is available</text>
+<text x="775" y="1171" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Info</text>
+<rect x="496" y="1198" width="215" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1220" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Return to filtered reports</text>
+<rect x="496" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Status details preserve familiar operations terms.</text>
+</g>
+<g id="frame-6">
+<text x="912" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">06  Open the selected report</text>
+<text x="912" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Confirm the chosen region and version</text>
+<rect x="912" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="928" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Report preview · sample</text>
+<rect x="928" y="959" width="368" height="48" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="979" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Selected report</text>
+<text x="939" y="998" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Orange County · North · Spanish · 2025</text>
+<text x="928" y="1029" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Available action</text>
+<rect x="928" y="1038" width="368" height="51" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="1057" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">2025 CCR report</text>
+<text x="939" y="1075" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">PDF · Spanish</text>
+<text x="1207" y="1065" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open PDF</text>
+<rect x="928" y="1095" width="368" height="54" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="1115" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Before opening</text>
+<text x="939" y="1134" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Check that the region, language, and year match the request.</text>
+<rect x="928" y="1157" width="150" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="1179" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Open report</text>
+<rect x="928" y="1201" width="155" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="1223" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Back to results</text>
+<rect x="928" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Existing file links and proof workflow stay intact.</text>
+</g>
+<g id="frame-7">
+<text x="48" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">07  Handle no matches</text>
+<text x="48" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Support recovery and broaden the search</text>
+<rect x="48" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="64" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Search · unmatched query</text>
+<text x="64" y="1510" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="64" y="1516" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1538" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Orange County 2032</text>
+<rect x="64" y="1558" width="368" height="58" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1578" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">No reports match your search</text>
+<text x="75" y="1597" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Check spelling or choose another region.</text>
+<rect x="64" y="1624" width="120" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1646" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Clear search</text>
+<rect x="64" y="1668" width="145" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1690" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">View all reports</text>
+<text x="64" y="1726" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Keep language and status options available</text>
+<rect x="64" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Empty states offer a clear next action.</text>
+</g>
+<g id="frame-8">
+<text x="480" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">08  Reflow for mobile</text>
+<text x="480" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Keep report controls and status readable</text>
+<rect x="480" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">CCR report center</text>
+<text x="496" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Mobile concept · narrow viewport</text>
+<text x="496" y="1510" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="496" y="1516" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1538" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Search reports</text>
+<rect x="496" y="1558" width="56.4" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="505" y="1578" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">English</text>
+<rect x="559.4" y="1558" width="56.4" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="568.4" y="1578" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Spanish</text>
+<rect x="496" y="1599" width="45" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="505" y="1619" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">All</text>
+<rect x="548" y="1599" width="62.6" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="557" y="1619" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Approved</text>
+<rect x="496" y="1640" width="368" height="58" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1659" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Orange County · North</text>
+<text x="507" y="1677" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 CCR · Proof ready</text>
+<text x="775" y="1667" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="496" y="1704" width="368" height="58" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1723" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Riverside County</text>
+<text x="507" y="1741" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">2025 CCR · Approved</text>
+<text x="775" y="1731" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Open</text>
+<rect x="496" y="1768" width="125" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1790" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">View report</text>
+<rect x="496" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Mobile card concept; test 320 px and 200% zoom.</text>
+</g>
+<rect x="48" y="1940" width="1264" height="174" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="1968" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#172b41">HANDOFF AND ACCEPTANCE CRITERIA</text>
+<text x="68" y="1996" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Search by region, report name, status, or filename.</text>
+<text x="68" y="2021" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Make status meaning available in text.</text>
+<text x="68" y="2046" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Preserve existing links, names, and proof operations.</text>
+<text x="68" y="2071" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Validate keyboard access, zoom, language, and mobile reflow.</text>
+</svg>

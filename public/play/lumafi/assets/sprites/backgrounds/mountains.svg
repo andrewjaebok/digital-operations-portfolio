@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="grounded mountains neighborhood background">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#cbeafa"/>
+      <stop offset=".62" stop-color="#edf9ff"/>
+      <stop offset="1" stop-color="#f6fff1"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#79c86f"/>
+      <stop offset="1" stop-color="#55a361"/>
+    </linearGradient>
+    <linearGradient id="ridgeBack" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#9fc4dc"/>
+      <stop offset="1" stop-color="#739fbc"/>
+    </linearGradient>
+    <linearGradient id="ridgeFront" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#7ea8c7"/>
+      <stop offset="1" stop-color="#5f8faf"/>
+    </linearGradient>
+    <clipPath id="peakLeftClip"><path d="M0 84 L48 24 L98 84 Z"/></clipPath>
+    <clipPath id="peakCenterClip"><path d="M34 86 L104 12 L176 86 Z"/></clipPath>
+    <clipPath id="peakRightClip"><path d="M128 86 L184 34 L240 86 Z"/></clipPath>
+  </defs>
+
+  <rect width="240" height="120" fill="url(#sky)"/>
+
+  <!-- distant grounded ridge, below the peaks so the range reads as one connected landform -->
+  <path d="M0 78 C29 62 52 66 82 54 C117 40 144 58 173 47 C199 38 220 51 240 45 L240 93 L0 93 Z" fill="#b2d5e6" opacity=".52"/>
+
+  <!-- grounded mountain range. Snow is clipped inside each mountain, so it cannot float. -->
+  <path d="M0 84 L48 24 L98 84 Z" fill="url(#ridgeBack)"/>
+  <path d="M33 43 L48 24 L65 44 L58 41 L51 47 L44 39 Z" fill="#fbfdff" clip-path="url(#peakLeftClip)"/>
+
+  <path d="M34 86 L104 12 L176 86 Z" fill="url(#ridgeFront)"/>
+  <path d="M79 39 L104 12 L130 40 L118 36 L107 46 L97 34 Z" fill="#fbfdff" clip-path="url(#peakCenterClip)"/>
+
+  <path d="M128 86 L184 34 L240 86 Z" fill="url(#ridgeBack)"/>
+  <path d="M166 49 L184 34 L203 50 L194 47 L186 54 L178 44 Z" fill="#fbfdff" clip-path="url(#peakRightClip)"/>
+
+  <!-- foothills overlap the mountain bases to visually anchor everything to the ground -->
+  <path d="M0 88 C38 82 78 87 119 79 C159 71 198 78 240 72 L240 120 L0 120 Z" fill="url(#ground)"/>
+  <path d="M0 100 C41 94 81 99 123 90 C165 82 204 93 240 84 L240 120 L0 120 Z" fill="#62ab66" opacity=".62"/>
+
+  <!-- subtle path, kept low and outside the family focal point -->
+  <path d="M77 101 C91 103 116 103 132 101" stroke="#8d6338" stroke-width="3" stroke-linecap="round" opacity=".30"/>
+
+  <!-- side trees anchor the edges only; center family lane stays clear -->
+  <rect x="31" y="81" width="4" height="16" fill="#68462d"/>
+  <path d="M19 82 L33 52 L50 82 Z" fill="#2f804d"/>
+  <rect x="213" y="80" width="4" height="16" fill="#68462d"/>
+  <path d="M201 81 L215 52 L231 81 Z" fill="#2f804d"/>
+</svg>

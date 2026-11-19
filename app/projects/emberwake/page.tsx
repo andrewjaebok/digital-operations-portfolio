@@ -25,9 +25,9 @@ export default function EmberWakePage() {
       }}
       playDemo={{
         href: "/play/emberwake/",
-        description: "Try one task: clear the first wave of Mossgate Road. Your Spellcaster attacks automatically. Cast a spell when it becomes available, then watch for the wave-clear message. The stage result shows coins and XP for the run.",
+        description: "Clear the first wave of Mossgate Road as the Spellcaster. Your hero attacks automatically. Cast a spell when it becomes available, then look for the wave-clear message. The stage result shows coins and XP for the run.",
       }}
-      visualTitle="From menu concept to gameplay"
+      visualTitle="Screens from the player journey"
       visuals={[
         {
           title: "Campfire home concept",
@@ -35,6 +35,48 @@ export default function EmberWakePage() {
           width: 900, height: 1200,
           alt: "EmberWake home screen concept with a prominent Play button, hero carousel, and navigation.",
           caption: "The menu concept explored the placement of Play, the hero carousel, and the always-visible navigation.",
+        },
+        {
+          title: "Opening screen",
+          src: "/images/personal-projects/emberwake-opening.webp",
+          width: 535, height: 936,
+          alt: "EmberWake’s title artwork and Start, Settings, and Credits controls.",
+          caption: "The opening introduces the world and gives players a single entry point.",
+        },
+        {
+          title: "Campfire home",
+          src: "/images/personal-projects/emberwake-home.webp",
+          width: 598, height: 936,
+          alt: "The EmberWake home screen with a glowing portal, Play button, hero slots, rewards, and navigation.",
+          caption: "Play starts the stage selection flow. Hero slots and gear are reachable from camp.",
+        },
+        {
+          title: "Choose a hero",
+          src: "/images/personal-projects/emberwake-hero-selection.webp",
+          width: 600, height: 936,
+          alt: "The roster comparing the Spellcaster, Fighter, and Archer, with stats and evolution tracks.",
+          caption: "Players can compare class roles and see what each hero becomes at levels 25 and 50.",
+        },
+        {
+          title: "Spellcaster details",
+          src: "/images/personal-projects/emberwake-hero-details.webp",
+          width: 600, height: 936,
+          alt: "The Spellcaster’s evolution track, stats, and equipment slots.",
+          caption: "The detail screen shows how current equipment contributes to hero stats.",
+        },
+        {
+          title: "Equipment vault",
+          src: "/images/personal-projects/emberwake-equipment.webp",
+          width: 600, height: 936,
+          alt: "The equipment inventory and weapon, armor, and accessory slots.",
+          caption: "Players manage equipped gear and inventory from a dedicated screen.",
+        },
+        {
+          title: "Choose a stage",
+          src: "/images/personal-projects/emberwake-stage.webp",
+          width: 600, height: 936,
+          alt: "Greenfields stage selection showing Mossgate Road and locked later levels.",
+          caption: "The stage picker shows which areas are available and which hero will enter.",
         },
         {
           title: "Mobile combat",
@@ -48,7 +90,7 @@ export default function EmberWakePage() {
           src: "/images/personal-projects/emberwake-wave-clear.webp",
           width: 390, height: 844,
           alt: "EmberWake mobile gameplay showing a Road Clear banner and a wave message confirming that rewards were banked.",
-          caption: "The wave-clear message confirms that rewards were banked for this run. The portfolio demo resets between runs. Save recovery and inventory overflow remain release checks for the full game.",
+          caption: "The wave-clear message confirms the rewards earned for the run. The portfolio demo resets between runs.",
         },
       ]}
       sections={[

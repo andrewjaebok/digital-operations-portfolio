@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="2170" viewBox="0 0 1360 2170" role="img" aria-labelledby="title description">
+<title id="title">Prescription Pad Ordering</title>
+<desc id="description">Customer journey and order handoff · retrospective wireframes. Full retrospective wireframe process with 8 editable screen frames, flow, annotations, and acceptance criteria.</desc>
+<rect width="100%" height="100%" fill="#f3f6f9"/>
+<text x="48" y="58" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="750" fill="#172b41">Prescription Pad Ordering</text>
+<text x="48" y="88" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#52677d">Customer journey and order handoff · retrospective wireframes</text>
+<text x="48" y="124" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#0758a5">RETROSPECTIVE PRODUCT DESIGN PROCESS  ·  STRUCTURE → TASK FLOW → STATES → HANDOFF</text>
+<rect x="48" y="145" width="1264" height="86" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="173" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">CUSTOMER TASK FLOW</text>
+<rect x="68" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="78" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Learn</text>
+<rect x="219.5" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="229.5" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Compare</text>
+<rect x="371.0" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="381.0" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Configure</text>
+<rect x="522.5" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="532.5" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Review</text>
+<rect x="674.0" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="684.0" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Enter details</text>
+<rect x="825.5" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="835.5" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Fix errors</text>
+<rect x="977.0" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="987.0" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Submit</text>
+<rect x="1128.5" y="184" width="139.5" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="1138.5" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Confirm</text>
+<text x="48" y="268" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#172b41">SCREEN WIREFRAMES</text>
+<text x="48" y="290" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#52677d">Each frame shows one meaningful customer state. Arrows and labels describe transitions between frames.</text>
+<g id="frame-1">
+<text x="48" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">01  Understand the product</text>
+<text x="48" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Explain eligibility and ordering basics</text>
+<rect x="48" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">California security pads</text>
+<text x="64" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Customer education · entry</text>
+<text x="64" y="434" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">California prescription pads</text>
+<rect x="64" y="443" width="368" height="48" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="463" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Start with requirements</text>
+<text x="75" y="482" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Review eligibility and required prescriber details.</text>
+<rect x="64" y="499" width="368" height="49" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="518" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Pocket pads</text>
+<text x="75" y="536" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">For compact use</text>
+<text x="343" y="526" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Details</text>
+<rect x="64" y="554" width="368" height="49" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="573" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Desk pads</text>
+<text x="75" y="591" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">For desk-side use</text>
+<text x="343" y="581" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Details</text>
+<text x="64" y="623" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Production timing</text>
+<rect x="64" y="632" width="368" height="44" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="652" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Estimated turnaround</text>
+<text x="75" y="671" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Show the current verified production estimate.</text>
+<rect x="64" y="684" width="160" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="706" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Choose pad type</text>
+<rect x="64" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Keep education separate from order configuration.</text>
+</g>
+<g id="frame-2">
+<text x="480" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">02  Compare pad formats</text>
+<text x="480" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Choose the pocket or desk format</text>
+<rect x="480" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">California security pads</text>
+<text x="496" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Format selection · step 1</text>
+<text x="496" y="434" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Choose a pad type</text>
+<rect x="496" y="443" width="368" height="61" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="462" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Pocket pad</text>
+<text x="507" y="480" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">4 × 5 in · compact format</text>
+<text x="775" y="470" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Select</text>
+<rect x="496" y="510" width="368" height="61" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="529" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Desk pad</text>
+<text x="507" y="547" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">8 × 3.3 in · desk format</text>
+<text x="775" y="537" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Select</text>
+<rect x="496" y="577" width="368" height="47" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="597" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Need more information?</text>
+<text x="507" y="616" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Read product details before continuing.</text>
+<rect x="496" y="632" width="125" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="654" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Continue</text>
+<rect x="496" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Preserve the existing product destinations.</text>
+</g>
+<g id="frame-3">
+<text x="912" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">03  Set prescriber count</text>
+<text x="912" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Keep the one to ten range scannable</text>
+<rect x="912" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">California security pads</text>
+<text x="928" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Configuration · step 2</text>
+<rect x="928" y="420" width="368" height="42" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="440" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Pocket pad selected</text>
+<text x="939" y="459" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Choose how many prescribers to include.</text>
+<rect x="928" y="470" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="937" y="490" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">1</text>
+<rect x="980" y="470" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="989" y="490" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">2</text>
+<rect x="1032" y="470" width="45" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="1041" y="490" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">3</text>
+<rect x="1084" y="470" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1093" y="490" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">4</text>
+<rect x="1136" y="470" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1145" y="490" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">5</text>
+<rect x="928" y="511" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="937" y="531" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">6</text>
+<rect x="980" y="511" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="989" y="531" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">7</text>
+<rect x="1032" y="511" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1041" y="531" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">8</text>
+<rect x="1084" y="511" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1093" y="531" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">9</text>
+<rect x="1136" y="511" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1145" y="531" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">10</text>
+<rect x="928" y="552" width="368" height="46" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="572" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Selection summary</text>
+<text x="939" y="591" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Pocket pad · 3 prescribers</text>
+<rect x="928" y="606" width="160" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="628" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Continue to order</text>
+<rect x="928" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Counts route to established order destinations.</text>
+</g>
+<g id="frame-4">
+<text x="48" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">04  Review the choice</text>
+<text x="48" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Check format and count before handoff</text>
+<rect x="48" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">California security pads</text>
+<text x="64" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Order summary · sample</text>
+<text x="64" y="973" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Your selection</text>
+<rect x="64" y="982" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1001" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Pad type</text>
+<text x="75" y="1019" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Pocket pad · 4 × 5 in</text>
+<rect x="64" y="1038" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1057" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Prescriber count</text>
+<text x="75" y="1075" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">3 prescribers</text>
+<rect x="64" y="1094" width="368" height="57" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1114" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Before you continue</text>
+<text x="75" y="1133" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Confirm the configuration matches the intended order.</text>
+<rect x="64" y="1159" width="160" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1181" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Continue to order</text>
+<rect x="64" y="1203" width="155" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1225" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Change selection</text>
+<rect x="64" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Show a clear route to correct an earlier choice.</text>
+</g>
+<g id="frame-5">
+<text x="480" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">05  Enter order information</text>
+<text x="480" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Match the existing secure order form</text>
+<rect x="480" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Order details</text>
+<text x="496" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Existing order workflow · concept</text>
+<text x="496" y="973" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Prescriber information</text>
+<text x="496" y="994" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Name</text>
+<rect x="496" y="1000" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1022" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Enter prescriber name</text>
+<text x="496" y="1054" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">License number</text>
+<rect x="496" y="1060" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1082" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Enter license number</text>
+<text x="496" y="1114" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">DEA number</text>
+<rect x="496" y="1120" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1142" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Enter DEA number</text>
+<text x="496" y="1174" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Shipping address</text>
+<rect x="496" y="1180" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1202" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Enter shipping address</text>
+<rect x="496" y="1222" width="130" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1244" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Review order</text>
+<rect x="496" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Illustrative fields only; follow approved requirements.</text>
+</g>
+<g id="frame-6">
+<text x="912" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">06  Recover from validation errors</text>
+<text x="912" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Explain the issue beside its field</text>
+<rect x="912" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Order details</text>
+<text x="928" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Required information missing</text>
+<text x="928" y="971" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Prescriber name</text>
+<rect x="928" y="977" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="999" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Enter prescriber name</text>
+<rect x="928" y="1019" width="368" height="43" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="1039" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Enter a prescriber name</text>
+<text x="939" y="1058" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">The field is required to continue.</text>
+<text x="928" y="1082" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">License number</text>
+<rect x="928" y="1088" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="1110" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">12345</text>
+<rect x="928" y="1130" width="368" height="43" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="1150" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Check the license format</text>
+<text x="939" y="1169" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Keep the entered value available for correction.</text>
+<rect x="928" y="1181" width="130" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="1203" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Review order</text>
+<rect x="928" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Associate errors with fields and return focus appropriately.</text>
+</g>
+<g id="frame-7">
+<text x="48" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">07  Confirm the order handoff</text>
+<text x="48" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Clarify when the legacy workflow takes over</text>
+<rect x="48" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Order review</text>
+<text x="64" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Existing 4D ordering path · concept</text>
+<rect x="64" y="1498" width="368" height="47" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1518" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Configuration confirmed</text>
+<text x="75" y="1537" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Pocket pad · 3 prescribers</text>
+<rect x="64" y="1553" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1572" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Prescriber details</text>
+<text x="75" y="1590" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Entered information</text>
+<text x="343" y="1580" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Review</text>
+<rect x="64" y="1609" width="368" height="50" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1628" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Shipping details</text>
+<text x="75" y="1646" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Selected destination</text>
+<text x="343" y="1636" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Review</text>
+<rect x="64" y="1665" width="368" height="53" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1685" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Submit securely</text>
+<text x="75" y="1704" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Final order submission uses the existing system.</text>
+<rect x="64" y="1726" width="130" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1748" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Submit order</text>
+<rect x="64" y="1770" width="135" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1792" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Edit details</text>
+<rect x="64" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Portfolio prototype does not submit customer orders.</text>
+</g>
+<g id="frame-8">
+<text x="480" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">08  Show next steps</text>
+<text x="480" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Give confirmation and support direction</text>
+<rect x="480" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Order status</text>
+<text x="496" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Confirmation · illustrative state</text>
+<rect x="496" y="1498" width="368" height="52" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="1518" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Order received</text>
+<text x="507" y="1537" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Show a reference number from the system.</text>
+<text x="496" y="1572" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">What happens next</text>
+<rect x="496" y="1581" width="368" height="56" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1600" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Production</text>
+<text x="507" y="1618" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">The order enters the existing workflow</text>
+<rect x="496" y="1643" width="368" height="56" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1662" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Questions</text>
+<text x="507" y="1680" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Contact support using the current channel</text>
+<rect x="496" y="1705" width="205" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1727" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Return to pad information</text>
+<rect x="496" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Production timing and status require verified live values.</text>
+</g>
+<rect x="48" y="1940" width="1264" height="174" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="1968" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#172b41">HANDOFF AND ACCEPTANCE CRITERIA</text>
+<text x="68" y="1996" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Explain pad options, turnaround, and required details before ordering.</text>
+<text x="68" y="2021" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Show selected format and prescriber count through the handoff.</text>
+<text x="68" y="2046" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Preserve the existing order system and regulatory review.</text>
+<text x="68" y="2071" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Check keyboard, errors, mobile layout, and confirmed completion analytics.</text>
+</svg>

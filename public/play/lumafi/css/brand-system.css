@@ -1,0 +1,2237 @@
+
+/*
+  Hearth v18.5 unified brand system
+  Warm + modern + intelligent
+
+  This layer intentionally sits after the legacy public and application CSS.
+  It centralizes the visual decisions shared by marketing, account access,
+  onboarding, and the authenticated workspace without changing layout logic
+  or financial behavior.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Brand */
+  --hearth-canvas: #f1ede5;
+  --hearth-canvas-soft: #f8f4ed;
+  --hearth-surface: #fffdf9;
+  --hearth-surface-solid: #fffdf9;
+  --hearth-surface-elevated: #ffffff;
+  --hearth-surface-subtle: #f1ece2;
+  --hearth-ink: #17353b;
+  --hearth-ink-strong: #102b31;
+  --hearth-muted: #687779;
+  --hearth-muted-strong: #4f6265;
+  --hearth-line: rgba(23, 53, 59, .17);
+  --hearth-line-strong: rgba(23, 53, 59, .24);
+  --hearth-forest: #1d4d47;
+  --hearth-forest-deep: #123c3d;
+  --hearth-blue: #55798a;
+  --hearth-sage: #7d9f84;
+  --hearth-amber: #d8794d;
+  --hearth-amber-deep: #a94f2e;
+  --hearth-terracotta: #b96653;
+  --hearth-warm-gray: #988e81;
+
+  /* Semantic */
+  --hearth-success: #4f7f62;
+  --hearth-success-soft: #e7f0e7;
+  --hearth-warning: #a86d31;
+  --hearth-warning-soft: #f7ead8;
+  --hearth-error: #a5534b;
+  --hearth-error-soft: #f7e5e1;
+  --hearth-info: #55798a;
+  --hearth-info-soft: #e5edf0;
+
+  /* Charts */
+  --hearth-chart-primary: #1d4d47;
+  --hearth-chart-secondary: #55798a;
+  --hearth-chart-positive: #7d9f84;
+  --hearth-chart-attention: #c58948;
+  --hearth-chart-negative: #b96653;
+  --hearth-chart-neutral: #988e81;
+  --hearth-chart-grid: rgba(23, 53, 59, .12);
+
+  /* Type */
+  --hearth-font-sans: "DM Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --hearth-font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --hearth-font-numeric: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+
+  /* Shape, space, depth, and motion */
+  --hearth-radius-sm: 10px;
+  --hearth-radius-control: 14px;
+  --hearth-radius-card: 22px;
+  --hearth-radius-large: 30px;
+  --hearth-space-1: 4px;
+  --hearth-space-2: 8px;
+  --hearth-space-3: 12px;
+  --hearth-space-4: 16px;
+  --hearth-space-5: 24px;
+  --hearth-space-6: 32px;
+  --hearth-shadow-sm: 0 8px 22px rgba(20, 48, 52, .055);
+  --hearth-shadow-card: 0 18px 46px rgba(20, 48, 52, .1);
+  --hearth-shadow-raised: 0 26px 70px rgba(20, 48, 52, .12);
+  --hearth-focus: 0 0 0 4px rgba(216, 121, 77, .22);
+  --hearth-motion-fast: 140ms;
+  --hearth-motion-standard: 200ms;
+
+  /* Backward-compatible public aliases */
+  --public-bg: var(--hearth-canvas);
+  --public-panel: var(--hearth-surface-solid);
+  --public-ink: var(--hearth-ink);
+  --public-muted: var(--hearth-muted);
+  --public-line: var(--hearth-line);
+  --public-navy: #153f46;
+  --public-navy-deep: var(--hearth-forest-deep);
+  --public-sage: var(--hearth-sage);
+  --public-orange: var(--hearth-amber);
+  --public-orange-deep: var(--hearth-amber-deep);
+  --public-shadow: var(--hearth-shadow-raised);
+}
+
+/* Public, legal, and account surfaces share the same foundation. */
+.public-page,
+.account-page {
+  font-family: var(--hearth-font-sans);
+}
+
+.public-page h1,
+.public-page h2,
+.account-page h1,
+.account-page h2,
+.legal-page .legal-hero h1 {
+  font-family: var(--hearth-font-serif);
+  font-weight: 500;
+}
+
+.brand-mark {
+  position: relative;
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 11px 11px 13px 13px;
+  background: var(--hearth-amber);
+  box-shadow: inset 0 -5px 0 rgba(101, 47, 28, .12);
+  transform: rotate(45deg) scale(.72);
+}
+
+.brand-mark::before {
+  position: absolute;
+  inset: 8px;
+  content: "";
+  border-radius: 3px;
+  background: #fff7ec;
+}
+
+.brand-mark i {
+  position: relative;
+  z-index: 1;
+  width: 5px;
+  height: 10px;
+  margin: 10px 0 0 9px;
+  border-radius: 2px 2px 0 0;
+  background: var(--hearth-amber-deep);
+}
+
+.public-header,
+.account-form-panel,
+.legal-page {
+  background-color: var(--hearth-canvas);
+}
+
+.public-header {
+  border-color: transparent;
+}
+
+.public-header.is-scrolled {
+  border-color: var(--hearth-line);
+}
+
+.button,
+.account-card input,
+.gateway-form input,
+.menu-toggle {
+  border-radius: var(--hearth-radius-control);
+}
+
+.button-primary {
+  border-color: var(--hearth-amber-deep);
+  color: #fffaf2;
+  background: var(--hearth-amber-deep);
+  box-shadow: 0 12px 28px rgba(185, 94, 55, .18);
+}
+
+.button-secondary {
+  border-color: var(--hearth-line);
+  color: var(--hearth-ink);
+  background: var(--hearth-surface-solid);
+}
+
+.account-card,
+.legal-contact-card {
+  border-radius: var(--hearth-radius-card);
+}
+
+.account-brand-panel {
+  background:
+    radial-gradient(circle at 20% 16%, rgba(216, 121, 77, .12), transparent 28%),
+    radial-gradient(circle at 78% 72%, rgba(125, 159, 132, .14), transparent 30%),
+    linear-gradient(155deg, #173f46, #102f35 72%);
+}
+
+.account-card input:focus,
+.gateway-form input:focus {
+  border-color: var(--hearth-amber);
+  box-shadow: var(--hearth-focus);
+}
+
+/* Authenticated workspace foundation */
+body:not(.public-page):not(.account-page) {
+  --bg: var(--hearth-canvas);
+  --panel: var(--hearth-surface);
+  --panel-solid: var(--hearth-surface-solid);
+  --ink: var(--hearth-ink);
+  --text: var(--hearth-ink);
+  --muted: var(--hearth-muted);
+  --line: var(--hearth-line);
+  --border: var(--hearth-line);
+  --soft: var(--hearth-surface-subtle);
+  --green: var(--hearth-success);
+  --blue: var(--hearth-blue);
+  --red: var(--hearth-error);
+  --orange: var(--hearth-amber);
+  --shadow: var(--hearth-shadow-card);
+  --radius: var(--hearth-radius-card);
+  --card: var(--hearth-surface);
+  --ds-bg: var(--hearth-canvas);
+  --ds-bg-soft: var(--hearth-canvas-soft);
+  --ds-card: var(--hearth-surface);
+  --ds-card-solid: var(--hearth-surface-solid);
+  --ds-card-raised: var(--hearth-surface-elevated);
+  --ds-input: rgba(255, 253, 249, .9);
+  --ds-input-hover: #ffffff;
+  --ds-text: var(--hearth-ink);
+  --ds-muted: var(--hearth-muted);
+  --ds-muted-strong: var(--hearth-muted-strong);
+  --ds-border: var(--hearth-line);
+  --ds-border-strong: var(--hearth-line-strong);
+  --ds-shadow-sm: var(--hearth-shadow-sm);
+  --ds-shadow-md: var(--hearth-shadow-card);
+  --ds-radius-card: var(--hearth-radius-card);
+  --ds-radius-control: var(--hearth-radius-control);
+  --ds-accent-blue: var(--hearth-blue);
+  --ds-accent-cyan: #668f91;
+  --ds-accent-green: var(--hearth-success);
+  --ds-accent-purple: #80768d;
+  --ds-accent-gold: #c58948;
+  --ds-accent-orange: var(--hearth-amber);
+  --ds-accent-red: var(--hearth-error);
+  --module-dashboard: var(--hearth-forest);
+  --module-transactions: var(--hearth-blue);
+  --module-planning: var(--hearth-success);
+  --module-reports: #c58948;
+  --module-household: #668f91;
+  --module-lists: var(--hearth-warm-gray);
+  --module-data: #6f7976;
+  margin: 0;
+  color: var(--hearth-ink) !important;
+  background:
+    radial-gradient(900px 520px at 0% 0%, rgba(216, 121, 77, .085), transparent 62%),
+    radial-gradient(780px 520px at 100% 8%, rgba(125, 159, 132, .09), transparent 64%),
+    linear-gradient(180deg, #f8f5ef, var(--hearth-canvas)) !important;
+  background-attachment: scroll !important;
+  font-family: var(--hearth-font-sans);
+}
+
+body.dark-mode:not(.public-page):not(.account-page) {
+  color-scheme: dark;
+  --hearth-canvas: #171b1a;
+  --hearth-canvas-soft: #1c211f;
+  --hearth-surface: rgba(34, 40, 37, .94);
+  --hearth-surface-solid: #252c29;
+  --hearth-surface-elevated: #2a322e;
+  --hearth-surface-subtle: #303934;
+  --hearth-ink: #f2ebdd;
+  --hearth-ink-strong: #fff8ea;
+  --hearth-muted: #b7b8ad;
+  --hearth-muted-strong: #d5d2c7;
+  --hearth-line: rgba(242, 235, 221, .12);
+  --hearth-line-strong: rgba(242, 235, 221, .22);
+  --hearth-forest: #8caf95;
+  --hearth-forest-deep: #132e2d;
+  --hearth-blue: #86a5b0;
+  --hearth-sage: #91b397;
+  --hearth-amber: #e29a68;
+  --hearth-amber-deep: #a94f2e;
+  --hearth-terracotta: #d48a78;
+  --hearth-warm-gray: #afa79b;
+  --hearth-success: #8ab698;
+  --hearth-success-soft: #273a30;
+  --hearth-warning: #d5a163;
+  --hearth-warning-soft: #403425;
+  --hearth-error: #d58a7f;
+  --hearth-error-soft: #432d2b;
+  --hearth-info: #86a5b0;
+  --hearth-info-soft: #29363b;
+  --hearth-chart-primary: #a4c5a8;
+  --hearth-chart-secondary: #86a5b0;
+  --hearth-chart-positive: #8ab698;
+  --hearth-chart-attention: #d5a163;
+  --hearth-chart-negative: #d58a7f;
+  --hearth-chart-neutral: #afa79b;
+  --hearth-chart-grid: rgba(242, 235, 221, .12);
+  --hearth-shadow-sm: 0 8px 22px rgba(0, 0, 0, .16);
+  --hearth-shadow-card: 0 18px 48px rgba(0, 0, 0, .22);
+  --hearth-shadow-raised: 0 26px 70px rgba(0, 0, 0, .3);
+  --hearth-focus: 0 0 0 4px rgba(226, 154, 104, .25);
+  --bg: var(--hearth-canvas);
+  --panel: var(--hearth-surface);
+  --panel-solid: var(--hearth-surface-solid);
+  --ink: var(--hearth-ink);
+  --text: var(--hearth-ink);
+  --muted: var(--hearth-muted);
+  --line: var(--hearth-line);
+  --border: var(--hearth-line);
+  --soft: var(--hearth-surface-subtle);
+  --green: var(--hearth-success);
+  --blue: var(--hearth-blue);
+  --red: var(--hearth-error);
+  --orange: var(--hearth-amber);
+  --card: var(--hearth-surface);
+  --ds-bg: var(--hearth-canvas);
+  --ds-bg-soft: var(--hearth-canvas-soft);
+  --ds-card: var(--hearth-surface);
+  --ds-card-solid: var(--hearth-surface-solid);
+  --ds-card-raised: var(--hearth-surface-elevated);
+  --ds-input: rgba(255, 255, 255, .055);
+  --ds-input-hover: rgba(255, 255, 255, .085);
+  --ds-text: var(--hearth-ink);
+  --ds-muted: var(--hearth-muted);
+  --ds-muted-strong: var(--hearth-muted-strong);
+  --ds-border: var(--hearth-line);
+  --ds-border-strong: var(--hearth-line-strong);
+  --ds-shadow-sm: var(--hearth-shadow-sm);
+  --ds-shadow-md: var(--hearth-shadow-card);
+  background:
+    radial-gradient(900px 560px at 0% -5%, rgba(216, 134, 85, .08), transparent 62%),
+    radial-gradient(820px 540px at 100% 3%, rgba(91, 137, 107, .09), transparent 64%),
+    linear-gradient(180deg, #1a201e, #151918) !important;
+  background-attachment: scroll !important;
+}
+
+body:not(.public-page):not(.account-page) *,
+body:not(.public-page):not(.account-page) *::before,
+body:not(.public-page):not(.account-page) *::after {
+  text-rendering: optimizeLegibility;
+}
+
+body:not(.public-page):not(.account-page) .main,
+body.dark-mode .main {
+  background: transparent !important;
+}
+
+body:not(.public-page):not(.account-page) .main::before {
+  display: none !important;
+}
+
+/* The workspace uses editorial type for hierarchy and functional type for work. */
+#pageTitle,
+.onboarding-card > h1,
+.lock-card > h1,
+.app-route-gate-card > h1,
+.section-head h2,
+.setup-dialog-head h2,
+.notification-head h2,
+.account-dialog-card h2,
+.migration-dialog-card h2,
+.world-workspace-panel h2 {
+  font-family: var(--hearth-font-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.025em !important;
+}
+
+table,
+th,
+td,
+input,
+select,
+textarea,
+.hero-value,
+.hero-mini,
+.score-number,
+.report-insight-value,
+.health-month strong,
+.future-value-amount-input,
+.future-value-summary-value {
+  font-family: var(--hearth-font-numeric) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow,
+.hero-label,
+.section-emoji,
+.pill {
+  letter-spacing: .04em;
+}
+
+/* Product bridge and compact navigation */
+.sidebar {
+  border-right: 1px solid rgba(255, 248, 234, .1) !important;
+  color: #f6efe2 !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(216, 121, 77, .12), transparent 28%),
+    linear-gradient(180deg, #173f46, #123536) !important;
+  box-shadow: 12px 0 34px rgba(18, 44, 43, .08);
+}
+
+body.dark-mode .sidebar {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(226, 154, 104, .1), transparent 28%),
+    linear-gradient(180deg, #183b3a, #122c2c) !important;
+}
+
+.brand {
+  min-height: 58px;
+}
+
+.app-brand {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 11px;
+  color: #fff8ea;
+}
+
+.app-brand .brand-mark {
+  grid-row: span 2;
+}
+
+.app-brand strong {
+  align-self: end;
+  color: #fff8ea !important;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.app-brand small {
+  align-self: start;
+  margin-top: 3px;
+  color: rgba(255, 248, 234, .64);
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.sidebar .sidebar-card {
+  border-color: rgba(255, 248, 234, .11) !important;
+  color: #f6efe2 !important;
+  background: rgba(255, 255, 255, .045) !important;
+  box-shadow: none !important;
+}
+
+.sidebar .sidebar-card h3,
+.sidebar .sidebar-card strong,
+.sidebar .sidebar-card label,
+.sidebar .sidebar-card .sidebar-health-copy strong {
+  color: #fff8ea !important;
+}
+
+.sidebar .sidebar-card small,
+.sidebar .sidebar-card p,
+.sidebar .sidebar-health-copy small {
+  color: rgba(255, 248, 234, .64) !important;
+}
+
+.sidebar .nav-btn,
+.sidebar .month-btn,
+.sidebar .btn,
+.sidebar select {
+  border-color: rgba(255, 248, 234, .1) !important;
+  color: rgba(255, 248, 234, .84) !important;
+  background: rgba(255, 255, 255, .045) !important;
+  box-shadow: none !important;
+}
+
+.sidebar .nav-btn:hover,
+.sidebar .month-btn:hover,
+.sidebar .btn:hover {
+  border-color: rgba(255, 248, 234, .2) !important;
+  color: #fff8ea !important;
+  background: rgba(255, 255, 255, .085) !important;
+  box-shadow: none !important;
+}
+
+.sidebar .nav-btn.active,
+.sidebar .month-btn.active {
+  border-color: rgba(255, 205, 166, .44) !important;
+  color: #fffaf2 !important;
+  background: rgba(216, 121, 77, .25) !important;
+  box-shadow: inset 3px 0 0 var(--hearth-amber) !important;
+}
+
+.nav-emoji {
+  display: inline-grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 8px;
+  color: currentColor;
+  background: rgba(255, 255, 255, .07);
+  font-family: var(--hearth-font-sans);
+  font-size: 13px;
+}
+
+.app-page-header {
+  border-color: var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-card) !important;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 88%, transparent) !important;
+  box-shadow: var(--hearth-shadow-sm) !important;
+  backdrop-filter: blur(16px);
+}
+
+.current-period-hero {
+  display: inline-flex !important;
+  width: fit-content !important;
+  min-height: 28px !important;
+  align-items: center !important;
+  margin: 4px 0 5px !important;
+  padding: 4px 10px !important;
+  border: 1px solid color-mix(in srgb, var(--hearth-amber) 26%, var(--hearth-line)) !important;
+  border-radius: 999px !important;
+  color: var(--hearth-amber-deep) !important;
+  background: color-mix(in srgb, var(--hearth-warning-soft) 68%, transparent) !important;
+  font-family: var(--hearth-font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: .03em !important;
+}
+
+body.dark-mode .current-period-hero {
+  color: var(--hearth-amber) !important;
+}
+
+#pageTitle {
+  font-size: clamp(34px, 4vw, 54px) !important;
+  line-height: .98 !important;
+}
+
+.page-title-row.compact {
+  display: grid !important;
+  grid-template-columns: minmax(0, auto) minmax(220px, 1fr) !important;
+  gap: 18px !important;
+  align-items: end !important;
+}
+
+.page-title-row.compact p {
+  padding-bottom: 5px;
+}
+
+#pageSubtitle {
+  color: var(--hearth-muted) !important;
+}
+
+/* Shared surfaces */
+body:not(.public-page):not(.account-page) .card,
+body:not(.public-page):not(.account-page) .hero-card,
+body:not(.public-page):not(.account-page) .sidebar-card,
+body:not(.public-page):not(.account-page) .mini-card,
+body:not(.public-page):not(.account-page) .balance-card,
+body:not(.public-page):not(.account-page) .goal-card,
+body:not(.public-page):not(.account-page) .health-score-card,
+body:not(.public-page):not(.account-page) .health-summary-panel,
+body:not(.public-page):not(.account-page) .health-check,
+body:not(.public-page):not(.account-page) .feed-item,
+body:not(.public-page):not(.account-page) .bulk-entry-row,
+body:not(.public-page):not(.account-page) .report-toolbar,
+body:not(.public-page):not(.account-page) .annual-callout,
+body:not(.public-page):not(.account-page) .focus-box,
+body:not(.public-page):not(.account-page) .empty,
+body:not(.public-page):not(.account-page) .setup-step,
+body:not(.public-page):not(.account-page) .command-panel,
+body:not(.public-page):not(.account-page) .onboarding-card,
+body:not(.public-page):not(.account-page) .notification-panel,
+body:not(.public-page):not(.account-page) .setup-dialog-card,
+body:not(.public-page):not(.account-page) .account-dialog-card,
+body:not(.public-page):not(.account-page) .migration-dialog-card,
+body:not(.public-page):not(.account-page) dialog > .card {
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-card) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface) !important;
+  box-shadow: var(--hearth-shadow-card) !important;
+  backdrop-filter: none !important;
+}
+
+body.dark-mode .card,
+body.dark-mode .hero-card,
+body.dark-mode .mini-card,
+body.dark-mode .balance-card,
+body.dark-mode .goal-card,
+body.dark-mode .health-score-card,
+body.dark-mode .health-summary-panel,
+body.dark-mode .health-check,
+body.dark-mode .feed-item,
+body.dark-mode .bulk-entry-row,
+body.dark-mode .report-toolbar,
+body.dark-mode .annual-callout,
+body.dark-mode .focus-box,
+body.dark-mode .empty,
+body.dark-mode .setup-step,
+body.dark-mode .command-panel,
+body.dark-mode .onboarding-card,
+body.dark-mode .notification-panel,
+body.dark-mode .setup-dialog-card,
+body.dark-mode .account-dialog-card,
+body.dark-mode .migration-dialog-card,
+body.dark-mode dialog > .card {
+  border-color: var(--hearth-line) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface) !important;
+  box-shadow: var(--hearth-shadow-card) !important;
+}
+
+.card,
+.hero-card,
+.mini-card,
+.balance-card,
+.goal-card {
+  transition:
+    border-color var(--hearth-motion-standard) ease,
+    box-shadow var(--hearth-motion-standard) ease,
+    transform var(--hearth-motion-standard) ease !important;
+}
+
+.card:hover,
+.hero-card:hover,
+.mini-card:hover,
+.balance-card:hover,
+.goal-card:hover {
+  border-color: var(--hearth-line-strong) !important;
+  box-shadow: var(--hearth-shadow-card) !important;
+  transform: none !important;
+}
+
+/* Keep module identity without luminous bars or gradient borders. */
+.view > .card::before,
+.view > form > .card::before,
+.dashboard-section::before,
+.transactions-section::before,
+.planning-card::before,
+.reports-section::before,
+.manage-list-section::before {
+  height: 3px !important;
+  opacity: .72 !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+#view-dashboard > .card::before,
+.dashboard-section::before,
+.section-health::before {
+  background: var(--hearth-forest) !important;
+}
+
+#view-transactions > .card::before,
+.transactions-section::before {
+  background: var(--hearth-blue) !important;
+}
+
+#view-planning > .card::before,
+.planning-card::before {
+  background: var(--hearth-success) !important;
+}
+
+#view-reports > .card::before,
+.reports-section::before {
+  background: var(--hearth-chart-attention) !important;
+}
+
+#view-lists > .card::before,
+.manage-list-section::before,
+#view-data > .card::before {
+  background: var(--hearth-warm-gray) !important;
+}
+
+.section-health,
+.health-score-card,
+.concept-score-card,
+.health-summary-panel,
+body.dark-mode .health-score-card,
+body.dark-mode .concept-score-card,
+body.dark-mode .health-summary-panel {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--hearth-success-soft) 58%, var(--hearth-surface)) 0%, var(--hearth-surface) 72%) !important;
+}
+
+/* Financial Health reads as a monthly wellbeing summary, not a system gauge. */
+.health-score {
+  border: 0 !important;
+  color: var(--hearth-forest) !important;
+  background: conic-gradient(var(--hearth-success) var(--score, 0deg), var(--hearth-surface-subtle) 0) !important;
+  box-shadow: none !important;
+}
+
+.health-score::before {
+  inset: 10px !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: inset 0 0 0 1px var(--hearth-line) !important;
+  filter: none !important;
+  z-index: 0 !important;
+}
+
+.health-check,
+.concept-health-checks .health-check {
+  border-color: color-mix(in srgb, var(--health-rail, var(--hearth-warm-gray)) 20%, var(--hearth-line)) !important;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 96%, var(--health-rail, var(--hearth-warm-gray)) 4%) !important;
+  box-shadow: none !important;
+}
+
+.health-check.good {
+  --health-rail: var(--hearth-success);
+}
+
+.health-check.warn {
+  --health-rail: var(--hearth-warning);
+}
+
+.health-check.bad {
+  --health-rail: var(--hearth-error);
+}
+
+.health-score-disclaimer {
+  margin: 12px 0 0;
+  color: var(--hearth-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Controls */
+body:not(.public-page):not(.account-page) input,
+body:not(.public-page):not(.account-page) select,
+body:not(.public-page):not(.account-page) textarea {
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-control) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: none !important;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+  color: var(--hearth-ink) !important;
+  background: rgba(255, 255, 255, .045) !important;
+}
+
+body:not(.public-page):not(.account-page) input:hover,
+body:not(.public-page):not(.account-page) select:hover,
+body:not(.public-page):not(.account-page) textarea:hover {
+  border-color: var(--hearth-line-strong) !important;
+}
+
+body:not(.public-page):not(.account-page) input:focus,
+body:not(.public-page):not(.account-page) select:focus,
+body:not(.public-page):not(.account-page) textarea:focus {
+  border-color: var(--hearth-amber) !important;
+  box-shadow: var(--hearth-focus) !important;
+}
+
+/* Sidebar components are intentionally dark in both themes. Reassert this
+   after the shared card and input system so warm working surfaces never
+   wash out navigation text. */
+body:not(.public-page):not(.account-page) .sidebar .sidebar-card {
+  border-color: rgba(255, 248, 234, .12) !important;
+  color: #f6efe2 !important;
+  background: rgba(8, 34, 35, .34) !important;
+  box-shadow: none !important;
+}
+
+body:not(.public-page):not(.account-page) .sidebar input,
+body:not(.public-page):not(.account-page) .sidebar select,
+body:not(.public-page):not(.account-page) .sidebar textarea,
+body:not(.public-page):not(.account-page) .sidebar .btn:not(.primary) {
+  border-color: rgba(255, 248, 234, .12) !important;
+  color: #fff8ea !important;
+  background: rgba(255, 255, 255, .055) !important;
+  box-shadow: none !important;
+}
+
+body:not(.public-page):not(.account-page) .sidebar .world-visit-btn {
+  border-color: var(--hearth-amber-deep) !important;
+  color: #fffaf2 !important;
+  background: var(--hearth-amber-deep) !important;
+}
+
+body:not(.public-page):not(.account-page) .sidebar .nav-btn.active {
+  border-color: rgba(255, 199, 157, .52) !important;
+  color: #fffaf2 !important;
+  background: rgba(216, 121, 77, .36) !important;
+}
+
+.btn,
+.theme-toggle,
+.ghost-icon-btn,
+.filter-pill,
+.manage-list-tabs a,
+.account-icon-button {
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-control) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: none !important;
+}
+
+.btn:hover,
+.theme-toggle:hover,
+.ghost-icon-btn:hover,
+.filter-pill:hover,
+.manage-list-tabs a:hover,
+.account-icon-button:hover {
+  border-color: var(--hearth-line-strong) !important;
+  color: var(--hearth-ink-strong) !important;
+  background: var(--hearth-canvas-soft) !important;
+  box-shadow: var(--hearth-shadow-sm) !important;
+  transform: translateY(-1px);
+}
+
+.btn.primary,
+body.dark-mode .btn.primary {
+  border-color: var(--hearth-amber-deep) !important;
+  color: #fffaf2 !important;
+  background: var(--hearth-amber-deep) !important;
+  box-shadow: 0 10px 22px rgba(185, 94, 55, .16) !important;
+}
+
+.btn.primary:hover,
+body.dark-mode .btn.primary:hover {
+  border-color: var(--hearth-amber-deep) !important;
+  color: #ffffff !important;
+  background: color-mix(in srgb, var(--hearth-amber-deep) 90%, #7f3f29) !important;
+}
+
+.btn.blue,
+body.dark-mode .btn.blue {
+  border-color: var(--hearth-forest) !important;
+  color: #fffaf2 !important;
+  background: var(--hearth-forest) !important;
+  box-shadow: none !important;
+}
+
+.delete-btn,
+.btn.destructive {
+  color: var(--hearth-error) !important;
+}
+
+.filter-pill.active,
+.manage-list-tabs a.active {
+  border-color: color-mix(in srgb, var(--hearth-forest) 40%, var(--hearth-line)) !important;
+  color: var(--hearth-forest-deep) !important;
+  background: var(--hearth-success-soft) !important;
+  box-shadow: none !important;
+}
+
+body.dark-mode .filter-pill.active,
+body.dark-mode .manage-list-tabs a.active {
+  color: var(--hearth-ink-strong) !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--hearth-amber) 58%, transparent) !important;
+  outline-offset: 3px !important;
+}
+
+/* Dense working surfaces retain efficient spacing. */
+#view-transactions table,
+#view-transactions th,
+#view-transactions td {
+  line-height: 1.35;
+}
+
+table {
+  border-color: var(--hearth-line) !important;
+  background: transparent !important;
+}
+
+th {
+  color: var(--hearth-muted-strong) !important;
+  background: color-mix(in srgb, var(--hearth-surface-subtle) 66%, transparent) !important;
+}
+
+td {
+  border-color: var(--hearth-line) !important;
+}
+
+tbody tr:hover td {
+  background: color-mix(in srgb, var(--hearth-success-soft) 38%, transparent) !important;
+}
+
+tbody tr[aria-selected="true"] td,
+.selected-row td {
+  background: color-mix(in srgb, var(--hearth-info-soft) 62%, transparent) !important;
+}
+
+/* Dialogs and drawers */
+dialog,
+.modal,
+.avatar-builder-modal {
+  color: var(--hearth-ink) !important;
+  background: transparent !important;
+}
+
+dialog::backdrop,
+.command-palette::backdrop,
+.onboarding-dialog::backdrop,
+.notification-dialog::backdrop,
+.account-dialog::backdrop,
+.migration-dialog::backdrop,
+.setup-dialog::backdrop {
+  background: rgba(18, 35, 33, .52) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.modal h2,
+.modal h3,
+.modal p,
+.avatar-builder-modal h2,
+.avatar-builder-modal h3,
+.avatar-builder-modal p,
+body.dark-mode .modal h2,
+body.dark-mode .modal h3,
+body.dark-mode .modal p {
+  color: var(--hearth-ink) !important;
+}
+
+.modal p,
+.avatar-builder-modal p,
+.muted {
+  color: var(--hearth-muted) !important;
+}
+
+.onboarding-card {
+  background:
+    radial-gradient(circle at 92% 0%, rgba(216, 121, 77, .11), transparent 34%),
+    var(--hearth-surface-solid) !important;
+}
+
+.onboarding-steps button {
+  border-color: var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-control) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-canvas-soft) !important;
+}
+
+.onboarding-steps button strong {
+  color: #fffaf2 !important;
+  background: var(--hearth-forest) !important;
+}
+
+.account-state[hidden],
+.temporary-portal-access[hidden],
+.gateway-alert[hidden],
+.cloud-config-message[hidden] {
+  display: none !important;
+}
+
+/* Supportive empty and status states */
+.empty {
+  border: 1px dashed var(--hearth-line-strong) !important;
+  color: var(--hearth-muted) !important;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--hearth-surface-subtle) 72%, transparent), transparent) !important;
+  box-shadow: none !important;
+}
+
+.empty strong {
+  color: var(--hearth-ink) !important;
+}
+
+.sync-status.good,
+.pill.good,
+.status-good {
+  color: var(--hearth-success) !important;
+  background: var(--hearth-success-soft) !important;
+}
+
+.sync-status.warn,
+.pill.warn,
+.status-warn {
+  color: var(--hearth-warning) !important;
+  background: var(--hearth-warning-soft) !important;
+}
+
+.sync-status.bad,
+.pill.bad,
+.status-bad {
+  color: var(--hearth-error) !important;
+  background: var(--hearth-error-soft) !important;
+}
+
+/* Chart surfaces and semantic colors */
+.chart-placeholder,
+.chart-shell,
+.report-chart,
+.future-value-chart-shell {
+  border-color: var(--hearth-line) !important;
+  color: var(--hearth-ink) !important;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 88%, transparent) !important;
+}
+
+.goal-meter,
+.progress-shell,
+.setup-checklist-progress {
+  background: var(--hearth-surface-subtle) !important;
+}
+
+.goal-meter i,
+.progress-bar,
+.setup-checklist-progress i {
+  background: var(--hearth-success) !important;
+  box-shadow: none !important;
+}
+
+/* Access, lock, and account transitions use the same night/day language. */
+.app-route-gate,
+.lock-screen {
+  background:
+    radial-gradient(circle at 20% 12%, rgba(216, 121, 77, .11), transparent 34%),
+    radial-gradient(circle at 84% 84%, rgba(125, 159, 132, .12), transparent 34%),
+    var(--hearth-canvas) !important;
+  backdrop-filter: none !important;
+}
+
+.app-route-gate-card,
+.lock-card {
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-large) !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: var(--hearth-shadow-raised) !important;
+  backdrop-filter: none !important;
+}
+
+.app-route-gate-mark {
+  background: var(--hearth-amber-deep) !important;
+  box-shadow: none !important;
+}
+
+.app-route-gate-loader {
+  border-color: var(--hearth-line) !important;
+  border-top-color: var(--hearth-amber) !important;
+}
+
+body.dark-mode .app-route-gate,
+body.dark-mode .lock-screen {
+  background:
+    radial-gradient(circle at 20% 12%, rgba(226, 154, 104, .08), transparent 34%),
+    radial-gradient(circle at 84% 84%, rgba(138, 182, 152, .09), transparent 34%),
+    #171b1a !important;
+}
+
+/* Keep Hearth World the most playful surface. Only align its surrounding shell. */
+.world-launch-dialog,
+.hearth-world-dialog,
+.world-workspace-panel {
+  --hearth-font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+.world-workspace-panel,
+.world-launch-card {
+  border-color: var(--hearth-line) !important;
+}
+
+/* Responsive consistency */
+@media (max-width: 1024px) {
+  .app-page-header {
+    border-radius: 0 0 var(--hearth-radius-card) var(--hearth-radius-card) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body:not(.public-page):not(.account-page) {
+    background: var(--hearth-canvas) !important;
+  }
+
+  .app-page-header {
+    box-shadow: 0 8px 22px rgba(20, 48, 52, .06) !important;
+  }
+
+  #pageTitle {
+    line-height: 1.05 !important;
+  }
+
+  .card,
+  .hero-card,
+  .mini-card,
+  .balance-card,
+  .goal-card,
+  .app-page-header {
+    border-radius: 18px !important;
+  }
+
+  .sidebar {
+    box-shadow: 18px 0 44px rgba(10, 31, 30, .22) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  :root {
+    --hearth-radius-card: 18px;
+    --hearth-radius-control: 12px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(22px, 7vw, 28px) !important;
+  }
+
+  .button,
+  .btn,
+  .theme-toggle {
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --hearth-line: rgba(23, 53, 59, .28);
+    --hearth-line-strong: rgba(23, 53, 59, .44);
+  }
+
+  body.dark-mode {
+    --hearth-line: rgba(242, 235, 221, .28);
+    --hearth-line-strong: rgba(242, 235, 221, .44);
+  }
+}
+
+/*
+  Hearth v18.6 visual-consistency audit
+
+  This final layer resolves the remaining cascade conflicts between the legacy
+  public-site dark scheme and the shared Hearth tokens. It also normalizes the
+  public navigation, workspace hierarchy, tabs, muted copy, and dark controls.
+*/
+
+/* Public website: stable type hierarchy and a calmer, contained top bar. */
+.public-page {
+  color: var(--hearth-ink);
+  background: var(--hearth-canvas);
+}
+
+.public-page .public-header {
+  min-height: 76px;
+  border-bottom: 1px solid transparent;
+  background: color-mix(in srgb, var(--hearth-canvas) 92%, transparent);
+  box-shadow: none;
+}
+
+.public-page .public-header.is-scrolled {
+  border-bottom-color: var(--hearth-line);
+  background: color-mix(in srgb, var(--hearth-surface-solid) 94%, transparent);
+  box-shadow: 0 10px 30px rgba(20, 48, 52, .08);
+}
+
+.public-page .public-brand {
+  color: var(--hearth-ink-strong);
+}
+
+.public-page .public-nav {
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid var(--hearth-line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 74%, transparent);
+  box-shadow: var(--hearth-shadow-sm);
+}
+
+.public-page .public-nav > a:not(.button) {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 11px;
+  border-radius: 11px;
+  color: var(--hearth-muted-strong);
+  line-height: 1.2;
+}
+
+.public-page .public-nav > a:not(.button):hover,
+.public-page .public-nav > a:not(.button):focus-visible {
+  color: var(--hearth-ink-strong);
+  background: var(--hearth-surface-subtle);
+}
+
+.public-page .public-nav .nav-signin {
+  margin-left: 2px;
+  color: var(--hearth-ink-strong);
+}
+
+.public-page .public-nav .button {
+  min-height: 40px;
+  padding-inline: 17px;
+  border-radius: 11px;
+}
+
+.public-page .menu-toggle {
+  color: var(--hearth-ink);
+  background: var(--hearth-surface-solid);
+}
+
+.public-page .menu-toggle i {
+  background: currentColor;
+}
+
+.public-page :is(p, li, small) {
+  text-wrap: pretty;
+}
+
+.public-page :is(.hero-lede, .section-heading > p, .feature-item p, .feature-item small, .fit-grid p,
+  .workflow-grid p, .gallery-demo-main > p:nth-of-type(2), .data-inner > div > p:not(.eyebrow),
+  .compatibility-section p, .intelligence-copy > p:not(.eyebrow), .ownership-copy > p:not(.eyebrow),
+  .pricing-card > p, .comparison-supporting-copy, .feature-context-disclosure p, .legal-content p,
+  .legal-content li) {
+  color: var(--hearth-muted);
+}
+
+/* Collapse the marketing link list before it becomes crowded. */
+@media (max-width: 1080px) {
+  body.public-page:not(.legal-page) .public-header {
+    min-height: 68px;
+    padding-inline: 20px;
+  }
+
+  body.public-page:not(.legal-page) .menu-toggle {
+    display: block;
+  }
+
+  body.public-page:not(.legal-page) .public-nav {
+    position: absolute;
+    top: 62px;
+    right: 20px;
+    left: auto;
+    display: none;
+    width: min(390px, calc(100vw - 40px));
+    max-height: calc(100dvh - 82px);
+    align-items: stretch;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px;
+    overflow-y: auto;
+    border-radius: 18px;
+    background: var(--hearth-surface-solid);
+    box-shadow: var(--hearth-shadow-raised);
+  }
+
+  body.public-page:not(.legal-page) .public-nav.is-open {
+    display: flex;
+  }
+
+  body.public-page:not(.legal-page) .public-nav > a:not(.button) {
+    min-height: 46px;
+    width: 100%;
+    padding-inline: 14px;
+  }
+
+  body.public-page:not(.legal-page) .public-nav .nav-signin {
+    margin-left: 0;
+    border-top: 1px solid var(--hearth-line);
+    border-radius: 0 0 11px 11px;
+  }
+
+  body.public-page:not(.legal-page) .public-nav .button {
+    width: 100%;
+    min-height: 46px;
+    margin-top: 2px;
+  }
+
+  body.public-page.menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 420px) {
+  body.public-page:not(.legal-page) .public-header {
+    padding-inline: 14px;
+  }
+
+  body.public-page:not(.legal-page) .public-nav {
+    right: 14px;
+    width: calc(100vw - 28px);
+  }
+}
+
+/*
+  Hearth v18.6.2 theme recovery
+
+  Public pages intentionally start in Hearth's warm daylight theme. Dark mode
+  is opt-in and scoped to the public page so an operating-system preference
+  cannot silently recolor the portal's light theme.
+*/
+body.public-page.dark-mode {
+  color-scheme: dark;
+  --hearth-canvas: #171b1a;
+  --hearth-canvas-soft: #1d2320;
+  --hearth-surface: #232a27;
+  --hearth-surface-solid: #252c29;
+  --hearth-surface-elevated: #2b332f;
+  --hearth-surface-subtle: #303934;
+  --hearth-ink: #f2ebdd;
+  --hearth-ink-strong: #fff8ea;
+  --hearth-muted: #b8baaf;
+  --hearth-muted-strong: #d5d2c7;
+  --hearth-line: rgba(242, 235, 221, .14);
+  --hearth-line-strong: rgba(242, 235, 221, .24);
+  --hearth-forest: #8caf95;
+  --hearth-forest-deep: #132e2d;
+  --hearth-amber: #e29a68;
+  --hearth-amber-deep: #a95435;
+  --hearth-success: #91bd9e;
+  --hearth-success-soft: #273a30;
+  --hearth-warning: #dda968;
+  --hearth-warning-soft: #403425;
+  --hearth-error: #df9287;
+  --hearth-error-soft: #432d2b;
+  --hearth-info: #8eacb7;
+  --hearth-info-soft: #29363b;
+  --public-bg: var(--hearth-canvas);
+  --public-panel: var(--hearth-surface-solid);
+  --public-ink: var(--hearth-ink);
+  --public-muted: var(--hearth-muted);
+  --public-line: var(--hearth-line);
+  --public-navy: #214f50;
+  --public-navy-deep: #102d2d;
+  --public-orange: var(--hearth-amber);
+  --public-orange-deep: #f0a474;
+  color: var(--hearth-ink);
+  background: var(--hearth-canvas);
+}
+
+body.public-page.dark-mode .public-header,
+body.public-page.dark-mode .public-header.is-scrolled {
+  border-bottom-color: var(--hearth-line);
+  background: rgba(23, 27, 26, .94);
+}
+
+body.public-page.dark-mode .public-nav {
+  background: rgba(37, 44, 41, .96);
+}
+
+body.public-page.dark-mode .public-nav > a:not(.button),
+body.public-page.dark-mode .public-nav .nav-signin {
+  color: var(--hearth-muted-strong);
+}
+
+body.public-page.dark-mode .public-nav > a:not(.button):hover,
+body.public-page.dark-mode .public-nav > a:not(.button):focus-visible {
+  color: var(--hearth-ink-strong);
+  background: var(--hearth-surface-subtle);
+}
+
+body.public-page.dark-mode .menu-toggle,
+body.public-page.dark-mode .public-theme-toggle,
+body.public-page.dark-mode .button-secondary,
+body.public-page.dark-mode .gallery-tabs button {
+  border-color: var(--hearth-line);
+  color: var(--hearth-ink);
+  background: var(--hearth-surface-solid);
+}
+
+body.public-page.dark-mode .button-secondary:hover,
+body.public-page.dark-mode .gallery-tabs button:hover {
+  background: var(--hearth-surface-subtle);
+}
+
+body.public-page.dark-mode :is(.workflow-section, .purchase-comparison-section) {
+  background-color: transparent;
+}
+
+body.public-page.dark-mode :is(.workflow-grid li, .fit-grid article, .pricing-card, .license-card,
+  .renewal-card, .cost-chart-card, .market-details, .three-year-card, .feature-window,
+  .policy-summary-grid article, .support-grid article, .founder-card, .comparison-card,
+  .purchase-dialog, .sticky-purchase) {
+  border-color: var(--hearth-line);
+  color: var(--hearth-ink);
+  background: var(--hearth-surface-solid);
+}
+
+body.public-page.dark-mode :is(.data-section, .ownership-section) {
+  background: #1b2421;
+}
+
+body.public-page.dark-mode .data-checklist li {
+  border-color: var(--hearth-line);
+  background: rgba(255, 255, 255, .045);
+}
+
+body.public-page.dark-mode :is(.gallery-demo, .dashboard-preview) {
+  border-color: var(--hearth-line);
+  background: #202825;
+}
+
+body.public-page.dark-mode :is(.gallery-demo-sidebar, .preview-sidebar, .window-bar) {
+  background: rgba(255, 255, 255, .035);
+}
+
+body.public-page.dark-mode :is(.gallery-ui i, .gallery-ui b, .preview-household, .preview-nav-list span.active,
+  .preview-metrics article, .preview-chart, .preview-plan) {
+  border-color: var(--hearth-line);
+  color: var(--hearth-ink);
+  background-color: var(--hearth-surface-elevated);
+}
+
+body.public-page.dark-mode .legal-notice {
+  border-color: color-mix(in srgb, var(--hearth-warning) 48%, var(--hearth-line));
+  color: #f2c8a8;
+  background: var(--hearth-warning-soft);
+}
+
+body.public-page.dark-mode .legal-content a,
+body.public-page.dark-mode .compatibility-section aside a {
+  color: #f0a474;
+}
+
+.public-theme-toggle {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid var(--hearth-line);
+  border-radius: 11px;
+  color: var(--hearth-muted-strong);
+  background: var(--hearth-surface-solid);
+  font: 700 13px/1 var(--hearth-font-sans);
+  cursor: pointer;
+}
+
+.public-theme-toggle:hover,
+.public-theme-toggle:focus-visible {
+  color: var(--hearth-ink-strong);
+  background: var(--hearth-surface-subtle);
+}
+
+.public-theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--hearth-focus);
+}
+
+@media (max-width: 1080px) {
+  body.public-page:not(.legal-page) .public-theme-toggle {
+    width: 100%;
+    min-height: 46px;
+    justify-content: flex-start;
+    padding-inline: 14px;
+  }
+}
+
+/* Portal: consistent readable hierarchy in both day and night modes. */
+body:not(.public-page):not(.account-page) :is(.section-head p, .hero-note, .card p, .mini-card p,
+  .balance-card p, .goal-card p, .health-score-card p, .health-summary-panel p, .focus-box p,
+  .annual-callout p, .report-toolbar p, .feed-item p, .setup-step p, .notification-panel p,
+  .setup-dialog-card p, .account-dialog-card p, .migration-dialog-card p) {
+  color: var(--hearth-muted);
+}
+
+body:not(.public-page):not(.account-page) :is(.section-head h2, .section-head h3, .card h2, .card h3,
+  .hero-card h2, .hero-card h3, .mini-card h3, .balance-card h3, .goal-card h3, .modal h2,
+  .modal h3, label, legend) {
+  color: var(--hearth-ink-strong);
+}
+
+body:not(.public-page):not(.account-page) ::placeholder {
+  color: color-mix(in srgb, var(--hearth-muted) 88%, transparent) !important;
+  opacity: 1;
+}
+
+body:not(.public-page):not(.account-page) :is(.link-btn, .text-btn, .ghost-btn) {
+  color: var(--hearth-forest);
+}
+
+body.dark-mode :is(.link-btn, .text-btn, .ghost-btn) {
+  color: var(--hearth-sage);
+}
+
+.app-page-header {
+  overflow: visible;
+}
+
+.top-actions {
+  align-content: center;
+}
+
+.top-actions .btn,
+.top-actions .theme-toggle {
+  min-height: 44px;
+  font-weight: 700;
+}
+
+body.dark-mode .app-page-header {
+  border-color: var(--hearth-line) !important;
+  background: rgba(31, 37, 34, .94) !important;
+}
+
+body.dark-mode .top-actions :is(.btn, .theme-toggle) {
+  border-color: var(--hearth-line-strong) !important;
+  color: var(--hearth-ink-strong) !important;
+  background: var(--hearth-surface-elevated) !important;
+}
+
+body.dark-mode .top-actions :is(.btn, .theme-toggle):hover {
+  border-color: color-mix(in srgb, var(--hearth-amber) 46%, var(--hearth-line)) !important;
+  background: var(--hearth-surface-subtle) !important;
+}
+
+/* Browser-style list tabs previously retained cool colors from the legacy UI. */
+.browser-tabs,
+.manage-list-tabs {
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-control) !important;
+  background: var(--hearth-surface-subtle) !important;
+  box-shadow: none !important;
+}
+
+.browser-tabs :is(a, button),
+.manage-list-tabs :is(a, button) {
+  min-height: 42px;
+  border: 1px solid transparent !important;
+  border-radius: 11px !important;
+  color: var(--hearth-muted-strong) !important;
+  background: transparent !important;
+}
+
+.browser-tabs :is(a, button):hover,
+.manage-list-tabs :is(a, button):hover {
+  color: var(--hearth-ink-strong) !important;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 70%, transparent) !important;
+}
+
+.browser-tabs :is(a.active, button.active, [aria-selected="true"]),
+.manage-list-tabs :is(a.active, button.active, [aria-selected="true"]) {
+  border-color: var(--hearth-line) !important;
+  color: var(--hearth-ink-strong) !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: var(--hearth-shadow-sm) !important;
+}
+
+body.dark-mode :is(.browser-tabs, .manage-list-tabs) {
+  background: #1b211f !important;
+}
+
+body.dark-mode :is(.browser-tabs, .manage-list-tabs) :is(a.active, button.active, [aria-selected="true"]) {
+  background: var(--hearth-surface-elevated) !important;
+}
+
+.pill,
+.sync-status {
+  border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+}
+
+body.dark-mode :is(.pill, .sync-status) {
+  color: var(--hearth-muted-strong);
+  background: var(--hearth-surface-subtle);
+}
+
+body.dark-mode :is(.sync-status.good, .pill.good, .status-good) {
+  color: #b6d9bf !important;
+}
+
+body.dark-mode :is(.sync-status.warn, .pill.warn, .status-warn) {
+  color: #edc58e !important;
+}
+
+body.dark-mode :is(.sync-status.bad, .pill.bad, .status-bad) {
+  color: #efaca3 !important;
+}
+
+.mobile-bottom-nav {
+  border-color: var(--hearth-line) !important;
+  background: color-mix(in srgb, var(--hearth-surface-solid) 94%, transparent) !important;
+  backdrop-filter: blur(18px);
+}
+
+.mobile-bottom-nav button {
+  color: var(--hearth-muted-strong) !important;
+}
+
+.mobile-bottom-nav button.active {
+  color: var(--hearth-ink-strong) !important;
+  background: var(--hearth-success-soft) !important;
+}
+
+@media (max-width: 760px) {
+  .page-title-row.compact {
+    grid-template-columns: 1fr !important;
+    gap: 5px !important;
+  }
+
+  .page-title-row.compact p {
+    padding-bottom: 0;
+  }
+
+  .top-actions {
+    gap: 8px;
+  }
+}
+
+/*
+  Hearth v18.6.1 portal UX correction
+
+  Restores functional distinctions flattened by the v18.6 audit: one-layer
+  month selection, meaningful navigation icons, attached workspace tabs,
+  consistent portal typography, and distinct section accents.
+*/
+
+/* Use one work-focused type system inside the portal. */
+body:not(.public-page):not(.account-page) :is(
+  #pageTitle,
+  .main h1,
+  .main h2,
+  .main h3,
+  .section-head h2,
+  .section-head h3,
+  .workspace-intro h2,
+  .setup-dialog-head h2,
+  .notification-head h2,
+  .account-dialog-card h2,
+  .migration-dialog-card h2,
+  .world-workspace-panel h2
+) {
+  font-family: var(--hearth-font-sans) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.025em !important;
+}
+
+/* The period leads the header; the redundant eyebrow is intentionally hidden. */
+.app-page-header .eyebrow {
+  display: none !important;
+}
+
+.app-page-header .current-period-hero {
+  min-height: 36px !important;
+  margin: 0 0 12px !important;
+  padding: 8px 14px !important;
+  border-color: color-mix(in srgb, var(--hearth-amber) 34%, var(--hearth-line)) !important;
+  font-size: 14px !important;
+  letter-spacing: .01em !important;
+}
+
+.app-page-header .page-title-row.compact {
+  align-items: center !important;
+}
+
+.app-page-header #pageTitle {
+  font-size: clamp(32px, 3.4vw, 46px) !important;
+  line-height: 1.04 !important;
+}
+
+.app-page-header #pageSubtitle[hidden] {
+  display: none !important;
+}
+
+/* Sidebar states use one border, one fill, and one shadow layer. */
+.sidebar .month-btn {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 234, .12) !important;
+  color: rgba(255, 248, 234, .82) !important;
+  background: rgba(255, 255, 255, .045) !important;
+  box-shadow: none !important;
+}
+
+.sidebar .month-btn:hover {
+  border-color: rgba(255, 248, 234, .24) !important;
+  color: #fffaf2 !important;
+  background: rgba(255, 255, 255, .085) !important;
+}
+
+.sidebar .month-btn.active,
+.sidebar .month-btn.active:hover,
+.sidebar .month-btn[aria-current="date"] {
+  border-color: var(--hearth-amber-deep) !important;
+  color: #fffaf2 !important;
+  background: var(--hearth-amber-deep) !important;
+  box-shadow: 0 7px 16px rgba(8, 25, 26, .22) !important;
+}
+
+.sidebar .nav-btn {
+  grid-template-columns: 30px minmax(0, 1fr) !important;
+}
+
+.sidebar .nav-emoji {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .065);
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.sidebar .nav-btn.active .nav-emoji {
+  background: rgba(255, 255, 255, .11);
+}
+
+/* Make the inner navigation read as tabs attached to a section header. */
+.workspace-intro,
+body.dark-mode .workspace-intro {
+  --tab-accent: var(--hearth-forest);
+  gap: 12px;
+  padding: 20px 22px 0 !important;
+  border: 1px solid var(--hearth-line) !important;
+  border-radius: var(--hearth-radius-card) var(--hearth-radius-card) 0 0 !important;
+  color: var(--hearth-ink) !important;
+  background: var(--hearth-surface) !important;
+  box-shadow: var(--hearth-shadow-sm) !important;
+}
+
+#view-transactions .workspace-intro { --tab-accent: var(--hearth-terracotta); }
+#view-planning .workspace-intro { --tab-accent: var(--hearth-success); }
+#view-lists .workspace-intro { --tab-accent: var(--hearth-warm-gray); }
+#view-data .workspace-intro { --tab-accent: var(--hearth-blue); }
+
+.workspace-intro .eyebrow {
+  color: var(--hearth-muted-strong) !important;
+}
+
+.workspace-intro h2 {
+  margin: 2px 0 4px !important;
+  color: var(--hearth-ink-strong) !important;
+}
+
+.browser-tabs,
+.browser-tabs.manage-list-tabs,
+body.dark-mode :is(.browser-tabs, .manage-list-tabs) {
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  align-self: stretch !important;
+  align-items: flex-end !important;
+  gap: 2px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--hearth-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.browser-tabs :is(a, button),
+.browser-tabs.manage-list-tabs :is(a, button),
+.manage-list-tabs :is(a, button) {
+  flex: 0 0 auto !important;
+  min-height: 46px;
+  margin-bottom: -1px;
+  padding: 11px 15px !important;
+  border: 1px solid transparent !important;
+  border-bottom: 3px solid transparent !important;
+  border-radius: 10px 10px 0 0 !important;
+  color: var(--hearth-muted-strong) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  scroll-snap-align: start;
+}
+
+.browser-tabs :is(a, button):hover,
+.browser-tabs.manage-list-tabs :is(a, button):hover,
+.manage-list-tabs :is(a, button):hover {
+  border-bottom-color: color-mix(in srgb, var(--tab-accent) 42%, transparent) !important;
+  color: var(--hearth-ink-strong) !important;
+  background: color-mix(in srgb, var(--hearth-surface-subtle) 74%, transparent) !important;
+}
+
+.browser-tabs :is(a.active, button.active, [aria-selected="true"]),
+.browser-tabs.manage-list-tabs :is(a.active, button.active, [aria-selected="true"]),
+.manage-list-tabs :is(a.active, button.active, [aria-selected="true"]),
+body.dark-mode :is(.browser-tabs, .manage-list-tabs) :is(a.active, button.active, [aria-selected="true"]) {
+  border-color: var(--hearth-line) var(--hearth-line) var(--tab-accent) !important;
+  color: var(--hearth-ink-strong) !important;
+  background: var(--hearth-surface-solid) !important;
+  box-shadow: none !important;
+}
+
+/* Every primary work card gets the same accent geometry. */
+body:not(.public-page):not(.account-page) .view > :is(.card, form > .card) {
+  position: relative;
+  overflow: hidden;
+}
+
+body:not(.public-page):not(.account-page) .view > :is(.card, form > .card)::before,
+body:not(.public-page):not(.account-page) .dashboard-section::before,
+body:not(.public-page):not(.account-page) .transactions-section::before,
+body:not(.public-page):not(.account-page) .planning-card::before,
+body:not(.public-page):not(.account-page) .reports-section::before,
+body:not(.public-page):not(.account-page) .manage-list-section::before {
+  top: 0 !important;
+  right: 0 !important;
+  left: 0 !important;
+  height: 4px !important;
+  border-radius: var(--hearth-radius-card) var(--hearth-radius-card) 0 0 !important;
+  opacity: 1 !important;
+  background: var(--section-accent, var(--hearth-warm-gray)) !important;
+}
+
+/* Dashboard accents */
+#view-dashboard .hero-card {
+  border-top: 4px solid var(--section-accent, var(--hearth-warm-gray)) !important;
+}
+#view-dashboard .hero-card:nth-child(1) { --section-accent: var(--hearth-forest); }
+#view-dashboard .hero-card:nth-child(2) { --section-accent: var(--hearth-blue); }
+#view-dashboard .hero-card:nth-child(3) { --section-accent: var(--hearth-success); }
+#view-dashboard .hero-card:nth-child(4) { --section-accent: var(--hearth-amber); }
+#view-dashboard .section-setup-checklist { --section-accent: var(--hearth-amber); }
+#view-dashboard .section-month-command { --section-accent: var(--hearth-blue); }
+#view-dashboard .section-keyboard-shortcuts { --section-accent: var(--hearth-warm-gray); }
+#view-dashboard .section-health { --section-accent: var(--hearth-success); }
+#view-dashboard .section-budget-progress { --section-accent: var(--hearth-blue); }
+#view-dashboard .section-goals-progress { --section-accent: var(--hearth-amber); }
+
+/* Transactions */
+#view-transactions .transactions-command-card { --section-accent: var(--hearth-terracotta); }
+#view-transactions .quick-spending-card { --section-accent: var(--hearth-terracotta); }
+#view-transactions .quick-income-card { --section-accent: var(--hearth-success); }
+#view-transactions .section-transfer { --section-accent: var(--hearth-blue); }
+#view-transactions .section-recurring { --section-accent: var(--hearth-info); }
+#view-transactions .section-goals { --section-accent: var(--hearth-amber); }
+#view-transactions .section-activity { --section-accent: var(--hearth-warm-gray); }
+
+/* Planning */
+#view-planning .section-smart-planning { --section-accent: var(--hearth-forest); }
+#view-planning .planning-accounts { --section-accent: var(--hearth-blue); }
+#view-planning .planning-budgets { --section-accent: var(--hearth-success); }
+#view-planning .planning-goals { --section-accent: var(--hearth-amber); }
+#view-planning .planning-cards { --section-accent: var(--hearth-terracotta); }
+#view-planning .planning-bills { --section-accent: var(--hearth-error); }
+#view-planning .planning-notes { --section-accent: var(--hearth-warm-gray); }
+
+/* Reports, lists, data, and Future Value */
+#view-reports .report-period-card { --section-accent: var(--hearth-amber); }
+#view-reports .report-health-card { --section-accent: var(--hearth-success); }
+#view-reports .report-summary-card { --section-accent: var(--hearth-blue); }
+#view-reports .report-intelligence-card { --section-accent: var(--hearth-forest); }
+#view-reports .report-forecast-card { --section-accent: var(--hearth-info); }
+#view-reports .report-category-trends-card { --section-accent: var(--hearth-terracotta); }
+#view-reports .section-report-savings { --section-accent: var(--hearth-success); }
+#view-reports .section-report-goals { --section-accent: var(--hearth-amber); }
+#view-reports .section-report-networth { --section-accent: var(--hearth-blue); }
+#view-reports .section-report-category { --section-accent: var(--hearth-warm-gray); }
+#view-reports .report-trend-card { --section-accent: var(--hearth-amber); }
+#view-reports .report-compare-card { --section-accent: var(--hearth-terracotta); }
+#view-lists #list-owners { --section-accent: var(--hearth-blue); }
+#view-lists #list-sources { --section-accent: var(--hearth-success); }
+#view-lists #list-categories { --section-accent: var(--hearth-amber); }
+#view-lists #list-account-types { --section-accent: var(--hearth-info); }
+#view-lists #list-account-templates { --section-accent: var(--hearth-forest); }
+#view-lists #list-card-templates { --section-accent: var(--hearth-terracotta); }
+#view-lists #list-goal-templates { --section-accent: var(--hearth-amber); }
+#view-lists #list-tags { --section-accent: var(--hearth-warm-gray); }
+#view-data > .card:nth-of-type(1) { --section-accent: var(--hearth-blue); }
+#view-data > .card:nth-of-type(2) { --section-accent: var(--hearth-success); }
+#view-future-value .future-value-hero { --section-accent: var(--hearth-amber); }
+#view-future-value .future-value-workspace { --section-accent: var(--hearth-blue); }
+#view-future-value .future-value-disclaimer { --section-accent: var(--hearth-warm-gray); }
+
+/* Nested amount fields already have an outer focusable control. */
+.future-value-money-input input,
+.future-value-percent-input input,
+body.dark-mode .future-value-money-input input,
+body.dark-mode .future-value-percent-input input {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.future-value-money-input:focus-within,
+.future-value-percent-input:focus-within {
+  border-color: var(--hearth-amber) !important;
+  box-shadow: var(--hearth-focus) !important;
+}
+
+@media (max-width: 760px) {
+  .app-page-header .current-period-hero {
+    min-height: 32px !important;
+    margin-bottom: 8px !important;
+    padding: 7px 11px !important;
+    font-size: 12px !important;
+  }
+
+  .app-page-header #pageTitle {
+    font-size: 24px !important;
+  }
+
+  .workspace-intro,
+  body.dark-mode .workspace-intro {
+    padding: 16px 14px 0 !important;
+  }
+
+  .browser-tabs :is(a, button),
+  .browser-tabs.manage-list-tabs :is(a, button),
+  .manage-list-tabs :is(a, button) {
+    min-height: 44px;
+    padding-inline: 13px !important;
+  }
+}
+
+/*
+  Hearth v18.6.3 interface cleanup
+
+  This final cascade layer removes the remaining double-control treatments,
+  places the household score in its own row, and moves the public appearance
+  control out of the primary navigation.
+*/
+
+/* One visual layer per sidebar navigation button. */
+body:not(.public-page):not(.account-page) .sidebar .nav-btn,
+body:not(.public-page):not(.account-page) .sidebar .nav-btn:hover,
+body:not(.public-page):not(.account-page) .sidebar .nav-btn:focus {
+  border-width: 1px !important;
+  box-shadow: none !important;
+}
+
+body:not(.public-page):not(.account-page) .sidebar .nav-btn.active,
+body:not(.public-page):not(.account-page) .sidebar .nav-btn.active:hover,
+body:not(.public-page):not(.account-page) .sidebar .nav-btn.active:focus {
+  border-color: var(--hearth-amber) !important;
+  color: #fffaf2 !important;
+  background: rgba(216, 121, 77, .34) !important;
+  box-shadow: none !important;
+}
+
+body:not(.public-page):not(.account-page) .sidebar .nav-btn:focus-visible {
+  outline: 2px solid #f3b488 !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+/* Financial Health sits below the household title instead of crowding it. */
+.compact-household-card .compact-household-top {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  justify-items: stretch !important;
+  gap: 8px !important;
+  margin-bottom: 8px !important;
+}
+
+.compact-household-card .compact-household-top h3 {
+  margin: 0 !important;
+}
+
+.compact-household-card .sidebar-health-mini {
+  --health-color: #dca16b;
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 6px 9px;
+  border: 1px solid rgba(255, 248, 234, .12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .045);
+}
+
+.compact-household-card .sidebar-health-mini.health-excellent { --health-color: #78bd8d; }
+.compact-household-card .sidebar-health-mini.health-good { --health-color: #91bb91; }
+.compact-household-card .sidebar-health-mini.health-stable { --health-color: #dca16b; }
+.compact-household-card .sidebar-health-mini.health-low { --health-color: #dc7d70; }
+
+.compact-household-card .sidebar-health-ring {
+  flex-basis: 30px;
+  width: 30px;
+  height: 30px;
+  background: conic-gradient(var(--health-color) var(--health-angle), rgba(255, 248, 234, .14) 0);
+}
+
+.compact-household-card .sidebar-health-ring::after,
+body.dark-mode .compact-household-card .sidebar-health-ring::after {
+  inset: 4px;
+  background: #123c3c;
+}
+
+.compact-household-card .sidebar-health-ring span {
+  color: #fff8ea;
+  font-size: .62rem;
+}
+
+.compact-household-card .sidebar-health-copy {
+  display: grid;
+  align-items: center;
+  gap: 1px;
+}
+
+.compact-household-card .sidebar-health-copy small {
+  color: #fff8ea !important;
+  font-size: .65rem;
+  font-weight: 800;
+}
+
+.compact-household-card .sidebar-health-copy strong {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  color: rgba(255, 248, 234, .66) !important;
+  font-size: .58rem;
+  font-weight: 700;
+  white-space: normal;
+  border: 0;
+}
+
+/* The outer Future Value control owns the only border and focus ring. */
+body:not(.public-page):not(.account-page) .future-value-money-input,
+body:not(.public-page):not(.account-page) .future-value-percent-input {
+  overflow: hidden;
+}
+
+body:not(.public-page):not(.account-page) .future-value-money-input > input,
+body:not(.public-page):not(.account-page) .future-value-money-input > input:hover,
+body:not(.public-page):not(.account-page) .future-value-money-input > input:focus,
+body:not(.public-page):not(.account-page) .future-value-money-input > input:focus-visible,
+body:not(.public-page):not(.account-page) .future-value-percent-input > input,
+body:not(.public-page):not(.account-page) .future-value-percent-input > input:hover,
+body:not(.public-page):not(.account-page) .future-value-percent-input > input:focus,
+body:not(.public-page):not(.account-page) .future-value-percent-input > input:focus-visible {
+  min-height: 0 !important;
+  padding-block: 8px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  color: var(--hearth-ink-strong) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* A quiet floating appearance control keeps the primary nav product-focused. */
+body.public-page .public-theme-toggle.public-theme-float {
+  position: fixed;
+  z-index: 78;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  width: auto;
+  min-width: 0;
+  min-height: 42px;
+  justify-content: center;
+  padding: 0 13px;
+  border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(20, 46, 55, .14);
+}
+
+body.public-page.dark-mode .public-theme-toggle.public-theme-float {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+}
+
+@media (max-width: 760px) {
+  body.public-page .public-theme-toggle.public-theme-float {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(max(12px, env(safe-area-inset-bottom)) + 72px);
+    min-height: 40px;
+    padding-inline: 12px;
+  }
+}
+
+/*
+  LumaFi v18.8 Concept 8 identity
+
+  The approved light- and dark-mode raster artwork is used directly from the
+  supplied LumaFi packages. Internal legacy class and token names remain in
+  place so existing data, scripts, and theme behavior stay compatible.
+*/
+
+.brand-mark {
+  width: 36px !important;
+  height: 36px !important;
+  flex: 0 0 36px !important;
+  border: 1px solid rgba(200, 100, 74, .12) !important;
+  border-radius: 50% !important;
+  background-color: #f7f0e8 !important;
+  background-image: url("../assets/brand/lumafi-icon-light.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: calc(100% - 7px) calc(100% - 7px) !important;
+  box-shadow: 0 5px 14px rgba(31, 42, 61, .10) !important;
+  transform: none !important;
+}
+
+.brand-mark::before,
+.brand-mark::after,
+.brand-mark > i {
+  display: none !important;
+  content: none !important;
+}
+
+.brand-mark.mini {
+  width: 29px !important;
+  height: 29px !important;
+  flex-basis: 29px !important;
+  background-size: calc(100% - 5px) calc(100% - 5px) !important;
+}
+
+.brand-mark.large {
+  width: 64px !important;
+  height: 64px !important;
+  flex-basis: 64px !important;
+  background-size: calc(100% - 10px) calc(100% - 10px) !important;
+}
+
+.public-brand {
+  position: relative;
+  display: inline-block !important;
+  width: 154px;
+  height: 52px;
+  flex: 0 0 154px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #f7f0e8;
+  background-image: url("../assets/brand/lumafi-horizontal-light.png");
+  background-repeat: no-repeat;
+  background-position: -7px -29px;
+  background-size: 170px 110px;
+  box-shadow: none;
+}
+
+.public-brand > * {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.public-brand:focus-visible {
+  outline: 3px solid var(--hearth-focus) !important;
+  outline-offset: 4px !important;
+}
+
+.public-page.dark-mode .public-brand,
+.account-page .light-brand {
+  border: 1px solid rgba(247, 240, 232, .14);
+  box-shadow: 0 8px 24px rgba(10, 22, 28, .16);
+}
+
+body.public-page.dark-mode .public-brand {
+  background-color: #111c2e;
+  background-image: url("../assets/brand/lumafi-horizontal-dark.png");
+}
+
+.account-primary-logo-link {
+  display: inline-block;
+  width: min(230px, 72%);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(9, 26, 33, .22);
+}
+
+.account-primary-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
+.final-brand-lockup {
+  display: block;
+  width: min(188px, 52vw);
+  height: auto;
+  margin: 0 auto 28px;
+  border-radius: 22px;
+  box-shadow: 0 24px 64px rgba(8, 20, 30, .28);
+}
+
+.app-brand {
+  display: block !important;
+  width: 100%;
+}
+
+.app-brand-logo {
+  display: block;
+  width: min(100%, 214px);
+  height: auto;
+}
+
+.app-route-gate-mark {
+  width: 72px !important;
+  height: 72px !important;
+  border: 1px solid rgba(200, 100, 74, .14) !important;
+  border-radius: 50% !important;
+  color: transparent !important;
+  background-color: #f7f0e8 !important;
+  background-image: url("../assets/brand/lumafi-icon-light.png") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 62px 62px !important;
+}
+
+.lock-brand,
+.onboarding-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: var(--hearth-ink-strong);
+}
+
+.lock-brand strong,
+.onboarding-brand strong {
+  font-family: var(--hearth-font-serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -.025em;
+}
+
+body.dark-mode .brand-mark,
+body.dark-mode .app-route-gate-mark {
+  border-color: rgba(247, 240, 232, .12) !important;
+  background-color: #1d2b43 !important;
+  background-image: url("../assets/brand/lumafi-icon-dark.png") !important;
+  background-size: cover !important;
+}
+
+@media (max-width: 600px) {
+  .public-brand {
+    width: 140px;
+    height: 48px;
+    flex-basis: 140px;
+    background-position: -10px -31px;
+  }
+
+  .account-primary-logo-link {
+    display: none;
+  }
+
+  .final-brand-lockup {
+    width: min(165px, 54vw);
+  }
+}

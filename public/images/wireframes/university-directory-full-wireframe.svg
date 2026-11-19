@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1360" height="2170" viewBox="0 0 1360 2170" role="img" aria-labelledby="title description">
+<title id="title">University Logo Directory</title>
+<desc id="description">Complete mobile lookup flow · 390 px · editable retrospective wireframes. Full retrospective wireframe process with 8 editable screen frames, flow, annotations, and acceptance criteria.</desc>
+<rect width="100%" height="100%" fill="#f3f6f9"/>
+<text x="48" y="58" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="750" fill="#172b41">University Logo Directory</text>
+<text x="48" y="88" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="400" fill="#52677d">Complete mobile lookup flow · 390 px · editable retrospective wireframes</text>
+<text x="48" y="124" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="700" fill="#0758a5">RETROSPECTIVE PRODUCT DESIGN PROCESS  ·  STRUCTURE → TASK FLOW → STATES → HANDOFF</text>
+<rect x="48" y="145" width="1264" height="86" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="173" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">CUSTOMER TASK FLOW</text>
+<rect x="68" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="78" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Browse</text>
+<rect x="241.14285714285714" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="251.14285714285714" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Search</text>
+<rect x="414.2857142857143" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="424.2857142857143" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Refine</text>
+<rect x="587.4285714285714" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="597.4285714285714" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Confirm</text>
+<rect x="760.5714285714286" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="770.5714285714286" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Copy</text>
+<rect x="933.7142857142857" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="943.7142857142857" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Recover</text>
+<rect x="1106.857142857143" y="184" width="161.14285714285714" height="32" rx="6" fill="#eaf3fc" stroke="#b9d2eb" stroke-width="1"/>
+<text x="1116.857142857143" y="205" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#0758a5">Retest</text>
+<text x="48" y="268" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#172b41">SCREEN WIREFRAMES</text>
+<text x="48" y="290" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#52677d">Each frame shows one meaningful customer state. Arrows and labels describe transitions between frames.</text>
+<g id="frame-1">
+<text x="48" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">01  Open the directory</text>
+<text x="48" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Browse, then enter a search</text>
+<rect x="48" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="64" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Directory · sample data</text>
+<text x="64" y="434" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Find an organization</text>
+<text x="64" y="455" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="64" y="461" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="483" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Search by name or alias</text>
+<text x="64" y="517" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Browse category</text>
+<rect x="64" y="526" width="45" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="73" y="546" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">All</text>
+<rect x="116" y="526" width="50.2" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="125" y="546" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">School</text>
+<rect x="173.2" y="526" width="75.0" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="182.2" y="546" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Department</text>
+<rect x="255.2" y="526" width="50.2" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="264.2" y="546" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">Office</text>
+<text x="64" y="581" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Organization list</text>
+<rect x="64" y="590" width="368" height="46" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="609" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">College of Engineering</text>
+<text x="75" y="627" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">School · 4 departments</text>
+<text x="343" y="617" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="64" y="642" width="368" height="46" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="661" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">School of Medicine</text>
+<text x="75" y="679" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">School</text>
+<text x="343" y="669" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="64" y="694" width="190" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="716" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Search directory</text>
+<rect x="64" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Entry state supports browse and search.</text>
+</g>
+<g id="frame-2">
+<text x="480" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">02  Search by alias</text>
+<text x="480" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Return a close, explainable match</text>
+<rect x="480" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="496" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Query: mech eng</text>
+<text x="496" y="434" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Find an organization</text>
+<text x="496" y="455" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="496" y="461" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="483" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">mech eng</text>
+<rect x="496" y="503" width="368" height="46" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="523" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">1 result · alias match</text>
+<text x="507" y="542" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">No customer data is used.</text>
+<rect x="496" y="557" width="368" height="54" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="576" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Department of Mechanical Engineering</text>
+<text x="507" y="594" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">College of Engineering</text>
+<text x="775" y="584" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="496" y="617" width="205" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="639" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">View organization path</text>
+<rect x="496" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Search name, common alias, or hierarchy.</text>
+</g>
+<g id="frame-3">
+<text x="912" y="315" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">03  Refine the results</text>
+<text x="912" y="336" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Combine category and letter filters</text>
+<rect x="912" y="349" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="350" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="373" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="928" y="392" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Search results · filter state</text>
+<text x="928" y="432" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="928" y="438" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="460" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">engineering</text>
+<text x="928" y="494" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Category</text>
+<rect x="928" y="503" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="937" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">All</text>
+<rect x="980" y="503" width="50.2" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="989" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">School</text>
+<rect x="1037.2" y="503" width="75.0" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="1046.2" y="523" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Department</text>
+<text x="928" y="558" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Starts with</text>
+<rect x="928" y="567" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="937" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">All</text>
+<rect x="980" y="567" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="989" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">C</text>
+<rect x="1032" y="567" width="45" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="1041" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">D</text>
+<rect x="1084" y="567" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1093" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">G</text>
+<rect x="1136" y="567" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1145" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">S</text>
+<rect x="1188" y="567" width="45" height="30" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="1197" y="587" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#172b41">U</text>
+<rect x="928" y="608" width="368" height="52" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="627" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Department of Mechanical Engineering</text>
+<text x="939" y="645" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">College of Engineering</text>
+<text x="1207" y="635" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="928" y="666" width="130" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="688" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Clear filters</text>
+<rect x="928" y="777" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="800" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Selected filters stay visible as text.</text>
+</g>
+<g id="frame-4">
+<text x="48" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">04  Confirm the right organization</text>
+<text x="48" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Inspect its full parent path</text>
+<rect x="48" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="64" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Selected result · detail state</text>
+<text x="64" y="973" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Selected organization</text>
+<rect x="64" y="982" width="368" height="55" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1002" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Department of Mechanical Engineering</text>
+<text x="75" y="1021" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Department</text>
+<text x="64" y="1059" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Full hierarchy</text>
+<rect x="64" y="1068" width="368" height="44" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1087" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Sample University</text>
+<text x="75" y="1105" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Institution</text>
+<rect x="64" y="1118" width="368" height="44" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1137" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">College of Engineering</text>
+<text x="75" y="1155" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Parent school</text>
+<rect x="64" y="1168" width="368" height="44" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1187" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Mechanical Engineering</text>
+<text x="75" y="1205" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Selected department</text>
+<rect x="64" y="1218" width="145" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1240" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Copy full path</text>
+<rect x="64" y="1262" width="150" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1284" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Copy logo name</text>
+<rect x="64" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">A persistent reference panel supports the order task.</text>
+</g>
+<g id="frame-5">
+<text x="480" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">05  Continue the order task</text>
+<text x="480" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Keep the verified reference available</text>
+<rect x="480" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="496" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Reference copied · next action</text>
+<rect x="496" y="959" width="368" height="42" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="979" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Full path copied</text>
+<text x="507" y="998" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Sample University / College of Engineering / Mechanical Engineering</text>
+<text x="496" y="1023" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Reference controls</text>
+<rect x="496" y="1032" width="368" height="48" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="507" y="1051" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Department of Mechanical Engineering</text>
+<text x="507" y="1069" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Selected organization</text>
+<text x="775" y="1059" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Copied</text>
+<rect x="496" y="1086" width="150" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1108" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Copy logo name</text>
+<rect x="496" y="1130" width="145" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="506" y="1152" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Copy full path</text>
+<rect x="496" y="1174" width="368" height="50" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="1194" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Next step</text>
+<text x="507" y="1213" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Return to the ordering window and select the matching organization.</text>
+<rect x="496" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">No order is submitted by the finder.</text>
+</g>
+<g id="frame-6">
+<text x="912" y="854" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">06  Recover from no results</text>
+<text x="912" y="875" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Explain the state and offer recovery</text>
+<rect x="912" y="888" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="913" y="889" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="928" y="912" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="928" y="931" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Search query · xyzq</text>
+<text x="928" y="971" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="928" y="977" width="368" height="34" rx="5" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<text x="939" y="999" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">xyzq</text>
+<rect x="928" y="1019" width="75.0" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="937" y="1039" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">Department</text>
+<rect x="1010.0" y="1019" width="45" height="30" rx="5" fill="#eaf3fc" stroke="#0758a5" stroke-width="1"/>
+<text x="1019.0" y="1039" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">D</text>
+<rect x="928" y="1060" width="368" height="62" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="939" y="1080" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">No matching entries</text>
+<text x="939" y="1099" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Try an alternate name or remove a filter.</text>
+<rect x="928" y="1130" width="210" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="1152" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Clear search and filters</text>
+<rect x="928" y="1174" width="145" height="35" rx="5" fill="white" stroke="#0758a5" stroke-width="1"/>
+<text x="938" y="1196" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#0758a5">Contact support</text>
+<rect x="928" y="1316" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="938" y="1339" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Do not leave an empty list without a next step.</text>
+</g>
+<g id="frame-7">
+<text x="48" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">07  Return keyboard focus</text>
+<text x="48" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Restore the search context after reset</text>
+<rect x="48" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="49" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="64" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Organization logo reference</text>
+<text x="64" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Recovery state · after clear action</text>
+<text x="64" y="1512" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Find an organization</text>
+<text x="64" y="1533" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="#52677d">Search</text>
+<rect x="64" y="1539" width="368" height="34" rx="5" fill="white" stroke="#0758a5" stroke-width="2"/>
+<text x="75" y="1561" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Search by name or alias</text>
+<rect x="64" y="1581" width="368" height="44" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="75" y="1601" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">10 results</text>
+<text x="75" y="1620" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Search, category, and letter filters are cleared.</text>
+<rect x="64" y="1633" width="368" height="46" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1652" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">College of Engineering</text>
+<text x="75" y="1670" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">School · 4 departments</text>
+<text x="343" y="1660" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="64" y="1685" width="368" height="46" rx="5" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="75" y="1704" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">School of Medicine</text>
+<text x="75" y="1722" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">School</text>
+<text x="343" y="1712" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="700" fill="#0758a5">View</text>
+<rect x="64" y="1737" width="175" height="35" rx="5" fill="#0758a5" stroke="#0758a5" stroke-width="1"/>
+<text x="74" y="1759" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="700" fill="white">Continue searching</text>
+<rect x="64" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="74" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Visible focus ring · polite result count announcement.</text>
+</g>
+<g id="frame-8">
+<text x="480" y="1393" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#172b41">08  Validate before release</text>
+<text x="480" y="1414" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#52677d">Record the checks and evidence boundary</text>
+<rect x="480" y="1427" width="400" height="481" rx="10" fill="white" stroke="#b9c6d2" stroke-width="1"/>
+<rect x="481" y="1428" width="398" height="52" rx="9" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="496" y="1451" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#172b41">Directory QA handoff</text>
+<text x="496" y="1470" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="400" fill="#52677d">Release validation checklist</text>
+<text x="496" y="1512" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Keyboard and responsive</text>
+<rect x="496" y="1521" width="368" height="54" rx="5" fill="#eff7f1" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="1541" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Verified in portfolio demo</text>
+<text x="507" y="1560" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">390 px and 1440 px · recovery and focus checked.</text>
+<text x="496" y="1597" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Assistive technology</text>
+<rect x="496" y="1606" width="368" height="54" rx="5" fill="#fff7e8" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="1626" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Still to test</text>
+<text x="507" y="1645" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Verify spoken status output using VoiceOver or NVDA.</text>
+<text x="496" y="1682" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#52677d">Research gate</text>
+<rect x="496" y="1691" width="368" height="54" rx="5" fill="#eaf3fc" stroke="#cfdae4" stroke-width="1"/>
+<text x="507" y="1711" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="700" fill="#172b41">Before production outcomes</text>
+<text x="507" y="1730" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="400" fill="#52677d">Run a short task test with ordering customers; review search misses.</text>
+<rect x="496" y="1855" width="368" height="36" rx="5" fill="#f4f7fa" stroke="#f4f7fa" stroke-width="1"/>
+<text x="506" y="1878" font-family="Inter, Arial, sans-serif" font-size="10" font-weight="600" fill="#52677d">Do not represent sample data or modeling as observed behavior.</text>
+</g>
+<rect x="48" y="1940" width="1264" height="174" rx="10" fill="#ffffff" stroke="#b9c6d2" stroke-width="1"/>
+<text x="68" y="1968" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#172b41">HANDOFF AND ACCEPTANCE CRITERIA</text>
+<text x="68" y="1996" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Label the result and full hierarchy clearly.</text>
+<text x="68" y="2021" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Reset query and filters in one action.</text>
+<text x="68" y="2046" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Return visible keyboard focus to search.</text>
+<text x="68" y="2071" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="400" fill="#172b41">• Test announcements and real customer tasks.</text>
+</svg>

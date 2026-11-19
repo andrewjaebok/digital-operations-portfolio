@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WireframeBoard from "../../components/WireframeBoard";
 import Image from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 import ProjectOperatingViews from "../../components/ProjectOperatingViews";
@@ -19,6 +20,7 @@ const caseNavigation = [
   { id: "ux-design", label: "03 UX design & prototype" },
   { id: "usability-results", label: "04 Validation & accessibility" },
   { id: "outcome", label: "05 Delivery & learnings" },
+  { id: "full-wireframe", label: "Full wireframe board" },
 ];
 
 const changes = [
@@ -244,6 +246,7 @@ export default function CustomerPortalRedesign() {
 
     <div className="shell utility-chapter-marker"><span>Chapter 03</span><strong>UX design & prototype</strong></div>
     <RegionalUtilityUX />
+    <WireframeBoard file="regional-utility" name="Regional Utility CCR Portal" description="Follow report discovery from language and region selection through lookup, status explanations, PDF review, and recovery. The board documents the workflow retrospectively." />
     <RegionalUtilityPrototype />
     <section className="shell featured-evidence" id="prototype-keyboard-audit" aria-labelledby="prototype-focus-title">
       <h2 id="prototype-focus-title">Keyboard and language check</h2>

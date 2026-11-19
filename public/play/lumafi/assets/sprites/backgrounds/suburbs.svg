@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="Suburban neighborhood with varied homes, trees, sidewalks, lawns, and mailboxes">
+  <defs>
+    <linearGradient id="sb-sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#aedcf0"/><stop offset="1" stop-color="#edf4dc"/></linearGradient>
+    <linearGradient id="sb-lawn" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#91cc76"/><stop offset="1" stop-color="#68aa64"/></linearGradient>
+  </defs>
+  <rect width="240" height="120" fill="url(#sb-sky)"/>
+  <circle cx="202" cy="21" r="12" fill="#f5ce79" opacity=".55"/>
+  <path d="M0 68c35-9 72-3 106-8 46-7 93-5 134 1v59H0Z" fill="url(#sb-lawn)"/>
+  <g>
+    <rect x="13" y="52" width="49" height="31" rx="1" fill="#d78d62"/><path d="M8 54 37 32l31 22Z" fill="#6d4938"/>
+    <rect x="24" y="65" width="11" height="18" fill="#684536"/><rect x="43" y="61" width="12" height="10" fill="#f7dfa4"/>
+    <rect x="83" y="47" width="54" height="36" rx="1" fill="#e0cf9e"/><path d="m77 49 33-23 34 23Z" fill="#557664"/>
+    <rect x="104" y="63" width="12" height="20" fill="#6c4a39"/><rect x="89" y="59" width="11" height="10" fill="#bfe4e8"/><rect x="121" y="59" width="11" height="10" fill="#bfe4e8"/>
+    <rect x="161" y="50" width="58" height="33" rx="1" fill="#91b6c9"/><path d="m155 52 35-24 36 24Z" fill="#5c4b49"/>
+    <rect x="183" y="64" width="12" height="19" fill="#5c4140"/><rect x="167" y="60" width="11" height="9" fill="#f3d894"/><rect x="201" y="60" width="11" height="9" fill="#f3d894"/>
+  </g>
+  <path d="M0 84h240v10H0Z" fill="#e6e0d1"/><path d="M0 94h240v26H0Z" fill="#7a8587"/>
+  <path d="M0 99h240" stroke="#f1eee4" stroke-width="2"/>
+  <path d="M78 107h42m54 0h38" stroke="#e8c45a" stroke-width="2" stroke-dasharray="10 7"/>
+  <g>
+    <rect x="69" y="62" width="4" height="23" fill="#76513b"/><circle cx="71" cy="57" r="12" fill="#4f9560"/><circle cx="62" cy="61" r="8" fill="#68ad6d"/>
+    <rect x="146" y="64" width="4" height="21" fill="#76513b"/><circle cx="148" cy="59" r="11" fill="#4f9560"/><circle cx="156" cy="63" r="7" fill="#68ad6d"/>
+  </g>
+  <g>
+    <rect x="5" y="70" width="3" height="16" fill="#5f4836"/><rect x="2" y="67" width="13" height="8" rx="2" fill="#3f7095"/>
+    <rect x="224" y="70" width="3" height="16" fill="#5f4836"/><rect x="221" y="67" width="13" height="8" rx="2" fill="#ad5549"/>
+  </g>
+  <g stroke="#efe9dc" stroke-width="2"><path d="M22 83v8m16-8v8m57-8v8m18-8v8m57-8v8m18-8v8"/></g>
+</svg>

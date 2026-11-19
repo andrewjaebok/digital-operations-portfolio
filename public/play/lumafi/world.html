@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>LumaFi World | Portfolio sample</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/world-sample.css">
+  <script defer src="./assets/household-engine/neighborhoods.js"></script>
+  <script defer src="./js/household-engine.js"></script>
+  <script defer src="./js/hearth-world.js"></script>
+  <script defer src="./js/world-sample.js"></script>
+</head>
+<body class="world-sample">
+  <main class="sample-main">
+    <nav aria-label="Back links"><a href="./">LumaFi landing page</a><a href="../../projects/hearth/">Portfolio case study</a></nav>
+    <h1>LumaFi World</h1>
+    <p>Customize a mini explorer, then walk through the original v21.1.0 neighborhood. Select a destination to walk toward it, then press <kbd>E</kbd> or tap its doorway prompt.</p>
+    <div class="sample-studio">
+      <form id="sample-explorer">
+        <h2>Customize your explorer</h2>
+        <label>Skin tone
+          <select name="skin">
+            <option value="tone1">Fair</option><option value="tone2" selected>Light tan</option>
+            <option value="tone3">Warm brown</option><option value="tone4">Deep brown</option>
+          </select>
+        </label>
+        <label>Hair
+          <select name="hairStyle">
+            <option value="short">Short</option><option value="curly">Curly</option><option value="bob">Bob</option><option value="long">Long</option>
+          </select>
+        </label>
+        <label>Shirt
+          <select name="shirt">
+            <option value="green">Green</option><option value="blue">Blue</option>
+            <option value="purple">Purple</option><option value="orange">Orange</option>
+          </select>
+        </label>
+        <button type="button" id="visitWorldBtn" class="btn primary" aria-haspopup="dialog">Visit World</button>
+      </form>
+      <div id="explorer-preview" class="sample-preview" role="img" aria-label="Live explorer preview"></div>
+    </div>
+    <p class="sample-note">Building panels use fictional household data. No account is required.</p>
+    <noscript><p>Enable JavaScript to customize your explorer and visit the world.</p></noscript>
+  </main>
+  <div hidden>
+    <section class="sample-destination" id="view-dashboard">
+      <h3>August at a glance</h3>
+      <dl><div><dt>Monthly income</dt><dd>$5,800</dd></div><div><dt>Safe to Spend</dt><dd>$5,115</dd></div></dl>
+      <p>Town Hall brings the household’s monthly summary and spending decisions together.</p>
+    </section>
+    <section class="sample-destination" id="view-planning">
+      <h3>Monthly plan</h3>
+      <dl><div><dt>Groceries budget</dt><dd>$450</dd></div><div><dt>Emergency fund goal</dt><dd>$3,000</dd></div></dl>
+      <p>The Bank is where the household reviews budgets, bills, and savings goals.</p>
+    </section>
+    <section class="sample-destination" id="view-transactions">
+      <h3>Recent transactions</h3>
+      <dl><div><dt>Grocery market</dt><dd>−$82.40</dd></div><div><dt>Paycheck</dt><dd>+$2,900.00</dd></div></dl>
+      <p>The ATM represents the transaction workspace for income, expenses, and transfers.</p>
+    </section>
+    <section class="sample-destination" id="view-lists">
+      <h3>Manage Lists</h3>
+      <dl><div><dt>Categories</dt><dd>Groceries, Transit, Dining</dd></div><div><dt>Household</dt><dd>Jamie and Morgan</dd></div></dl>
+      <p>The School organizes the people and categories used across the financial app.</p>
+    </section>
+    <section class="sample-destination" id="view-future-value">
+      <h3>Future Value</h3>
+      <p>At an illustrative 10% annual return, $100 would grow to about $259 over 10 years.</p>
+      <p>The Observatory connects a purchase decision to a longer time horizon.</p>
+    </section>
+  </div>
+</body>
+</html>
