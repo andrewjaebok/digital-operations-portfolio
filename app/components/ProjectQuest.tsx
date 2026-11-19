@@ -29,6 +29,8 @@ export default function ProjectQuest() {
   const [room, setRoom] = useState<number | null>(null);
   const [exhibit, setExhibit] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
+  const [mapOpen, setMapOpen] = useState(false);
+  const [guideOpen, setGuideOpen] = useState(false);
   const [transition, setTransition] = useState<number | null>(null);
   const [facing, setFacing] = useState("down");
   const [walking, setWalking] = useState(false);
@@ -37,7 +39,7 @@ export default function ProjectQuest() {
   const hubPosition = useRef(spawn);
   const map = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const walkingBlocked = paused || transition !== null || exhibit !== null;
+  const walkingBlocked = paused || transition !== null || exhibit !== null || mapOpen || guideOpen;
   const stations = room === null ? [] : questStations[room];
   const stationLocations = stationPositions(stations.length);
 
@@ -66,6 +68,8 @@ export default function ProjectQuest() {
     setExhibit(null);
     setTransition(null);
     setPaused(false);
+    setMapOpen(false);
+    setGuideOpen(false);
     setFacing("down");
     focus();
   };
@@ -75,6 +79,8 @@ export default function ProjectQuest() {
     stop();
     setSelected(index);
     setTransition(index);
+    setMapOpen(false);
+    setGuideOpen(false);
     hubPosition.current = pos.current;
     timer.current = setTimeout(() => {
       place(roomSpawn);
@@ -106,6 +112,12 @@ export default function ProjectQuest() {
     stop();
     if (timer.current !== null) clearTimeout(timer.current);
     setTransition(null);
+    if (mapOpen || guideOpen) {
+      setMapOpen(false);
+      setGuideOpen(false);
+      focus();
+      return;
+    }
     if (paused) {
       setPaused(false);
       focus(exhibit === null ? undefined : "#quest-exhibit-title");
@@ -128,13 +140,26 @@ export default function ProjectQuest() {
     if (walkingBlocked) return;
     stop();
     if (room === null) {
-      setSelected(current => current === null ? 0 : (current + 1) % categories.length);
+      setSelected(current => {
+        const next = current === null ? 0 : (current + 1) % categories.length;
+        place({ x: doors[next].x, y: doors[next].y + 27 });
+        return next;
+      });
     } else {
       const index = selected === null ? 0 : (selected + 1) % stations.length;
       place(approachStation(stationLocations[index]));
       setFacing("up");
       setSelected(index);
     }
+    focus();
+  };
+
+  const fastTravel = (index: number) => {
+    stop();
+    place({ x: doors[index].x, y: doors[index].y + 27 });
+    setSelected(index);
+    setFacing("up");
+    setMapOpen(false);
     focus();
   };
 
@@ -201,7 +226,9 @@ export default function ProjectQuest() {
 
   const action = selected === null ? "" : room === null
     ? "Enter " + categories[selected].title : stations[selected].action;
-  const status = paused ? "Paused · Start to resume"
+  const status = mapOpen ? "Choose a district · Fast travel"
+    : guideOpen ? "B · Close the guide"
+    : paused ? "Paused · Start to resume"
     : exhibit !== null ? "B · Back to the room"
     : action ? "A · " + action
     : room === null ? "Follow a path or press Select" : "Walk to a station or press Select";
@@ -224,13 +251,20 @@ export default function ProjectQuest() {
         <div className="console-screen-label"><span className="console-power"/> POWER <i/> DOT MATRIX WITH COLOR</div>
         <div className="world-toolbar">
           <span>{room === null ? "ANDREW’S WORLD / 3 AREAS" : categories[room].title.toUpperCase()}</span>
-          <button type="button" onClick={reset}>Reset</button>
+          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} onClick={() => { stop(); setGuideOpen(false); setMapOpen(true); }}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
         </div>
         <div className="quest-stage" ref={map} tabIndex={0} role="region" aria-label={room === null
           ? "Portfolio world. Arrow keys or WASD to walk. Enter to interact."
           : categories[room].title + " project room. Arrow keys to walk. Enter to interact. Escape to go back."}
           onBlur={stop}
           onKeyDown={event => {
+            if (event.code === "KeyM" && room === null && !paused && transition === null) {
+              event.preventDefault();
+              stop();
+              setGuideOpen(false);
+              setMapOpen(current => !current);
+              return;
+            }
             if (event.code === "Escape") {
               event.preventDefault();
               back();
@@ -258,6 +292,9 @@ export default function ProjectQuest() {
               {paths.map((r,i)=><rect key={i} {...r} fill="#e7d4a5"/>)}
               {[70,278,526,730].map((x,i)=><g key={x} transform={`translate(${x} ${i%2?230:110})`}><path d="M-5 0H5V26H-5" fill="#7e7150"/><path d="M-24-30H-15V-42H15V-30H24V0H14V9H-14V0H-24Z" fill="#537f60"/><path d="M-15-30H-7V-38H10V-28H17V-12H-15Z" fill="#79a477"/></g>)}
               {[90,280,520,710].map(x=><path key={x} d={`M${x} 275h5v5h-5z M${x+10} 269h5v5h-5z`} fill="#739264"/>)}
+              {[42,104,215,325,483,578,694,760].map((x,i)=><g className="quest-flower" key={x} style={{animationDelay:`${i * -.31}s`}} transform={`translate(${x} ${i%2?264:383})`}><rect x="-2" y="-7" width="4" height="11" fill="#59886b"/><rect x="-6" y="-11" width="12" height="7" fill={i%3===0?"#eea35b":i%3===1?"#f8e1a1":"#e0a4c4"}/><rect x="-2" y="-8" width="4" height="4" fill="#fff5ca"/></g>)}
+              {[120,342,460,684].map((x,i)=><g key={x} transform={`translate(${x} ${i%2?372:268})`}><rect x="-18" y="0" width="36" height="6" fill="#826a51"/><rect x="-14" y="6" width="5" height="11" fill="#5a5e49"/><rect x="9" y="6" width="5" height="11" fill="#5a5e49"/></g>)}
+              {[34,768].map(x=><g key={x} transform={`translate(${x} 306)`}><rect x="-3" y="-30" width="6" height="36" fill="#526b60"/><rect x="-10" y="-34" width="20" height="9" fill="#f5d58a"/><rect x="-7" y="-31" width="14" height="3" fill="#fff5c2"/></g>)}
             </svg>
             {categories.map((c,i)=><button key={c.id} className={`quest-building building-${i}${selected===i?" is-target":""}`} style={{left:`${doors[i].x/8}%`,top:`${doors[i].y/4}%`}} onFocus={()=>setSelected(i)} onClick={()=>enterRoom(i)} aria-label={`Enter ${c.title} room`}>
               <span className="quest-building-label">{c.title}</span>
@@ -268,6 +305,7 @@ export default function ProjectQuest() {
                 <path d="M42 63H58V84H42Z" fill={selected===i?"#f1cc65":"#30483f"}/><path d="M38 85H62V90H38Z" fill="#f4e4b4"/>
               </svg><span className="quest-door-glow"/>
             </button>)}
+              <button type="button" className="quest-guide" onClick={() => {stop(); setGuideOpen(true);}} aria-label="Talk to the town guide"><span className="quest-guide-sprite" aria-hidden="true">★</span><span className="quest-guide-label">GUIDE</span></button>
               <QuestAvatar position={position} facing={facing} walking={walking} />
             </> : exhibit !== null ? <QuestExhibit station={stations[exhibit]} onBack={back} />
               : <div className={"quest-interior quest-interior-" + room}>
@@ -275,6 +313,7 @@ export default function ProjectQuest() {
                   <div><h4>{categories[room].title}</h4><span>{stations.length} project stations</span></div><button type="button" onClick={back}>← Hub</button>
                 </header>
                 <div className="quest-room-rug" aria-hidden="true" />
+                <div className="quest-room-details" aria-hidden="true"><span className="quest-room-window"/><span className="quest-room-window"/><span className="quest-room-shelf"/><span className="quest-room-plant"/></div>
                 {stations.map((station, index) => <button
                   key={station.kind}
                   type="button"
@@ -291,6 +330,8 @@ export default function ProjectQuest() {
                 <Link className="quest-interior-index" href={categories[room].route}>Browse all projects in this room ↗</Link>
               </div>}
           </div>
+          {mapOpen && room === null && <div className="quest-overlay quest-travel" role="dialog" aria-modal="true" aria-label="Choose a district"><div className="quest-dialog-head"><strong>WORLD MAP</strong><button type="button" onClick={() => {setMapOpen(false);focus();}}>×</button></div><p>Three districts. One world. Choose where to explore.</p><div className="quest-travel-grid">{categories.map((category,index)=><button type="button" key={category.id} onClick={() => fastTravel(index)}><span className={`quest-map-pin quest-map-pin-${index}`}>0{index+1}</span><strong>{category.title}</strong><small>{category.short}</small></button>)}</div></div>}
+          {guideOpen && room === null && <div className="quest-overlay quest-guide-dialog" role="dialog" aria-modal="true" aria-label="Town guide"><div className="quest-dialog-head"><strong>TOWN GUIDE</strong><button type="button" onClick={() => {setGuideOpen(false);focus();}}>×</button></div><p>Welcome to Andrew Pocket! Every district tells a different part of the same story: making complex work simpler.</p><p>Visit the Digital Studio for customer experiences, Systems Station for infrastructure, or Ideas Workshop for independent projects.</p><button type="button" onClick={() => {setGuideOpen(false);setMapOpen(true);}}>Open the world map →</button></div>}
           {paused && <div className="quest-overlay quest-pause"><strong>PAUSED</strong><button type="button" onClick={togglePause}>Resume game</button></div>}
           {transition !== null && <div className="quest-overlay quest-arriving" role="status"><span>ENTERING</span><strong>{categories[transition].title}</strong></div>}
         </div>
@@ -330,7 +371,7 @@ export default function ProjectQuest() {
         </div>
       </div>
       <div className="console-bottom"><span>PRODUCT · SYSTEMS · IDEAS</span><div className="console-speaker" aria-hidden="true">{[0,1,2,3,4,5].map(i => <i key={i} />)}</div></div>
-      <p className="world-hint">Arrows / WASD: move · Select: choose a destination · A / Enter: interact · B / Esc: back · Start / P: pause</p>
+      <p className="world-hint">Arrows / WASD: move · Select: jump to a destination · M: world map · A / Enter: interact · B / Esc: back · Start / P: pause</p>
     </div>}
   </section>;
 }
