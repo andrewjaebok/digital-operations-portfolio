@@ -392,10 +392,11 @@
 .quest-v2 .quest-map-pin-1 { background:#687cb5; }
 .quest-v2 .quest-map-pin-2 { background:#ab7856; }
 @media(max-width:600px) {
-  .quest-v2 .quest-travel,  .quest-v2 .quest-travel-grid { grid-template-columns:1fr; gap:5px; }
+  .quest-v2 .quest-travel { inset:5% 4%; padding:10px; }
+  .quest-v2 .quest-travel-grid { grid-template-columns:1fr; gap:5px; }
   .quest-v2 .quest-travel-grid button { min-height:48px; grid-template-columns:32px 1fr; column-gap:8px; align-items:center; }
   .quest-v2 .quest-travel-grid small { grid-column:2; }
-  }
+}
 @media(prefers-reduced-motion:reduce) {
   .quest-v2 .quest-flower,.quest-v2 .quest-room-prop.is-target .quest-room-prop-art { animation:none; }
 }
