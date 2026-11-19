@@ -1,0 +1,14 @@
+.playful-footer { margin-top: 64px; padding-top: 76px; background: var(--white); color: var(--navy); overflow: hidden; border-top: 1px solid var(--line); }
+.footer-invitation { text-align: center; max-width: 650px; margin: 0 auto 40px; }
+.footer-invitation h2 { font-size: clamp(30px,4.5vw,54px); letter-spacing: -.045em; line-height: 1.1; margin: 14px 0 20px; }
+.footer-invitation > p:not(.eyebrow) { font-size: 16px; line-height: 1.65; color: var(--muted); }
+.footer-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; margin-top: 12px; border-radius: 10px; background: var(--navy); color: var(--white); font-weight: 800; transition: background .2s, transform .2s; }
+.footer-contact:hover { background: var(--blue); transform: translateY(-3px); }
+.footer-blocks { display: block; width: 100%; height: auto; overflow: visible; }
+.footer-block { transform: rotate(var(--tilt)); transition: transform .4s ease; }
+.footer-block:hover { transform: translateY(-18px) rotate(0deg); }
+.footer-baseline { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.footer-baseline nav { display: flex; flex-wrap: wrap; gap: 24px; }
+.playful-footer a:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
+@media(max-width:600px){ .playful-footer{padding-top:48px}.footer-baseline{flex-direction:column;align-items:flex-start}.footer-blocks{width:180%;max-width:none;margin-left:-40%}.footer-invitation{margin-bottom:28px}.footer-baseline nav{gap:18px} }
+@media(prefers-reduced-motion:reduce){.footer-block,.footer-contact{transition:none}.footer-block:hover,.footer-contact:hover{transform:none}}
