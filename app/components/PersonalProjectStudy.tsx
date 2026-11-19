@@ -1,4 +1,5 @@
 import { assetPath } from "../../lib/asset-path";
+import DemoLaunchLink from "./DemoLaunchLink";
 import PortfolioImage from "./PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "./CaseStudyWorkspace";
 
@@ -45,6 +46,21 @@ export default function PersonalProjectStudy({
           { label: "My role", value: role },
           { label: "Project stage", value: status },
         ]}
+        leadEvidence={playDemo && (
+          <section className="shell featured-evidence" id="gameplay" aria-labelledby="gameplay-title">
+            <h2 id="gameplay-title">Play EmberWake</h2>
+            <p>{playDemo.description}</p>
+            <div className="demo-launch-list">
+              <DemoLaunchLink
+                href={assetPath(playDemo.href)}
+                label="Play the EmberWake demo"
+                description="Opens in a new tab"
+                kind="play"
+                newTab
+              />
+            </div>
+          </section>
+        )}
         navigation={[
           { id: "overview", label: "Overview" },
           ...(playDemo ? [{ id: "gameplay", label: "Playable demo" }] : []),
@@ -59,15 +75,6 @@ export default function PersonalProjectStudy({
           { label: "Impact", copy: story.impact },
         ]}
       />
-      {playDemo && (
-        <section className="shell featured-evidence" id="gameplay" aria-labelledby="gameplay-title">
-          <h2 id="gameplay-title">Play EmberWake</h2>
-          <p>{playDemo.description}</p>
-          <nav className="featured-case-links" aria-label="EmberWake playable demo">
-            <a href={assetPath(playDemo.href)} target="_blank" rel="noopener">Play EmberWake Demo <span>Opens in a new tab</span></a>
-          </nav>
-        </section>
-      )}
       <section className="shell featured-evidence" id="design-evidence" aria-labelledby="design-evidence-title">
         <h2 id="design-evidence-title">{visualTitle}</h2>
         <ol className="personal-visual-sequence">

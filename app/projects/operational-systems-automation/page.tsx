@@ -239,34 +239,36 @@ export default function OperationalSystemsAutomation() {
       </div>
     </section>
 
-    <section className="operations-initiative persistence-initiative shell" id="asset-persistence">
-      <header className="initiative-heading"><span>Initiative 02</span><div><p className="kicker">Proof Asset Persistence</p><h2>A technical state issue became a workflow reliability problem.</h2></div></header>
+    <section className="operations-initiative persistence-initiative" id="asset-persistence">
+      <div className="shell">
+        <header className="initiative-heading"><span>Initiative 02</span><div><p className="kicker">Proof Asset Persistence</p><h2>A technical state issue became a workflow reliability problem.</h2></div></header>
 
-      <ol className="lifecycle-flow" aria-label="Original proof asset workflow">
-        {proofLifecycle.map((step, index) => <li key={step} className={index >= 4 ? "risk-step" : ""}><small>{String(index + 1).padStart(2, "0")}</small><strong>{step}</strong>{index < proofLifecycle.length - 1 && <span aria-hidden="true">→</span>}</li>)}
-      </ol>
-      <p className="workflow-consequence">When an approver requested changes or another proof was generated, losing the original uploaded asset could create unnecessary customer contact and rework across customers, approvers, Digital Services, and Production.</p>
+        <ol className="lifecycle-flow" aria-label="Original proof asset workflow">
+          {proofLifecycle.map((step, index) => <li key={step} className={index >= 4 ? "risk-step" : ""}><small>{String(index + 1).padStart(2, "0")}</small><strong>{step}</strong>{index < proofLifecycle.length - 1 && <span aria-hidden="true">→</span>}</li>)}
+        </ol>
+        <p className="workflow-consequence">When an approver requested changes or another proof was generated, losing the original uploaded asset could create unnecessary customer contact and rework across customers, approvers, Digital Services, and Production.</p>
 
-      <div className="root-cause-grid">
-        <article><span>Signal</span><p>Recurring problems during proof revisions revealed that uploaded customer assets were not reliably surviving the full proof lifecycle.</p></article>
-        <article><span>Root cause</span><p>The workflow handled initial image placement but did not adequately account for asset persistence across later proof-generation and revision scenarios.</p></article>
-        <article><span>Requirement</span><p>Customer-provided assets should remain available throughout the proof lifecycle unless intentionally replaced.</p></article>
-        <article><span>System improvement</span><p>Proof revisions can reuse the appropriate uploaded asset rather than requiring the customer or employee to locate it again.</p></article>
-      </div>
-
-      <div className="validation-matrix">
-        <div><p className="kicker">Customer workflow check</p><h3>Regenerate a proof after a revision request</h3>
-          <p>I used the initial upload and revision scenario to check whether the regenerated proof could reuse the existing file.</p>
-          <p><strong>Observed result.</strong> The regenerated proof could reuse the original upload. The validation scenarios below also cover explicit replacement and missing files.</p>
+        <div className="root-cause-grid">
+          <article><span>Signal</span><p>Recurring problems during proof revisions revealed that uploaded customer assets were not reliably surviving the full proof lifecycle.</p></article>
+          <article><span>Root cause</span><p>The workflow handled initial image placement but did not adequately account for asset persistence across later proof-generation and revision scenarios.</p></article>
+          <article><span>Requirement</span><p>Customer-provided assets should remain available throughout the proof lifecycle unless intentionally replaced.</p></article>
+          <article><span>System improvement</span><p>Proof revisions can reuse the appropriate uploaded asset rather than requiring the customer or employee to locate it again.</p></article>
         </div>
-        <div role="table" aria-label="Proof asset persistence validation scenarios">
-          {persistenceTests.map(([input, expected]) => <div role="row" key={input}><span role="cell">{input}</span><b aria-hidden="true">→</b><strong role="cell">{expected}</strong></div>)}
-        </div>
-      </div>
 
-      <div className="initiative-outcome">
-        <div><span className="evidence-state verified">Verified implementation</span><h3>The workflow was updated to preserve the appropriate customer-provided asset through proof revision scenarios.</h3></div>
-        <div><span className="evidence-state directional">Directional impact</span><p>The change removed a known source of unnecessary re-upload and retrieval work. Reupload frequency, employee interventions, and revision delay were not formally measured.</p></div>
+        <div className="validation-matrix">
+          <div><p className="kicker">Customer workflow check</p><h3>Regenerate a proof after a revision request</h3>
+            <p>I used the initial upload and revision scenario to check whether the regenerated proof could reuse the existing file.</p>
+            <p><strong>Observed result.</strong> The regenerated proof could reuse the original upload. The validation scenarios below also cover explicit replacement and missing files.</p>
+          </div>
+          <div role="table" aria-label="Proof asset persistence validation scenarios">
+            {persistenceTests.map(([input, expected]) => <div role="row" key={input}><span role="cell">{input}</span><b aria-hidden="true">→</b><strong role="cell">{expected}</strong></div>)}
+          </div>
+        </div>
+
+        <div className="initiative-outcome">
+          <div><span className="evidence-state verified">Verified implementation</span><h3>The workflow was updated to preserve the appropriate customer-provided asset through proof revision scenarios.</h3></div>
+          <div><span className="evidence-state directional">Directional impact</span><p>The change removed a known source of unnecessary re-upload and retrieval work. Reupload frequency, employee interventions, and revision delay were not formally measured.</p></div>
+        </div>
       </div>
     </section>
 

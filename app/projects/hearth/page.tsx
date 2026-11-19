@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { assetPath } from "../../../lib/asset-path";
+import DemoLaunchLink from "../../components/DemoLaunchLink";
 import PortfolioImage from "../../components/PortfolioImage";
 import { CaseStudyEnding, CaseStudyWorkspace } from "../../components/CaseStudyWorkspace";
 
@@ -106,6 +107,26 @@ export default function LumafiCaseStudy() {
         { label: "Project type", value: "Independent zero-to-one platform" },
         { label: "Status", value: "Development paused · Saved prototype" },
       ]}
+      leadEvidence={
+        <section className="shell featured-evidence" id="lumafi-sample" aria-labelledby="lumafi-sample-title">
+          <h2 id="lumafi-sample-title">Try LumaFi</h2>
+          <p>Explore a sample household’s finances or customize an explorer and visit the buildings in City Park. Both samples use fictional data and require no account.</p>
+          <nav className="demo-launch-list" aria-label="Try LumaFi samples">
+            <DemoLaunchLink
+              href={assetPath("/play/lumafi/world.html")}
+              label="Explore LumaFi World"
+              description="Customize an explorer and visit five destinations"
+              kind="world"
+            />
+            <DemoLaunchLink
+              href={assetPath("/play/lumafi/")}
+              label="Try the LumaFi landing page"
+              description="Preview the dashboard, transactions, and planning"
+              kind="preview"
+            />
+          </nav>
+        </section>
+      }
       navigation={caseNavigation}
       accent="hearth"
       story={[
@@ -122,16 +143,6 @@ export default function LumafiCaseStudy() {
         <article><span>Impact · Verified</span><p>A working end-to-end product with authentication, RLS, responsive workflows, payments architecture, production deployment, and release management.</p></article>
       </div>
     </CaseStudyWorkspace>
-
-    <section className="shell featured-evidence" id="lumafi-sample" aria-labelledby="lumafi-sample-title">
-      <h2 id="lumafi-sample-title">Try LumaFi</h2>
-      <p>Explore the landing page’s interactive product previews, then customize an explorer and visit the City Park neighborhood. Each building opens a sample financial workspace.</p>
-      <nav className="featured-case-links" aria-label="LumaFi samples">
-        <a href={assetPath("/play/lumafi/")}>Explore the landing page <span>Dashboard, transactions, planning, and reports</span></a>
-        <a href={assetPath("/play/lumafi/world.html")}>Visit LumaFi World <span>Customize an explorer and visit five destinations</span></a>
-      </nav>
-      <p>The samples use fictional household data and require no account.</p>
-    </section>
 
     <section className="shell featured-evidence" aria-labelledby="lumafi-spending-title">
       <h2 id="lumafi-spending-title">How much can I safely spend this month?</h2>
