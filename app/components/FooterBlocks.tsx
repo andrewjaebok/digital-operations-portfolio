@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import Matter from "matter-js";
 
-const { Bodies, Body, Composite, Constraint, Engine, Sleeping } = Matter;
-const colors = ["#087eaa", "#0b1f33", "#c65b18"];
+const { Bodies, Body, Composite, Engine, Sleeping } = Matter;
+const colors = ["#9252f5", "#ff6735", "#149ef4", "#f9c700"];
 const outlines = [
   "M0 0H80V80H0ZM20 20V60H60V20Z",
   "M0 0H30V50H80V80H0Z",
@@ -21,16 +21,8 @@ const fixtures = [
 const blockCount = 24;
 const step = 1000 / 60;
 
-type Grab = {
-  pointerId: number;
-  joint: Matter.Constraint;
-  body: Matter.Body;
-  x: number;
-  y: number;
-  time: number;
-  vx: number;
-  vy: number;
-};
+type Point = { x: number; y: number };
+const cap = (value: number, limit: number) => Math.max(-limit, Math.min(value, limit));
 
 export default function FooterBlocks() {
   const fieldRef = useRef<HTMLDivElement>(null);
@@ -47,7 +39,7 @@ export default function FooterBlocks() {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const engine = Engine.create({ enableSleeping: true });
     let blocks: Matter.Body[] = [];
-    let origins: { x: number; y: number }[] = [];
+    let origins: Point[] = [];
     let visible = false;
     let frame = 0;
     let previous = 0;
@@ -55,7 +47,10 @@ export default function FooterBlocks() {
     let width = 0;
     let height = 0;
     let size = 0;
-    let grab: Grab | null = null;
+    let pointer: Point | null = null;
+    let lastSweep: Point | null = null;
+    let pendingSweep = false;
+    let touchStart: (Point & { id: number }) | null = null;
 
     function paint() {
       blocks.forEach(({ position, angle }, index) => {
@@ -70,12 +65,18 @@ export default function FooterBlocks() {
       frame = 0;
       elapsed += previous ? Math.min(50, now - previous) : step;
       previous = now;
+      if (pendingSweep && pointer) {
+        stir(lastSweep ?? pointer, pointer);
+        lastSweep = pointer;
+        pendingSweep = false;
+      }
       while (elapsed >= step) {
         Engine.update(engine, step);
         elapsed -= step;
       }
       paint();
-      if (grab || blocks.some(block => !block.isSleeping)) wake();
+      if (blocks.some(block => !block.isSleeping)) wake();
+      else stop();
     }
 
     function wake() {
@@ -89,17 +90,45 @@ export default function FooterBlocks() {
       elapsed = 0;
     }
 
-    function drop(throwBlock: boolean) {
-      if (!grab) return;
-      const { joint, body, pointerId, vx, vy, time } = grab;
-      grab = null;
-      Composite.remove(engine.world, joint);
-      if (art!.hasPointerCapture(pointerId)) art!.releasePointerCapture(pointerId);
-      field!.removeAttribute("data-grabbing");
-      if (throwBlock && performance.now() - time < 90) {
-        Body.setVelocity(body, { x: vx, y: vy });
+    function clearPointer() {
+      pointer = null;
+      lastSweep = null;
+      pendingSweep = false;
+      touchStart = null;
+    }
+
+    function stir(from: Point, to: Point) {
+      const dx = to.x - from.x;
+      const dy = to.y - from.y;
+      const length = Math.hypot(dx, dy);
+      const directionX = length ? dx / length : 0;
+      const directionY = length ? dy / length : 0;
+      const radius = size * .79;
+      const strength = Math.min(10.5, 3.2 + length * .2);
+
+      // Sweep the full path between frames so quick passes still move blocks they cross.
+      for (const body of blocks) {
+        const { x, y } = body.position;
+        const along = Math.max(0, Math.min(length, (x - from.x) * directionX + (y - from.y) * directionY));
+        const offsetX = x - (from.x + directionX * along);
+        const offsetY = y - (from.y + directionY * along);
+        const distance = Math.hypot(offsetX, offsetY);
+        if (distance >= radius) continue;
+
+        const weight = (1 - distance / radius) ** 1.35;
+        const spread = Math.max(size * .22, distance);
+        const pushX = (directionX * .62 + offsetX / spread * .86) * weight * strength;
+        const pushY = (directionY * .32 + offsetY / spread * .42 - .8) * weight * strength;
+        if (Math.hypot(pushX, pushY) < .12) continue;
+
+        const { velocity, angularVelocity } = body;
+        Sleeping.set(body, false);
+        Body.setVelocity(body, {
+          x: cap(velocity.x + pushX, 16),
+          y: cap(velocity.y + pushY, 15),
+        });
+        Body.setAngularVelocity(body, cap(angularVelocity + pushX / size * .48, .22));
       }
-      wake();
     }
 
     function build(scatter = false) {
@@ -108,8 +137,7 @@ export default function FooterBlocks() {
       if (!nextWidth || !nextHeight) return;
       if (!scatter && nextWidth === width && nextHeight === height) return;
       stop();
-      drop(false);
-      stop();
+      clearPointer();
       Composite.clear(engine.world, false);
       Engine.clear(engine);
       width = nextWidth;
@@ -163,53 +191,35 @@ export default function FooterBlocks() {
       wake();
     }
 
-    function point(event: PointerEvent) {
+    function point(event: PointerEvent): Point {
       const rect = art!.getBoundingClientRect();
-      return {
-        x: Math.max(size * .35, Math.min(width - size * .35, event.clientX - rect.left)),
-        y: Math.max(size * .35, Math.min(height - size * .35, event.clientY - rect.top)),
-      };
+      return { x: event.clientX - rect.left, y: event.clientY - rect.top };
     }
 
-    function pickUp(event: PointerEvent) {
-      if (preference.matches || grab || event.button !== 0 || !(event.target instanceof Element)) return;
-      const piece = event.target.closest<SVGGElement>("[data-block]");
-      if (!piece) return;
-      const body = blocks[Number(piece.dataset.block)];
-      if (!body) return;
-      const position = point(event);
-      const joint = Constraint.create({
-        pointA: position,
-        bodyB: body,
-        pointB: { x: position.x - body.position.x, y: position.y - body.position.y },
-        length: 0,
-        stiffness: .29,
-        damping: .18,
-      });
-      Sleeping.set(body, false);
-      Composite.add(engine.world, joint);
-      grab = { pointerId: event.pointerId, joint, body, ...position, time: performance.now(), vx: 0, vy: 0 };
-      art!.setPointerCapture(event.pointerId);
-      field!.dataset.grabbing = "true";
+    function move(event: PointerEvent) {
+      if (preference.matches || event.pointerType === "touch" || event.buttons !== 0) return;
+      const next = point(event);
+      if (pointer && Math.hypot(next.x - pointer.x, next.y - pointer.y) < .5) return;
+      pointer = next;
+      pendingSweep = true;
       wake();
     }
 
-    function pull(event: PointerEvent) {
-      if (!grab || grab.pointerId !== event.pointerId) return;
-      const position = point(event);
-      const now = performance.now();
-      const factor = step / Math.max(8, now - grab.time);
-      const clamp = (value: number) => Math.max(-18, Math.min(18, value));
-      grab.vx = clamp((position.x - grab.x) * factor);
-      grab.vy = clamp((position.y - grab.y) * factor);
-      grab.x = position.x;
-      grab.y = position.y;
-      grab.time = now;
-      grab.joint.pointA = position;
+    function startTap(event: PointerEvent) {
+      if (event.pointerType === "touch" && !preference.matches) {
+        touchStart = { ...point(event), id: event.pointerId };
+      }
     }
 
-    function release(event: PointerEvent) {
-      if (grab?.pointerId === event.pointerId) drop(event.type === "pointerup");
+    function endTap(event: PointerEvent) {
+      if (touchStart?.id !== event.pointerId) return;
+      const next = point(event);
+      const isTap = event.type === "pointerup" && Math.hypot(next.x - touchStart.x, next.y - touchStart.y) < 10;
+      touchStart = null;
+      if (isTap) {
+        stir(next, next);
+        wake();
+      }
     }
 
     function resetMotion() { build(true); }
@@ -219,7 +229,7 @@ export default function FooterBlocks() {
       visible = entry.isIntersecting;
       if (visible) wake();
       else {
-        drop(false);
+        clearPointer();
         stop();
       }
     });
@@ -227,11 +237,11 @@ export default function FooterBlocks() {
     intersection.observe(art);
     preference.addEventListener("change", resetMotion);
     shuffle.addEventListener("click", resetMotion);
-    art.addEventListener("pointerdown", pickUp);
-    art.addEventListener("pointermove", pull);
-    art.addEventListener("pointerup", release);
-    art.addEventListener("pointercancel", release);
-    art.addEventListener("lostpointercapture", release);
+    art.addEventListener("pointermove", move);
+    art.addEventListener("pointerleave", clearPointer);
+    art.addEventListener("pointerdown", startTap);
+    art.addEventListener("pointerup", endTap);
+    art.addEventListener("pointercancel", endTap);
     build();
 
     return () => {
@@ -239,12 +249,11 @@ export default function FooterBlocks() {
       intersection.disconnect();
       preference.removeEventListener("change", resetMotion);
       shuffle.removeEventListener("click", resetMotion);
-      art.removeEventListener("pointerdown", pickUp);
-      art.removeEventListener("pointermove", pull);
-      art.removeEventListener("pointerup", release);
-      art.removeEventListener("pointercancel", release);
-      art.removeEventListener("lostpointercapture", release);
-      drop(false);
+      art.removeEventListener("pointermove", move);
+      art.removeEventListener("pointerleave", clearPointer);
+      art.removeEventListener("pointerdown", startTap);
+      art.removeEventListener("pointerup", endTap);
+      art.removeEventListener("pointercancel", endTap);
       stop();
       Composite.clear(engine.world, false);
       Engine.clear(engine);
@@ -254,7 +263,8 @@ export default function FooterBlocks() {
   return (
     <div className="footer-playfield" ref={fieldRef}>
       <div className="footer-play-controls">
-        <span aria-hidden="true">Drag the blocks</span>
+        <span className="footer-hover-hint" aria-hidden="true">Move your cursor through the blocks</span>
+        <span className="footer-touch-hint" aria-hidden="true">Tap the blocks to scatter them</span>
         <button ref={shuffleRef} type="button">Shuffle blocks</button>
       </div>
       <svg className="footer-blocks" ref={artRef} viewBox="0 0 1200 260" aria-hidden="true">
@@ -267,7 +277,7 @@ export default function FooterBlocks() {
         </defs>
         {Array.from({ length: blockCount }, (_, index) => (
           <g key={index} data-block={index} transform={`translate(${12 + (index % 12) * 99} ${index < 12 ? 178 : 90})`}>
-            <path d={outlines[index % outlines.length]} fill={`url(#footer-dots-${index % colors.length})`} fillRule="evenodd" />
+            <path d={outlines[index % outlines.length]} fill={`url(#footer-dots-${(index + Math.floor(index / outlines.length)) % colors.length})`} fillRule="evenodd" />
           </g>
         ))}
       </svg>

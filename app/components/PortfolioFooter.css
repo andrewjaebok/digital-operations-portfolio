@@ -5,8 +5,7 @@
 .footer-contact { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; margin-top: 12px; border-radius: 10px; background: var(--navy); color: var(--white); font-weight: 800; transition: background .2s, transform .2s; }
 .footer-contact:hover { background: var(--blue); transform: translateY(-3px); }
 .footer-playfield { position: relative; }
-.dark .footer-playfield [id="footer-dots-1"] circle { fill: var(--navy); }
-.footer-blocks { display: block; width: 100%; height: clamp(210px, 25vw, 295px); touch-action: pan-y; }
+.footer-blocks { display: block; width: 100%; height: clamp(210px, 25vw, 295px); touch-action: auto; }
 .footer-play-controls { display: none; }
 .footer-playfield[data-interactive="true"] .footer-play-controls {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -17,9 +16,11 @@
   font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer;
 }
 .footer-play-controls button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
-.footer-playfield[data-interactive="true"] [data-block] path { cursor: grab; touch-action: none; }
-.footer-playfield[data-grabbing="true"] .footer-blocks,
-.footer-playfield[data-grabbing="true"] [data-block] path { cursor: grabbing; }
+.footer-touch-hint { display: none; }
+@media (hover: none) {
+  .footer-hover-hint { display: none; }
+  .footer-touch-hint { display: inline; }
+}
 .footer-baseline { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); font-size: 14px; }
 .footer-baseline nav { display: flex; flex-wrap: wrap; gap: 24px; }
 .playful-footer a:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
