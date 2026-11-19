@@ -278,6 +278,8 @@
 .pocket-console .quest-content { isolation: isolate; }
 .pocket-scene { position: absolute; inset: 0; background-size: 100% 100%; image-rendering: pixelated; pointer-events: none; }
 
+.pocket-town { background-image: var(--town-art); }
+
 .pocket-lantern-pixel {
   position: absolute;
   width: clamp(2px, .32vw, 4px);
@@ -530,6 +532,7 @@
   .pocket-console .console-bezel { padding: 10px 8px 11px; }
   .pocket-console .console-topline { padding-bottom: 11px; }
   .pocket-console .quest-stage { min-height: 276px; }
+  .pocket-town { background-image: var(--town-phone-art); }
   .pocket-console .quest-building { width: 26%; }
   .pocket-console .quest-building-label {
     width: max-content;

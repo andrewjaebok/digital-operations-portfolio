@@ -85,7 +85,7 @@ def tree(d, x, y, seed, scale=1):
     for _ in range(26):
         u, v = rng.randrange(-11, 13), rng.randrange(-33, -12)
         px, py = points([(u,v)])[0]
-        if d._image.getpixel((px,py)) in ((103,141,78), (72,117,75)):
+        if d._image.getpixel((px,py))[:3] in ((103,141,78), (72,117,75)):
             line(d, [(px,py),(px+1,py)], rng.choice(["#779952","#527e4a","#5d874d","#87a45b"]))
 
 
@@ -131,7 +131,7 @@ def fence(d, x, y, count):
     rect(d, (x-2,y-3,x+(count-1)*9+4,y-2), "#aa8055")
 
 
-def town():
+def town(mobile=False):
     canvas, d = image((400,200), GRASS[1])
     rng = Random(816)
     # Meadow zones form soft-looking transitions using irregular pixel steps.
@@ -185,26 +185,40 @@ def town():
             stone=x-11+ix*6
             rect(d,(stone,y-5,stone+4,y-2),"#d9c695")
             rect(d,(stone,y,stone+4,y+3),"#cbb88c")
+    if mobile:
+        # Keep map anchors in the same place while rendering props at a phone-friendly aspect ratio.
+        canvas = canvas.resize((244, 224), Image.Resampling.NEAREST)
+        d = ImageDraw.Draw(canvas)
+
+    def scenery(draw, x, y, *args):
+        if not mobile:
+            draw(d, x, y, *args)
+            return
+        tile, tile_draw = image((72, 60))
+        draw(tile_draw, 23, 48, *args)
+        tile = tile.resize((51, 43), Image.Resampling.NEAREST)
+        canvas.paste(tile, (round(x * 244 / 400) - 16, round(y * 224 / 200) - 34), tile)
+
     for x,y in [(26,66),(46,48),(129,41),(156,52),(253,44),(280,46),
                 (366,53),(385,74),(18,121),(116,116),(279,118),(369,126),
                 (28,191),(169,197),(231,196),(374,193)]:
-        tree(d,x,y,x+y,.66 if y>=190 else .82)
+        scenery(tree,x,y,x+y,.66 if y>=190 else .82)
     for x,y,i in [(54,76,0),(115,87,1),(166,82,3),(225,77,0),(286,90,2),
                     (342,89,1),(18,144,0),(118,148,0),(151,141,2),(244,142,1),
                     (280,152,0),(367,149,0),(93,190,2),(323,194,3),(399,173,1)]:
-        bush(d,x,y,i)
+        scenery(bush,x,y,i)
     for x,y in [(44,151),(129,151),(246,149),(333,153)]:
-        bench(d,x,y)
+        scenery(bench,x,y)
     for x,y in [(69,127),(105,132),(183,129),(215,114),(292,135),(331,131),
                 (14,168),(387,169)]:
-        lantern(d,x,y)
+        scenery(lantern,x,y)
     for x,y,n in [(3,105,4),(130,96,4),(232,99,3),(354,108,4),(45,186,4),(332,187,3)]:
-        fence(d,x,y,n)
+        scenery(fence,x,y,n)
     for x,y in [(38,91),(56,111),(115,132),(142,112),(181,150),(222,150),
                 (273,110),(352,111),(68,182),(122,189),(254,186),(347,179)]:
         for i in range(5):
-            blossom(d,x+rng.randrange(-5,6),y+rng.randrange(-3,6),FLOWERS[i%4])
-    canvas.save(OUT/"town.png", optimize=True)
+            scenery(blossom,x+rng.randrange(-5,6),y+rng.randrange(-3,6),FLOWERS[i%4])
+    canvas.save(OUT/("town-phone.png" if mobile else "town.png"), optimize=True)
 
 
 def window(d, x, y, w=16, h=16, light=GLASS_LIGHT):
@@ -611,6 +625,7 @@ def sprite(direction, frame):
 
 if __name__=="__main__":
     town()
+    town(mobile=True)
     for district in range(3):
         interior(district)
         atlas=Image.new("RGBA",(336,73))
