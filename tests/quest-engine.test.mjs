@@ -1,30 +1,48 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {advance,advanceRoom,approachStation,doors,nearby,nearbyStation,roomSpawn,spawn,stationPositions,walkable} from '../app/components/quest-engine.mjs';
-const travel=(p,dx,dy,n)=>{for(let i=0;i<n;i++)p=advance(p,dx,dy,.02,800,400);return p;};
-test('all doorways can be reached from the hub and stop at entrances',()=>{
- for(const d of doors){
-  let p=travel({...spawn},Math.sign(d.x-spawn.x),0,Math.floor(Math.abs(d.x-spawn.x)/2.3));
-  p=travel(p,0,-1,200);
-  assert.equal(nearby(p),doors.indexOf(d));assert(walkable(p));assert(p.y>=d.y);
- }
+import {
+  advance, advanceRoom, approachStation, doors, nearby, nearbyStation,
+  roomSpawn, spawn, stationPositions, walkable,
+} from '../app/components/quest-engine.mjs';
+
+test('all three approaches highlight the matching entrance and clear when leaving', () => {
+  for (const [index, door] of doors.entries()) {
+    let point = { x: door.x, y: 330 };
+    while (point.y > door.y + 28) point = advance(point, 0, -1, .02, 800, 400);
+    assert.equal(nearby(point), index);
+    for (let step = 0; step < 16; step++) point = advance(point, 0, 1, .02, 800, 400);
+    assert.equal(nearby(point), null);
+  }
 });
-test('scenery blocks movement and selection clears away from doorways',()=>{
- const p=travel({x:300,y:330},0,-1,200);
- assert(p.y>=305);assert.equal(nearby(p),null);
- assert.equal(nearby({x:735,y:200}),null);
+
+test('grass and pathways stay traversable in all four directions', () => {
+  for (const start of [spawn, { x: 296, y: 224 }, { x: 727, y: 121 }]) {
+    for (const [dx, dy] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+      const next = advance(start, dx, dy, .02, 800, 400);
+      assert(Math.sign(next.x - start.x) === dx && Math.sign(next.y - start.y) === dy);
+      assert(walkable(next));
+    }
+  }
+  let point = { x: 300, y: 330 };
+  for (let step = 0; step < 200; step++) point = advance(point, 0, -1, .02, 800, 400);
+  assert(point.y >= 45 && point.y < 50, 'stop at the edge rather than the path');
+  assert.equal(nearby(point), null);
 });
-test('diagonals and resized viewports preserve physical movement speed',()=>{
- for(const [w,h] of [[800,400],[320,320]]){
- const a=advance(spawn,1,0,.02,w,h),b=advance(spawn,1,1,.02,w,h);
- const dist=p=>Math.hypot((p.x-spawn.x)*w/800,(p.y-spawn.y)*h/400);
- assert(Math.abs(dist(a)-dist(b))<1e-8);
- }
+
+test('diagonals and resized viewports preserve the 230 pixel/second movement speed', () => {
+  for (const [width, height] of [[800, 400], [320, 320]]) {
+    for (const move of [advance, advanceRoom]) {
+      const speed = (point) =>
+        Math.hypot((point.x - spawn.x) * width / 800, (point.y - spawn.y) * height / 400) / .02;
+      assert(Math.abs(speed(move(spawn, 1, 0, .02, width, height)) - 230) < 1e-8);
+      assert(Math.abs(speed(move(spawn, 1, -1, .02, width, height)) - 230) < 1e-8);
+    }
+  }
 });
 
 test('players can reach every station and leave its interaction range', () => {
   for (const [width, height] of [[800, 400], [300, 320]]) {
-    for (const count of [1, 3]) {
+    for (const count of [2, 3]) {
       const stations = stationPositions(count);
       assert.equal(nearbyStation(roomSpawn, stations), null);
       for (const [index, x] of stations.entries()) {

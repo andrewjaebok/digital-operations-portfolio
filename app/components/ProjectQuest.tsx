@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { categories } from "../data/categories";
 import {
-  advance, advanceRoom, approachStation, doors, nearby, nearbyStation, paths,
+  advance, advanceRoom, approachStation, doors, nearby, nearbyStation,
   roomSpawn, spawn, stationPositions, stationRow, type Point,
 } from "./quest-engine.mjs";
 import { QuestExhibit, questStations } from "./QuestExhibit";
+import { districtNames, PocketAvatar, PocketFacade, PocketRoom, PocketStation, PocketTown, scenePosition, type PocketFacing } from "./PocketArtwork";
 import "./ProjectQuest.css";
 
 const directions: Record<string, [number, number]> = {
@@ -15,12 +16,6 @@ const directions: Record<string, [number, number]> = {
   ArrowLeft: [-1, 0], KeyA: [-1, 0], ArrowRight: [1, 0], KeyD: [1, 0],
 };
 const dpad = [["ArrowLeft", "←"], ["ArrowUp", "↑"], ["ArrowDown", "↓"], ["ArrowRight", "→"]];
-
-function QuestAvatar({ position, facing, walking }: { position: Point; facing: string; walking: boolean }) {
-  return (
-    <span className={`quest-avatar face-${facing}${walking?" walking":""}`} style={{left:`${position.x/8}%`,top:`${position.y/4}%`}} aria-hidden="true"><svg viewBox="0 0 24 34" shapeRendering="crispEdges"><ellipse cx="12" cy="32" rx="9" ry="2" fill="#304735" opacity=".2"/><g className="avatar-body"><path d="M6 6H18V17H6Z" fill="#e9b68d"/><path d="M4 5H20V9H4ZM7 2H17V5H7Z" fill="#345952"/>{facing!=="up"&&<path d={facing==="left"?"M6 11H9V14H6Z":facing==="right"?"M15 11H18V14H15Z":"M8 11H10V13H8ZM15 11H17V13H15Z"} fill="#263a38"/>}<path d="M6 18H18V27H6Z" fill="#227e9b"/>{facing==="up"&&<path d="M8 19H16V25H8Z" fill="#bb995a"/>}<path d="M3 19H6V25H3ZM18 19H21V25H18Z" fill="#e9b68d"/></g><path className="avatar-leg-left" d="M6 27H11V32H6Z" fill="#344742"/><path className="avatar-leg-right" d="M14 27H19V32H14Z" fill="#344742"/></svg></span>
-  );
-}
 
 export default function ProjectQuest() {
   const [open, setOpen] = useState(true);
@@ -31,9 +26,11 @@ export default function ProjectQuest() {
   const [paused, setPaused] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
   const [transition, setTransition] = useState<number | null>(null);
-  const [facing, setFacing] = useState("down");
-  const [walking, setWalking] = useState(false);
+  const [facing, setFacing] = useState<PocketFacing>("down");
+  const [stride, setStride] = useState(0);
+  const travel = useRef(0);
   const keys = useRef(new Set<string>());
+  const pendingTaps = useRef(new Set<string>());
   const pos = useRef(spawn);
   const hubPosition = useRef(spawn);
   const map = useRef<HTMLDivElement>(null);
@@ -49,7 +46,9 @@ export default function ProjectQuest() {
 
   const stop = () => {
     keys.current.clear();
-    setWalking(false);
+    pendingTaps.current.clear();
+    travel.current = 0;
+    setStride(0);
   };
 
   const place = (point: Point) => {
@@ -76,17 +75,28 @@ export default function ProjectQuest() {
     if (walkingBlocked) return;
     stop();
     setSelected(index);
-    setTransition(index);
     setMapOpen(false);
     hubPosition.current = pos.current;
-    timer.current = setTimeout(() => {
+    const revealRoom = () => {
       place(roomSpawn);
       setFacing("up");
       setRoom(index);
       setSelected(null);
-      setTransition(null);
+    };
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      revealRoom();
       focus();
-    }, window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 280);
+      return;
+    }
+    setTransition(index);
+    timer.current = setTimeout(() => {
+      revealRoom();
+      timer.current = setTimeout(() => {
+        timer.current = null;
+        setTransition(null);
+        focus();
+      }, 130);
+    }, 265);
   };
 
   const openExhibit = (index: number) => {
@@ -136,11 +146,10 @@ export default function ProjectQuest() {
     if (walkingBlocked) return;
     stop();
     if (room === null) {
-      setSelected(current => {
-        const next = current === null ? 0 : (current + 1) % categories.length;
-        place({ x: doors[next].x, y: doors[next].y + 27 });
-        return next;
-      });
+      const next = selected === null ? 0 : (selected + 1) % categories.length;
+      place({ x: doors[next].x, y: doors[next].y + 27 });
+      setFacing("up");
+      setSelected(next);
     } else {
       const index = selected === null ? 0 : (selected + 1) % stations.length;
       place(approachStation(stationLocations[index]));
@@ -159,15 +168,23 @@ export default function ProjectQuest() {
     focus();
   };
 
+  const toggleMap = () => {
+    stop();
+    setMapOpen(!mapOpen);
+    focus(mapOpen ? undefined : ".quest-travel-grid button");
+  };
+
   const togglePause = () => {
-    if (transition !== null) return;
+    if (transition !== null || mapOpen) return;
     stop();
     setPaused(!paused);
     focus(paused ? (exhibit === null ? undefined : "#quest-exhibit-title") : ".quest-pause button");
   };
 
   const move = (key: string) => {
-    if (!walkingBlocked) keys.current.add(key);
+    if (walkingBlocked) return;
+    keys.current.add(key);
+    pendingTaps.current.add(key);
   };
 
   useEffect(() => () => {
@@ -182,12 +199,16 @@ export default function ProjectQuest() {
     let last = 0;
     const clear = () => {
       keys.current.clear();
-      setWalking(false);
+      pendingTaps.current.clear();
+      travel.current = 0;
+      setStride(0);
     };
     const tick = (now: number) => {
-      const dt = last ? (now - last) / 1000 : 0;
+      const dt = last ? (now - last) / 1000 : 1 / 60;
       last = now;
-      const active = [...keys.current].map(key => directions[key]);
+      // A quick tap can end between frames. Let it move once even if it has already lifted.
+      const active = [...new Set([...keys.current, ...pendingTaps.current])].map(key => directions[key]);
+      pendingTaps.current.clear();
       const dx = Number(active.some(direction => direction[0] === 1)) - Number(active.some(direction => direction[0] === -1));
       const dy = Number(active.some(direction => direction[1] === 1)) - Number(active.some(direction => direction[1] === -1));
       const bounds = (dx || dy) && map.current?.getBoundingClientRect();
@@ -195,15 +216,23 @@ export default function ProjectQuest() {
       if (bounds && bounds.width > 0 && bounds.height > 0) {
         setFacing(dx ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
         const next = movePlayer(pos.current, dx, dy, dt, bounds.width, bounds.height);
-        const moved = next.x !== pos.current.x || next.y !== pos.current.y;
-        if (moved) {
+        const distance = Math.hypot(
+          (next.x - pos.current.x) * bounds.width / 800,
+          (next.y - pos.current.y) * bounds.height / 400,
+        );
+        if (distance > 0) {
+          travel.current = (travel.current + distance) % 64;
+          setStride([1, 2, 3, 2][Math.floor(travel.current / 16)]);
           pos.current = next;
           setPosition(next);
+        } else {
+          travel.current = 0;
+          setStride(0);
         }
-        setWalking(moved);
         setSelected(room === null ? nearby(next) : nearbyStation(next, roomStations));
-      } else {
-        setWalking(false);
+      } else if (travel.current) {
+        travel.current = 0;
+        setStride(0);
       }
 
       frame = requestAnimationFrame(tick);
@@ -226,7 +255,7 @@ export default function ProjectQuest() {
     : paused ? "Paused · Start to resume"
     : exhibit !== null ? "B · Back to the room"
     : action ? "A · " + action
-    : room === null ? "Follow a path or press Select" : "Walk to a station or press Select";
+    : room === null ? "Walk anywhere · Select to jump to a district" : "Walk to a station or press Select";
 
   return <section className="world-section" id="project-quest" aria-labelledby="world-title">
     <div className="world-heading">
@@ -240,23 +269,22 @@ export default function ProjectQuest() {
         setOpen(!open);
       }}>{open ? "Put console away ↑" : "Power on →"}</button>
     </div>
-    {open && <div className="world-console retro-console quest-v2">
+    {open && <div className="world-console retro-console quest-v2 pocket-console">
       <div className="console-topline"><span>ANDREW <b>POCKET</b></span><small>MODEL 03</small></div>
       <div className="console-bezel">
         <div className="console-screen-label"><span className="console-power"/> POWER <i/> DOT MATRIX WITH COLOR</div>
         <div className="world-toolbar">
           <span>{room === null ? "ANDREW’S WORLD / 3 AREAS" : categories[room].title.toUpperCase()}</span>
-          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} onClick={() => { stop(); setMapOpen(true); }}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
+          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} disabled={paused || transition !== null} onClick={toggleMap}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
         </div>
-        <div className="quest-stage" ref={map} tabIndex={0} role="region" aria-label={room === null
+        <div className={`quest-stage${exhibit !== null ? " pocket-exhibit-stage" : ""}`} ref={map} tabIndex={0} role="region" aria-label={room === null
           ? "Portfolio world. Arrow keys or WASD to walk. Enter to interact."
           : categories[room].title + " project room. Arrow keys to walk. Enter to interact. Escape to go back."}
           onBlur={stop}
           onKeyDown={event => {
-            if (event.code === "KeyM" && room === null && !paused && transition === null) {
+            if (event.code === "KeyM" && room === null && !paused && transition === null && !event.repeat) {
               event.preventDefault();
-              stop();
-                      setMapOpen(current => !current);
+              toggleMap();
               return;
             }
             if (event.code === "Escape") {
@@ -278,35 +306,31 @@ export default function ProjectQuest() {
           }}
           onKeyUp={event => keys.current.delete(event.code)}
         >
-          <div className="quest-content" inert={paused || transition !== null}>
+          <div className="quest-content" inert={paused || transition !== null || mapOpen}>
             {room === null ? <>
-            <svg className="quest-terrain" viewBox="0 0 800 400" preserveAspectRatio="none" shapeRendering="crispEdges" aria-hidden="true">
-              <rect width="800" height="400" fill="#b9cda1"/>
-              <path d="M0 0H800V45H660V31H520V54H290V35H125V60H0ZM0 370H180V385H580V370H800V400H0Z" fill="#a0bc91"/>
-              {paths.map((r,i)=><rect key={i} {...r} fill="#e7d4a5"/>)}
-              {[70,278,526,730].map((x,i)=><g key={x} transform={`translate(${x} ${i%2?230:110})`}><path d="M-5 0H5V26H-5" fill="#7e7150"/><path d="M-24-30H-15V-42H15V-30H24V0H14V9H-14V0H-24Z" fill="#537f60"/><path d="M-15-30H-7V-38H10V-28H17V-12H-15Z" fill="#79a477"/></g>)}
-              {[90,280,520,710].map(x=><path key={x} d={`M${x} 275h5v5h-5z M${x+10} 269h5v5h-5z`} fill="#739264"/>)}
-              {[42,104,215,325,483,578,694,760].map((x,i)=><g className="quest-flower" key={x} style={{animationDelay:`${i * -.31}s`}} transform={`translate(${x} ${i%2?264:383})`}><rect x="-2" y="-7" width="4" height="11" fill="#59886b"/><rect x="-6" y="-11" width="12" height="7" fill={i%3===0?"#eea35b":i%3===1?"#f8e1a1":"#e0a4c4"}/><rect x="-2" y="-8" width="4" height="4" fill="#fff5ca"/></g>)}
-              {[120,342,460,684].map((x,i)=><g key={x} transform={`translate(${x} ${i%2?372:268})`}><rect x="-18" y="0" width="36" height="6" fill="#826a51"/><rect x="-14" y="6" width="5" height="11" fill="#5a5e49"/><rect x="9" y="6" width="5" height="11" fill="#5a5e49"/></g>)}
-              {[34,768].map(x=><g key={x} transform={`translate(${x} 306)`}><rect x="-3" y="-30" width="6" height="36" fill="#526b60"/><rect x="-10" y="-34" width="20" height="9" fill="#f5d58a"/><rect x="-7" y="-31" width="14" height="3" fill="#fff5c2"/></g>)}
-            </svg>
-            {categories.map((c,i)=><button key={c.id} className={`quest-building building-${i}${selected===i?" is-target":""}`} style={{left:`${doors[i].x/8}%`,top:`${doors[i].y/4}%`}} onFocus={()=>setSelected(i)} onClick={()=>enterRoom(i)} aria-label={`Enter ${c.title} room`}>
-              <span className="quest-building-label">{c.title}</span>
-              <svg viewBox="0 0 100 90" shapeRendering="crispEdges" aria-hidden="true">
-                <path d={i===0?"M8 26H92V84H8Z":i===1?"M16 10H84V84H16Z":"M10 34H90V84H10Z"} fill={i===1?"#bfc6d7":"#ead8ac"} stroke="#3d594d" strokeWidth="3"/>
-                <path d={i===0?"M4 20H96V31H4Z":i===1?"M12 6H88V17H12Z":"M3 34V26H15V18H28V10H72V18H85V26H97V34Z"} fill={c.color}/>
-                {i===0?<><path d="M18 43H82V57H18Z" fill="#448997"/><path d="M34 43V57M65 43V57" stroke="#d2e5d0" strokeWidth="3"/></>:i===1?<><path d="M27 25H42V55H27ZM58 25H73V55H58Z" fill="#46556d"/><path d="M30 31H37M61 31H68M30 42H37M61 42H68" stroke="#a4d0a3" strokeWidth="3"/></>:<><path d="M20 45H35V61H20ZM65 45H80V61H65Z" fill="#eebf67"/><path d="M46 25H54V38H46Z" fill="#9a5c34"/></>}
-                <path d="M42 63H58V84H42Z" fill={selected===i?"#f1cc65":"#30483f"}/><path d="M38 85H62V90H38Z" fill="#f4e4b4"/>
-              </svg><span className="quest-door-glow"/>
-            </button>)}
-              <QuestAvatar position={position} facing={facing} walking={walking} />
+              <PocketTown />
+              {categories.map((category, index) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  className={`quest-building${selected === index ? " is-target" : ""}${transition === index ? " is-opening" : ""}`}
+                  style={{ ...scenePosition(doors[index]), zIndex: 20 + doors[index].y }}
+                  onFocus={() => setSelected(index)}
+                  onClick={() => enterRoom(index)}
+                  aria-label={`Enter ${category.title} room`}
+                >
+                  <PocketFacade district={index} />
+                  <span className="quest-building-label"><b>{category.title}</b><small>{districtNames[index]}</small></span>
+                  {selected === index && <span className="pocket-entrance-prompt" aria-hidden="true">A</span>}
+                </button>
+              ))}
+              <PocketAvatar position={position} facing={facing} stride={stride} inRoom={false} />
             </> : exhibit !== null ? <QuestExhibit station={stations[exhibit]} onBack={back} />
               : <div className={"quest-interior quest-interior-" + room}>
+                <PocketRoom district={room} />
                 <header className="quest-interior-heading">
-                  <div><h4>{categories[room].title}</h4><span>{stations.length} project stations</span></div><button type="button" onClick={back}>← Hub</button>
+                  <div><h4>{categories[room].title}</h4><span>{districtNames[room]}</span></div><button type="button" onClick={back}>← Hub</button>
                 </header>
-                <div className="quest-room-rug" aria-hidden="true" />
-                <div className="quest-room-details" aria-hidden="true"><span className="quest-room-window"/><span className="quest-room-window"/><span className="quest-room-shelf"/><span className="quest-room-plant"/></div>
                 {stations.map((station, index) => <button
                   key={station.kind}
                   type="button"
@@ -316,16 +340,16 @@ export default function ProjectQuest() {
                   onClick={() => openExhibit(index)}
                   aria-label={station.action}
                 >
-                  <span className="quest-room-prop-art" aria-hidden="true"><i /><b /></span>
+                  <PocketStation kind={station.kind} />
                   <span className="quest-room-prop-label">{station.label}</span>
                 </button>)}
-                <QuestAvatar position={position} facing={facing} walking={walking} />
+                <PocketAvatar position={position} facing={facing} stride={stride} inRoom />
                 <Link className="quest-interior-index" href={categories[room].route}>Browse all projects in this room ↗</Link>
               </div>}
           </div>
-          {mapOpen && room === null && <div className="quest-overlay quest-travel" role="dialog" aria-modal="true" aria-label="Choose a district"><div className="quest-dialog-head"><strong>WORLD MAP</strong><button type="button" onClick={() => {setMapOpen(false);focus();}}>×</button></div><p>Three districts. One world. Choose where to explore.</p><div className="quest-travel-grid">{categories.map((category,index)=><button type="button" key={category.id} onClick={() => fastTravel(index)}><span className={`quest-map-pin quest-map-pin-${index}`}>0{index+1}</span><strong>{category.title}</strong><small>{category.short}</small></button>)}</div></div>}
+          {mapOpen && room === null && <div className="quest-overlay quest-travel" role="dialog" aria-label="Choose a district"><div className="quest-dialog-head"><strong>WORLD MAP</strong><button type="button" aria-label="Close world map" onClick={toggleMap}>×</button></div><p>Three districts. One world. Choose where to explore.</p><div className="quest-travel-grid">{categories.map((category,index)=><button type="button" key={category.id} onClick={() => fastTravel(index)}><span className={`quest-map-pin quest-map-pin-${index}`}>0{index+1}</span><strong>{category.title}</strong><small>{category.short}</small></button>)}</div></div>}
           {paused && <div className="quest-overlay quest-pause"><strong>PAUSED</strong><button type="button" onClick={togglePause}>Resume game</button></div>}
-          {transition !== null && <div className="quest-overlay quest-arriving" role="status"><span>ENTERING</span><strong>{categories[transition].title}</strong></div>}
+          {transition !== null && <div className="pocket-transition" role="status" aria-label={`Entering ${categories[transition].title}`} />}
         </div>
         <div className="console-screen-status" aria-live="polite">{status}</div>
       </div>
@@ -355,7 +379,7 @@ export default function ProjectQuest() {
         </div>
         <div className="console-system-buttons">
           <button type="button" onClick={cycle} disabled={walkingBlocked}><span />SELECT</button>
-          <button type="button" onClick={togglePause} disabled={transition !== null} aria-label={paused ? "Start: resume game" : "Start: pause game"}><span />START</button>
+          <button type="button" onClick={togglePause} disabled={transition !== null || mapOpen} aria-label={paused ? "Start: resume game" : "Start: pause game"}><span />START</button>
         </div>
         <div className="console-ab">
           <button type="button" onClick={back} aria-label="B: back or cancel"><span>B</span><small>BACK</small></button>

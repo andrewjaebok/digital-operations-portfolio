@@ -1,5 +1,5 @@
 export const spawn = { x: 400, y: 330 };
-export const doors = [{ x: 168, y: 190 }, { x: 400, y: 140 }, { x: 632, y: 190 }];
+export const doors = [{ x: 168, y: 190 }, { x: 400, y: 164 }, { x: 632, y: 190 }];
 export const paths = [
   { x: 60, y: 300, width: 680, height: 60 },
   ...doors.map(d => ({ x: d.x - 26, y: d.y, width: 52, height: 140 + (190 - d.y) })),
@@ -27,7 +27,7 @@ export function nearby(p) {
 }
 
 export const roomSpawn = { x: 400, y: 324 };
-export const stationRow = 188;
+export const stationRow = 224;
 
 export function stationPositions(count) {
   return count === 1 ? [400] : Array.from({ length: count }, (_, index) => 150 + 500 * index / (count - 1));
@@ -43,7 +43,7 @@ export function advanceRoom(p, dx, dy, seconds, width, height) {
   const distance = 230 * Math.min(seconds, .05);
   const x = p.x + dx / length * distance * 800 / width;
   const y = p.y + dy / length * distance * 400 / height;
-  return { x: Math.min(752, Math.max(48, x)), y: Math.min(345, Math.max(217, y)) };
+  return { x: Math.min(752, Math.max(48, x)), y: Math.min(345, Math.max(stationRow + 25, y)) };
 }
 
 export function nearbyStation(p, stations) {
