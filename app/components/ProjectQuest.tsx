@@ -30,7 +30,6 @@ export default function ProjectQuest() {
   const [exhibit, setExhibit] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
   const [mapOpen, setMapOpen] = useState(false);
-  const [guideOpen, setGuideOpen] = useState(false);
   const [transition, setTransition] = useState<number | null>(null);
   const [facing, setFacing] = useState("down");
   const [walking, setWalking] = useState(false);
@@ -39,7 +38,7 @@ export default function ProjectQuest() {
   const hubPosition = useRef(spawn);
   const map = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const walkingBlocked = paused || transition !== null || exhibit !== null || mapOpen || guideOpen;
+  const walkingBlocked = paused || transition !== null || exhibit !== null || mapOpen;
   const stations = room === null ? [] : questStations[room];
   const stationLocations = stationPositions(stations.length);
 
@@ -69,7 +68,6 @@ export default function ProjectQuest() {
     setTransition(null);
     setPaused(false);
     setMapOpen(false);
-    setGuideOpen(false);
     setFacing("down");
     focus();
   };
@@ -80,7 +78,6 @@ export default function ProjectQuest() {
     setSelected(index);
     setTransition(index);
     setMapOpen(false);
-    setGuideOpen(false);
     hubPosition.current = pos.current;
     timer.current = setTimeout(() => {
       place(roomSpawn);
@@ -112,9 +109,8 @@ export default function ProjectQuest() {
     stop();
     if (timer.current !== null) clearTimeout(timer.current);
     setTransition(null);
-    if (mapOpen || guideOpen) {
+    if (mapOpen) {
       setMapOpen(false);
-      setGuideOpen(false);
       focus();
       return;
     }
@@ -227,7 +223,6 @@ export default function ProjectQuest() {
   const action = selected === null ? "" : room === null
     ? "Enter " + categories[selected].title : stations[selected].action;
   const status = mapOpen ? "Choose a district · Fast travel"
-    : guideOpen ? "B · Close the guide"
     : paused ? "Paused · Start to resume"
     : exhibit !== null ? "B · Back to the room"
     : action ? "A · " + action
@@ -251,7 +246,7 @@ export default function ProjectQuest() {
         <div className="console-screen-label"><span className="console-power"/> POWER <i/> DOT MATRIX WITH COLOR</div>
         <div className="world-toolbar">
           <span>{room === null ? "ANDREW’S WORLD / 3 AREAS" : categories[room].title.toUpperCase()}</span>
-          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} onClick={() => { stop(); setGuideOpen(false); setMapOpen(true); }}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
+          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} onClick={() => { stop(); setMapOpen(true); }}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
         </div>
         <div className="quest-stage" ref={map} tabIndex={0} role="region" aria-label={room === null
           ? "Portfolio world. Arrow keys or WASD to walk. Enter to interact."
@@ -261,8 +256,7 @@ export default function ProjectQuest() {
             if (event.code === "KeyM" && room === null && !paused && transition === null) {
               event.preventDefault();
               stop();
-              setGuideOpen(false);
-              setMapOpen(current => !current);
+                      setMapOpen(current => !current);
               return;
             }
             if (event.code === "Escape") {
@@ -305,7 +299,6 @@ export default function ProjectQuest() {
                 <path d="M42 63H58V84H42Z" fill={selected===i?"#f1cc65":"#30483f"}/><path d="M38 85H62V90H38Z" fill="#f4e4b4"/>
               </svg><span className="quest-door-glow"/>
             </button>)}
-              <button type="button" className="quest-guide" onClick={() => {stop(); setGuideOpen(true);}} aria-label="Talk to the town guide"><span className="quest-guide-sprite" aria-hidden="true">★</span><span className="quest-guide-label">GUIDE</span></button>
               <QuestAvatar position={position} facing={facing} walking={walking} />
             </> : exhibit !== null ? <QuestExhibit station={stations[exhibit]} onBack={back} />
               : <div className={"quest-interior quest-interior-" + room}>
@@ -331,7 +324,6 @@ export default function ProjectQuest() {
               </div>}
           </div>
           {mapOpen && room === null && <div className="quest-overlay quest-travel" role="dialog" aria-modal="true" aria-label="Choose a district"><div className="quest-dialog-head"><strong>WORLD MAP</strong><button type="button" onClick={() => {setMapOpen(false);focus();}}>×</button></div><p>Three districts. One world. Choose where to explore.</p><div className="quest-travel-grid">{categories.map((category,index)=><button type="button" key={category.id} onClick={() => fastTravel(index)}><span className={`quest-map-pin quest-map-pin-${index}`}>0{index+1}</span><strong>{category.title}</strong><small>{category.short}</small></button>)}</div></div>}
-          {guideOpen && room === null && <div className="quest-overlay quest-guide-dialog" role="dialog" aria-modal="true" aria-label="Town guide"><div className="quest-dialog-head"><strong>TOWN GUIDE</strong><button type="button" onClick={() => {setGuideOpen(false);focus();}}>×</button></div><p>Welcome to Andrew Pocket! Every district tells a different part of the same story: making complex work simpler.</p><p>Visit the Digital Studio for customer experiences, Systems Station for infrastructure, or Ideas Workshop for independent projects.</p><button type="button" onClick={() => {setGuideOpen(false);setMapOpen(true);}}>Open the world map →</button></div>}
           {paused && <div className="quest-overlay quest-pause"><strong>PAUSED</strong><button type="button" onClick={togglePause}>Resume game</button></div>}
           {transition !== null && <div className="quest-overlay quest-arriving" role="status"><span>ENTERING</span><strong>{categories[transition].title}</strong></div>}
         </div>
