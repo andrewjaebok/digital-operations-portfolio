@@ -10,7 +10,7 @@ export function walkable(p) {
 export function advance(p, dx, dy, seconds, width, height) {
   const length = Math.hypot(dx, dy);
   if (!length) return p;
-  const distance = 115 * Math.min(seconds, .05);
+  const distance = 230 * Math.min(seconds, .05);
   const x = p.x + dx / length * distance * 800 / width;
   const y = p.y + dy / length * distance * 400 / height;
   let next = walkable({x,y}) ? {x,y} : p;
@@ -39,7 +39,7 @@ export function approachStation(x) {
 export function advanceRoom(p, dx, dy, seconds, width, height) {
   const length = Math.hypot(dx, dy);
   if (!length || width <= 0 || height <= 0) return p;
-  const distance = 115 * Math.min(seconds, .05);
+  const distance = 230 * Math.min(seconds, .05);
   const x = p.x + dx / length * distance * 800 / width;
   const y = p.y + dy / length * distance * 400 / height;
   return { x: Math.min(752, Math.max(48, x)), y: Math.min(345, Math.max(217, y)) };
