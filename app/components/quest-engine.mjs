@@ -4,8 +4,9 @@ export const paths = [
   { x: 60, y: 300, width: 680, height: 60 },
   ...doors.map(d => ({ x: d.x - 26, y: d.y, width: 52, height: 140 + (190 - d.y) })),
 ];
+// Grass and paths are both traversable. Only the outer world boundary blocks walking.
 export function walkable(p) {
-  return paths.some(r => p.x >= r.x + 7 && p.x <= r.x + r.width - 7 && p.y >= r.y + 5 && p.y <= r.y + r.height - 5);
+  return p.x >= 20 && p.x <= 780 && p.y >= 45 && p.y <= 375;
 }
 export function advance(p, dx, dy, seconds, width, height) {
   const length = Math.hypot(dx, dy);
