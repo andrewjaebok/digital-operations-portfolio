@@ -272,7 +272,7 @@ export default function ProjectQuest() {
             </> : exhibit !== null ? <QuestExhibit station={stations[exhibit]} onBack={back} />
               : <div className={"quest-interior quest-interior-" + room}>
                 <header className="quest-interior-heading">
-                  <h4>{categories[room].title}</h4><button type="button" onClick={back}>← Hub</button>
+                  <div><h4>{categories[room].title}</h4><span>{stations.length} project stations</span></div><button type="button" onClick={back}>← Hub</button>
                 </header>
                 <div className="quest-room-rug" aria-hidden="true" />
                 {stations.map((station, index) => <button

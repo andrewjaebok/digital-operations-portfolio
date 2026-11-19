@@ -327,3 +327,13 @@
   .quest-arc-spark { animation: none; }
   .quest-arc-spark { left: calc(88% - 50px); }
 }
+
+.quest-interior-heading span { display: block; margin-top: 5px; font-size: 12px; font-weight: 400; }
+.quest-search-label select { min-height: 44px; width: 100%; padding: 6px; font: inherit; font-size: 16px; color: #243a35; background: #fffaf0; border: 2px solid #748a77; }
+.quest-directory-results { display: grid; gap: 5px; }
+.station-pads .quest-room-prop-art { --prop: #c7d9dd; --prop-side: #819da4; }
+.station-pads i { inset: 5px 19px 5px 10px; background: repeating-linear-gradient(#fff9e7 0 6px, #819da4 6px 8px); border: 2px solid #435b60; }
+.station-directory .quest-room-prop-art, .station-automation .quest-room-prop-art { --prop: #698e9b; --prop-side: #3d5e71; height: 56px; }
+.station-directory i, .station-automation i { inset: 5px 12px 13px 5px; border: 3px solid #293d45; background: repeating-linear-gradient(#d6ecd2 0 5px, #779d88 5px 7px); }
+.station-directory b, .station-automation b { bottom: -10px; left: 14%; width: 65%; height: 5px; background: #293d45; }
+.station-automation .quest-room-prop-art { --prop: #9297b8; --prop-side: #5e6384; }

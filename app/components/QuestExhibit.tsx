@@ -113,9 +113,66 @@ function SpellPractice() {
   </>;
 }
 
+function PadOrder() {
+  const [format, setFormat] = useState("Pocket");
+  const [count, setCount] = useState(1);
+  const [review, setReview] = useState(false);
+  return <>
+    <p>Configure a sample pad order and review the handoff. No order is placed.</p>
+    <div className="quest-demo-options" role="group" aria-label="Pad format">
+      {["Pocket", "Desk"].map(value => <button key={value} type="button" aria-pressed={format === value} onClick={() => {setFormat(value); setReview(false);}}>{value} pads</button>)}
+    </div>
+    <label className="quest-search-label">Number of prescribers
+      <select value={count} onChange={event => {setCount(Number(event.target.value)); setReview(false);}}>
+        {Array.from({length: 10}, (_, index) => <option key={index} value={index + 1}>{index + 1}</option>)}
+      </select>
+    </label>
+    <button type="button" onClick={() => setReview(true)}>Review sample order</button>
+    {review && <div className="quest-result" role="status"><strong>{format} pads · {count} {count === 1 ? "prescriber" : "prescribers"}.</strong> The selection is ready for the next step in the sample journey.</div>}
+    <p><Link href="/projects/prescription-pad-ordering-portal#rx-prototype">Try the complete ordering prototype</Link></p>
+  </>;
+}
+
+const sampleOrganizations = [
+  {name: "Department of Mechanical Engineering", alias: "mech eng mechanical me", path: "Sample University / College of Engineering / Department of Mechanical Engineering"},
+  {name: "University Library", alias: "lib libraries", path: "Sample University / Libraries / University Library"},
+  {name: "Student Services Office", alias: "help desk student services", path: "Sample University / Student Affairs / Student Services Office"},
+];
+function DirectorySearch() {
+  const [query, setQuery] = useState("");
+  const [selection, setSelection] = useState<string>();
+  const matches = sampleOrganizations.filter(item => (item.name + " " + item.alias).toLowerCase().includes(query.trim().toLowerCase()));
+  return <>
+    <p>Find an organization using a familiar name, then confirm its full path. Fictional sample records.</p>
+    <label className="quest-search-label">Find an organization<input type="search" placeholder="Try mech eng" value={query} onChange={event => {setQuery(event.target.value); setSelection(undefined);}} /></label>
+    <div className="quest-directory-results">{matches.map(item => <button key={item.name} type="button" onClick={() => setSelection(item.path)}>{item.name}</button>)}</div>
+    {!matches.length && <div role="status"><p>No matching organizations.</p><button type="button" onClick={() => setQuery("")}>Clear search</button></div>}
+    {selection && <div className="quest-result" role="status"><strong>Organization path</strong><p>{selection}</p></div>}
+    <p><Link href="/projects/university-logo-directory#directory-prototype">Open the full directory prototype</Link></p>
+  </>;
+}
+
+function ProofRevision() {
+  const [revision, setRevision] = useState(0);
+  const [replaced, setReplaced] = useState(false);
+  return <>
+    <p>Simulate a proof revision to see how the customer upload carries forward. This is a sample workflow.</p>
+    <div className="quest-result" aria-live="polite"><strong>Proof {revision + 1}</strong><p>Attached file · {replaced ? "replacement-artwork.png" : "customer-artwork.png"}</p><p>{revision === 0 ? "The initial upload is attached." : "The current artwork stays attached when the proof is regenerated."}</p></div>
+    <div className="quest-demo-options">
+      <button type="button" onClick={() => setRevision(value => value + 1)}>Regenerate proof</button>
+      <button type="button" onClick={() => {setReplaced(true); setRevision(value => value + 1);}}>Replace sample artwork</button>
+      <button type="button" onClick={() => {setRevision(0); setReplaced(false);}}>Reset workflow</button>
+    </div>
+    <p>Preserving the upload reduces the need to retrieve it manually during revisions.</p>
+  </>;
+}
+
 export const questStations = [
-  [{ label: "Service counter", action: "Find a report", kind: "counter", title: "Regional Utility Report Search", route: "/projects/customer-portal-redesign", Demo: ReportSearch }],
-  [{ label: "Server rack", action: "Inspect traffic", kind: "rack", title: "Ordering Server Traffic", route: "/projects/customer-ordering-protection", Demo: TrafficMonitor }],
+  [{ label: "Utility reports", action: "Find a report", kind: "counter", title: "Regional Utility Report Search", route: "/projects/customer-portal-redesign", Demo: ReportSearch },
+    { label: "RX Pads", action: "Configure RX Pads", kind: "pads", title: "RX Pad Ordering", route: "/projects/prescription-pad-ordering-portal", Demo: PadOrder },
+    { label: "Logo directory", action: "Search the directory", kind: "directory", title: "University Logo Directory", route: "/projects/university-logo-directory", Demo: DirectorySearch }],
+  [{ label: "Server rack", action: "Inspect traffic", kind: "rack", title: "Ordering Server Traffic", route: "/projects/customer-ordering-protection", Demo: TrafficMonitor },
+    { label: "Automation desk", action: "Revise a proof", kind: "automation", title: "Operational Systems & Automation", route: "/projects/operational-systems-automation", Demo: ProofRevision }],
   [
     { label: "LumaFi model", action: "Explore LumaFi", kind: "model", title: "LumaFi World", route: "/projects/hearth", Demo: FinanceWorld },
     { label: "Gogi workbench", action: "Compare packaging", kind: "bench", title: "Gogi Packaging", route: "/projects/gogi-snacks", Demo: PackagingBench },
