@@ -1,4 +1,3 @@
-.quest-interior-heading,
 .quest-exhibit > header {
   display: flex;
   align-items: center;
@@ -6,22 +5,12 @@
   gap: 12px;
 }
 
-.quest-interior-heading {
-  position: absolute;
-  inset: 0 0 auto;
-  padding: 9px 12px;
-  color: #fff9e6;
-  background: var(--room-wall);
-}
-
-.quest-interior-heading h4,
 .quest-exhibit h4 {
   margin: 0;
   font-size: clamp(15px, 2.6vw, 23px);
   line-height: 1.15;
 }
 
-.quest-interior-heading button,
 .quest-exhibit button {
   min-height: 44px;
   color: #243a35;
@@ -33,25 +22,7 @@
   cursor: pointer;
 }
 
-.quest-interior-heading button,
-.quest-exhibit > header button {
-  flex-shrink: 0;
-}
-
-.quest-interior-index {
-  position: absolute;
-  inset: auto 10px 0;
-  min-height: 40px;
-  display: grid;
-  place-items: center;
-  width: fit-content;
-  max-width: calc(100% - 20px);
-  margin-inline: auto;
-  color: #23342e;
-  text-align: center;
-  text-decoration: underline;
-  z-index: 4;
-}
+.quest-exhibit > header button { flex-shrink: 0; }
 
 .quest-exhibit {
   position: absolute;
@@ -164,7 +135,6 @@
   .quest-arc-spark { left: calc(88% - 50px); }
 }
 
-.quest-interior-heading span { display: block; margin-top: 5px; font-size: 12px; font-weight: 400; }
 .quest-search-label select { min-height: 44px; width: 100%; padding: 6px; font: inherit; font-size: 16px; color: #243a35; background: #fffaf0; border: 2px solid #748a77; }
 .quest-directory-results { display: grid; gap: 5px; }
 
@@ -194,46 +164,41 @@
 
 /* Shared visual language for the town, stations and console menus. */
 .pocket-console {
-  --pocket-ink: #2b4239;
+  --pocket-ink: #283b34;
   --pocket-paper: #f5e7c1;
   --pocket-highlight: #ffe199;
   --pocket-metal: #343a43;
-  max-width: 946px;
-  padding: 25px clamp(13px, 3.6vw, 38px) 21px;
+  max-width: 896px;
+  padding: 14px clamp(9px, 2vw, 22px) 13px;
   border-color: #adafa7;
-  background: linear-gradient(160deg, #e3e2d8 1%, #d7d7cc 62%, #cccec6 100%);
-  box-shadow: inset 2px 2px #f7f3e7, inset -4px -5px #b7b9b1, 0 9px #aeb3ad, 0 21px 32px #172f382b;
+  background: linear-gradient(155deg, #ebeadf, #d0d1c7);
+  box-shadow: inset 1px 1px #fffaeb, inset -3px -4px #b5b8af, 0 5px #aeb3ad, 0 13px 26px #172f3822;
 }
 
 .pocket-console .console-topline {
   color: #303e54;
-  padding-bottom: 14px;
-  align-items: baseline;
+  padding: 0 4px 8px;
+  align-items: center;
 }
 
 .pocket-console .console-topline small {
-  padding: 4px 6px;
-  border: 1px solid #777a6d70;
-  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  letter-spacing: .07em;
   color: #3d4e55;
 }
 
 .pocket-console .console-bezel {
-  padding: 14px clamp(10px, 2.5vw, 25px) 17px;
+  padding: 7px 8px 8px;
   background: #3f4751;
   border-color: #303943;
-  box-shadow: inset 2px 2px #768085, inset -2px -3px #262e37;
-}
-
-.pocket-console .console-screen-label {
-  font-size: clamp(8px, 1vw, 10px);
-  letter-spacing: .075em;
-  padding-bottom: 10px;
+  box-shadow: inset 1px 1px #768085, inset -1px -2px #262e37;
 }
 
 .pocket-console .console-power {
-  background: #eda07c;
-  box-shadow: 0 0 5px #f2a58370, 0 0 0 2px #20262b;
+  background: #e28a66;
+  box-shadow: 0 0 0 2px #754c43;
 }
 
 .pocket-console .world-toolbar,
@@ -243,20 +208,27 @@
 
 .pocket-console .world-toolbar {
   gap: 6px;
-  padding: 4px 10px;
-  min-height: 35px;
+  padding: 2px 7px 2px 10px;
+  min-height: 34px;
   border: 2px solid #162a25;
   border-bottom: 0;
-  font-size: 11px;
+  font-size: 12px;
 }
 
-.quest-toolbar-actions { display: flex; gap: 4px; align-items: center; }
-.pocket-console .quest-toolbar-actions button {
-  min-height: 36px;
-  padding: 0 7px;
-  border: 1px solid #81968755;
+.quest-toolbar-actions { display: flex; gap: 3px; align-items: center; }
+.pocket-console .quest-toolbar-actions :is(button, a) {
+  display: inline-grid;
+  place-items: center;
+  min-height: 29px;
+  padding: 0 6px;
+  border: 1px solid #81968770;
   color: #fff2cc;
+  font: inherit;
+  font-weight: 700;
+  white-space: nowrap;
 }
+
+.pocket-console .quest-toolbar-actions :is(button, a):hover { background: #374f43; }
 
 .pocket-console .quest-stage {
   width: 100%;
@@ -292,11 +264,14 @@
 
 .pocket-console .quest-building {
   display: block;
-  width: 22.5%;
+  width: 25%;
   height: auto;
   min-width: 44px;
   color: var(--pocket-ink);
 }
+
+.pocket-console .quest-building-1 { width: 22%; }
+.pocket-console .quest-building-2 { width: 24%; }
 
 .pocket-facade {
   position: relative;
@@ -325,7 +300,7 @@
 .pocket-antenna-pixel {
   position: absolute;
   top: 0;
-  left: 65%;
+  left: 54.5%;
   width: 2px;
   height: 2px;
   background: #ffdf91;
@@ -333,23 +308,23 @@
 }
 
 .pocket-console .quest-building-label {
-  display: grid;
-  gap: 2px;
-  top: auto;
-  bottom: calc(100% - 2px);
+  top: calc(100% - 3px);
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1px;
   min-width: 0;
   max-width: none;
-  padding: 4px 8px;
-  border: 2px solid #3d5945;
+  padding: 3px 7px;
+  border: 1px solid #3d5945;
   background: var(--pocket-paper);
-  box-shadow: inset 0 0 0 1px #ffedba, 2px 3px #23443266;
+  box-shadow: 1px 2px #23443288;
   text-align: center;
   line-height: 1.15;
   white-space: nowrap;
 }
 
-.quest-building-label b { font-size: clamp(10px, 1.2vw, 14px); }
-.quest-building-label small { font-size: clamp(9px, 1vw, 11px); font-weight: 400; }
+.quest-building-label b { font-size: clamp(10px, 1.15vw, 13px); }
 .pocket-console .quest-building:is(:hover, :focus-visible, .is-target) .quest-building-label { background: var(--pocket-highlight); border-color: #48513c; }
 .pocket-console .quest-building:focus-visible { outline: 3px solid #ffedac; outline-offset: 2px; }
 
@@ -388,27 +363,6 @@
 }
 
 .quest-interior { position: absolute; inset: 0; overflow: hidden; isolation: isolate; font: 700 13px/1.3 monospace; }
-.quest-interior-0 { --room-wall: #2e5053; }
-.quest-interior-1 { --room-wall: #413e54; }
-.quest-interior-2 { --room-wall: #674337; }
-.pocket-console .quest-interior-heading {
-  padding: 9px 12px;
-  color: #fff2ca;
-  border-bottom: 2px solid #222e2a96;
-  background: var(--room-wall);
-  z-index: 4;
-}
-
-.quest-interior-index {
-  padding: 0 9px;
-  color: var(--pocket-ink);
-  background: #f4e5be;
-  border: 1px solid #564a3b;
-  border-bottom: 0;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 .quest-room-prop {
   position: absolute;
   z-index: 2;
@@ -458,6 +412,37 @@
 
 .quest-room-prop:is(:hover, :focus-visible, .is-target) .quest-room-prop-label { background: var(--pocket-highlight); border-color: #795c39; }
 
+.quest-interior-2 .quest-room-prop {
+  width: clamp(72px, 24%, 184px);
+}
+
+.quest-interior-2 .pocket-station-art {
+  width: 100%;
+  max-width: none;
+}
+
+.quest-interior-2 .station-model { width: clamp(72px, 25%, 203px); }
+.quest-interior-2 .station-arcade .pocket-station-art { width: 87%; }
+
+.quest-interior-2 .quest-room-prop-label {
+  position: absolute;
+  top: 96%;
+  width: max-content;
+  max-width: 100%;
+  min-height: 20px;
+  padding: 2px 5px;
+  border: 1px solid #926f53;
+  background: #423334;
+  color: #ffedcb;
+  box-shadow: 1px 2px #2f262599;
+  font-size: clamp(9px, 1.15vw, 12px);
+}
+
+.quest-interior-2 .quest-room-prop:is(:hover, :focus-visible, .is-target) .quest-room-prop-label {
+  background: var(--pocket-highlight);
+  color: var(--pocket-ink);
+}
+
 .pocket-transition { position: absolute; z-index: 20; inset: 0; pointer-events: none; }
 .pocket-transition::before,
 .pocket-transition::after {
@@ -477,20 +462,23 @@
 }
 
 .pocket-console .console-screen-status {
-  min-height: 36px;
-  padding: 8px 10px;
+  min-height: 24px;
+  padding: 4px 8px;
   border: 2px solid #162a25;
   border-top: 0;
   font-size: 11px;
 }
 
 .pocket-console .console-controls {
-  padding: 25px 6px 3px;
+  padding: 12px 8px 2px;
   min-height: 0;
+  gap: 8px;
 }
 
 .pocket-console .console-dpad {
-  filter: drop-shadow(2px 4px #9ca39d);
+  grid-template-columns: repeat(3, 32px);
+  grid-template-rows: repeat(3, 32px);
+  filter: drop-shadow(2px 3px #9ca39d);
 }
 
 .pocket-console .console-dpad button,
@@ -506,7 +494,11 @@
   translate: 0 1px;
 }
 
+.pocket-console .console-ab { transform: rotate(-11deg); }
+
 .pocket-console .console-ab button span {
+  width: 48px;
+  height: 48px;
   background: linear-gradient(135deg, #a95370, #753152);
   border: 2px solid #713453;
   box-shadow: inset 2px 2px #d7879b, 1px 5px #54334d;
@@ -518,7 +510,7 @@
   box-shadow: inset 1px 2px #5e3753;
 }
 
-.pocket-console :is(.console-controls, .quest-toolbar-actions) button:focus-visible {
+.pocket-console :is(.console-controls, .quest-toolbar-actions) :is(button, a):focus-visible {
   outline: 2px solid #377a73;
   outline-offset: 3px;
 }
@@ -528,28 +520,39 @@
 }
 
 @media (max-width: 700px) {
-  .pocket-console { padding: 16px 10px 14px; }
-  .pocket-console .console-bezel { padding: 10px 8px 11px; }
-  .pocket-console .console-topline { padding-bottom: 11px; }
-  .pocket-console .quest-stage { min-height: 276px; }
+  .pocket-console { padding: 11px 8px 9px; }
+  .pocket-console .console-bezel { padding: 5px; }
+  .pocket-console .quest-stage { min-height: 250px; }
+  .pocket-console .pocket-exhibit-stage { min-height: 320px; }
   .pocket-town { background-image: var(--town-phone-art); }
-  .pocket-console .quest-building { width: 26%; }
+  .pocket-console .quest-building-0,
+  .pocket-console .quest-building-2 { width: 29%; }
+  .pocket-console .quest-building-1 { width: 25%; }
   .pocket-console .quest-building-label {
     width: max-content;
-    max-width: calc(100% + 10px);
-    padding: 3px 4px;
+    max-width: calc(100% + 4px);
+    padding: 2px 3px;
     white-space: normal;
     text-wrap: balance;
   }
-  .quest-building-label small { display: none; }
-  .pocket-console .quest-building-label b { font-size: clamp(9px, 2.5vw, 13px); }
-  .pocket-console .quest-interior-heading { padding: 6px 9px; }
-  .pocket-console .quest-interior-heading span { font-size: 11px; }
-  .pocket-console .quest-interior-heading button { min-height: 42px; }
-  .pocket-console .console-controls { padding: 17px 3px 0; gap: 9px; }
-  .pocket-console .console-system-buttons { padding-top: 2px; gap: 17px; }
-  .pocket-console .console-ab { gap: clamp(7px, 3.5vw, 16px); padding-right: 0; }
+  .pocket-console .quest-building-label b { font-size: clamp(9px, 2.5vw, 12px); }
+  .pocket-console .world-toolbar { padding-inline: 5px; font-size: 11px; }
+  .pocket-console .quest-toolbar-actions :is(button, a) { min-height: 44px; padding-inline: 4px; }
+  .pocket-console .console-controls {
+    grid-template-columns: 1fr auto 1fr;
+    gap: 3px;
+    padding: 9px 0 0;
+  }
+  .pocket-console .console-dpad { grid-area: 1 / 1; }
+  .pocket-console .console-ab { grid-area: 1 / 3; gap: 3px; padding-right: 0; transform: none; }
+  .pocket-console .console-system-buttons {
+    grid-area: 1 / 2;
+    display: grid;
+    gap: 3px;
+    padding: 0;
+  }
   .pocket-console .console-ab button span { width: 44px; height: 44px; }
+  .pocket-console .world-hint { font-size: 10px; margin-top: 7px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

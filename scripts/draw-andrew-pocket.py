@@ -85,7 +85,8 @@ def tree(d, x, y, seed, scale=1):
     for _ in range(26):
         u, v = rng.randrange(-11, 13), rng.randrange(-33, -12)
         px, py = points([(u,v)])[0]
-        if d._image.getpixel((px,py))[:3] in ((103,141,78), (72,117,75)):
+        if (0 <= px < d._image.width and 0 <= py < d._image.height
+                and d._image.getpixel((px,py))[:3] in ((103,141,78), (72,117,75))):
             line(d, [(px,py),(px+1,py)], rng.choice(["#779952","#527e4a","#5d874d","#87a45b"]))
 
 
@@ -131,6 +132,25 @@ def fence(d, x, y, count):
     rect(d, (x-2,y-3,x+(count-1)*9+4,y-2), "#aa8055")
 
 
+def studio_planter(d, x, y):
+    base_shadow(d,x-3,y+1,29,4)
+    poly(d,[(x,y),(x+4,y-7),(x+23,y-7),(x+25,y),(x+24,y+3),(x,y+3)],"#566852")
+    poly(d,[(x+1,y),(x+5,y-6),(x+22,y-6),(x+24,y)],"#bda27d")
+    rect(d,(x+4,y-3,x+22,y-1),"#705d48")
+    for i in range(4):
+        blossom(d,x+6+i*4,y-3-i%2,FLOWERS[i])
+
+
+def utility_cabinet(d, x, y):
+    base_shadow(d,x-4,y,23,4)
+    rect(d,(x,y-17,x+16,y+1),INK)
+    rect(d,(x+1,y-15,x+12,y),"#7b7d87")
+    line(d,[(x+2,y-14),(x+12,y-14)],"#a6abb0")
+    for i in range(3):
+        line(d,[(x+3,y-10+i*3),(x+10,y-10+i*3)],"#4c535d")
+    d.point((x+10,y-2),"#b8dca2")
+
+
 def town(mobile=False):
     canvas, d = image((400,200), GRASS[1])
     rng = Random(816)
@@ -158,11 +178,11 @@ def town(mobile=False):
         for _ in range(6):
             tuft(d,x+rng.randrange(-6,7),y+rng.randrange(-5,6))
     # The footprints and path junctions line up with the React door anchors.
-    main = [(14,163),(37,162),(58,166),(101,166),(140,161),(181,162),(200,166),
-            (220,164),(261,161),(302,167),(355,166),(389,160)]
-    wings = [[(84,94),(84,114),(86,128),(91,145),(92,165)],
-             [(200,81),(200,94),(197,112),(199,143),(200,180)],
-             [(316,94),(315,115),(313,133),(307,149),(306,167)]]
+    main = [(2,167),(30,159),(69,162),(114,170),(156,170),(185,164),
+            (202,158),(228,151),(255,150),(278,152),(307,162),(341,173),(398,172)]
+    wings = [[(75,86),(77,106),(90,123),(108,140),(115,169)],
+             [(205,73),(205,90),(224,108),(230,132),(228,151)],
+             [(325,115),(323,133),(307,149),(307,162)]]
     mask = Image.new("L",(400,200))
     md = ImageDraw.Draw(mask)
     def pathway(draw, points, width, fill):
@@ -179,7 +199,7 @@ def town(mobile=False):
         x,y = rng.randrange(400),rng.randrange(200)
         if mask.getpixel((x,y)):
             line(d, [(x,y),(x+1,y)],rng.choice(["#e9ce98","#c8ab77","#dec592","#cbb180"]))
-    for x,y in [(84,94),(200,82),(316,94)]:
+    for x,y in [(75,86),(205,73),(325,115)]:
         rect(d,(x-12,y-6,x+12,y+6),"#a09172")
         for ix in range(4):
             stone=x-11+ix*6
@@ -199,23 +219,25 @@ def town(mobile=False):
         tile = tile.resize((51, 43), Image.Resampling.NEAREST)
         canvas.paste(tile, (round(x * 244 / 400) - 16, round(y * 224 / 200) - 34), tile)
 
-    for x,y in [(26,66),(46,48),(129,41),(156,52),(253,44),(280,46),
-                (366,53),(385,74),(18,121),(116,116),(279,118),(369,126),
-                (28,191),(169,197),(231,196),(374,193)]:
-        scenery(tree,x,y,x+y,.66 if y>=190 else .82)
-    for x,y,i in [(54,76,0),(115,87,1),(166,82,3),(225,77,0),(286,90,2),
-                    (342,89,1),(18,144,0),(118,148,0),(151,141,2),(244,142,1),
-                    (280,152,0),(367,149,0),(93,190,2),(323,194,3),(399,173,1)]:
+    for x,y in [(6,71),(28,43),(121,36),(137,59),(153,45),(162,62),
+                (255,34),(274,44),(376,42),(394,70),(23,116),(47,139),
+                (372,132),(392,119),(40,196),(73,194),(243,196),(363,196)]:
+        scenery(tree,x,y,x+y,.65 if y>=193 else (.96 if x%2 else .81))
+    for x,y,i in [(29,83,0),(120,80,1),(164,84,3),(246,75,0),(289,111,2),
+                    (369,118,1),(22,143,0),(132,149,0),(154,137,2),(248,127,1),
+                    (288,132,0),(356,152,0),(97,189,2),(318,192,3),(396,183,1)]:
         scenery(bush,x,y,i)
-    for x,y in [(44,151),(129,151),(246,149),(333,153)]:
+    for x,y in [(45,149),(180,177),(266,137)]:
         scenery(bench,x,y)
-    for x,y in [(69,127),(105,132),(183,129),(215,114),(292,135),(331,131),
-                (14,168),(387,169)]:
+    for x,y in [(103,125),(210,118),(298,137),(48,163),(360,174)]:
         scenery(lantern,x,y)
-    for x,y,n in [(3,105,4),(130,96,4),(232,99,3),(354,108,4),(45,186,4),(332,187,3)]:
+    for x,y,n in [(19,100,3),(133,94,3),(257,81,2),(370,106,3),(331,188,3)]:
         scenery(fence,x,y,n)
-    for x,y in [(38,91),(56,111),(115,132),(142,112),(181,150),(222,150),
-                (273,110),(352,111),(68,182),(122,189),(254,186),(347,179)]:
+    scenery(studio_planter,96,98)
+    scenery(utility_cabinet,239,80)
+    scenery(carton,353,122,10,7,"#d4a06a")
+    for x,y in [(33,98),(58,113),(113,119),(145,108),(174,140),(202,183),
+                (286,103),(354,122),(62,182),(123,191),(252,183),(342,151)]:
         for i in range(5):
             scenery(blossom,x+rng.randrange(-5,6),y+rng.randrange(-3,6),FLOWERS[i%4])
     canvas.save(OUT/("town-phone.png" if mobile else "town.png"), optimize=True)
@@ -234,100 +256,104 @@ def window(d, x, y, w=16, h=16, light=GLASS_LIGHT):
 
 def facade(district, door_frame):
     canvas, d = image((112,73))
-    roof_dark, roof, roof_light, roof_rim = ROOFS[district]
-    poly(d,[(8,63),(92,59),(108,67),(107,71),(20,71),(4,68)],(32,55,42,110))
-    poly(d,[(13,42),(93,42),(102,35),(102,61),(95,67),(13,67)], INK)
-    rect(d,(15,38,93,64),"#e0bf85")
-    poly(d,[(94,37),(100,32),(100,60),(94,64)],"#a6825d")
-    rect(d,(16,43,92,46),"#b58b5c")
-    for y in range(48,62,4):
-        for x in range(17+(y%3)*4,92,13):
-            line(d,[(x,y),(x+5,y)],"#bb9b68")
-    rect(d,(15,60,93,64),"#8b7760")
-    rect(d,(16,60,93,61),"#beab80")
-    for x in range(17,94,8):
-        rect(d,(x,63,x+5,64),"#6e6959")
-    for x in (15,38,72,91):
-        rect(d,(x,38,x+2,63),WOOD)
-        line(d,[(x,y) for y in (43,61)],WOOD_LIGHT)
-    # Tiled front pitch and shaded side pitch.
-    poly(d,[(7,39),(9,34),(29,13),(82,13),(104,32),(105,38),(97,43),(8,43)],INK)
-    poly(d,[(10,36),(30,15),(81,15),(98,36)],roof)
-    poly(d,[(82,15),(102,33),(102,37),(98,40),(96,34)],roof_dark)
-    roof_mask = Image.new("1",canvas.size)
-    ImageDraw.Draw(roof_mask).polygon([(10,36),(30,15),(81,15),(98,36)],fill=1)
-    for y in range(17,38,4):
-        for x in range(9,100):
-            if roof_mask.getpixel((x,y)):
-                d.point((x,y),roof_dark)
-                if (x + y//4*3) % 8 == 0:
-                    line(d,[(x,y+1),(x,y+2)],roof_dark)
-                elif (x + y//4*3) % 8 in (1,2,3):
-                    d.point((x,y+1),roof_light)
-    poly(d,[(7,36),(98,36),(104,32),(104,38),(98,42),(7,42)],roof_dark)
-    line(d,[(8,37),(97,37),(102,34)],roof_rim,2)
-    line(d,[(30,14),(80,14)],roof_rim,2)
-    line(d,[(45,13),(65,13)],CREAM)
-    if district==1:
-        line(d,[(73,13),(73,1)],INK,2)
-        line(d,[(68,4),(80,4)],"#aab1ac",2)
-        line(d,[(67,8),(77,8)],"#7d8a8b")
-        d.point((73,0),"#f4ae79")
-        line(d,[(95,24),(96,44),(99,51),(99,59)],INK)
-    elif district==0:
-        rect(d,(67,8,74,19),INK)
-        rect(d,(68,8,72,18),"#9a684c")
-        rect(d,(66,6,75,8),"#d39366")
+    shade, mid, light, trim = ROOFS[district]
+    base_shadow(d,4,63,104,8,(27,43,32,115))
+
+    if district == 0:
+        # A low storefront with tall glass panels and a little entrance awning.
+        poly(d,[(5,31),(15,21),(105,21),(110,28),(110,61),(102,66),(5,66)],INK)
+        rect(d,(7,34,99,63),"#b8ad88")
+        poly(d,[(100,35),(108,29),(108,60),(100,64)],"#777d6c")
+        rect(d,(8,38,98,57),shade)
+        for x,w in [(12,11),(25,13),(72,11),(86,10)]:
+            rect(d,(x,39,x+w,56),"#315d65")
+            rect(d,(x+1,40,x+w-1,54),"#6fa9a3")
+            poly(d,[(x+1,40),(x+w-2,40),(x+1,49)],"#a8d0b8")
+            line(d,[(x+1,48),(x+w-1,48)],"#3e7a80")
+            line(d,[(x+1,55),(x+w-1,55)],"#dbad68")
+        poly(d,[(3,31),(15,20),(103,20),(109,26),(100,33),(3,33)],shade)
+        poly(d,[(6,30),(16,22),(101,22),(96,29)],mid)
+        for x in range(14,98,6):
+            line(d,[(x,29),(x+6,23)],light)
+        line(d,[(5,31),(100,31),(108,26)],trim,2)
+        rect(d,(39,32,69,36),shade)
+        rect(d,(46,33,62,34),"#b9e1c9")
+        for x in (7,89):
+            rect(d,(x,60,x+11,64),WOOD)
+            for i in range(0,12,2):
+                line(d,[(x+i,60),(x+i,56-i%3)],"#82a25d")
+        poly(d,[(39,43),(43,38),(68,38),(73,43)],light)
+        line(d,[(39,43),(73,43)],shade,2)
+    elif district == 1:
+        # Raised steel core, stepped utility wing, antenna and louvers.
+        poly(d,[(25,12),(36,4),(69,4),(79,12),(79,29),(98,29),(105,36),
+                (105,62),(97,66),(15,66),(15,39),(25,34)],INK)
+        rect(d,(27,15,72,63),"#a49daf")
+        poly(d,[(73,15),(77,12),(77,62),(73,65)],shade)
+        rect(d,(17,40,26,62),mid)
+        rect(d,(79,37,96,63),"#777888")
+        poly(d,[(97,37),(103,33),(103,60),(97,64)],shade)
+        poly(d,[(25,12),(36,5),(69,5),(77,12),(72,15),(25,15)],mid)
+        line(d,[(28,12),(72,12),(76,9)],trim,2)
+        line(d,[(30,16),(30,62)],light)
+        line(d,[(68,16),(68,62)],shade,2)
+        line(d,[(34,3),(34,0),(61,0)],shade)
+        d.point((61,0),"#ffaa6f")
+        for y in (22,28,34):
+            rect(d,(35,y,64,y+3),shade)
+            line(d,[(37,y+1),(61,y+1)],light)
+            d.point((62,y+2),"#9cd69b")
+        for y in range(42,59,4):
+            line(d,[(81,y),(94,y)],shade,2)
+            d.point((83,y),"#9bbb9b")
+        line(d,[(93,32),(98,32),(101,38),(101,57)],"#c18a63")
+        rect(d,(34,40,71,43),shade)
+        line(d,[(36,40),(69,40)],trim)
     else:
-        rect(d,(62,5,73,14),WOOD)
-        rect(d,(63,5,72,10),"#daa26a")
-        line(d,[(63,8),(71,8)],"#8c543e")
-    # A shared facade and three readable district emblems.
-    rect(d,(43,30,68,38),INK)
-    rect(d,(44,31,67,36),roof_dark)
-    line(d,[(45,31),(66,31)],roof_rim)
-    if district==0:
-        rect(d,(51,32,60,35),"#aad8c5")
-        d.point((54,34),GLASS)
-        d.point((57,34),GLASS)
-    elif district==1:
-        line(d,[(49,34),(61,34)],"#bec9ea")
-        rect(d,(54,32,57,36),"#bec9ea")
-    else:
-        poly(d,[(55,31),(60,34),(55,37),(50,34)],"#ffd193")
-    window(d,21,47,13,10, "#80c2bb" if district!=2 else "#d5ad76")
-    window(d,77,47,11,10, "#9eb7cd" if district==1 else "#80c2bb")
-    if district==0:
-        for x,y in [(17,65),(93,66)]:
-            for i in range(4):
-                rect(d,(x+i,y-4-i%2,x+i,y-1),"#54784e")
-            rect(d,(x-1,y-1,x+5,y+2),WOOD_MID)
-    elif district==1:
-        rect(d,(78,57,88,61),INK)
-        for x in (79,82,86):
-            d.point((x,59),"#92e0a7")
-        rect(d,(16,59,23,65),"#69657f")
-        line(d,[(17,61),(21,61)],"#a4a6ac")
-    else:
-        for x,y in [(17,62),(83,59),(90,62)]:
-            rect(d,(x,y,x+6,y+5),WOOD)
-            rect(d,(x+1,y,x+5,y+3),GOLD)
-            line(d,[(x+3,y),(x+3,y+3)],"#b47851")
+        # Gabled maker shop with an open-sided loading porch and parcels.
+        poly(d,[(9,31),(29,10),(62,10),(84,36),(102,36),(109,43),(109,59),
+                (102,65),(88,65),(81,68),(10,68),(6,61),(6,37)],INK)
+        rect(d,(9,34,80,62),"#c3996b")
+        for y in range(43,62,4):
+            line(d,[(9,y),(80,y)],"#ac7953")
+        poly(d,[(8,35),(29,10),(52,10),(75,35)],shade)
+        poly(d,[(11,34),(31,12),(51,12),(70,34)],mid)
+        poly(d,[(52,10),(80,32),(85,38),(74,36)],shade)
+        for y in range(17,34,4):
+            left=30-(y-13)*4//5
+            right=51+(y-13)*4//5
+            line(d,[(left,y),(right,y)],shade)
+            for x in range(left+2,right,7):
+                line(d,[(x,y+1),(min(x+3,right),y+1)],light)
+        line(d,[(10,34),(31,12),(50,12),(71,34)],trim,2)
+        rect(d,(37,22,47,31),shade)
+        rect(d,(39,24,45,29),"#f9c278")
+        window(d,15,46,15,11,"#d4ba88")
+        poly(d,[(73,38),(99,36),(108,42),(106,46),(73,46)],shade)
+        line(d,[(76,39),(99,38),(105,42)],trim,2)
+        rect(d,(77,46,105,61),"#856348")
+        for x in (77,104):
+            rect(d,(x,45,x+2,63),WOOD)
+            line(d,[(x,46),(x,61)],WOOD_LIGHT)
+        for x,y,w in [(82,53,9),(91,51,9),(87,59,10)]:
+            carton(d,x,y,w,6,"#d59560")
+        line(d,[(10,63),(80,63),(86,61),(105,61)],GOLD,2)
+
     rect(d,(44,43,67,65),WOOD)
     rect(d,(46,44,65,65),INK)
-    rect(d,(47,45,64,65),"#223c3d")
-    if door_frame==0:
-        rect(d,(47,45,64,65),roof_dark)
-        rect(d,(48,46,63,57),roof)
+    rect(d,(47,45,64,65),"#26363c")
+    if door_frame == 0:
+        rect(d,(47,45,64,65),shade)
+        rect(d,(48,46,63,57),mid)
         rect(d,(50,47,61,54),GLASS)
         line(d,[(51,48),(60,48)],GLASS_LIGHT)
         line(d,[(55,47),(55,54)],CREAM)
-        line(d,[(50,61),(61,61)],roof_light)
+        line(d,[(50,61),(61,61)],light)
         d.point((61,59),GOLD)
     else:
-        last = 54 if door_frame==1 else 49
-        poly(d,[(47,45),(last,46),(last,65),(47,65)],roof)
-        line(d,[(last,46),(last,64)],roof_light)
+        last = 54 if door_frame == 1 else 49
+        poly(d,[(47,45),(last,46),(last,65),(47,65)],mid)
+        line(d,[(last,46),(last,64)],light)
         rect(d,(max(last+1,52),62,64,65),GOLD)
     rect(d,(42,65,69,67),"#84755b")
     line(d,[(43,65),(68,65)],CREAM)
@@ -344,7 +370,106 @@ def pot(d,x,y):
     poly(d,[(x,y-10),(x+5,y-15),(x+7,y-16),(x+7,y-12),(x+3,y-9)],"#79a25a")
 
 
+def workshop():
+    rng = Random(212)
+    canvas, d = image((400,200),"#453a39")
+    rect(d,(0,0,399,63),"#59443d")
+    for y in range(0,60,7):
+        line(d,[(0,y),(399,y)],"#493934")
+        for x in range((y*3)%31,400,31):
+            line(d,[(x,y+1),(x,y+6)],"#503e37")
+    # Deep purple tile and timber frame the arcade bay.
+    rect(d,(263,4,389,74),"#393747")
+    for x in range(266,389,7):
+        line(d,[(x,5),(x,71)],"#464153")
+    for x in (7,249,389):
+        rect(d,(x,0,x+5,68),"#382e2d")
+        line(d,[(x+1,0),(x+1,67)],"#79523c")
+    rect(d,(0,62,399,66),"#3c3331")
+    line(d,[(0,63),(399,63)],"#977251")
+
+    # Broad plank perspective, with light falling from the work lights and windows.
+    lamps=[(76,120,97,72),(196,99,117,69),(326,121,70,66)]
+    for y in range(67,200):
+        for x in range(400):
+            warmth=max(0, *(1-(((x-lx)/rx)**2+((y-ly)/ry)**2)**.5 for lx,ly,rx,ry in lamps))
+            row=(y-67)//7
+            joint=(x+row*29)%62
+            tone=(row*9+(x+row*29)//62*5)%11-5
+            seam=-13 if (y-67)%7==6 or joint==0 else (5 if (y-67)%7==0 else 0)
+            grain=rng.choice((-2,0,0,0,1,3)) if (y%7)%2 else 0
+            if x > 260:
+                color=(118+warmth*40,80+warmth*33,61+warmth*31)
+            else:
+                color=(141+warmth*64,96+warmth*50,67+warmth*37)
+            d.point((x,y),tuple(round(c+tone+seam+grain) for c in color))
+    poly(d,[(275,102),(367,102),(388,140),(383,163),(276,163),(260,149)],"#493f55")
+    poly(d,[(278,104),(366,104),(385,140),(380,160),(277,160),(263,148)],"#7d5968")
+    poly(d,[(280,107),(365,107),(382,141),(377,157),(278,157),(266,148)],"#5a465f")
+    for y in range(119,157,5):
+        for x in range(281+y%3,378,7):
+            d.point((x,y),"#71536b")
+    for x in (278, 368):
+        line(d,[(x,148),(x+6,155)],"#ad826f",2)
+
+    window(d,22,15,38,26,"#b2c299")
+    line(d,[(21,44),(62,44)],"#d29c61",2)
+    rect(d,(68,11,110,37),"#44332d")
+    rect(d,(70,13,108,35),"#9b7959")
+    for x in range(72,108,4):
+        for y in range(16,34,4):
+            d.point((x,y),"#5c483a")
+    line(d,[(75,19),(76,27),(83,30)],"#e1bc7a",2)
+    rect(d,(90,17,92,29),"#568a80")
+    rect(d,(98,16,105,25),"#e3c692")
+    line(d,[(100,19),(103,19)],"#9d775a")
+
+    for y in (22,46):
+        rect(d,(120,y,162,y+4),"#3d302a")
+        line(d,[(120,y),(162,y)],"#ad774f")
+        for x in range(124,160,8):
+            h=rng.randrange(5,10)
+            rect(d,(x,y-h,x+5,y-1),rng.choice(("#966d50","#ca915c","#7a7c63","#bd774f")))
+            d.point((x+2,y-h+2),"#e6c088")
+
+    # Deep window bay and the hanging brass lamp above the model.
+    window(d,174,10,48,34,"#82aa9d")
+    rect(d,(172,46,224,52),"#4c3832")
+    line(d,[(172,47),(224,47)],"#b58a63")
+    line(d,[(198,0),(198,32)],"#3d2e2b",2)
+    poly(d,[(189,33),(194,29),(202,29),(209,33),(209,35),(189,35)],"#c48d56")
+    line(d,[(191,35),(207,35)],"#f8d899",2)
+    for x,y in [(228,39),(235,43),(240,38)]:
+        rect(d,(x,y,x+4,49),"#a47c60")
+        d.point((x+2,y+2),"#d9bc82")
+
+    rect(d,(278,12,295,31),"#282636")
+    rect(d,(280,14,293,28),"#885d83")
+    poly(d,[(281,25),(285,18),(290,26)],"#d28a9b")
+    rect(d,(345,17,365,36),"#292735")
+    rect(d,(347,19,363,34),"#806648")
+    poly(d,[(350,31),(353,23),(359,31)],"#e8b879")
+    for x in (269,377):
+        rect(d,(x,20,x+2,43),"#747092")
+        line(d,[(x,21),(x,41)],"#aaaa9d")
+    for x,y,w,h,c in [(17,120,15,14,"#a97853"),(27,129,13,12,"#c59764"),
+                      (127,112,16,11,"#b7865b"),(377,88,13,12,"#987253")]:
+        carton(d,x,y,w,h,c)
+    pot(d,237,101)
+
+    # Brass threshold and a compact doormat at the entrance.
+    rect(d,(176,185,225,197),"#725140")
+    rect(d,(179,186,222,195),"#906343")
+    for x in range(182,221,3):
+        line(d,[(x,187),(x,194)],"#aa7c51")
+    line(d,[(174,198),(227,198)],"#c89560",2)
+    canvas.save(OUT/"room-2.png",optimize=True)
+
+
 def interior(district):
+    if district == 2:
+        workshop()
+        return
     roof_dark, roof, roof_light, roof_rim = ROOFS[district]
     rng = Random(110 + district)
     canvas,d=image((400,200),"#c4a479")
@@ -503,47 +628,58 @@ def station(name, pulse=0):
             d.point((x,37),"#dea96d" if x==43+pulse*5 else "#b5d1a4")
         rect(d,(25,41,56,43),"#bab1a0")
     elif name=="model":
-        desk(d,4,43,62,"#688a69")
-        poly(d,[(8,37),(17,29),(61,29),(67,38),(59,44),(9,44)],INK)
-        poly(d,[(10,36),(18,30),(59,30),(64,38),(59,42),(11,42)],"#669252")
-        line(d,[(14,38),(33,36),(56,39)],"#d9c792",3)
-        for x,y,c in [(16,30,"#608e83"),(32,24,"#8886a0"),(48,32,"#c89067"),(39,36,"#78a691")]:
-            rect(d,(x,y-3,x+7,y+4),CREAM)
-            poly(d,[(x-1,y-3),(x+2,y-6),(x+6,y-6),(x+9,y-3)],c)
-            d.point((x+4,y+1),INK)
-        for x,y in [(12,40),(25,34),(58,32),(61,41)]:
-            rect(d,(x,y-5,x+1,y-1),"#305f4e")
-            d.point((x,y-5),"#a4bc72")
+        desk(d,4,43,63,"#594c43")
+        poly(d,[(1,37),(10,26),(62,26),(70,37),(63,45),(8,45)],INK)
+        poly(d,[(3,37),(12,27),(60,27),(67,37),(61,43),(9,43)],"#6b9a67")
+        poly(d,[(8,37),(20,34),(26,38),(23,42),(12,42)],"#588d95")
+        line(d,[(15,34),(25,33),(32,37),(48,32),(59,38)],"#ead1a0",2)
+        for x,y,w,c in [(14,25,9,"#50807c"),(30,20,11,"#9388a5"),
+                        (48,26,10,"#ca8b60"),(40,34,7,"#669487")]:
+            rect(d,(x,y-4,x+w,y+4),"#dbce9c")
+            poly(d,[(x-2,y-4),(x+2,y-8),(x+w-2,y-8),(x+w+2,y-4)],c)
+            rect(d,(x+w//2,y,x+w//2+1,y+4),INK)
+            d.point((x+2,y),"#ffdf99")
+        for x,y in [(11,40),(25,31),(60,33),(63,40),(30,41),(7,37)]:
+            rect(d,(x,y-5,x+1,y-1),"#3a6859")
+            rect(d,(x-1,y-6,x+2,y-4),"#9ab677")
+        rect(d,(14,47,56,50),"#6e5947")
+        line(d,[(17,48),(53,48)],"#aa8a63")
     elif name=="bench":
-        desk(d,5,44,61,"#b4855f")
-        rect(d,(10,18,61,39),WOOD)
-        rect(d,(11,19,60,37),"#c6a57b")
-        for x in range(13,60,4):
-            for y in range(21,36,4):
-                d.point((x,y),"#9c805f")
-        line(d,[(15,25),(15,32),(19,34)],"#617b77",2)
-        line(d,[(25,23),(28,31)],"#4f6e68",2)
-        rect(d,(44,25,59,35),"#f1d9a9")
-        line(d,[(46,27),(54,27)],"#b08661")
-        carton(d,34,36,9,7,"#dc9f74")
-        carton(d,50,33,9,9,"#68948c")
-        rect(d,(11,41,28,43),"#e6d7af")
+        desk(d,4,42,63,"#a47856")
+        poly(d,[(3,40),(13,29),(59,29),(68,40),(65,44),(4,44)],"#7e593f")
+        poly(d,[(6,39),(14,30),(58,30),(65,39),(62,42),(8,42)],"#cc9b66")
+        for x,y,c,accent in [(12,32,"#d1a774","#ad5840"),(24,29,"#e6c897","#47796f"),
+                              (37,34,"#bf855d","#703f37"),(50,30,"#ead2a5","#a35641")]:
+            poly(d,[(x,y-12),(x+7,y-13),(x+9,y-1),(x+1,y+1)],INK)
+            poly(d,[(x+1,y-11),(x+6,y-12),(x+8,y-2),(x+2,y)],c)
+            line(d,[(x+2,y-6),(x+6,y-7)],accent,2)
+            d.point((x+5,y-4),accent)
+        poly(d,[(49,38),(59,35),(63,37),(54,41)],"#efdbad")
+        line(d,[(52,38),(58,36)],"#a97155")
+        line(d,[(9,39),(16,36)],"#657b73",2)
+        rect(d,(38,46,62,51),"#7f5736")
+        line(d,[(47,48),(54,48)],GOLD)
     else:
-        base_shadow(d,15,51,46,4,(32,46,37,118))
-        poly(d,[(17,9),(23,5),(49,5),(56,10),(56,48),(51,53),(17,53)],INK)
-        rect(d,(19,11,49,51),"#886f93")
-        poly(d,[(50,11),(55,9),(55,47),(50,51)],"#584d71")
-        rect(d,(21,11,47,18),"#d09a75")
-        rect(d,(25,13,44,15),"#f7d38a")
-        rect(d,(21,21,47,37),INK)
-        rect(d,(23,23,45,35),"#487f78")
-        poly(d,[(25,34),(30,28),(37,28),(39,26),(43,30),(43,34)],"#89ac78")
-        rect(d,(31+pulse*3,28,33+pulse*3,30),"#f4d890")
-        rect(d,(20,39,48,42),"#e6af78")
-        rect(d,(27,36,28,39),INK)
-        rect(d,(24,35,29,36),"#bd6d57")
-        rect(d,(39,39,41,40),"#8f625b")
-        rect(d,(29,46,37,48),"#594f6d")
+        base_shadow(d,11,51,53,5,(32,34,38,156))
+        poly(d,[(12,9),(19,2),(53,2),(60,9),(59,48),(54,55),(13,55)],INK)
+        rect(d,(15,10,51,53),"#785e87")
+        poly(d,[(52,12),(58,8),(57,48),(52,52)],"#524760")
+        line(d,[(16,12),(16,50)],"#aa7b9c")
+        line(d,[(56,13),(56,47)],"#955f80")
+        rect(d,(17,6,50,16),"#b77563")
+        rect(d,(19,7,48,13),"#eab077")
+        line(d,[(23,10),(42,10)],"#f8d78d",2)
+        rect(d,(18,19,50,36),"#242f46")
+        rect(d,(20,21,48,34),"#548486")
+        poly(d,[(22,32),(29,26),(36,28),(41,24),(47,30),(47,33),(22,33)],"#88ab84")
+        rect(d,(28+pulse*4,27,30+pulse*4,29),"#ffe398")
+        poly(d,[(18,36),(50,36),(51,42),(17,42)],"#d59c76")
+        rect(d,(24,36,26,39),INK)
+        rect(d,(23,34,27,36),"#b65555")
+        rect(d,(39,38,41,39),"#7e4857")
+        rect(d,(44,37,46,38),"#516e83")
+        rect(d,(26,46,42,51),"#423a52")
+        line(d,[(30,48),(37,48)],"#c09682")
     return canvas
 
 

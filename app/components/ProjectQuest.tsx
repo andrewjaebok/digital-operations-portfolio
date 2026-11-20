@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { categories } from "../data/categories";
 import {
   advance, advanceRoom, approachStation, doors, nearby, nearbyStation,
-  roomSpawn, spawn, stationPositions, stationRow, type Point,
+  roomSpawn, spawn, stationPositions, type Point,
 } from "./quest-engine.mjs";
 import { QuestExhibit, questStations } from "./QuestExhibit";
 import { districtNames, PocketAvatar, PocketFacade, PocketRoom, PocketStation, PocketTown, scenePosition, type PocketFacing } from "./PocketArtwork";
@@ -37,7 +37,7 @@ export default function ProjectQuest() {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const walkingBlocked = paused || transition !== null || exhibit !== null || mapOpen;
   const stations = room === null ? [] : questStations[room];
-  const stationLocations = stationPositions(stations.length);
+  const stationLocations = stationPositions(stations.length, room);
 
   const focus = (selector?: string) => requestAnimationFrame(() => {
     const target = selector ? map.current?.querySelector<HTMLElement>(selector) : map.current;
@@ -193,8 +193,7 @@ export default function ProjectQuest() {
 
   useEffect(() => {
     if (!open || walkingBlocked) return;
-    const roomStations = room === null ? [] : stationPositions(questStations[room].length);
-    const movePlayer = room === null ? advance : advanceRoom;
+    const roomStations = room === null ? [] : stationPositions(questStations[room].length, room);
     let frame = 0;
     let last = 0;
     const clear = () => {
@@ -215,7 +214,9 @@ export default function ProjectQuest() {
 
       if (bounds && bounds.width > 0 && bounds.height > 0) {
         setFacing(dx ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
-        const next = movePlayer(pos.current, dx, dy, dt, bounds.width, bounds.height);
+        const next = room === null
+          ? advance(pos.current, dx, dy, dt, bounds.width, bounds.height)
+          : advanceRoom(pos.current, dx, dy, dt, bounds.width, bounds.height, room);
         const distance = Math.hypot(
           (next.x - pos.current.x) * bounds.width / 800,
           (next.y - pos.current.y) * bounds.height / 400,
@@ -270,12 +271,24 @@ export default function ProjectQuest() {
       }}>{open ? "Put console away ↑" : "Power on →"}</button>
     </div>
     {open && <div className="world-console retro-console quest-v2 pocket-console">
-      <div className="console-topline"><span>ANDREW <b>POCKET</b></span><small>MODEL 03</small></div>
+      <div className="console-topline">
+        <span>ANDREW <b>POCKET</b></span>
+        <small><i className="console-power" aria-hidden="true" /> MODEL 03</small>
+      </div>
       <div className="console-bezel">
-        <div className="console-screen-label"><span className="console-power"/> POWER <i/> DOT MATRIX WITH COLOR</div>
         <div className="world-toolbar">
-          <span>{room === null ? "ANDREW’S WORLD / 3 AREAS" : categories[room].title.toUpperCase()}</span>
-          <div className="quest-toolbar-actions">{room === null && <button type="button" aria-expanded={mapOpen} disabled={paused || transition !== null} onClick={toggleMap}>MAP</button>}<button type="button" onClick={reset}>Reset</button></div>
+          <span>{room === null ? "Andrew’s town" : districtNames[room]}</span>
+          <div className="quest-toolbar-actions">
+            {room === null ? (
+              <button type="button" aria-expanded={mapOpen} disabled={paused || transition !== null} onClick={toggleMap}>Map</button>
+            ) : (
+              <>
+                {exhibit === null && <Link href={categories[room].route}>Case studies</Link>}
+                <button type="button" disabled={paused || transition !== null} onClick={back}>{exhibit === null ? "Town" : "Room"}</button>
+              </>
+            )}
+            <button type="button" onClick={reset}>Reset</button>
+          </div>
         </div>
         <div className={`quest-stage${exhibit !== null ? " pocket-exhibit-stage" : ""}`} ref={map} tabIndex={0} role="region" aria-label={room === null
           ? "Portfolio world. Arrow keys or WASD to walk. Enter to interact."
@@ -313,29 +326,29 @@ export default function ProjectQuest() {
                 <button
                   key={category.id}
                   type="button"
-                  className={`quest-building${selected === index ? " is-target" : ""}${transition === index ? " is-opening" : ""}`}
+                  className={`quest-building quest-building-${index}${selected === index ? " is-target" : ""}${transition === index ? " is-opening" : ""}`}
                   style={{ ...scenePosition(doors[index]), zIndex: 20 + doors[index].y }}
                   onFocus={() => setSelected(index)}
                   onClick={() => enterRoom(index)}
                   aria-label={`Enter ${category.title} room`}
                 >
                   <PocketFacade district={index} />
-                  <span className="quest-building-label"><b>{category.title}</b><small>{districtNames[index]}</small></span>
+                  <span className="quest-building-label"><b>{category.title}</b></span>
                   {selected === index && <span className="pocket-entrance-prompt" aria-hidden="true">A</span>}
                 </button>
               ))}
-              <PocketAvatar position={position} facing={facing} stride={stride} inRoom={false} />
+              <PocketAvatar position={position} facing={facing} stride={stride} layered />
             </> : exhibit !== null ? <QuestExhibit station={stations[exhibit]} onBack={back} />
               : <div className={"quest-interior quest-interior-" + room}>
                 <PocketRoom district={room} />
-                <header className="quest-interior-heading">
-                  <div><h4>{categories[room].title}</h4><span>{districtNames[room]}</span></div><button type="button" onClick={back}>← Hub</button>
-                </header>
                 {stations.map((station, index) => <button
                   key={station.kind}
                   type="button"
                   className={"quest-room-prop station-" + station.kind + (selected === index ? " is-target" : "")}
-                  style={{ left: stationLocations[index] / 8 + "%", top: stationRow / 4 + "%" }}
+                  style={{
+                    ...scenePosition(stationLocations[index]),
+                    zIndex: room === 2 ? 20 + stationLocations[index].y : 2,
+                  }}
                   onFocus={() => setSelected(index)}
                   onClick={() => openExhibit(index)}
                   aria-label={station.action}
@@ -343,8 +356,7 @@ export default function ProjectQuest() {
                   <PocketStation kind={station.kind} />
                   <span className="quest-room-prop-label">{station.label}</span>
                 </button>)}
-                <PocketAvatar position={position} facing={facing} stride={stride} inRoom />
-                <Link className="quest-interior-index" href={categories[room].route}>Browse all projects in this room ↗</Link>
+                <PocketAvatar position={position} facing={facing} stride={stride} layered={room === 2} />
               </div>}
           </div>
           {mapOpen && room === null && <div className="quest-overlay quest-travel" role="dialog" aria-label="Choose a district"><div className="quest-dialog-head"><strong>WORLD MAP</strong><button type="button" aria-label="Close world map" onClick={toggleMap}>×</button></div><p>Three districts. One world. Choose where to explore.</p><div className="quest-travel-grid">{categories.map((category,index)=><button type="button" key={category.id} onClick={() => fastTravel(index)}><span className={`quest-map-pin quest-map-pin-${index}`}>0{index+1}</span><strong>{category.title}</strong><small>{category.short}</small></button>)}</div></div>}
@@ -386,8 +398,7 @@ export default function ProjectQuest() {
           <button type="button" onClick={activate} disabled={walkingBlocked || selected === null} aria-label={action ? "A: " + action : "A: approach an object or use Select"}><span>A</span><small>ENTER</small></button>
         </div>
       </div>
-      <div className="console-bottom"><span>PRODUCT · SYSTEMS · IDEAS</span><div className="console-speaker" aria-hidden="true">{[0,1,2,3,4,5].map(i => <i key={i} />)}</div></div>
-      <p className="world-hint">Arrows / WASD: move · Select: jump to a destination · M: world map · A / Enter: interact · B / Esc: back · Start / P: pause</p>
+      <p className="world-hint">Arrows / WASD: move · Enter: interact · Esc: back · M: map · P: pause</p>
     </div>}
   </section>;
 }

@@ -1,13 +1,11 @@
 export type Point = {x:number;y:number};
 export const spawn: Point;
 export const doors: Point[];
-export const paths: {x:number;y:number;width:number;height:number}[];
 export function walkable(p:Point):boolean;
 export function advance(p:Point,dx:number,dy:number,seconds:number,width:number,height:number):Point;
 export function nearby(p:Point):number|null;
 export const roomSpawn: Point;
-export const stationRow: number;
-export function stationPositions(count:number):number[];
-export function approachStation(x:number):Point;
-export function advanceRoom(p:Point,dx:number,dy:number,seconds:number,width:number,height:number):Point;
-export function nearbyStation(p:Point,stations:number[]):number|null;
+export function stationPositions(count:number,room:number|null):Point[];
+export function approachStation(station:Point):Point;
+export function advanceRoom(p:Point,dx:number,dy:number,seconds:number,width:number,height:number,room?:number):Point;
+export function nearbyStation(p:Point,stations:Point[]):number|null;

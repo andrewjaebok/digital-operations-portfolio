@@ -42,21 +42,21 @@ test('diagonals and resized viewports preserve the 230 pixel/second movement spe
 
 test('players can reach every station and leave its interaction range', () => {
   for (const [width, height] of [[800, 400], [300, 320]]) {
-    for (const count of [2, 3]) {
-      const stations = stationPositions(count);
+    for (const [room, count] of [[0, 3], [1, 2], [2, 3]]) {
+      const stations = stationPositions(count, room);
       assert.equal(nearbyStation(roomSpawn, stations), null);
-      for (const [index, x] of stations.entries()) {
+      for (const [index, station] of stations.entries()) {
         let point = roomSpawn;
-        for (let step = 0; step < 240 && Math.abs(point.x - x) > 12; step += 1) {
-          point = advanceRoom(point, Math.sign(x - point.x), 0, .02, width, height);
+        for (let step = 0; step < 240 && Math.abs(point.x - station.x) > 12; step += 1) {
+          point = advanceRoom(point, Math.sign(station.x - point.x), 0, .02, width, height, room);
         }
-        for (let step = 0; step < 240; step += 1) {
-          point = advanceRoom(point, 0, -1, .02, width, height);
+        for (let step = 0; step < 240 && nearbyStation(point, stations) === null; step += 1) {
+          point = advanceRoom(point, 0, -1, .02, width, height, room);
         }
         assert.equal(nearbyStation(point, stations), index);
-        assert.equal(nearbyStation(approachStation(x), stations), index);
+        assert.equal(nearbyStation(approachStation(station), stations), index);
         for (let step = 0; step < 240; step += 1) {
-          point = advanceRoom(point, 0, 1, .02, width, height);
+          point = advanceRoom(point, 0, 1, .02, width, height, room);
         }
         assert.equal(nearbyStation(point, stations), null);
       }

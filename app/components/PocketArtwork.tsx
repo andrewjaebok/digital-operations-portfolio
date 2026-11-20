@@ -2,7 +2,7 @@ import { memo, type CSSProperties } from "react";
 import { assetPath } from "../../lib/asset-path";
 import type { Point } from "./quest-engine.mjs";
 
-const artworkUrl = (name: string) => `url("${assetPath(`/images/andrew-pocket/${name}.png`)}")`;
+const artworkUrl = (name: string) => `url("${assetPath(`/images/andrew-pocket/${name}.png`)}?v=2")`;
 const artwork = (name: string) => ({ backgroundImage: artworkUrl(name) });
 const directions = ["down", "left", "right", "up"] as const;
 export type PocketFacing = (typeof directions)[number];
@@ -16,7 +16,7 @@ export function scenePosition({ x, y }: Point): CSSProperties {
 export const PocketTown = memo(function PocketTown() {
   return (
     <div className="pocket-scene pocket-town" style={{ "--town-art": artworkUrl("town"), "--town-phone-art": artworkUrl("town-phone") } as CSSProperties} aria-hidden="true">
-      {[{ x: 138, y: 214 }, { x: 430, y: 188 }, { x: 662, y: 222 }].map((point, index) => (
+      {[{ x: 206, y: 217 }, { x: 420, y: 203 }, { x: 596, y: 242 }].map((point, index) => (
         <span key={point.x} className="pocket-lantern-pixel" style={{ ...scenePosition(point), animationDelay: `${index * -.9}s` }} />
       ))}
     </div>
@@ -38,11 +38,11 @@ export function PocketStation({ kind }: { kind: string }) {
   return <span className={`pocket-station-art${animated ? " pocket-station-art--animated" : ""}`} style={artwork(`station-${kind}`)} aria-hidden="true" />;
 }
 
-export function PocketAvatar({ position, facing, stride, inRoom }: {
+export function PocketAvatar({ position, facing, stride, layered }: {
   position: Point;
   facing: PocketFacing;
   stride: number;
-  inRoom: boolean;
+  layered: boolean;
 }) {
   return (
     <span
@@ -54,7 +54,7 @@ export function PocketAvatar({ position, facing, stride, inRoom }: {
         ...scenePosition(position),
         "--sprite-row": `${directions.indexOf(facing) * 100 / 3}%`,
         "--sprite-frame": `${stride * 25}%`,
-        zIndex: inRoom ? 3 : 20 + Math.floor(position.y),
+        zIndex: layered ? 20 + Math.floor(position.y) : 3,
       } as CSSProperties}
       aria-hidden="true"
     />
