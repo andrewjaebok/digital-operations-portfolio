@@ -250,13 +250,17 @@
 .pocket-console .quest-content { isolation: isolate; }
 .pocket-scene { position: absolute; inset: 0; background-size: 100% 100%; image-rendering: pixelated; pointer-events: none; }
 
-.pocket-town { background-image: var(--town-art); }
+.pocket-town {
+  --pocket-lamp-offset: 8.5%;
+  background-image: var(--town-art);
+}
 
 .pocket-lantern-pixel {
   position: absolute;
   width: clamp(2px, .32vw, 4px);
-  height: 3px;
-  background: #ffdf95;
+  height: 2px;
+  translate: -50% -50%;
+  background: #ffe2a6;
   animation: pocket-lantern 2.3s steps(3, end) infinite alternate;
 }
 
@@ -316,16 +320,21 @@
   min-width: 0;
   max-width: none;
   padding: 3px 7px;
-  border: 1px solid #3d5945;
-  background: var(--pocket-paper);
-  box-shadow: 1px 2px #23443288;
+  border: 1px solid #98775a;
+  background: #423334;
+  color: #ffedcb;
+  box-shadow: 1px 2px #2f262599;
   text-align: center;
   line-height: 1.15;
   white-space: nowrap;
 }
 
 .quest-building-label b { font-size: clamp(10px, 1.15vw, 13px); }
-.pocket-console .quest-building:is(:hover, :focus-visible, .is-target) .quest-building-label { background: var(--pocket-highlight); border-color: #48513c; }
+.pocket-console .quest-building:is(:hover, :focus-visible, .is-target) .quest-building-label {
+  background: var(--pocket-highlight);
+  border-color: #795c39;
+  color: var(--pocket-ink);
+}
 .pocket-console .quest-building:focus-visible { outline: 3px solid #ffedac; outline-offset: 2px; }
 
 .pocket-entrance-prompt {
@@ -524,7 +533,10 @@
   .pocket-console .console-bezel { padding: 5px; }
   .pocket-console .quest-stage { min-height: 250px; }
   .pocket-console .pocket-exhibit-stage { min-height: 320px; }
-  .pocket-town { background-image: var(--town-phone-art); }
+  .pocket-town {
+    --pocket-lamp-offset: 5.4%;
+    background-image: var(--town-phone-art);
+  }
   .pocket-console .quest-building-0,
   .pocket-console .quest-building-2 { width: 29%; }
   .pocket-console .quest-building-1 { width: 25%; }

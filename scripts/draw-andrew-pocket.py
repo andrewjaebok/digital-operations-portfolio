@@ -21,7 +21,11 @@ ROOFS = [
     ("#413e54", "#65647f", "#85839c", "#aba6bd"),
     ("#674337", "#a26046", "#c98258", "#edab70"),
 ]
-GRASS = ("#698b53", "#6d9056", "#73965a", "#7b9b5e")
+GROVE = (
+    ("#2d483c", "#41664a", "#68864f", ("#779659","#527749","#607c49","#8d9f5a")),
+    ("#2f463b", "#435f42", "#708454", ("#81915c","#566d4b","#738650","#969e62")),
+    ("#56493a", "#806242", "#b2894f", ("#c19a59","#947447","#af824a","#d9aa65")),
+)
 FLOWERS = ("#e7ae6b", "#efcb86", "#d89b9f", "#efe3af")
 
 
@@ -60,9 +64,11 @@ def blossom(d, x, y, color):
     d.point((x, y - 4), "#fff0b7")
 
 
-def tree(d, x, y, seed, scale=1):
+def tree(d, x, y, seed, scale=1, tone=0):
     """Tree anchor is its feet. All foliage uses upper-left lighting."""
     s = scale
+    outline, shade, light, leaf_colors = GROVE[tone]
+
     def points(vertices):
         return [(round(x + u * s), round(y + v * s)) for u, v in vertices]
 
@@ -74,20 +80,21 @@ def tree(d, x, y, seed, scale=1):
               (-2,-35),(-2,-38),(6,-38),(6,-35),(12,-35),(12,-32),
               (16,-32),(16,-25),(19,-25),(19,-15),(15,-15),(15,-11),
               (9,-11),(9,-8),(-3,-8),(-3,-10),(-10,-10),(-10,-13),(-15,-13)]
-    poly(d, points(canopy), "#345443")
+    poly(d, points(canopy), outline)
     interior = [(int(u*.90), int((v+23)*.86-23)) for u,v in canopy]
-    poly(d, points(interior), "#48754b")
+    poly(d, points(interior), shade)
     poly(d, points([(-13,-23),(-11,-29),(-7,-29),(-7,-33),(-1,-33),(-1,-35),
                     (7,-35),(7,-33),(11,-33),(11,-29),(14,-29),(14,-24),
                     (10,-24),(10,-20),(6,-20),(6,-22),(1,-22),(1,-18),
-                    (-6,-18),(-6,-15),(-10,-15),(-10,-20),(-13,-20)]), "#678d4e")
+                    (-6,-18),(-6,-15),(-10,-15),(-10,-20),(-13,-20)]), light)
+    reference_colors = tuple(bytes.fromhex(color[1:]) for color in (light, shade))
     rng = Random(seed)
-    for _ in range(26):
+    for _ in range(40):
         u, v = rng.randrange(-11, 13), rng.randrange(-33, -12)
         px, py = points([(u,v)])[0]
         if (0 <= px < d._image.width and 0 <= py < d._image.height
-                and d._image.getpixel((px,py))[:3] in ((103,141,78), (72,117,75))):
-            line(d, [(px,py),(px+1,py)], rng.choice(["#779952","#527e4a","#5d874d","#87a45b"]))
+                and bytes(d._image.getpixel((px,py))[:3]) in reference_colors):
+            line(d, [(px,py),(px+1,py)], rng.choice(leaf_colors))
 
 
 def bush(d, x, y, tone=0):
@@ -151,96 +158,132 @@ def utility_cabinet(d, x, y):
     d.point((x+10,y-2),"#b8dca2")
 
 
+def cobbles(canvas, mask, seed, colors):
+    rng = Random(seed)
+    tile, d = image(canvas.size, colors[0])
+    for row,y in enumerate(range(-4,canvas.height,5)):
+        x = -9 - row%2*4
+        while x < canvas.width:
+            width = rng.randrange(5,11)
+            poly(d, [(x+1,y),(x+width-2,y),(x+width-1,y+1),(x+width-1,y+3),
+                     (x+width-2,y+4),(x+1,y+4),(x,y+3),(x,y+1)], rng.choice(colors[1:]))
+            line(d,[(x+1,y),(x+width-2,y)],colors[-1])
+            if width > 7 and rng.random() < .36:
+                d.point((x+2,y+2),colors[0])
+            x += width + 1
+    canvas.paste(tile,(0,0),mask)
+
+
+def town_light(canvas, lamps):
+    # Quantized warm pools and a cooler tree line tie outdoor light to the workshop palette.
+    scaled = [(x*canvas.width/400,y*canvas.height/200,r) for x,y,r in lamps]
+    for y in range(canvas.height):
+        for x in range(canvas.width):
+            warm = max(max(0,1-((x-lx)*400/canvas.width/r)**2-((y-ly)*200/canvas.height/r)**2)
+                       for lx,ly,r in scaled)
+            warm = round(warm*10)/10
+            shade = max(0,1-y/canvas.height*1.57)
+            r,g,b = canvas.getpixel((x,y))
+            canvas.putpixel((x,y),tuple(max(0,min(255,v)) for v in (
+                round(r+47*warm-17*shade),round(g+24*warm-11*shade),round(b+5*warm+5*shade))))
+
+
 def town(mobile=False):
-    canvas, d = image((400,200), GRASS[1])
+    ground, d = image((400,200),"#596e47")
     rng = Random(816)
-    # Meadow zones form soft-looking transitions using irregular pixel steps.
-    for vertices, color in [
-        ([(0,0),(399,0),(399,31),(382,31),(382,27),(332,24),(309,29),(290,25),
-          (251,25),(245,16),(165,16),(145,30),(82,33),(66,46),(0,49)], "#5b7e49"),
-        ([(0,123),(29,120),(40,128),(75,129),(88,141),(132,139),(151,147),
-          (195,147),(191,169),(146,183),(95,182),(68,190),(0,197)], "#719557"),
-        ([(243,53),(278,46),(348,49),(375,45),(399,53),(399,109),(367,108),
-          (355,120),(309,117),(283,129),(243,119)], "#74975b"),
-        ([(10,185),(92,180),(112,186),(140,184),(165,190),(228,186),(264,190),
-          (304,180),(353,184),(399,175),(399,199),(0,199)], "#62864c"),
+    for points, color in [
+        ([(0,0),(399,0),(399,36),(367,49),(302,38),(273,60),(247,54),
+          (211,44),(174,54),(145,47),(97,57),(52,47),(0,65)],"#415e46"),
+        ([(0,86),(33,76),(67,93),(91,113),(145,94),(188,112),(219,94),
+          (268,107),(312,81),(366,64),(399,76),(399,135),(368,149),(0,147)],"#65794d"),
+        ([(0,173),(48,166),(85,172),(142,167),(155,179),(204,187),(253,171),
+          (306,174),(351,180),(399,172),(399,199),(0,199)],"#495f47"),
+        ([(0,88),(49,87),(58,105),(39,132),(48,154),(11,151),(0,137)],"#4c6547"),
+        ([(252,88),(286,76),(311,89),(303,117),(285,140),(256,142),(242,115)],"#4f6849"),
     ]:
-        poly(d, vertices, color)
-    for _ in range(2700):
-        x,y = rng.randrange(400),rng.randrange(200)
-        if rng.random() < .77:
-            d.point((x,y), rng.choice(["#66894f","#759759","#7e9d5e","#6b8b51"]))
-        else:
-            line(d, [(x,y),(x+1,y)], rng.choice(["#77995b","#5f854c"]))
-    for x,y in [(20,80),(37,54),(53,119),(62,103),(109,125),(119,92),
-                (140,62),(157,125),(183,105),(221,108),(245,110),(264,94),
-                (281,124),(342,121),(378,108),(387,135),(314,185),(131,185),(62,190)]:
-        for _ in range(6):
-            tuft(d,x+rng.randrange(-6,7),y+rng.randrange(-5,6))
-    # The footprints and path junctions line up with the React door anchors.
-    main = [(2,167),(30,159),(69,162),(114,170),(156,170),(185,164),
-            (202,158),(228,151),(255,150),(278,152),(307,162),(341,173),(398,172)]
-    wings = [[(75,86),(77,106),(90,123),(108,140),(115,169)],
-             [(205,73),(205,90),(224,108),(230,132),(228,151)],
-             [(325,115),(323,133),(307,149),(307,162)]]
-    mask = Image.new("L",(400,200))
-    md = ImageDraw.Draw(mask)
-    def pathway(draw, points, width, fill):
-        draw.line(points, fill=fill, width=width, joint="curve")
-        for x,y in points:
-            r = width//2
-            draw.ellipse((x-r,y-r,x+r,y+r), fill=fill)
-    for points in [main,*wings]:
-        pathway(d, points, 23, "#577547")
-        pathway(d, points, 20, "#ac8f5f")
-        pathway(md, points, 17, 255)
-    canvas.paste("#d9be88",(0,0,400,200),mask)
+        poly(d,points,color)
     for _ in range(2900):
-        x,y = rng.randrange(400),rng.randrange(200)
-        if mask.getpixel((x,y)):
-            line(d, [(x,y),(x+1,y)],rng.choice(["#e9ce98","#c8ab77","#dec592","#cbb180"]))
-    for x,y in [(75,86),(205,73),(325,115)]:
-        rect(d,(x-12,y-6,x+12,y+6),"#a09172")
-        for ix in range(4):
-            stone=x-11+ix*6
-            rect(d,(stone,y-5,stone+4,y-2),"#d9c695")
-            rect(d,(stone,y,stone+4,y+3),"#cbb88c")
+        x,y=rng.randrange(400),rng.randrange(200)
+        if rng.random() < .13:
+            line(d,[(x,y),(x+1,y)],"#75844f")
+        else:
+            d.point((x,y),rng.choice(("#61754b","#54694a","#65794f","#556b46","#697c4f")))
+    for x,y in [(13,88),(51,62),(138,99),(112,135),(146,124),(162,78),
+                (243,109),(270,119),(288,91),(383,110),(381,145),(324,181),(138,180)]:
+        for _ in range(6):
+            tuft(d,x+rng.randrange(-6,7),y+rng.randrange(-5,6),"#455d44")
+
+    main = [(-12,165),(26,157),(63,156),(101,149),(141,150),(174,157),
+            (209,158),(241,151),(277,148),(311,151),(351,164),(410,163)]
+    wings = [[(75,86),(76,112),(86,130),(101,149)],
+             [(205,73),(206,100),(220,123),(226,155)],
+             [(325,115),(324,132),(311,151)]]
+    terraces = [
+        [(23,78),(126,78),(129,87),(125,108),(28,108),(20,100)],
+        [(161,67),(244,67),(253,78),(249,98),(181,98),(161,88)],
+        [(284,107),(379,106),(383,129),(375,143),(300,143),(285,132)],
+    ]
+    plaza = [(164,150),(170,139),(189,134),(223,135),(241,145),
+             (248,163),(239,177),(219,183),(182,181),(163,169)]
+
+    pavement = Image.new("L",ground.size)
+    for padding,color,target in [(7,"#3c5444",ground), (4,"#ae916e",ground), (0,255,pavement)]:
+        paving = ImageDraw.Draw(target)
+        for points,width in [(main,29),*((path,17) for path in wings)]:
+            r = (width+padding)//2
+            paving.line(points,fill=color,width=2*r+1,joint="curve")
+            for x,y in points:
+                paving.ellipse((x-r,y-r,x+r,y+r),fill=color)
+        for points in [plaza,*terraces]:
+            paving.polygon(points,fill=color)
+            if padding:
+                paving.line(points+[points[0]],fill=color,width=padding+1,joint="curve")
+
     if mobile:
-        # Keep map anchors in the same place while rendering props at a phone-friendly aspect ratio.
-        canvas = canvas.resize((244, 224), Image.Resampling.NEAREST)
-        d = ImageDraw.Draw(canvas)
+        # Pave the resized shape at phone scale to keep individual stones proportional.
+        ground = ground.resize((244,224),Image.Resampling.NEAREST)
+        pavement = pavement.resize(ground.size,Image.Resampling.NEAREST)
+    cobbles(ground,pavement,246,("#887760","#a48b6f","#aa9073","#b69a7c","#b09b80","#c2a686","#c5ad8d"))
+    d = ImageDraw.Draw(ground)
 
-    def scenery(draw, x, y, *args):
+    def prop(draw, x, y, *args):
         if not mobile:
-            draw(d, x, y, *args)
+            draw(d,x,y,*args)
             return
-        tile, tile_draw = image((72, 60))
-        draw(tile_draw, 23, 48, *args)
-        tile = tile.resize((51, 43), Image.Resampling.NEAREST)
-        canvas.paste(tile, (round(x * 244 / 400) - 16, round(y * 224 / 200) - 34), tile)
+        tile,tile_draw = image((76,64))
+        draw(tile_draw,24,51,*args)
+        tile = tile.resize((54,45),Image.Resampling.NEAREST)
+        ground.paste(tile,(round(x*244/400)-17, round(y*224/200)-36),tile)
 
-    for x,y in [(6,71),(28,43),(121,36),(137,59),(153,45),(162,62),
-                (255,34),(274,44),(376,42),(394,70),(23,116),(47,139),
-                (372,132),(392,119),(40,196),(73,194),(243,196),(363,196)]:
-        scenery(tree,x,y,x+y,.65 if y>=193 else (.96 if x%2 else .81))
-    for x,y,i in [(29,83,0),(120,80,1),(164,84,3),(246,75,0),(289,111,2),
-                    (369,118,1),(22,143,0),(132,149,0),(154,137,2),(248,127,1),
-                    (288,132,0),(356,152,0),(97,189,2),(318,192,3),(396,183,1)]:
-        scenery(bush,x,y,i)
-    for x,y in [(45,149),(180,177),(266,137)]:
-        scenery(bench,x,y)
-    for x,y in [(103,125),(210,118),(298,137),(48,163),(360,174)]:
-        scenery(lantern,x,y)
-    for x,y,n in [(19,100,3),(133,94,3),(257,81,2),(370,106,3),(331,188,3)]:
-        scenery(fence,x,y,n)
-    scenery(studio_planter,96,98)
-    scenery(utility_cabinet,239,80)
-    scenery(carton,353,122,10,7,"#d4a06a")
-    for x,y in [(33,98),(58,113),(113,119),(145,108),(174,140),(202,183),
-                (286,103),(354,122),(62,182),(123,191),(252,183),(342,151)]:
-        for i in range(5):
-            scenery(blossom,x+rng.randrange(-5,6),y+rng.randrange(-3,6),FLOWERS[i%4])
-    canvas.save(OUT/("town-phone.png" if mobile else "town.png"), optimize=True)
+    trees = [(5,54,1.12,1),(26,58,.88,0),(101,24,.88,1),(129,32,1.02,0),
+             (142,62,1.06,0),(162,64,.72,2),(251,36,.93,1),(272,55,1.13,0),
+             (305,49,1.17,1),(344,54,1.04,2),(381,58,1.25,0),(400,87,.99,1),
+             (16,113,.88,2),(42,137,.96,0),(127,132,.71,2),(268,106,.89,2),
+             (393,142,.91,1),(14,201,1.05,0),(68,207,.87,1),(279,204,.81,0),(373,207,1.06,2)]
+    for x,y,scale,tone in trees:
+        prop(tree,x,y,x+y,scale,tone)
+    for x,y,tone in [(16,71,1),(118,81,2),(151,84,0),(248,70,0),(292,76,2),
+                     (370,94,3),(30,122,0),(111,120,3),(141,138,1),(161,124,0),
+                     (249,125,2),(271,128,1),(382,145,0),(92,182,3),(332,191,2)]:
+        prop(bush,x,y,tone)
+    for x,y,n in [(19,116,3),(133,107,3),(256,77,3),(369,80,3),(375,184,3)]:
+        prop(fence,x,y,n)
+    for x,y in [(54,139),(181,177),(343,145)]:
+        prop(bench,x,y)
+    prop(studio_planter,29,103)
+    prop(studio_planter,98,103)
+    prop(utility_cabinet,235,89)
+    prop(carton,359,127,12,9,"#cf9d68")
+    prop(carton,369,125,9,7,"#b28159")
+    for x,y in [(34,111),(42,118),(119,121),(144,115),(155,132),(265,120),
+                (287,114),(383,145),(112,187),(156,185),(248,191),(354,190)]:
+        for i in range(4):
+            prop(blossom,x+rng.randrange(-4,5),y+rng.randrange(-2,3),FLOWERS[i])
+    for x,y in [(101,122),(220,108),(300,130),(25,159),(368,172),(238,176)]:
+        prop(lantern,x,y)
+    town_light(ground,[(101,119,35),(220,105,34),(300,125,35),(25,156,26),
+                       (368,169,30),(238,174,40),(75,86,27),(325,115,29)])
+    ground.save(OUT/("town-phone.png" if mobile else "town.png"), optimize=True)
 
 
 def window(d, x, y, w=16, h=16, light=GLASS_LIGHT):
@@ -267,10 +310,11 @@ def facade(district, door_frame):
         rect(d,(8,38,98,57),shade)
         for x,w in [(12,11),(25,13),(72,11),(86,10)]:
             rect(d,(x,39,x+w,56),"#315d65")
-            rect(d,(x+1,40,x+w-1,54),"#6fa9a3")
-            poly(d,[(x+1,40),(x+w-2,40),(x+1,49)],"#a8d0b8")
+            rect(d,(x+1,40,x+w-1,54),"#8ba48b")
+            poly(d,[(x+1,40),(x+w-2,40),(x+1,49)],"#dfc48d")
             line(d,[(x+1,48),(x+w-1,48)],"#3e7a80")
             line(d,[(x+1,55),(x+w-1,55)],"#dbad68")
+            d.point((x+w-2,51),"#e6cc96")
         poly(d,[(3,31),(15,20),(103,20),(109,26),(100,33),(3,33)],shade)
         poly(d,[(6,30),(16,22),(101,22),(96,29)],mid)
         for x in range(14,98,6):
@@ -303,6 +347,8 @@ def facade(district, door_frame):
             rect(d,(35,y,64,y+3),shade)
             line(d,[(37,y+1),(61,y+1)],light)
             d.point((62,y+2),"#9cd69b")
+        for x,y in [(29,18),(69,19),(29,57),(69,57),(81,40),(94,58)]:
+            d.point((x,y),trim)
         for y in range(42,59,4):
             line(d,[(81,y),(94,y)],shade,2)
             d.point((83,y),"#9bbb9b")
@@ -314,8 +360,11 @@ def facade(district, door_frame):
         poly(d,[(9,31),(29,10),(62,10),(84,36),(102,36),(109,43),(109,59),
                 (102,65),(88,65),(81,68),(10,68),(6,61),(6,37)],INK)
         rect(d,(9,34,80,62),"#c3996b")
-        for y in range(43,62,4):
+        for row,y in enumerate(range(43,62,4)):
             line(d,[(9,y),(80,y)],"#ac7953")
+            for x in range(12+row%2*11,77,19):
+                line(d,[(x,y+1),(x,y+3)],"#a87753")
+                line(d,[(x+3,y+1),(x+7,y+1)],"#d5a974")
         poly(d,[(8,35),(29,10),(52,10),(75,35)],shade)
         poly(d,[(11,34),(31,12),(51,12),(70,34)],mid)
         poly(d,[(52,10),(80,32),(85,38),(74,36)],shade)
@@ -328,7 +377,7 @@ def facade(district, door_frame):
         line(d,[(10,34),(31,12),(50,12),(71,34)],trim,2)
         rect(d,(37,22,47,31),shade)
         rect(d,(39,24,45,29),"#f9c278")
-        window(d,15,46,15,11,"#d4ba88")
+        window(d,15,46,15,11,"#f5ca85")
         poly(d,[(73,38),(99,36),(108,42),(106,46),(73,46)],shade)
         line(d,[(76,39),(99,38),(105,42)],trim,2)
         rect(d,(77,46,105,61),"#856348")
@@ -345,8 +394,8 @@ def facade(district, door_frame):
     if door_frame == 0:
         rect(d,(47,45,64,65),shade)
         rect(d,(48,46,63,57),mid)
-        rect(d,(50,47,61,54),GLASS)
-        line(d,[(51,48),(60,48)],GLASS_LIGHT)
+        rect(d,(50,47,61,54),"#748479")
+        line(d,[(51,48),(60,48)],"#ecd092")
         line(d,[(55,47),(55,54)],CREAM)
         line(d,[(50,61),(61,61)],light)
         d.point((61,59),GOLD)
